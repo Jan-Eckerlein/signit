@@ -22,7 +22,7 @@ class SignerDocumentField extends Model
         'label',
         'description',
         'required',
-        'value_signature',
+        'value_signature_sign_id',
         'value_initials',
         'value_text',
         'value_checkbox',
@@ -39,5 +39,10 @@ class SignerDocumentField extends Model
     public function documentSigner(): BelongsTo
     {
         return $this->belongsTo(DocumentSigner::class);
+    }
+
+    public function signatureSign(): BelongsTo
+    {
+        return $this->belongsTo(Sign::class, 'value_signature_sign_id');
     }
 } 

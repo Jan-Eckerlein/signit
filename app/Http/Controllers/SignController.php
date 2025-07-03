@@ -52,7 +52,29 @@ class SignController extends Controller
      */
     public function destroy(Sign $sign): JsonResponse
     {
-        $sign->delete();
-        return response()->json(['message' => 'Sign deleted successfully']);
+        $deletionStatus = $sign->delete();
+        return response()->json(['message' => 'Sign deleted successfully', 'status' => $deletionStatus]);
+    }
+
+    /**
+     * Force delete a sign (only if not being used)
+     */
+    public function forceDelete(Sign $sign): JsonResponse
+    {
+        try {
+            $sign->forceDeleteIfNotUsed();
+            return response()->json(['message' => 'Sign permanently deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
+    }
+
+    /**
+     * Restore a soft deleted sign
+     */
+    public function restore(Sign $sign): JsonResponse
+    {
+        $sign->restore();
+        return response()->json(['message' => 'Sign restored successfully']);
     }
 } 

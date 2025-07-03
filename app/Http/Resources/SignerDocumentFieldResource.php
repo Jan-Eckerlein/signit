@@ -26,7 +26,7 @@ class SignerDocumentFieldResource extends JsonResource
             'label' => $this->label,
             'description' => $this->description,
             'required' => $this->required,
-            'value_signature' => $this->value_signature,
+            'value_signature_sign_id' => $this->value_signature_sign_id,
             'value_initials' => $this->value_initials,
             'value_text' => $this->value_text,
             'value_checkbox' => $this->value_checkbox,
@@ -34,6 +34,7 @@ class SignerDocumentFieldResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'document_signer' => new DocumentSignerResource($this->whenLoaded('documentSigner')),
+            'signature_sign' => new SignResource($this->whenLoaded('signatureSign')),
         ];
     }
 } 

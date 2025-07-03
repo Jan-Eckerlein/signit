@@ -17,7 +17,7 @@ class SignerDocumentFieldController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $signerDocumentFields = SignerDocumentField::with(['documentSigner'])->paginate();
+        $signerDocumentFields = SignerDocumentField::with(['documentSigner', 'signatureSign'])->paginate();
         return SignerDocumentFieldResource::collection($signerDocumentFields);
     }
 
@@ -27,7 +27,7 @@ class SignerDocumentFieldController extends Controller
     public function store(StoreSignerDocumentFieldRequest $request): SignerDocumentFieldResource
     {
         $signerDocumentField = SignerDocumentField::create($request->validated());
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
     }
 
     /**
@@ -35,7 +35,7 @@ class SignerDocumentFieldController extends Controller
      */
     public function show(SignerDocumentField $signerDocumentField): SignerDocumentFieldResource
     {
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
     }
 
     /**
@@ -44,7 +44,7 @@ class SignerDocumentFieldController extends Controller
     public function update(UpdateSignerDocumentFieldRequest $request, SignerDocumentField $signerDocumentField): SignerDocumentFieldResource
     {
         $signerDocumentField->update($request->validated());
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
     }
 
     /**

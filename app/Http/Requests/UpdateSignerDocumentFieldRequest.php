@@ -34,7 +34,7 @@ class UpdateSignerDocumentFieldRequest extends FormRequest
             'label' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'required' => 'sometimes|boolean',
-            'value_signature' => 'nullable|string',
+            'value_signature_sign_id' => 'nullable|exists:signs,id',
             'value_initials' => 'nullable|string|max:255',
             'value_text' => 'nullable|string',
             'value_checkbox' => 'nullable|boolean',
