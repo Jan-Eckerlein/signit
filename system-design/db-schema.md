@@ -4,25 +4,37 @@ erDiagram
         int id PK
         string username
         string email
+        datetime created_at
+        datetime updated_at
     }
+
     anonymous_users {
         int id PK
         string email
         string name
+        datetime created_at
+        datetime updated_at
     }
+
     contacts {
         int id PK
-        int from_user_id FK
+        int own_user_id FK
         int knows_user_id FK
         int knows_anonymous_users_id FK
         string email
         string name
+        datetime created_at
+        datetime updated_at
     }
+
     signs {
         int id PK
         int user_id FK
         int anonymous_user_id FK
+        datetime created_at
+        datetime updated_at
     }
+
     documents {
         int id PK
         string title
@@ -30,12 +42,18 @@ erDiagram
         string description
         DocumentStatus status
         datetime completed_at
+        datetime created_at
+        datetime updated_at
     }
+
     document_signers {
         int id PK
         int document_id FK
         int contact_id FK
+        datetime created_at
+        datetime updated_at
     }
+
     signer_document_fields {
         int id PK
         int document_signer_id FK
@@ -48,12 +66,15 @@ erDiagram
         string label
         string description
         boolean required
-        string value_signature
+        string value_signature_sign_id FK
         string value_initials
         string value_text
         boolean value_checkbox
         date value_date
+        datetime created_at
+        datetime updated_at
     }
+
     document_logs {
         int id PK
         int contact_id FK
@@ -62,6 +83,8 @@ erDiagram
         datetime date
         Icon icon
         string text
+        datetime created_at
+        datetime updated_at
     }
 
     %% Beziehungen
@@ -74,6 +97,7 @@ erDiagram
     documents ||--o{ document_signers        : "has_signers"
     contacts ||--o{ document_signers         : "is_signer"
     document_signers ||--o{ signer_document_fields : "has_fields"
+    signs ||--o{ signer_document_fields : "used_for"
     documents ||--o{ document_logs           : "has_logs"
     contacts ||--o{ document_logs            : "logged_by"
 ```
