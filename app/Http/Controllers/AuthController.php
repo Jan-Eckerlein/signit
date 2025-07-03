@@ -81,7 +81,13 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        Auth::logout();
+        // Delete the current token if using token authentication
+        if ($request->user()->currentAccessToken()) {
+            $request->user()->currentAccessToken()->delete();
+        } else {
+            // Fallback to session logout
+            Auth::logout();
+        }
 
         return response()->json([
             'message' => 'User logged out successfully',
@@ -120,6 +126,12 @@ class AuthController extends Controller
      */
     public function refresh(Request $request): JsonResponse
     {
+		if (!$request->hasSession()) {
+			return response()->json([
+				'message' => 'No session found',
+			], 400);
+		}
+		
         $user = $request->user();
         
         // Regenerate session
