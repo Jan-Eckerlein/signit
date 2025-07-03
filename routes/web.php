@@ -14,6 +14,7 @@ Route::group(['prefix' => 'api'], function () {
     });
 });
 
-Route::get('/{vue_capture?}', function () {
+
+Route::get('/editor/{vue_capture?}', function () {
     return view('welcome');
 })->where('vue_capture', '[\/\w\.-]*');
