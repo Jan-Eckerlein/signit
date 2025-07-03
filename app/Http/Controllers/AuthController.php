@@ -21,6 +21,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+			'handler' => 'required|string|in:token,session',
         ]);
 
         $user = User::create([
@@ -29,37 +30,51 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($user);
+		
+		if ($request->handler === 'token') {
+			$token = $user->createToken('auth_token')->plainTextToken;
+		} else {
+			Auth::login($user);
+		}
 
         return response()->json([
             'message' => 'User registered successfully',
             'user' => new UserResource($user),
+			'token' => $token ?? false,
         ], 201);
     }
 
     /**
      * Login user
      */
-    public function login(Request $request): JsonResponse
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+	public function login(Request $request): JsonResponse
+	{
+		$request->validate([
+			'email' => 'required|string|email',
+			'password' => 'required|string',
+			'handler' => 'required|string|in:token,session',
+		]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
+		$user = User::where('email', $request->email)->first();
 
-        $user = User::where('email', $request->email)->firstOrFail();
+		if (!$user || !Hash::check($request->password, $user->password)) {
+			throw ValidationException::withMessages([
+				'email' => ['The provided credentials are incorrect.'],
+			]);
+		}
 
-        return response()->json([
-            'message' => 'User logged in successfully',
-            'user' => new UserResource($user),
-        ]);
-    }
+		if ($request->handler === 'token') {
+			$token = $user->createToken('auth_token')->plainTextToken;
+		} else {
+			Auth::login($user);
+		}
+
+		return response()->json([
+			'message' => 'User logged in successfully',
+			'user' => new UserResource($user),
+			'token' => $token ?? false,
+		]);
+	}
 
     /**
      * Logout user
