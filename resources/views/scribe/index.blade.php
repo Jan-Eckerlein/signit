@@ -88,7 +88,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 2, 2025</li>
+        <li>Last updated: July 3, 2025</li>
     </ul>
 </div>
 
@@ -154,15 +154,19 @@ fetch(url, {
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
+            <pre><code class="language-http">content-type: text/html; charset=UTF-8
+cache-control: no-cache, private
 access-control-allow-origin: *
-set-cookie: XSRF-TOKEN=eyJpdiI6Iit4aEhvMVQ5dktvTldnb1pYSjFDR2c9PSIsInZhbHVlIjoiWG5UaDNtcTdOYTFFVERjVDhtOEF1S1hSYjhveXJRbStQQmU0Snc4Um5ERmtJRGg3Vk44RlV1RUo0c3ViSUdCZCtaSWlvc3Zla200bmU3VnR6MHhmazFrSklza3dpVXNTZDBjZDlRa3U4L3V3eW0rczJibEZCNVZWVkp6OFZSWnoiLCJtYWMiOiI3ZTY5ODZmOTAyMzYzZDA3Yjc1NjRhZGExZWE3ZGZmYjA3NGY0NDk0ODI1YjRhMzg5NzYyZjczZDViMjU4MzcxIiwidGFnIjoiIn0%3D; expires=Wed, 02 Jul 2025 15:15:49 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkNydytLVVUzRDVoNmtaVGp5L0VidkE9PSIsInZhbHVlIjoiSTBuOS8rOHFvQnhqcjR6QlpwbitqcThwVmpsTGdwWUp0NzhZNlpja3QwZ0w1eXJCUmNmYTk1dzdiNWNuNmZvcUVmOXppcDNITkxMNitDZFJ3dnFUZUJYSEVMcm1uMHRvQXd2dXFOeHlEdmUwSnJ3NkJ1MkN5NzNsVGI1ci9rZmIiLCJtYWMiOiI3NGNjODU5MWNjOGE1MzY4Yjc5OTZkMzBiNWI0NDRjN2M2ZGQxNTFkZDZjNDVkMGM2YzU2ZmM5N2JiYjIzZDhjIiwidGFnIjoiIn0%3D; expires=Wed, 02 Jul 2025 15:15:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6ImY5M2NjZHg5aEFOUjk4NEVnZmJNcGc9PSIsInZhbHVlIjoiZnlsaUk1RTI4dHlQTWNXVjBreGR3eGdFU1JmSG9HL0hLSUMwYVZRM1NuWml4UFg1R2ZLZ2dlbTl1TTJrL0dGS3dWVjl4MkdVcHlHeVJkOENWYVlhMWZtMXdpZHVRUmJiOEpIYXUxbEx0RUlOd0FYd1hOQk5mbHNWT2tOSzJIMm0iLCJtYWMiOiI5MGJmYTVmZWU2MTAzOWI3YTVhMTkwODFlNmJhNjEyZmY5OTcxZDRiMGE5ZWJlZWZjMmI1Y2I3NGI3NmZiYWM5IiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 10:42:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Inl5Z3plUmFmYU0zeDY4REVaMnBaK2c9PSIsInZhbHVlIjoiaE1kUkJxZFlUZ2s2R04xVUNDaFlDVGlveFpycnVrN3BUVlIwSzF0S2EyQ2w0UmdZcldSeUw0ZkpDenNaVW9MN2xwSUxReGk4OFlDaXRzQ1JZUWFFUzVab2JBQTU0bDZ2KzhaVVVHK3hvN3hTQi9wOG9oNlBuQ1BMUCtha2hSaDMiLCJtYWMiOiJlZGNkZThhODYwOTdmZGJjOTQyN2JmOWUwMDhkZjQzY2U5MjYyYWVmZTk4NDljODNiZDFlY2M2MDczODYyOGNlIiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 10:42:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Hello from Laravel!&quot;
-}</code>
+<code class="language-json" style="max-height: 300px;">&lt;head&gt;
+    &lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/@vite/client&quot;&gt;&lt;/script&gt;&lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/resources/js/app.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-test-me" hidden>

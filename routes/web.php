@@ -3,10 +3,6 @@
 use App\Http\Requests\SignDocumentRequest;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{vue_capture?}', function () {
-    return view('welcome');
-})->where('vue_capture', '[\/\w\.-]*');
-
 Route::group(['prefix' => 'api'], function () {
     Route::get('/test-me', function () {
         return response()->json(['message' => 'Hello from Laravel!']);
@@ -17,3 +13,7 @@ Route::group(['prefix' => 'api'], function () {
         return response()->json(['message' => 'Hello from Laravel!', 'data' => $validated]);
     });
 });
+
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');

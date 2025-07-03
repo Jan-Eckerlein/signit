@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "openapi:generate": "php artisan scribe:generate && npx openapi-typescript ./storage/app/private/scribe/openapi.yaml -o ./resources/js/api/openapi-schema.ts"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.11",
@@ -12,6 +13,7 @@
         "axios": "^1.10.0",
         "concurrently": "^9.2.0",
         "laravel-vite-plugin": "^1.3.0",
+        "openapi-typescript": "^7.8.0",
         "tailwindcss": "^4.1.11",
         "typescript": "^5.8.3",
         "vite": "^6.3.5"
@@ -19,6 +21,7 @@
     "packageManager": "pnpm@10.12.4",
     "dependencies": {
         "@vitejs/plugin-vue": "^6.0.0",
+        "openapi-fetch": "^0.14.0",
         "vue": "^3.5.17",
         "vue-router": "^4.5.1"
     }
