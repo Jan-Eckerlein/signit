@@ -62,7 +62,10 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "text/plain": string;
+                    "application/json": {
+                        /** @example Hello from Laravel! */
+                        message?: string;
+                    };
                 };
             };
         };

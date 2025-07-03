@@ -154,19 +154,15 @@ fetch(url, {
             <summary style="cursor: pointer;">
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
 access-control-allow-origin: *
-set-cookie: XSRF-TOKEN=eyJpdiI6ImY5M2NjZHg5aEFOUjk4NEVnZmJNcGc9PSIsInZhbHVlIjoiZnlsaUk1RTI4dHlQTWNXVjBreGR3eGdFU1JmSG9HL0hLSUMwYVZRM1NuWml4UFg1R2ZLZ2dlbTl1TTJrL0dGS3dWVjl4MkdVcHlHeVJkOENWYVlhMWZtMXdpZHVRUmJiOEpIYXUxbEx0RUlOd0FYd1hOQk5mbHNWT2tOSzJIMm0iLCJtYWMiOiI5MGJmYTVmZWU2MTAzOWI3YTVhMTkwODFlNmJhNjEyZmY5OTcxZDRiMGE5ZWJlZWZjMmI1Y2I3NGI3NmZiYWM5IiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 10:42:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Inl5Z3plUmFmYU0zeDY4REVaMnBaK2c9PSIsInZhbHVlIjoiaE1kUkJxZFlUZ2s2R04xVUNDaFlDVGlveFpycnVrN3BUVlIwSzF0S2EyQ2w0UmdZcldSeUw0ZkpDenNaVW9MN2xwSUxReGk4OFlDaXRzQ1JZUWFFUzVab2JBQTU0bDZ2KzhaVVVHK3hvN3hTQi9wOG9oNlBuQ1BMUCtha2hSaDMiLCJtYWMiOiJlZGNkZThhODYwOTdmZGJjOTQyN2JmOWUwMDhkZjQzY2U5MjYyYWVmZTk4NDljODNiZDFlY2M2MDczODYyOGNlIiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 10:42:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkNMalVsNGtSUVhVNEpKdWNIRzZoMnc9PSIsInZhbHVlIjoienZEUTJzZ3JYamRhem1PaFdaMkZNK2RxczU0bEdWVE5pYjIyVy93LzNrbzNZVGZFdGQwbDdNMERmazA0N0ZyOENCMlo0T2QySmc3MEFkbWk5NEdNUUlkODJpU2lodlV2UDdlem1McEZNRWE1ZnRRcGZFZDVwS0wra2psT2hOMkMiLCJtYWMiOiIwZDljNTY2YTVmYmY0M2M3YWM4NDkyNThlYjlmM2I0NjFjNzAxYjNmYWNjZDIxNjQ2ODAzMTU2OTM2NDFlMDAwIiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 11:16:38 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImR4R3NrZHliNzlBUkNNYjFjd2pXZnc9PSIsInZhbHVlIjoieE1INlJXZTROUTE3WWxLaEdiNVVoMzRQb3J4QjlMME5OVTRuRzlZREdoMXBidnFnaE94eFpnZ0hKYXA0Tm9RYUVHZGRNTnhFTmpDRjBXOVB2bWoySStHdXBEYnNYNG80bEtjVmFCS1lqL3ZGU1REUDhGQXhiL2tHbVlvSms2T0ciLCJtYWMiOiIxZTg0M2YxOTUyMzA4OWE2MTRhNGUwNWI2YTdhMmRmNjA3OTRhMzc4OWQ5MmMxMWRlZmJhYjhiNTM2ZmU0MmU5IiwidGFnIjoiIn0%3D; expires=Thu, 03 Jul 2025 11:16:38 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
-<code class="language-json" style="max-height: 300px;">&lt;head&gt;
-    &lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/@vite/client&quot;&gt;&lt;/script&gt;&lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/resources/js/app.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-</code>
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Hello from Laravel!&quot;
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-test-me" hidden>
