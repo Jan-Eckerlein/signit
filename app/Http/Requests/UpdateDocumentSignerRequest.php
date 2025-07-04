@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Document;
+use App\Models\DocumentSigner;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDocumentSignerRequest extends FormRequest
@@ -11,7 +13,8 @@ class UpdateDocumentSignerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $documentSigner = $this->route('document_signer');
+        return $documentSigner && $documentSigner->isMine($this->user());
     }
 
     /**

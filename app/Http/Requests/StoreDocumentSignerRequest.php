@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Document;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDocumentSignerRequest extends FormRequest
@@ -11,7 +12,8 @@ class StoreDocumentSignerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $document = Document::find($this->document_id);
+        return $document && $document->isMine($this->user());
     }
 
     /**

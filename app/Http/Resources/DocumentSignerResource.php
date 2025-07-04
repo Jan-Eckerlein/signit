@@ -5,6 +5,14 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @group Document Signers
+ * 
+ * Document Signer Resource
+ * 
+ * This resource represents a document signer, which links a contact to a document
+ * for signing purposes.
+ */
 class DocumentSignerResource extends JsonResource
 {
     /**

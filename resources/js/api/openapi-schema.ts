@@ -100,6 +100,44 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/document-signers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getApiDocumentSigners"];
+        put?: never;
+        post: operations["postApiDocumentSigners"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/document-signers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        get: operations["getApiDocumentSignersId"];
+        put: operations["putApiDocumentSignersId"];
+        post?: never;
+        delete: operations["deleteApiDocumentSignersId"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/documents": {
         parameters: {
             query?: never;
@@ -206,49 +244,6 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the contact.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
-        post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/document-signers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
-        put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/document-signers/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
                  * @example 16
                  */
                 id: number;
@@ -423,7 +418,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -501,6 +496,128 @@ export interface operations {
             query?: never;
             header?: never;
             path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    getApiDocumentSigners: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example This action is unauthorized. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    postApiDocumentSigners: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example architecto
+                     */
+                    document_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the contacts table.
+                     * @example architecto
+                     */
+                    contact_id: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    getApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example No query results for model [App\Models\DocumentSigner]. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    putApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example null
+                     */
+                    document_id?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the contacts table.
+                     * @example null
+                     */
+                    contact_id?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    deleteApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
             cookie?: never;
         };
         requestBody?: never;
@@ -1028,179 +1145,6 @@ export interface operations {
                         /** @example [] */
                         data?: unknown[];
                         links?: {
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/document-signers?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/document-signers */
-                            path?: string;
-                            /** @example 15 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
-    };
-    storeANewlyCreatedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example architecto
-                     */
-                    document_id: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the contacts table.
-                     * @example architecto
-                     */
-                    contact_id: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    displayTheSpecifiedResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example No query results for model [App\Models\DocumentSigner] 16 */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    updateTheSpecifiedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example null
-                     */
-                    document_id?: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the contacts table.
-                     * @example null
-                     */
-                    contact_id?: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    removeTheSpecifiedResourceFromStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    displayAListingOfTheResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
                             /** @example http://localhost:8000/api/signer-document-fields?page=1 */
                             first?: string;
                             /** @example http://localhost:8000/api/signer-document-fields?page=1 */
@@ -1291,7 +1235,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example text
+                     * @example checkbox
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1302,7 +1246,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                     /**
                      * @description The <code>id</code> of an existing record in the signs table.
@@ -1316,11 +1260,11 @@ export interface operations {
                     value_initials?: string | null;
                     /** @example architecto */
                     value_text?: string | null;
-                    /** @example false */
+                    /** @example true */
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-04T14:29:47
+                     * @example 2025-07-04T15:18:21
                      */
                     value_date?: string | null;
                 };
@@ -1397,7 +1341,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example signature
+                     * @example date
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1408,7 +1352,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                     /**
                      * @description The <code>id</code> of an existing record in the signs table.
@@ -1422,11 +1366,11 @@ export interface operations {
                     value_initials?: string | null;
                     /** @example architecto */
                     value_text?: string | null;
-                    /** @example true */
+                    /** @example false */
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-04T14:29:47
+                     * @example 2025-07-04T15:18:21
                      */
                     value_date?: string | null;
                 };
