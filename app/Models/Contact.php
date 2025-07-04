@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,19 +18,18 @@ class Contact extends Model
         'name',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($contact) {
-            if (!$contact->user_id && Auth::check()) {
-                $contact->user_id = Auth::id();
-            }
-        });
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeOwned(Builder $query, User | null $user = null): Builder
+    {
+        return $query->where('user_id', $user ? $user->id : Auth::id());
+    }
+
+    public function isOwned(User | null $user = null): bool
+    {
+        return $this->user_id === ($user ? $user->id : Auth::id());
     }
 } 
