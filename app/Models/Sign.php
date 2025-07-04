@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\Lockable;
 use App\Enums\DeletionStatus;
+use App\Traits\ProtectsLockedModels;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,24 +13,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class Sign extends Model
+class Sign extends Model implements Lockable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, ProtectsLockedModels;
+
+    protected $allowSoftDeletes = true;
 
     protected $fillable = [
         'user_id',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($sign) {
-            if (!$sign->user_id && Auth::check()) {
-                $sign->user_id = Auth::id();
-            }
-        });
-    }
 
     public function user(): BelongsTo
     {
@@ -39,45 +33,23 @@ class Sign extends Model
         return $this->hasMany(SignerDocumentField::class, 'value_signature_sign_id');
     }
 
-    /**
-     * Check if this sign is being used by any document fields
-     */
-    public function isBeingUsed(): bool
+    public function isLocked(): bool
     {
         return $this->signerDocumentFields()->exists();
     }
 
-    /**
-     * Override the delete method to implement custom logic
-     * 
-     * @throws \LogicException
-     */
-    public function delete(): DeletionStatus
+    public function validateModification(string $method, array $options): bool
     {
-        if ($this->isBeingUsed()) {
-            // If the sign is being used, only soft delete it
-            if (parent::delete()) {
-                return DeletionStatus::SOFT_DELETED;
-            }
-            return DeletionStatus::NOOP;
-        } else {
-            // If the sign is not being used, force delete it
-            if (parent::forceDelete()) {
-                return DeletionStatus::PERMANENTLY_DELETED;
-            }
-            return DeletionStatus::NOOP;
-        }
+        return true;
     }
 
-    /**
-     * Force delete the sign (only if not being used)
-     */
-    public function forceDeleteIfNotUsed()
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
     {
-        if (!$this->isBeingUsed()) {
-            return parent::forceDelete();
-        }
-        
-        throw new \Exception('Cannot force delete sign that is being used by document fields.');
+        return $query->where('user_id', $user ? $user->id : Auth::id());
+    }
+
+    public function isOwnedBy(User | null $user = null): bool
+    {
+        return $this->user_id === ($user ? $user->id : Auth::id());
     }
 } 

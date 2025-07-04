@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Contracts\Lockable;
+use App\Enums\DeletionStatus;
 use App\Exceptions\LockedModelException;
 
 trait ProtectsLockedModels
@@ -30,10 +31,18 @@ trait ProtectsLockedModels
         return parent::update($attributes, $options);
     }
 
-    public function delete(): bool|null
+    public function delete(): DeletionStatus
     {
-        $this->maybePreventModification();
-        return parent::delete();
+        $allowedSoftDeletes = $this->getAllowedSoftDeletes();
+        if (!$allowedSoftDeletes) {
+            $this->maybePreventModification();
+        }
+
+        $deleted = parent::delete();
+        if ($deleted) {
+            return $allowedSoftDeletes ? DeletionStatus::SOFT_DELETED : DeletionStatus::PERMANENTLY_DELETED;
+        }
+        return DeletionStatus::NOOP;
     }
 
     public function forceDelete()
@@ -68,5 +77,14 @@ trait ProtectsLockedModels
         if ($this->isLocked()) {
             throw new LockedModelException(static::class);
         }
+    }
+
+    protected function getAllowedSoftDeletes(): bool
+    {
+        if (!property_exists($this, 'allowSoftDeletes') || !$this->allowSoftDeletes) return false;
+        if (!in_array(\Illuminate\Database\Eloquent\SoftDeletes::class, class_uses_recursive($this))) {
+            throw new \LogicException(static::class . ' must use SoftDeletes trait to allow soft deletes.');
+        }
+        return true;
     }
 }
