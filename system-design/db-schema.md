@@ -55,10 +55,17 @@ erDiagram
         string label
         string description
         boolean required
-        string value_signature_sign_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    signer_document_field_values {
+        int id PK
+        int signer_document_field_id FK
+        int value_signature_sign_id FK
         string value_initials
         string value_text
-        boolean value_checkbox
+        boolean value_checkbox FK
         date value_date
         datetime created_at
         datetime updated_at
@@ -94,7 +101,8 @@ erDiagram
     documents ||--o{ document_signers        : "has_signers"
     users ||--o{ document_signers         : "is_signer"
     document_signers ||--o{ signer_document_fields : "has_fields"
-    signs ||--o{ signer_document_fields : "used_for"
+    signer_document_fields ||--o{ signer_document_field_values : "has_values"
+    signs ||--o{ signer_document_field_values : "used_for"
     documents ||--o{ document_logs           : "has_logs"
     document_signers ||--o{ document_logs            : "logged_by"
     documents ||--o{ magic_links               : "issued_for"
@@ -116,6 +124,7 @@ classDiagram
         +draft
         +open
         +completed
+        +in_progress
         +template
     }
 
@@ -127,5 +136,5 @@ classDiagram
         +checkbox
         +date
     }
-	```
+```
 ````
