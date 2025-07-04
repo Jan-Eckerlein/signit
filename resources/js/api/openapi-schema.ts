@@ -106,33 +106,259 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/test-me": {
+    "/api/anonymous-users": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiTestMe"];
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
         put?: never;
-        post?: never;
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/api/sign-document": {
+    "/api/anonymous-users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the anonymous user.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/contacts": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
         put?: never;
-        post: operations["postApiSignDocument"];
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/contacts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the contact.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/documents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
+        put?: never;
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/documents/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/document-signers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
+        put?: never;
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/document-signers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/signer-document-fields": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
+        put?: never;
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/signer-document-fields/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/signs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Display a listing of the resource. */
+        get: operations["displayAListingOfTheResource"];
+        put?: never;
+        /** Store a newly created resource in storage. */
+        post: operations["storeANewlyCreatedResourceInStorage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/signs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        /** Display the specified resource. */
+        get: operations["displayTheSpecifiedResource"];
+        /** Update the specified resource in storage. */
+        put: operations["updateTheSpecifiedResourceInStorage"];
+        post?: never;
+        /** Remove the specified resource from storage. */
+        delete: operations["removeTheSpecifiedResourceFromStorage"];
         options?: never;
         head?: never;
         patch?: never;
@@ -176,7 +402,7 @@ export interface operations {
                      */
                     password: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -203,7 +429,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -274,7 +500,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiTestMe: {
+    displayAListingOfTheResource: {
         parameters: {
             query?: never;
             header?: never;
@@ -283,20 +509,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Hello from Laravel! */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    postApiSignDocument: {
+    storeANewlyCreatedResourceInStorage: {
         parameters: {
             query?: never;
             header?: never;
@@ -307,18 +533,851 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description Must be a valid email address.
+                     * @description Must be a valid email address. Must not be greater than 255 characters.
                      * @example gbailey@example.net
                      */
                     email: string;
                     /**
-                     * @description Must be a valid UUID.
-                     * @example 977e5426-8d13-3824-86aa-b092f8ae52c5
+                     * @description Must not be greater than 255 characters.
+                     * @example m
                      */
-                    documentId: string;
+                    name: string;
                 };
             };
         };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the anonymous user.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the anonymous user.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must be a valid email address. Must not be greater than 255 characters.
+                     * @example gbailey@example.net
+                     */
+                    email?: string;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example m
+                     */
+                    name?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the anonymous user.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    displayAListingOfTheResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    storeANewlyCreatedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example architecto
+                     */
+                    own_user_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    knows_user_id?: string | null;
+                    /**
+                     * @description The <code>id</code> of an existing record in the anonymous_users table.
+                     * @example null
+                     */
+                    knows_anonymous_users_id?: string | null;
+                    /**
+                     * @description Must be a valid email address. Must not be greater than 255 characters.
+                     * @example zbailey@example.net
+                     */
+                    email: string;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example i
+                     */
+                    name: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the contact.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the contact.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    own_user_id?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    knows_user_id?: string | null;
+                    /**
+                     * @description The <code>id</code> of an existing record in the anonymous_users table.
+                     * @example null
+                     */
+                    knows_anonymous_users_id?: string | null;
+                    /**
+                     * @description Must be a valid email address. Must not be greater than 255 characters.
+                     * @example gbailey@example.net
+                     */
+                    email?: string;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example m
+                     */
+                    name?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the contact.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    displayAListingOfTheResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    storeANewlyCreatedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example architecto
+                     */
+                    owner_user_id: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /**
+                     * @example template
+                     * @enum {string}
+                     */
+                    status?: "draft" | "open" | "completed" | "template";
+                    /**
+                     * @description Must be a valid date.
+                     * @example 2025-07-03T21:45:48
+                     */
+                    completed_at?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    owner_user_id?: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /**
+                     * @example completed
+                     * @enum {string}
+                     */
+                    status?: "draft" | "open" | "completed" | "template";
+                    /**
+                     * @description Must be a valid date.
+                     * @example 2025-07-03T21:45:48
+                     */
+                    completed_at?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    displayAListingOfTheResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    storeANewlyCreatedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example architecto
+                     */
+                    document_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the contacts table.
+                     * @example architecto
+                     */
+                    contact_id: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example null
+                     */
+                    document_id?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the contacts table.
+                     * @example null
+                     */
+                    contact_id?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    displayAListingOfTheResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    storeANewlyCreatedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the document_signers table.
+                     * @example architecto
+                     */
+                    document_signer_id: string;
+                    /**
+                     * @description Must be at least 1.
+                     * @example 22
+                     */
+                    page: number;
+                    /** @example 4326.41688 */
+                    x: number;
+                    /** @example 4326.41688 */
+                    y: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 77
+                     */
+                    width: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 8
+                     */
+                    height: number;
+                    /**
+                     * @example signature
+                     * @enum {string}
+                     */
+                    type: "signature" | "initials" | "text" | "checkbox" | "date";
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example y
+                     */
+                    label: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /** @example true */
+                    required?: boolean;
+                    /**
+                     * @description The <code>id</code> of an existing record in the signs table.
+                     * @example null
+                     */
+                    value_signature_sign_id?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example v
+                     */
+                    value_initials?: string | null;
+                    /** @example architecto */
+                    value_text?: string | null;
+                    /** @example false */
+                    value_checkbox?: boolean | null;
+                    /**
+                     * @description Must be a valid date.
+                     * @example 2025-07-03T21:45:48
+                     */
+                    value_date?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the document_signers table.
+                     * @example null
+                     */
+                    document_signer_id?: string;
+                    /**
+                     * @description Must be at least 1.
+                     * @example 16
+                     */
+                    page?: number;
+                    /** @example 4326.41688 */
+                    x?: number;
+                    /** @example 4326.41688 */
+                    y?: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 77
+                     */
+                    width?: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 8
+                     */
+                    height?: number;
+                    /**
+                     * @example date
+                     * @enum {string}
+                     */
+                    type?: "signature" | "initials" | "text" | "checkbox" | "date";
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example y
+                     */
+                    label?: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /** @example false */
+                    required?: boolean;
+                    /**
+                     * @description The <code>id</code> of an existing record in the signs table.
+                     * @example null
+                     */
+                    value_signature_sign_id?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example v
+                     */
+                    value_initials?: string | null;
+                    /** @example architecto */
+                    value_text?: string | null;
+                    /** @example true */
+                    value_checkbox?: boolean | null;
+                    /**
+                     * @description Must be a valid date.
+                     * @example 2025-07-03T21:45:48
+                     */
+                    value_date?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    displayAListingOfTheResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    storeANewlyCreatedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    user_id?: string | null;
+                    /**
+                     * @description The <code>id</code> of an existing record in the anonymous_users table.
+                     * @example null
+                     */
+                    anonymous_user_id?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    displayTheSpecifiedResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateTheSpecifiedResourceInStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    user_id?: string | null;
+                    /**
+                     * @description The <code>id</code> of an existing record in the anonymous_users table.
+                     * @example null
+                     */
+                    anonymous_user_id?: string | null;
+                };
+            };
+        };
+        responses: never;
+    };
+    removeTheSpecifiedResourceFromStorage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: never;
     };
 }

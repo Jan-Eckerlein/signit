@@ -25,7 +25,6 @@ class StoreDocumentRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'owner_user_id' => 'required|exists:users,id',
             'description' => 'nullable|string',
             'status' => ['sometimes', new Enum(DocumentStatus::class)],
             'completed_at' => 'nullable|date',

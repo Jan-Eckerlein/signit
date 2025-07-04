@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DocumentController extends Controller
 {
@@ -26,7 +27,7 @@ class DocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request): DocumentResource
     {
-        $document = Document::create($request->validated());
+        $document = Document::create($request->validated() + ['owner_user_id' => $request->user()->id]);
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
     }
 
