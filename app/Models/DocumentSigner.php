@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Lockable;
+use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,7 +22,11 @@ class DocumentSigner extends Model implements Lockable
 
     public function isLocked(): bool
     {
-        return $this->document->isLocked();
+        return in_array(
+            $this->document->getOriginal('status'), 
+            [DocumentStatus::IN_PROGRESS, DocumentStatus::OPEN],
+            true
+        );
     }
 
     public function validateModification(string $method, array $options): bool
