@@ -21,7 +21,7 @@ class ContactPolicy
      */
     public function view(User $user, Contact $contact): bool
     {
-        return $contact->isOwned($user);
+        return $contact->isOwnedBy($user);
     }
 
     /**
@@ -37,7 +37,7 @@ class ContactPolicy
      */
     public function update(User $user, Contact $contact): bool
     {
-        return $contact->isOwned($user);
+        return $contact->isOwnedBy($user);
     }
 
     /**
@@ -45,7 +45,7 @@ class ContactPolicy
      */
     public function delete(User $user, Contact $contact): bool
     {
-        return $contact->isOwned($user);
+        return $contact->isOwnedBy($user);
     }
 
     /**
@@ -53,7 +53,7 @@ class ContactPolicy
      */
     public function restore(User $user, Contact $contact): bool
     {
-        return $contact->isOwned($user);
+        return $contact->isOwnedBy($user);
     }
 
     /**
@@ -61,6 +61,6 @@ class ContactPolicy
      */
     public function forceDelete(User $user, Contact $contact): bool
     {
-        return $contact->isOwned($user);
+        return $contact->isOwnedBy($user);
     }
 }

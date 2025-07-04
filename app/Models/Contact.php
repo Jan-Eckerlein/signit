@@ -23,12 +23,12 @@ class Contact extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeOwned(Builder $query, User | null $user = null): Builder
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
     {
         return $query->where('user_id', $user ? $user->id : Auth::id());
     }
 
-    public function isOwned(User | null $user = null): bool
+    public function isOwnedBy(User | null $user = null): bool
     {
         return $this->user_id === ($user ? $user->id : Auth::id());
     }

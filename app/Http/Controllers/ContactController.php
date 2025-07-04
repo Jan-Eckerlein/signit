@@ -22,7 +22,7 @@ class ContactController extends Controller
     public function index(): AnonymousResourceCollection
     {
         Gate::authorize('viewAny', Contact::class);
-        $contacts = Contact::owned()->with(['user'])->paginate();
+        $contacts = Contact::ownedBy()->with(['user'])->paginate();
         return ContactResource::collection($contacts);
     }
 
