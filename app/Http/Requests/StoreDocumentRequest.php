@@ -26,7 +26,7 @@ class StoreDocumentRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'is_template' => 'requred|boolean'
+            'is_template' => 'required|boolean'
         ];
     }
 } 

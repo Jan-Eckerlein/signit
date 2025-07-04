@@ -13,7 +13,10 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
-     * Register a new user
+     * @group Auth
+     * @title "Register"
+     * @description "Register a new user"
+     * @unauthenticated
      */
     public function register(Request $request): JsonResponse
     {
@@ -46,7 +49,10 @@ class AuthController extends Controller
     }
 
     /**
-     * Login user
+     * @group Auth
+     * @title "Login"
+     * @description "Login a user"
+     * @unauthenticated
      */
 	public function login(Request $request): JsonResponse
 	{
@@ -78,7 +84,9 @@ class AuthController extends Controller
 	}
 
     /**
-     * Logout user
+     * @group Auth
+     * @title "Logout"
+     * @description "Logout a user"
      */
     public function logout(Request $request): JsonResponse
     {
@@ -96,7 +104,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Get authenticated user
+     * @group Auth
+     * @title "Get Authenticated User"
+     * @description "Get the authenticated user"
      */
     public function me(Request $request): UserResource
     {
@@ -104,7 +114,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Update user profile
+     * @group Auth
+     * @title "Update User Profile"
+     * @description "Update the authenticated user's profile"
      */
     public function updateProfile(Request $request): JsonResponse
     {
@@ -123,7 +135,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh session
+     * @group Auth
+     * @title "Refresh Session"
+     * @description "Refresh the authenticated user's session"
      */
     public function refresh(Request $request): JsonResponse
     {

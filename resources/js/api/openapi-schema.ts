@@ -4,6 +4,44 @@
  */
 
 export interface paths {
+    "/api/documents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getApiDocuments"];
+        put?: never;
+        post: operations["postApiDocuments"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/documents/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 1
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        get: operations["getApiDocumentsId"];
+        put: operations["putApiDocumentsId"];
+        post?: never;
+        delete: operations["deleteApiDocumentsId"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/register": {
         parameters: {
             query?: never;
@@ -192,49 +230,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/documents": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
-        put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/documents/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
-        post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/document-signers": {
         parameters: {
             query?: never;
@@ -376,6 +371,134 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    getApiDocuments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    postApiDocuments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /** @example true */
+                    is_template?: boolean;
+                };
+            };
+        };
+        responses: never;
+    };
+    getApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 1
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    putApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 1
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    owner_user_id?: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /**
+                     * @example completed
+                     * @enum {string}
+                     */
+                    status?: "draft" | "open" | "in_progress" | "completed" | "template";
+                };
+            };
+        };
+        responses: never;
+    };
+    deleteApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 1
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
     registerANewUser: {
         parameters: {
             query?: never;
@@ -401,6 +524,11 @@ export interface operations {
                      * @example -0pBNvYgxw
                      */
                     password: string;
+                    /**
+                     * @description Must be at least 8 characters.
+                     * @example aykcmyuwpwlvqwrsitcpscqldz
+                     */
+                    password_confirmation: string;
                     /**
                      * @example session
                      * @enum {string}
@@ -807,152 +935,6 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description Must not be greater than 255 characters.
-                     * @example b
-                     */
-                    title: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example architecto
-                     */
-                    owner_user_id: string;
-                    /** @example Eius et animi quos velit et. */
-                    description?: string | null;
-                    /**
-                     * @example template
-                     * @enum {string}
-                     */
-                    status?: "draft" | "open" | "completed" | "template";
-                    /**
-                     * @description Must be a valid date.
-                     * @example 2025-07-03T21:45:48
-                     */
-                    completed_at?: string | null;
-                };
-            };
-        };
-        responses: never;
-    };
-    displayTheSpecifiedResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    updateTheSpecifiedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example b
-                     */
-                    title?: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    owner_user_id?: string;
-                    /** @example Eius et animi quos velit et. */
-                    description?: string | null;
-                    /**
-                     * @example completed
-                     * @enum {string}
-                     */
-                    status?: "draft" | "open" | "completed" | "template";
-                    /**
-                     * @description Must be a valid date.
-                     * @example 2025-07-03T21:45:48
-                     */
-                    completed_at?: string | null;
-                };
-            };
-        };
-        responses: never;
-    };
-    removeTheSpecifiedResourceFromStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    displayAListingOfTheResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    storeANewlyCreatedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /**
                      * @description The <code>id</code> of an existing record in the documents table.
                      * @example architecto
                      */
@@ -1128,7 +1110,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-03T21:45:48
+                     * @example 2025-07-04T13:32:54
                      */
                     value_date?: string | null;
                 };
@@ -1205,7 +1187,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example date
+                     * @example text
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1234,7 +1216,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-03T21:45:48
+                     * @example 2025-07-04T13:32:54
                      */
                     value_date?: string | null;
                 };
