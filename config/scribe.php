@@ -109,7 +109,9 @@ return [
 
         // The value of the parameter to be used by Scribe to authenticate response calls.
         // This will NOT be included in the generated documentation. If empty, Scribe will use a random value.
-        'use_value' => env('SCRIBE_AUTH_KEY'),
+        'use_value' => file_exists(storage_path('app/private/scribe-token.txt'))
+            ? trim(file_get_contents(storage_path('app/private/scribe-token.txt')))
+            : env('SCRIBE_AUTH_KEY'),
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
