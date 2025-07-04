@@ -26,8 +26,7 @@ class StoreDocumentRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'status' => ['sometimes', new Enum(DocumentStatus::class)],
-            'completed_at' => 'nullable|date',
+            'is_template' => 'requred|boolean'
         ];
     }
 } 

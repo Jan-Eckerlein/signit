@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use App\Enums\DocumentStatus;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DocumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection<\App\Http\Resources\DocumentResource>
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $documents = Document::with(['ownerUser', 'documentSigners', 'documentLogs'])->paginate();
+        $documents = Document::viewableBy($request->user())
+            ->with(['ownerUser', 'documentSigners', 'documentLogs'])
+            ->paginate();
         return DocumentResource::collection($documents);
     }
 
@@ -27,7 +29,8 @@ class DocumentController extends Controller
      */
     public function store(StoreDocumentRequest $request): DocumentResource
     {
-        $document = Document::create($request->validated() + ['owner_user_id' => $request->user()->id]);
+        $status = $request->is_template ? DocumentStatus::TEMPLATE : DocumentStatus::DRAFT;
+        $document = Document::create($request->validated() + ['owner_user_id' => $request->user()->id, 'status' => $status]);
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
     }
 

@@ -28,7 +28,6 @@ class UpdateDocumentRequest extends FormRequest
             'owner_user_id' => 'sometimes|exists:users,id',
             'description' => 'nullable|string',
             'status' => ['sometimes', new Enum(DocumentStatus::class)],
-            'completed_at' => 'nullable|date',
         ];
     }
 } 
