@@ -17,7 +17,7 @@ class SignController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $signs = Sign::with(['user', 'anonymousUser'])->paginate();
+        $signs = Sign::with(['user'])->paginate();
         return SignResource::collection($signs);
     }
 
@@ -27,7 +27,7 @@ class SignController extends Controller
     public function store(StoreSignRequest $request): SignResource
     {
         $sign = Sign::create($request->validated());
-        return new SignResource($sign->load(['user', 'anonymousUser']));
+        return new SignResource($sign->load(['user']));
     }
 
     /**
@@ -35,7 +35,7 @@ class SignController extends Controller
      */
     public function show(Sign $sign): SignResource
     {
-        return new SignResource($sign->load(['user', 'anonymousUser']));
+        return new SignResource($sign->load(['user']));
     }
 
     /**
@@ -44,7 +44,7 @@ class SignController extends Controller
     public function update(UpdateSignRequest $request, Sign $sign): SignResource
     {
         $sign->update($request->validated());
-        return new SignResource($sign->load(['user', 'anonymousUser']));
+        return new SignResource($sign->load(['user']));
     }
 
     /**

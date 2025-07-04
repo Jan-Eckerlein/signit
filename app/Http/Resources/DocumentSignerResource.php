@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * 
  * Document Signer Resource
  * 
- * This resource represents a document signer, which links a contact to a document
+ * This resource represents a document signer, which links a user to a document
  * for signing purposes.
  */
 class DocumentSignerResource extends JsonResource
@@ -25,11 +25,11 @@ class DocumentSignerResource extends JsonResource
         return [
             'id' => $this->id,
             'document_id' => $this->document_id,
-            'contact_id' => $this->contact_id,
+            'user_id' => $this->user_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'document' => new DocumentResource($this->whenLoaded('document')),
-            'contact' => new ContactResource($this->whenLoaded('contact')),
+            'user' => new UserResource($this->whenLoaded('user')),
             'signer_document_fields' => SignerDocumentFieldResource::collection($this->whenLoaded('signerDocumentFields')),
         ];
     }

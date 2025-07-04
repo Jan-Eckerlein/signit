@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Sign extends Model
 {
@@ -15,17 +16,22 @@ class Sign extends Model
 
     protected $fillable = [
         'user_id',
-        'anonymous_user_id',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($sign) {
+            if (!$sign->user_id && Auth::check()) {
+                $sign->user_id = Auth::id();
+            }
+        });
+    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function anonymousUser(): BelongsTo
-    {
-        return $this->belongsTo(AnonymousUser::class);
     }
 
     public function signerDocumentFields(): HasMany

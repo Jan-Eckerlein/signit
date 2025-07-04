@@ -22,8 +22,6 @@ class StoreSignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'nullable|exists:users,id',
-            'anonymous_user_id' => 'nullable|exists:anonymous_users,id',
         ];
     }
 } 

@@ -16,7 +16,7 @@ class DocumentLogResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'contact_id' => $this->contact_id,
+            'document_signer_id' => $this->document_signer_id,
             'document_id' => $this->document_id,
             'ip' => $this->ip,
             'date' => $this->date,
@@ -24,7 +24,7 @@ class DocumentLogResource extends JsonResource
             'text' => $this->text,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'contact' => new ContactResource($this->whenLoaded('contact')),
+            'document_signer' => new DocumentSignerResource($this->whenLoaded('documentSigner')),
             'document' => new DocumentResource($this->whenLoaded('document')),
         ];
     }

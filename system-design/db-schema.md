@@ -8,20 +8,10 @@ erDiagram
         datetime updated_at
     }
 
-    anonymous_users {
-        int id PK
-        string email
-        string name
-        datetime created_at
-        datetime updated_at
-    }
-
     contacts {
         int id PK
-        int own_user_id FK
-        int knows_user_id FK
-        int knows_anonymous_users_id FK
-        string email
+        int user_id FK
+        int email
         string name
         datetime created_at
         datetime updated_at
@@ -30,7 +20,6 @@ erDiagram
     signs {
         int id PK
         int user_id FK
-        int anonymous_user_id FK
         datetime created_at
         datetime updated_at
     }
@@ -49,7 +38,7 @@ erDiagram
     document_signers {
         int id PK
         int document_id FK
-        int contact_id FK
+        int user_id FK
         datetime created_at
         datetime updated_at
     }
@@ -77,7 +66,7 @@ erDiagram
 
     document_logs {
         int id PK
-        int contact_id FK
+        int document_signer_id FK
         int document_id FK
         string ip
         datetime date
@@ -87,19 +76,29 @@ erDiagram
         datetime updated_at
     }
 
+    magic_links {
+        int id PK
+        int user_id FK
+        int document_id FK
+        string token
+        datetime expires_at
+        datetime created_at
+        datetime updated_at
+    }
+
     %% Beziehungen
     users ||--o{ documents                   : "owns"
-    users ||--o{ contacts                    : "from_user"
-    users ||--o{ contacts                    : "knows_user"
-    anonymous_users ||--o{ contacts          : "knows_anonymous"
+    users ||--o{ contacts                    : "has_contact"
+    contacts }o--|| users                    : "points_to"
     users ||--o{ signs                       : "as_user"
-    anonymous_users ||--o{ signs             : "as_anonymous"
     documents ||--o{ document_signers        : "has_signers"
-    contacts ||--o{ document_signers         : "is_signer"
+    users ||--o{ document_signers         : "is_signer"
     document_signers ||--o{ signer_document_fields : "has_fields"
     signs ||--o{ signer_document_fields : "used_for"
     documents ||--o{ document_logs           : "has_logs"
-    contacts ||--o{ document_logs            : "logged_by"
+    document_signers ||--o{ document_logs            : "logged_by"
+    documents ||--o{ magic_links               : "issued_for"
+    users ||--o{ magic_links               : "owns"
 ```
 
 ````mermaid

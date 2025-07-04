@@ -26,7 +26,7 @@ class UpdateDocumentSignerRequest extends FormRequest
     {
         return [
             'document_id' => 'sometimes|exists:documents,id',
-            'contact_id' => 'sometimes|exists:contacts,id',
+            'user_id' => 'sometimes|exists:users,id',
         ];
     }
 } 

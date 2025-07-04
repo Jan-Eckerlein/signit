@@ -55,25 +55,14 @@ class User extends Authenticatable
         return $this->hasMany(Document::class, 'owner_user_id');
     }
 
-    public function ownContacts(): HasMany
+    public function contacts(): HasMany
     {
-        return $this->hasMany(Contact::class, 'own_user_id');
+        return $this->hasMany(Contact::class);
     }
 
-    
-    public function isContactOf(): HasMany
+    public function documentSigners(): HasMany
     {
-        return $this->hasMany(Contact::class, 'knows_user_id');
-    }
-    
-    public function knowsUsers(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'contacts', 'own_user_id', 'knows_user_id');
-    }
-
-    public function knowsAnonymousUsers(): BelongsToMany
-    {
-        return $this->belongsToMany(AnonymousUser::class, 'contacts', 'own_user_id', 'knows_anonymous_users_id');
+        return $this->hasMany(DocumentSigner::class);
     }
 
     public function signs(): HasMany

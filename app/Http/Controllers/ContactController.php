@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $contacts = Contact::with(['fromUser', 'knowsUser', 'knowsAnonymousUser'])->paginate();
+        $contacts = Contact::with(['user'])->paginate();
         return ContactResource::collection($contacts);
     }
 
@@ -27,7 +27,7 @@ class ContactController extends Controller
     public function store(StoreContactRequest $request): ContactResource
     {
         $contact = Contact::create($request->validated());
-        return new ContactResource($contact->load(['fromUser', 'knowsUser', 'knowsAnonymousUser']));
+        return new ContactResource($contact->load(['user']));
     }
 
     /**
@@ -35,7 +35,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact): ContactResource
     {
-        return new ContactResource($contact->load(['fromUser', 'knowsUser', 'knowsAnonymousUser']));
+        return new ContactResource($contact->load(['user']));
     }
 
     /**
@@ -44,7 +44,7 @@ class ContactController extends Controller
     public function update(UpdateContactRequest $request, Contact $contact): ContactResource
     {
         $contact->update($request->validated());
-        return new ContactResource($contact->load(['fromUser', 'knowsUser', 'knowsAnonymousUser']));
+        return new ContactResource($contact->load(['user']));
     }
 
     /**
@@ -54,5 +54,27 @@ class ContactController extends Controller
     {
         $contact->delete();
         return response()->json(['message' => 'Contact deleted successfully']);
+    }
+
+    /**
+     * Get contacts owned by the authenticated user.
+     */
+    public function myContacts(Request $request): AnonymousResourceCollection
+    {
+        $contacts = Contact::where('user_id', $request->user()->id)
+            ->with(['user'])
+            ->paginate();
+        return ContactResource::collection($contacts);
+    }
+
+    /**
+     * Get contacts where the authenticated user is the contact.
+     */
+    public function contactsOf(Request $request): AnonymousResourceCollection
+    {
+        $contacts = Contact::where('user_id', $request->user()->id)
+            ->with(['user'])
+            ->paginate();
+        return ContactResource::collection($contacts);
     }
 } 

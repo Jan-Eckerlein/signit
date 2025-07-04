@@ -22,9 +22,6 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'own_user_id' => 'required|exists:users,id',
-            'knows_user_id' => 'nullable|exists:users,id',
-            'knows_anonymous_users_id' => 'nullable|exists:anonymous_users,id',
             'email' => 'required|email|max:255',
             'name' => 'required|string|max:255',
         ];

@@ -12,7 +12,7 @@ class DocumentLog extends Model
     use HasFactory;
 
     protected $fillable = [
-        'contact_id',
+        'document_signer_id',
         'document_id',
         'ip',
         'date',
@@ -25,9 +25,9 @@ class DocumentLog extends Model
         'date' => 'datetime',
     ];
 
-    public function contact(): BelongsTo
+    public function documentSigner(): BelongsTo
     {
-        return $this->belongsTo(Contact::class);
+        return $this->belongsTo(DocumentSigner::class);
     }
 
     public function document(): BelongsTo

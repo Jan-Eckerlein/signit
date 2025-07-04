@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentSigner extends Model implements Lockable
 {
@@ -16,8 +17,19 @@ class DocumentSigner extends Model implements Lockable
 
     protected $fillable = [
         'document_id',
-        'contact_id',
+        'user_id',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($documentSigner) {
+            if (!$documentSigner->user_id && Auth::check()) {
+                $documentSigner->user_id = Auth::id();
+            }
+        });
+    }
 
     public function isLocked(): bool
     {
@@ -39,9 +51,9 @@ class DocumentSigner extends Model implements Lockable
         return $this->belongsTo(Document::class);
     }
 
-    public function contact(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Contact::class);
+        return $this->belongsTo(User::class);
     }
 
     public function signerDocumentFields(): HasMany
@@ -63,6 +75,6 @@ class DocumentSigner extends Model implements Lockable
 
     public function iAmSigner(User $user): bool
     {
-        return $this->contact->knows_user_id === $user->id;
+        return $this->user_id === $user->id;
     }
 } 

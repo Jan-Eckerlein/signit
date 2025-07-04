@@ -22,9 +22,6 @@ class UpdateContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'own_user_id' => 'sometimes|exists:users,id',
-            'knows_user_id' => 'nullable|exists:users,id',
-            'knows_anonymous_users_id' => 'nullable|exists:anonymous_users,id',
             'email' => 'sometimes|email|max:255',
             'name' => 'sometimes|string|max:255',
         ];

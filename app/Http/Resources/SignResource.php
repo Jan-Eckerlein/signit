@@ -17,11 +17,9 @@ class SignResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'anonymous_user_id' => $this->anonymous_user_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'user' => new UserResource($this->whenLoaded('user')),
-            'anonymous_user' => new AnonymousUserResource($this->whenLoaded('anonymousUser')),
         ];
     }
 } 

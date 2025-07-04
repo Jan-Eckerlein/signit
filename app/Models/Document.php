@@ -79,9 +79,7 @@ class Document extends Model implements Lockable
                             DocumentStatus::IN_PROGRESS,
                         ])
                         ->whereHas('documentSigners', function (Builder $q) use ($user) {
-                            $q->whereHas('contact', function (Builder $contactQuery) use ($user) {
-                                $contactQuery->where('knows_user_id', $user->id);
-                            });
+                            $q->where('user_id', $user->id);
                         });
                 });
         });
@@ -94,8 +92,6 @@ class Document extends Model implements Lockable
 
     public function iAmSigner(User $user): bool
     {
-        return $this->documentSigners()->whereHas('contact', function (Builder $query) use ($user) {
-            $query->where('knows_user_id', $user->id);
-        })->exists();
+        return $this->documentSigners()->where('user_id', $user->id)->exists();
     }
 } 
