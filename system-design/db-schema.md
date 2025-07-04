@@ -101,7 +101,7 @@ erDiagram
     documents ||--o{ document_signers        : "has_signers"
     users ||--o{ document_signers         : "is_signer"
     document_signers ||--o{ signer_document_fields : "has_fields"
-    signer_document_fields ||--o{ signer_document_field_values : "has_values"
+    signer_document_fields ||--|| signer_document_field_values : "has_value"
     signs ||--o{ signer_document_field_values : "used_for"
     documents ||--o{ document_logs           : "has_logs"
     document_signers ||--o{ document_logs            : "logged_by"
