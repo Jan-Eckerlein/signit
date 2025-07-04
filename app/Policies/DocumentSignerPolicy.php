@@ -13,7 +13,7 @@ class DocumentSignerPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class DocumentSignerPolicy
      */
     public function view(User $user, DocumentSigner $documentSigner): bool
     {
-        return $documentSigner->isMine($user) || $documentSigner->iAmSigner($user);
+        return $documentSigner->isOwnedBy($user) || $documentSigner->isSigneableBy($user);
     }
 
     /**
@@ -37,7 +37,7 @@ class DocumentSignerPolicy
      */
     public function update(User $user, DocumentSigner $documentSigner): bool
     {
-        return $documentSigner->isMine($user);
+        return $documentSigner->isOwnedBy($user);
     }
 
     /**
@@ -45,7 +45,7 @@ class DocumentSignerPolicy
      */
     public function delete(User $user, DocumentSigner $documentSigner): bool
     {
-        return $documentSigner->isMine($user);
+        return $documentSigner->isOwnedBy($user);
     }
 
     /**
@@ -53,7 +53,7 @@ class DocumentSignerPolicy
      */
     public function restore(User $user, DocumentSigner $documentSigner): bool
     {
-        return $documentSigner->isMine($user);
+        return $documentSigner->isOwnedBy($user);
     }
 
     /**
@@ -61,6 +61,6 @@ class DocumentSignerPolicy
      */
     public function forceDelete(User $user, DocumentSigner $documentSigner): bool
     {
-        return $documentSigner->isMine($user);
+        return $documentSigner->isOwnedBy($user);
     }
 } 

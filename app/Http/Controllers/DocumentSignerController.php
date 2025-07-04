@@ -22,7 +22,7 @@ class DocumentSignerController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         Gate::authorize('viewAny', DocumentSigner::class);
-        $documentSigners = DocumentSigner::viewableBy($request->user())
+        $documentSigners = DocumentSigner::viewableBy()
             ->with(['document', 'user', 'signerDocumentFields'])
             ->paginate();
         return DocumentSignerResource::collection($documentSigners);
