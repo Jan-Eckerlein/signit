@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Document extends Model implements Lockable
 {
@@ -85,13 +86,13 @@ class Document extends Model implements Lockable
         });
     }
 
-    public function isMine(User $user): bool
+    public function isOwnedBy(User | null $user = null): bool
     {
-        return $this->owner_user_id === $user->id;
+        return $this->owner_user_id === ($user ? $user->id : Auth::id());
     }
 
-    public function iAmSigner(User $user): bool
+    public function isSigneableBy(User | null $user = null): bool
     {
-        return $this->documentSigners()->where('user_id', $user->id)->exists();
+        return $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists();
     }
 } 

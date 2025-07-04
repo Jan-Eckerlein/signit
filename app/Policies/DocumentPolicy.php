@@ -21,7 +21,7 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document): bool
     {
-        return $document->isMine($user) || $document->iAmSigner($user);
+        return $document->isOwnedBy($user) || $document->isSigneableBy($user);
     }
 
     /**
@@ -37,7 +37,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document): bool
     {
-        return $document->isMine($user);
+        return $document->isOwnedBy($user);
     }
 
     /**
@@ -45,7 +45,7 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): bool
     {
-        return $document->isMine($user);
+        return $document->isOwnedBy($user);
     }
 
     /**
@@ -53,7 +53,7 @@ class DocumentPolicy
      */
     public function restore(User $user, Document $document): bool
     {
-        return $document->isMine($user);
+        return $document->isOwnedBy($user);
     }
 
     /**
@@ -61,6 +61,6 @@ class DocumentPolicy
      */
     public function forceDelete(User $user, Document $document): bool
     {
-        return $document->isMine($user);
+        return $document->isOwnedBy($user);
     }
 }
