@@ -3,6 +3,7 @@
 namespace App\Policies\Composables;
 
 use App\Contracts\Ownable;
+use App\Contracts\OwnablePolicy;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +30,27 @@ trait HandlesOwnable
         }
     }
 
+    protected function checkMagicLinkUsedAndAllowed(string $action): bool
+    {
+        return session('auth_via_magic_link') && $this->isActionAllowedForMagicLink($action);
+    }
+
+    protected function checkOwnablePolicy(): void
+    {
+        if (!$this instanceof OwnablePolicy) {
+            throw new \LogicException(static::class . ' must implement OwnablePolicy to use magic link authorization.');
+        }
+    }
+
+    /**
+     * Check if an action is allowed for magic link users
+     */
+    public function isActionAllowedForMagicLink(string $action): bool
+    {
+        $this->checkOwnablePolicy();
+        return in_array($action, $this->getMagicLinkAllowedActions());
+    }
+
     /**
      * Determine whether the user can view any models.
      */
@@ -43,7 +65,8 @@ trait HandlesOwnable
     protected function canView(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
-        return $model->isViewableBy($user);
+        
+        return $this->checkMagicLinkUsedAndAllowed('view') && $model->isViewableBy($user);
     }
 
     /**
@@ -60,8 +83,7 @@ trait HandlesOwnable
             throw new \LogicException(static::class . ' must extend Ownable to use HandlesOwnable.');
         }
         
-        // Use the canCreateThis method with request attributes
-        return $modelClass::canCreateThis($user, request()->all());
+        return $this->checkMagicLinkUsedAndAllowed('create') && $modelClass::canCreateThis($user, request()->all());
     }
 
     /**
@@ -70,7 +92,8 @@ trait HandlesOwnable
     protected function canUpdate(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
-        return $model->isOwnedBy($user);
+        
+        return $this->checkMagicLinkUsedAndAllowed('update') && $model->isOwnedBy($user);
     }
 
     /**
@@ -79,7 +102,8 @@ trait HandlesOwnable
     protected function canDelete(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
-        return $model->isOwnedBy($user);
+        
+        return $this->checkMagicLinkUsedAndAllowed('delete') && $model->isOwnedBy($user);
     }
 
     /**
@@ -88,7 +112,8 @@ trait HandlesOwnable
     protected function canRestore(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
-        return $model->isOwnedBy($user);
+        
+        return $this->checkMagicLinkUsedAndAllowed('restore') && $model->isOwnedBy($user);
     }
 
     /**
@@ -97,6 +122,7 @@ trait HandlesOwnable
     protected function canForceDelete(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
-        return $model->isOwnedBy($user);
+        
+        return $this->checkMagicLinkUsedAndAllowed('forceDelete') && $model->isOwnedBy($user);
     }
 } 
