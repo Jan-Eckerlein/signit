@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Lockable;
+use App\Contracts\Ownable;
 use App\Enums\DocumentStatus;
 use App\Models\User;
 use App\Traits\ProtectsLockedModels;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\UnauthorizedException;
 
-class SignerDocumentFieldValue extends Model implements Lockable
+class SignerDocumentFieldValue extends Model implements Lockable, Ownable
 {
     use HasFactory, ProtectsLockedModels;
 
@@ -52,20 +53,27 @@ class SignerDocumentFieldValue extends Model implements Lockable
         return $this->belongsTo(Sign::class, 'value_signature_sign_id');
     }
 
-    public function scopeViewableBy(Builder $query, User $user): Builder
-    {
-        return $query->whereHas('signerDocumentField.documentSigner.document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
-        });
-    }
 
     public function isOwnedBy(User | null $user = null): bool
     {
-        return $this->signerDocumentField?->documentSigner?->document?->isOwnedBy($user ?? Auth::user());
-    }
-
-    public function isSigneableBy(User | null $user = null): bool
-    {
         return $this->signerDocumentField?->documentSigner?->user?->is($user ?? Auth::user());
     }
+
+    public function isViewableBy(User | null $user = null): bool
+    {
+        return $this->isOwnedBy($user);
+    }
+
+    public function scopeOwnedBy(Builder $query, User $user): Builder
+    {
+        return $query->whereHas('signerDocumentField.documentSigner.user', function (Builder $query) use ($user) {
+            $query->is($user);
+        });
+    }
+
+    public function scopeViewableBy(Builder $query, User $user): Builder
+    {
+        return $this->ownedBy($user);
+    }
+
 }

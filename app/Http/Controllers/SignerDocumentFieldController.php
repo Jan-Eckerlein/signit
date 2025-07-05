@@ -52,30 +52,4 @@ class SignerDocumentFieldController extends Controller
         Gate::authorize('view', $signerDocumentField);
         return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'value.signatureSign']));
     }
-
-    /**
-     * @group Signer Document Fields
-     * @title "Update Signer Document Field"
-     * @description "Update a signer document field"
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSignerDocumentFieldRequest $request, SignerDocumentField $signerDocumentField): SignerDocumentFieldResource
-    {
-        Gate::authorize('update', $signerDocumentField);
-        $signerDocumentField->update($request->validated());
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'value.signatureSign']));
-    }
-
-    /**
-     * @group Signer Document Fields
-     * @title "Delete Signer Document Field"
-     * @description "Delete a signer document field"
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request, SignerDocumentField $signerDocumentField): JsonResponse
-    {
-        Gate::authorize('delete', $signerDocumentField);
-        $signerDocumentField->delete();
-        return response()->json(['message' => 'Signer document field deleted successfully']);
-    }
 } 
