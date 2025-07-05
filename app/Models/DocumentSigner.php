@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Contracts\Validatable;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
+use App\Traits\ValidatesModelModifications;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,9 +15,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
-class DocumentSigner extends Model implements Lockable, Ownable
+class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
     protected $fillable = [
         'document_id',

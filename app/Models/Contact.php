@@ -39,8 +39,9 @@ class Contact extends Model implements Ownable
         return $this->isOwnedBy($user);
     }
 
-    public function scopeViewableBy(Builder $query, User $user): Builder
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
     {
+        $user = $user ?? Auth::user();
         return $this->ownedBy($user);
     }
 } 

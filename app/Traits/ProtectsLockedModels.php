@@ -3,13 +3,11 @@
 namespace App\Traits;
 
 use App\Contracts\Lockable;
-use App\Enums\DeletionStatus;
 use App\Exceptions\LockedModelException;
 
 trait ProtectsLockedModels
 {
     protected bool $bypassLockedProtection = false;
-    protected bool $bypassValidateModification = false;
 
     public function allowBypass(): static
     {
@@ -17,51 +15,29 @@ trait ProtectsLockedModels
         return $this;
     }
 
-    public function save(array $options = []): bool
+    protected static function bootProtectsLockedModels()
     {
-        $this->maybePreventModification();
-        $this->maybeValidateModification('save', $options);
-        return parent::save($options);
-    }
+        static::saving(function ($model) {
+            $model->maybePreventModification();
+        });
 
-    public function update(array $attributes = [], array $options = []): bool
-    {
-        $this->maybePreventModification();
-        $this->maybeValidateModification('update', $options);
-        return parent::update($attributes, $options);
-    }
+        static::updating(function ($model) {
+            $model->maybePreventModification();
+        });
 
-    public function delete(): DeletionStatus
-    {
-        $allowedSoftDeletes = $this->getAllowedSoftDeletes();
-        if (!$allowedSoftDeletes) {
-            $this->maybePreventModification();
+        static::deleting(function ($model) {
+            $allowedSoftDeletes = $model->getAllowedSoftDeletes();
+            if (!$allowedSoftDeletes) {
+                $model->maybePreventModification();
+            }
+        });
+
+        // Only register forceDeleting event if the model uses SoftDeletes
+        if (in_array(\Illuminate\Database\Eloquent\SoftDeletes::class, class_uses_recursive(static::class))) {
+            static::forceDeleting(function ($model) {
+                $model->maybePreventModification();
+            });
         }
-
-        $deleted = parent::delete();
-        if ($deleted) {
-            return $allowedSoftDeletes ? DeletionStatus::SOFT_DELETED : DeletionStatus::PERMANENTLY_DELETED;
-        }
-        return DeletionStatus::NOOP;
-    }
-
-    public function forceDelete()
-    {
-        $this->maybePreventModification();
-        return parent::forceDelete();
-    }
-
-    protected function maybeValidateModification(string $method, array $options): bool
-    {
-        if ($this->bypassValidateModification) {
-            return true;
-        }
-
-        if (!$this instanceof Lockable) {
-            throw new \LogicException(static::class . ' must implement Lockable interface when using ProtectsLockedModels trait.');
-        }
-
-        return $this->validateModification($method, $options);
     }
 
     protected function maybePreventModification(): void

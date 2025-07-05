@@ -9,6 +9,8 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\SignerDocumentFieldController;
 use App\Http\Controllers\SignController;
+use App\Models\Contact;
+use Illuminate\Support\Facades\Log;
 
 Route::prefix('auth')->group(function () {
     // Registration and Login
@@ -22,6 +24,20 @@ Route::prefix('auth')->group(function () {
         Route::put('/profile', [AuthController::class, 'updateProfile']);  // Update user profile
         Route::post('/refresh', [AuthController::class, 'refresh']);       // Refresh session
     });
+});
+
+Route::get('/test', function () {
+    // log to console
+    Log::info('running test');
+    $contact = Contact::create([
+        'name' => 'test2',
+        'email' => 'test@test.com',
+        'user_id' => 1,
+    ]);
+    Log::info('contact created');
+    // $contact->save();
+    // Log::info('contact saved to db');
+    return response()->json(['message' => 'test']);
 });
 
 // Protected API routes - all require authentication

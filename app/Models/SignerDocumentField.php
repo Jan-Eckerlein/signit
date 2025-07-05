@@ -4,19 +4,21 @@ namespace App\Models;
 
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Contracts\Validatable;
 use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
 use App\Traits\ProtectsLockedModels;
+use App\Traits\ValidatesModelModifications;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class SignerDocumentField extends Model implements Lockable, Ownable
+class SignerDocumentField extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
     protected $fillable = [
         'document_signer_id',

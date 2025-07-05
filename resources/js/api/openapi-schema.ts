@@ -100,6 +100,44 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/contacts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getApiContacts"];
+        put?: never;
+        post: operations["postApiContacts"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/contacts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the contact.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        get: operations["getApiContactsId"];
+        put: operations["putApiContactsId"];
+        post?: never;
+        delete: operations["deleteApiContactsId"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/document-signers": {
         parameters: {
             query?: never;
@@ -161,7 +199,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -176,87 +214,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/anonymous-users": {
+    "/api/test": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
+        get: operations["getApiTest"];
         put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/anonymous-users/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the anonymous user.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
         post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/contacts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
-        put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/contacts/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the contact.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
-        post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
         options?: never;
         head?: never;
         patch?: never;
@@ -269,11 +237,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
+        get: operations["getApiSignerDocumentFields"];
         put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
+        post: operations["postApiSignerDocumentFields"];
         delete?: never;
         options?: never;
         head?: never;
@@ -293,13 +259,10 @@ export interface paths {
             };
             cookie?: never;
         };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
+        get: operations["getApiSignerDocumentFieldsId"];
+        put?: never;
         post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -312,11 +275,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Display a listing of the resource. */
-        get: operations["displayAListingOfTheResource"];
+        get: operations["getApiSigns"];
         put?: never;
-        /** Store a newly created resource in storage. */
-        post: operations["storeANewlyCreatedResourceInStorage"];
+        post: operations["postApiSigns"];
         delete?: never;
         options?: never;
         head?: never;
@@ -336,13 +297,10 @@ export interface paths {
             };
             cookie?: never;
         };
-        /** Display the specified resource. */
-        get: operations["displayTheSpecifiedResource"];
-        /** Update the specified resource in storage. */
-        put: operations["updateTheSpecifiedResourceInStorage"];
+        get: operations["getApiSignsId"];
+        put: operations["putApiSignsId"];
         post?: never;
-        /** Remove the specified resource from storage. */
-        delete: operations["removeTheSpecifiedResourceFromStorage"];
+        delete: operations["deleteApiSignsId"];
         options?: never;
         head?: never;
         patch?: never;
@@ -391,7 +349,7 @@ export interface operations {
                      */
                     password_confirmation: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -453,7 +411,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 9 */
+                            /** @example 2 */
                             id?: number;
                             /** @example Scribe API */
                             name?: string;
@@ -461,9 +419,9 @@ export interface operations {
                             email?: string;
                             /** @example null */
                             email_verified_at?: string;
-                            /** @example 2025-07-04T14:26:40.000000Z */
+                            /** @example 2025-07-04T18:36:22.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-04T14:26:40.000000Z */
+                            /** @example 2025-07-04T18:36:22.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -501,430 +459,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiDocumentSigners: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example This action is unauthorized. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    postApiDocumentSigners: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example architecto
-                     */
-                    document_id: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the contacts table.
-                     * @example architecto
-                     */
-                    contact_id: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    getApiDocumentSignersId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example No query results for model [App\Models\DocumentSigner]. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    putApiDocumentSignersId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example null
-                     */
-                    document_id?: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the contacts table.
-                     * @example null
-                     */
-                    contact_id?: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    deleteApiDocumentSignersId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document signer.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    getApiDocuments: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example This action is unauthorized. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    postApiDocuments: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example b
-                     */
-                    title: string;
-                    /** @example Eius et animi quos velit et. */
-                    description?: string | null;
-                    /** @example true */
-                    is_template: boolean;
-                };
-            };
-        };
-        responses: never;
-    };
-    getApiDocumentsId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 1
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example This action is unauthorized. */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    putApiDocumentsId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 1
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example b
-                     */
-                    title?: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    owner_user_id?: string;
-                    /** @example Eius et animi quos velit et. */
-                    description?: string | null;
-                    /**
-                     * @example template
-                     * @enum {string}
-                     */
-                    status?: "draft" | "open" | "in_progress" | "completed" | "template";
-                };
-            };
-        };
-        responses: never;
-    };
-    deleteApiDocumentsId: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the document.
-                 * @example 1
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    displayAListingOfTheResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/anonymous-users?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/anonymous-users?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/anonymous-users?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/anonymous-users */
-                            path?: string;
-                            /** @example 15 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
-                    };
-                };
-            };
-        };
-    };
-    storeANewlyCreatedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description Must be a valid email address. Must not be greater than 255 characters.
-                     * @example gbailey@example.net
-                     */
-                    email: string;
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example m
-                     */
-                    name: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    displayTheSpecifiedResource: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the anonymous user.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        /** @example No query results for model [App\Models\AnonymousUser] 16 */
-                        message?: string;
-                    };
-                };
-            };
-        };
-    };
-    updateTheSpecifiedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the anonymous user.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description Must be a valid email address. Must not be greater than 255 characters.
-                     * @example gbailey@example.net
-                     */
-                    email?: string;
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example m
-                     */
-                    name?: string;
-                };
-            };
-        };
-        responses: never;
-    };
-    removeTheSpecifiedResourceFromStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the anonymous user.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    displayAListingOfTheResource: {
+    getApiContacts: {
         parameters: {
             query?: never;
             header?: never;
@@ -997,7 +532,7 @@ export interface operations {
             };
         };
     };
-    storeANewlyCreatedResourceInStorage: {
+    postApiContacts: {
         parameters: {
             query?: never;
             header?: never;
@@ -1008,28 +543,13 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example architecto
-                     */
-                    own_user_id: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    knows_user_id?: string | null;
-                    /**
-                     * @description The <code>id</code> of an existing record in the anonymous_users table.
-                     * @example null
-                     */
-                    knows_anonymous_users_id?: string | null;
-                    /**
                      * @description Must be a valid email address. Must not be greater than 255 characters.
-                     * @example zbailey@example.net
+                     * @example gbailey@example.net
                      */
                     email: string;
                     /**
                      * @description Must not be greater than 255 characters.
-                     * @example i
+                     * @example m
                      */
                     name: string;
                 };
@@ -1037,7 +557,7 @@ export interface operations {
         };
         responses: never;
     };
-    displayTheSpecifiedResource: {
+    getApiContactsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1065,7 +585,7 @@ export interface operations {
             };
         };
     };
-    updateTheSpecifiedResourceInStorage: {
+    putApiContactsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1082,21 +602,6 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    own_user_id?: string;
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    knows_user_id?: string | null;
-                    /**
-                     * @description The <code>id</code> of an existing record in the anonymous_users table.
-                     * @example null
-                     */
-                    knows_anonymous_users_id?: string | null;
-                    /**
                      * @description Must be a valid email address. Must not be greater than 255 characters.
                      * @example gbailey@example.net
                      */
@@ -1111,7 +616,7 @@ export interface operations {
         };
         responses: never;
     };
-    removeTheSpecifiedResourceFromStorage: {
+    deleteApiContactsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1127,7 +632,257 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    displayAListingOfTheResource: {
+    getApiDocumentSigners: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Server Error */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    postApiDocumentSigners: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example architecto
+                     */
+                    document_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example architecto
+                     */
+                    user_id: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    getApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example No query results for model [App\Models\DocumentSigner]. */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    putApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example null
+                     */
+                    document_id?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    user_id?: string;
+                };
+            };
+        };
+        responses: never;
+    };
+    deleteApiDocumentSignersId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document signer.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    getApiDocuments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Server Error */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    postApiDocuments: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /** @example false */
+                    is_template: boolean;
+                };
+            };
+        };
+        responses: never;
+    };
+    getApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example No query results for model [App\Models\Document] 16 */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    putApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    title?: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the users table.
+                     * @example null
+                     */
+                    owner_user_id?: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /**
+                     * @example draft
+                     * @enum {string}
+                     */
+                    status?: "draft" | "open" | "in_progress" | "completed" | "template";
+                };
+            };
+        };
+        responses: never;
+    };
+    deleteApiDocumentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    getApiTest: {
         parameters: {
             query?: never;
             header?: never;
@@ -1142,65 +897,36 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/signer-document-fields?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/signer-document-fields */
-                            path?: string;
-                            /** @example 15 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example test */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    storeANewlyCreatedResourceInStorage: {
+    getApiSignerDocumentFields: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Server Error */
+                        message?: string;
+                    };
+                };
+            };
+        };
+    };
+    postApiSignerDocumentFields: {
         parameters: {
             query?: never;
             header?: never;
@@ -1235,7 +961,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example checkbox
+                     * @example initials
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1246,33 +972,14 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
-                    /**
-                     * @description The <code>id</code> of an existing record in the signs table.
-                     * @example null
-                     */
-                    value_signature_sign_id?: string | null;
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example v
-                     */
-                    value_initials?: string | null;
-                    /** @example architecto */
-                    value_text?: string | null;
-                    /** @example true */
-                    value_checkbox?: boolean | null;
-                    /**
-                     * @description Must be a valid date.
-                     * @example 2025-07-04T15:18:21
-                     */
-                    value_date?: string | null;
                 };
             };
         };
         responses: never;
     };
-    displayTheSpecifiedResource: {
+    getApiSignerDocumentFieldsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1300,101 +1007,7 @@ export interface operations {
             };
         };
     };
-    updateTheSpecifiedResourceInStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the signer document field.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the document_signers table.
-                     * @example null
-                     */
-                    document_signer_id?: string;
-                    /**
-                     * @description Must be at least 1.
-                     * @example 16
-                     */
-                    page?: number;
-                    /** @example 4326.41688 */
-                    x?: number;
-                    /** @example 4326.41688 */
-                    y?: number;
-                    /**
-                     * @description Must be at least 0.
-                     * @example 77
-                     */
-                    width?: number;
-                    /**
-                     * @description Must be at least 0.
-                     * @example 8
-                     */
-                    height?: number;
-                    /**
-                     * @example date
-                     * @enum {string}
-                     */
-                    type?: "signature" | "initials" | "text" | "checkbox" | "date";
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example y
-                     */
-                    label?: string;
-                    /** @example Eius et animi quos velit et. */
-                    description?: string | null;
-                    /** @example false */
-                    required?: boolean;
-                    /**
-                     * @description The <code>id</code> of an existing record in the signs table.
-                     * @example null
-                     */
-                    value_signature_sign_id?: string | null;
-                    /**
-                     * @description Must not be greater than 255 characters.
-                     * @example v
-                     */
-                    value_initials?: string | null;
-                    /** @example architecto */
-                    value_text?: string | null;
-                    /** @example false */
-                    value_checkbox?: boolean | null;
-                    /**
-                     * @description Must be a valid date.
-                     * @example 2025-07-04T15:18:21
-                     */
-                    value_date?: string | null;
-                };
-            };
-        };
-        responses: never;
-    };
-    removeTheSpecifiedResourceFromStorage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /**
-                 * @description The ID of the signer document field.
-                 * @example 16
-                 */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: never;
-    };
-    displayAListingOfTheResource: {
+    getApiSigns: {
         parameters: {
             query?: never;
             header?: never;
@@ -1467,32 +1080,17 @@ export interface operations {
             };
         };
     };
-    storeANewlyCreatedResourceInStorage: {
+    postApiSigns: {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    user_id?: string | null;
-                    /**
-                     * @description The <code>id</code> of an existing record in the anonymous_users table.
-                     * @example null
-                     */
-                    anonymous_user_id?: string | null;
-                };
-            };
-        };
+        requestBody?: never;
         responses: never;
     };
-    displayTheSpecifiedResource: {
+    getApiSignsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1520,7 +1118,7 @@ export interface operations {
             };
         };
     };
-    updateTheSpecifiedResourceInStorage: {
+    putApiSignsId: {
         parameters: {
             query?: never;
             header?: never;
@@ -1533,25 +1131,10 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: {
-            content: {
-                "application/json": {
-                    /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
-                     */
-                    user_id?: string | null;
-                    /**
-                     * @description The <code>id</code> of an existing record in the anonymous_users table.
-                     * @example null
-                     */
-                    anonymous_user_id?: string | null;
-                };
-            };
-        };
+        requestBody?: never;
         responses: never;
     };
-    removeTheSpecifiedResourceFromStorage: {
+    deleteApiSignsId: {
         parameters: {
             query?: never;
             header?: never;
