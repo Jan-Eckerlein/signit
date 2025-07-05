@@ -69,4 +69,10 @@ class DocumentLog extends Model implements Ownable, Lockable
             $query->viewableBy($user);
         });
     }
+
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        // No one can create a document log only the system can
+        return false;
+    }
 } 

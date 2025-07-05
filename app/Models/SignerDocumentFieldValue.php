@@ -73,4 +73,9 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
         return $this->ownedBy($user);
     }
 
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        $signerDocumentField = SignerDocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
+        return $signerDocumentField?->documentSigner?->user?->is($user);
+    }
 }

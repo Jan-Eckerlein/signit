@@ -51,7 +51,17 @@ trait HandlesOwnable
      */
     protected function canCreate(User $user): bool
     {
-        return true; // Users can create models for themselves
+        // Get the model class from the policy name
+        $modelClass = str_replace('Policy', '', static::class);
+        $modelClass = str_replace('App\\Policies\\', 'App\\Models\\', $modelClass);
+        
+        // Check if the model class exists and implements Ownable
+        if (!class_exists($modelClass) || !is_subclass_of($modelClass, \App\Contracts\Ownable::class)) {
+            throw new \LogicException(static::class . ' must extend Ownable to use HandlesOwnable.');
+        }
+        
+        // Use the canCreateThis method with request attributes
+        return $modelClass::canCreateThis($user, request()->all());
     }
 
     /**

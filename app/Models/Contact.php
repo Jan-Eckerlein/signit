@@ -44,4 +44,10 @@ class Contact extends Model implements Ownable
         $user = $user ?? Auth::user();
         return $this->ownedBy($user);
     }
+
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        // Users can only create contacts for themselves
+        return $attributes['user_id'] === $user->id;
+    }
 } 

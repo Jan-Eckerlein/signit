@@ -106,4 +106,10 @@ class Document extends Model implements Lockable, Ownable, Validatable
                 });
         });
     }
+
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        // Users can only create documents for themselves
+        return $attributes['owner_user_id'] === $user->id;
+    }
 } 

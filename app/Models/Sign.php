@@ -61,4 +61,10 @@ class Sign extends Model implements Lockable, Ownable
     {
         return $this->scopeOwnedBy($query, $user);
     }
+
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        // Users can only create signs for themselves
+        return $attributes['user_id'] === $user->id;
+    }
 } 

@@ -107,4 +107,11 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
             $query->viewableBy($user);
         });
     }
+
+    public static function canCreateThis(User $user, array $attributes): bool
+    {
+        // Users can only create signer document fields for documents they own
+        $documentSigner = DocumentSigner::find($attributes['document_signer_id']);
+        return $documentSigner && $documentSigner->document->isOwnedBy($user);
+    }
 } 
