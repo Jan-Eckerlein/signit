@@ -223,6 +223,7 @@ return [
         ],
         'queryParameters' => [
             ...Defaults::QUERY_PARAMETERS_STRATEGIES,
+            \App\Scribe\Strategies\ExtractSharedPaginationParams::class,
         ],
         'bodyParameters' => [
             ...Defaults::BODY_PARAMETERS_STRATEGIES,

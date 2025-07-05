@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Enums\BaseModelEvent;
 use App\Enums\Icon;
+use App\Traits\ProtectsLockedModels;
+use App\Models\Traits\HasFlexiblePagination;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class DocumentLog extends Model implements Ownable
+class DocumentLog extends Model implements Ownable, Lockable
 {
-    use HasFactory;
+    use HasFactory, ProtectsLockedModels, HasFlexiblePagination;
 
     protected $fillable = [
         'document_signer_id',
@@ -27,6 +31,11 @@ class DocumentLog extends Model implements Ownable
         'icon' => Icon::class,
         'date' => 'datetime',
     ];
+
+    public function isLocked(BaseModelEvent | null $event = null): bool
+    {
+        return $this->exists;
+    }
 
     public function documentSigner(): BelongsTo
     {
@@ -60,5 +69,10 @@ class DocumentLog extends Model implements Ownable
         return $query->whereHas('document', function (Builder $query) use ($user) {
             $query->viewableBy($user);
         });
+    }
+
+    protected static function getResourceClass(): string
+    {
+        return \App\Http\Resources\DocumentLogResource::class;
     }
 } 

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Attributes\SharedPaginationParams;
 
 class DocumentController extends Controller
 {
@@ -20,13 +21,13 @@ class DocumentController extends Controller
      * @description "List all documents"
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection<\App\Http\Resources\DocumentResource>
      */
+    #[SharedPaginationParams]
     public function index(Request $request): AnonymousResourceCollection
     {
         Gate::authorize('viewAny', Document::class);
-        $documents = Document::viewableBy($request->user())
-            ->with(['ownerUser', 'documentSigners', 'documentLogs'])
-            ->paginate();
-        return DocumentResource::collection($documents);
+        $query = Document::viewableBy($request->user())
+            ->with(['ownerUser', 'documentSigners', 'documentLogs']);
+        return Document::paginateOrGetAll($query, $request);
     }
 
     /**

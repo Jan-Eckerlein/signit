@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\DocumentLogsController;
 use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\SignerDocumentFieldController;
 use App\Http\Controllers\SignController;
@@ -26,26 +27,13 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::get('/test', function () {
-    // log to console
-    Log::info('running test');
-    $contact = Contact::create([
-        'name' => 'test2',
-        'email' => 'test@test.com',
-        'user_id' => 1,
-    ]);
-    Log::info('contact created');
-    // $contact->save();
-    // Log::info('contact saved to db');
-    return response()->json(['message' => 'test']);
-});
-
 // Protected API routes - all require authentication
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('contacts', ContactController::class);
     Route::apiResource('documents', DocumentController::class);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::apiResource('signer-document-fields', SignerDocumentFieldController::class);
+    Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::prefix('documents')->group(function () {
         Route::get('{document}/signers', [DocumentController::class, 'signers']);
