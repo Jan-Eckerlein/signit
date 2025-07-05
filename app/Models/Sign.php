@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Enums\BaseModelEvent;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,14 +34,9 @@ class Sign extends Model implements Lockable, Ownable
         return $this->hasMany(SignerDocumentFieldValue::class, 'value_signature_sign_id');
     }
 
-    public function isLocked(): bool
+    public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->signerDocumentFieldValues()->exists();
-    }
-
-    public function validateModification(string $method, array $options): bool
-    {
-        return true;
     }
 
     public function isOwnedBy(User | null $user = null): bool

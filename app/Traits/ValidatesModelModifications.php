@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Contracts\Validatable;
+use App\Enums\BaseModelEvent;
 
 trait ValidatesModelModifications
 {
@@ -11,15 +12,15 @@ trait ValidatesModelModifications
     protected static function bootValidatesModelModifications()
     {
         static::saving(function ($model) {
-            $model->maybeValidateModification('save', []);
+            $model->maybeValidateModification(BaseModelEvent::SAVING, []);
         });
 
         static::updating(function ($model) {
-            $model->maybeValidateModification('update', []);
+            $model->maybeValidateModification(BaseModelEvent::UPDATING, []);
         });
     }
 
-    protected function maybeValidateModification(string $method, array $options): bool
+    protected function maybeValidateModification(BaseModelEvent $event, array $options): bool
     {
         if ($this->bypassValidateModification) {
             return true;
@@ -29,6 +30,6 @@ trait ValidatesModelModifications
             throw new \LogicException(static::class . ' must implement Validatable interface when using ValidatesModelModifications trait.');
         }
 
-        return $this->validateModification($method, $options);
+        return $this->validateModification($event, $options);
     }
 } 

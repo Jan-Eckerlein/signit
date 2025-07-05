@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Contracts\Validatable;
+use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
@@ -31,12 +32,12 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'status' => DocumentStatus::class,
     ];
 
-    public function isLocked(): bool
+    public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
-    public function validateModification(string $method, array $options): bool
+    public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         if (!$this->isDirty('status')) return true;
 

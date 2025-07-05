@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Contracts\Lockable;
+use App\Enums\BaseModelEvent;
 use App\Exceptions\LockedModelException;
 
 trait ProtectsLockedModels
@@ -18,29 +19,29 @@ trait ProtectsLockedModels
     protected static function bootProtectsLockedModels()
     {
         static::saving(function ($model) {
-            $model->maybePreventModification();
+            $model->maybePreventModification(BaseModelEvent::SAVING);
         });
 
         static::updating(function ($model) {
-            $model->maybePreventModification();
+            $model->maybePreventModification(BaseModelEvent::UPDATING);
         });
 
         static::deleting(function ($model) {
             $allowedSoftDeletes = $model->getAllowedSoftDeletes();
             if (!$allowedSoftDeletes) {
-                $model->maybePreventModification();
+                $model->maybePreventModification(BaseModelEvent::DELETING);
             }
         });
 
         // Only register forceDeleting event if the model uses SoftDeletes
         if (in_array(\Illuminate\Database\Eloquent\SoftDeletes::class, class_uses_recursive(static::class))) {
             static::forceDeleting(function ($model) {
-                $model->maybePreventModification();
+                $model->maybePreventModification(BaseModelEvent::FORCE_DELETING);
             });
         }
     }
 
-    protected function maybePreventModification(): void
+    protected function maybePreventModification(BaseModelEvent | null $event = null): void
     {
         if ($this->bypassLockedProtection) {
             return;
@@ -50,7 +51,7 @@ trait ProtectsLockedModels
             throw new \LogicException(static::class . ' must implement Lockable interface when using ProtectsLockedModels trait.');
         }
 
-        if ($this->isLocked()) {
+        if ($this->isLocked($event)) {
             throw new LockedModelException(static::class);
         }
     }

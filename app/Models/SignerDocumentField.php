@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Contracts\Validatable;
+use App\Enums\BaseModelEvent;
 use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
@@ -38,12 +39,12 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
         'required' => 'boolean',
     ];
 
-    public function isLocked(): bool
+    public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->documentSigner?->document?->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
-    public function validateModification(string $method, array $options): bool
+    public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         // change only when its status is draft:
         if ($this->isDirty('document_signer_id')) {

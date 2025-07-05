@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Contracts\Validatable;
+use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
@@ -24,7 +25,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         'user_id',
     ];
 
-    public function isLocked(): bool
+    public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return in_array(
             $this->document->getOriginal('status'), 
@@ -33,7 +34,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         );
     }
 
-    public function validateModification(string $method, array $options): bool
+    public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         if (!$this->isDirty('document_id')) return true;
 

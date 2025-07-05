@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Models\User;
 use App\Traits\ProtectsLockedModels;
@@ -31,15 +32,10 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
         'value_date' => 'date',
     ];
 
-    public function isLocked(): bool
+    public function isLocked(BaseModelEvent | null $event = null): bool
     {
         $isEditable = $this->signerDocumentField?->documentSigner?->document?->getOriginal('status') === DocumentStatus::IN_PROGRESS;
         return !$isEditable || $this->exists;
-    }
-
-    public function validateModification(string $method, array $options): bool
-    {
-        return true;
     }
 
     public function signerDocumentField(): BelongsTo
