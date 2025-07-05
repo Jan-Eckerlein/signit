@@ -25,11 +25,10 @@ class DocumentLogsController extends Controller
     {
         Gate::authorize('viewAny', DocumentLog::class);
         
-        $query = DocumentLog::viewableBy($request->user())
+        return DocumentLog::viewableBy($request->user())
             ->with(['document', 'documentSigner.user'])
-            ->orderBy('date', 'desc');
-        
-        return DocumentLog::paginateOrGetAll($query, $request);
+            ->orderBy('date', 'desc')
+            ->paginateOrGetAll($request);
     }
 
 

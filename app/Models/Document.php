@@ -9,7 +9,6 @@ use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
-use App\Models\Traits\HasFlexiblePagination;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Document extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasFlexiblePagination;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
     protected $fillable = [
         'title',
@@ -106,10 +105,5 @@ class Document extends Model implements Lockable, Ownable, Validatable
                         });
                 });
         });
-    }
-
-    protected static function getResourceClass(): string
-    {
-        return \App\Http\Resources\DocumentResource::class;
     }
 } 

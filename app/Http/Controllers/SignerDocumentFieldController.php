@@ -9,7 +9,8 @@ use App\Models\SignerDocumentField;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Attributes\SharedPaginationParams;
 
 class SignerDocumentFieldController extends Controller
 {
@@ -17,15 +18,15 @@ class SignerDocumentFieldController extends Controller
      * @group Signer Document Fields
      * @title "List Signer Document Fields"
      * @description "List all signer document fields"
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection<\App\Http\Resources\SignerDocumentFieldResource>
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\SignerDocumentFieldResource>
      */
-    public function index(Request $request): AnonymousResourceCollection
+    #[SharedPaginationParams]
+    public function index(Request $request): ResourceCollection
     {
         Gate::authorize('viewAny', SignerDocumentField::class);
-        $signerDocumentFields = SignerDocumentField::viewableBy($request->user())
+        return SignerDocumentField::viewableBy($request->user())
             ->with(['documentSigner', 'value.signatureSign'])
-            ->paginate();
-        return SignerDocumentFieldResource::collection($signerDocumentFields);
+            ->paginateOrGetAll($request);
     }
 
     /**

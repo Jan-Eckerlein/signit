@@ -7,7 +7,6 @@ use App\Contracts\Ownable;
 use App\Enums\BaseModelEvent;
 use App\Enums\Icon;
 use App\Traits\ProtectsLockedModels;
-use App\Models\Traits\HasFlexiblePagination;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DocumentLog extends Model implements Ownable, Lockable
 {
-    use HasFactory, ProtectsLockedModels, HasFlexiblePagination;
+    use HasFactory, ProtectsLockedModels;
 
     protected $fillable = [
         'document_signer_id',
@@ -69,10 +68,5 @@ class DocumentLog extends Model implements Ownable, Lockable
         return $query->whereHas('document', function (Builder $query) use ($user) {
             $query->viewableBy($user);
         });
-    }
-
-    protected static function getResourceClass(): string
-    {
-        return \App\Http\Resources\DocumentLogResource::class;
     }
 } 

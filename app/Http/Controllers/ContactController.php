@@ -8,8 +8,9 @@ use App\Http\Resources\ContactResource;
 use App\Models\Contact;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
+use App\Attributes\SharedPaginationParams;
 
 class ContactController extends Controller
 {
@@ -17,13 +18,13 @@ class ContactController extends Controller
      * @group Contacts
      * @title "List Contacts"
      * @description "List all contacts owned by the authenticated user"
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection<\App\Http\Resources\ContactResource>
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\ContactResource>
      */
-    public function index(): AnonymousResourceCollection
+    #[SharedPaginationParams]
+    public function index(Request $request): ResourceCollection
     {
         Gate::authorize('viewAny', Contact::class);
-        $contacts = Contact::ownedBy()->with(['user'])->paginate();
-        return ContactResource::collection($contacts);
+        return Contact::ownedBy()->with(['user'])->paginateOrGetAll($request);
     }
 
     /**

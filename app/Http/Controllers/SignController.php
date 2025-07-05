@@ -8,8 +8,9 @@ use App\Http\Resources\SignResource;
 use App\Models\Sign;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
+use App\Attributes\SharedPaginationParams;
 
 class SignController extends Controller
 {
@@ -17,15 +18,13 @@ class SignController extends Controller
      * @group Signs
      * @title "List Signs"
      * @description "List all signs owned by the user"
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection<\App\Http\Resources\SignResource>
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\SignResource>
      */
-    public function index(Request $request): AnonymousResourceCollection
+    #[SharedPaginationParams]
+    public function index(Request $request): ResourceCollection
     {
         Gate::authorize('viewAny', Sign::class);
-        $signs = Sign::ownedBy($request->user())
-            ->with(['user'])
-            ->paginate();
-        return SignResource::collection($signs);
+        return Sign::ownedBy($request->user())->with(['user'])->paginateOrGetAll($request);
     }
 
     /**
