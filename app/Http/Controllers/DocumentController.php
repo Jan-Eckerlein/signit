@@ -7,7 +7,11 @@ use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
+use App\Models\DocumentLog;
+use App\Enums\Icon;
+use App\Jobs\SendDocumentInProgressNotification;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -62,9 +66,46 @@ class DocumentController extends Controller
     {
         Gate::authorize('update', $document);
         
-        $document->status = DocumentStatus::IN_PROGRESS;
-        $document->save();
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+        try {
+            // Update document status
+            $document->status = DocumentStatus::IN_PROGRESS;
+            $document->save();
+            
+            // Create audit log
+            DocumentLog::create([
+                'document_id' => $document->id,
+                'document_signer_id' => null, // System action
+                'ip' => $request->ip(),
+                'date' => now(),
+                'icon' => Icon::SEND,
+                'text' => "Document set to in progress by {$request->user()->name}",
+            ]);
+            
+            // Queue email notifications to all document signers
+            $document->load('documentSigners.user');
+            foreach ($document->documentSigners as $documentSigner) {
+                if ($documentSigner->user && !$documentSigner->user->isAnonymous()) {
+                    SendDocumentInProgressNotification::dispatch($document, $documentSigner->user);
+                }
+            }
+            
+            Log::info('Document set to in progress', [
+                'document_id' => $document->id,
+                'user_id' => $request->user()->id,
+                'signers_notified' => $document->documentSigners->count(),
+            ]);
+            
+            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+            
+        } catch (\Exception $e) {
+            Log::error('Failed to set document to in progress', [
+                'document_id' => $document->id,
+                'user_id' => $request->user()->id,
+                'error' => $e->getMessage(),
+            ]);
+            
+            throw $e;
+        }
     }
 
     /**
