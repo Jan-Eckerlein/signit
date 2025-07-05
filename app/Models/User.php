@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Sign::class);
     }
+
+    public function isAnonymous(): bool
+    {
+        return $this->password === null;
+    }
 }

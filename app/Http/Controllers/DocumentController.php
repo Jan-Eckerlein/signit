@@ -58,6 +58,15 @@ class DocumentController extends Controller
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
     }
 
+    public function setInProgress(Request $request, Document $document): DocumentResource
+    {
+        Gate::authorize('update', $document);
+        
+        $document->status = DocumentStatus::IN_PROGRESS;
+        $document->save();
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+    }
+
     /**
      * Show Document
      */
