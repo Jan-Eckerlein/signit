@@ -29,18 +29,11 @@ class SignerDocumentField extends Model implements Lockable
         'label',
         'description',
         'required',
-        'value_signature_sign_id',
-        'value_initials',
-        'value_text',
-        'value_checkbox',
-        'value_date',
     ];
 
     protected $casts = [
         'type' => DocumentFieldType::class,
         'required' => 'boolean',
-        'value_checkbox' => 'boolean',
-        'value_date' => 'date',
     ];
 
     public function isLocked(): bool
@@ -71,18 +64,7 @@ class SignerDocumentField extends Model implements Lockable
             }
         }
 
-        // change only when its status is in progress:
-        $inProgressFields = [
-            'value_signature_sign_id', 'value_initials', 'value_text', 'value_checkbox', 'value_date'
-        ];
-        foreach ($inProgressFields as $field) {
-            if ($this->isDirty($field)) {
-                $status = $this->documentSigner?->document?->getOriginal('status');
-                if ($status !== DocumentStatus::IN_PROGRESS) {
-                    return false;
-                }
-            }
-        }
+
 
         return true;
     }
@@ -92,9 +74,9 @@ class SignerDocumentField extends Model implements Lockable
         return $this->belongsTo(DocumentSigner::class);
     }
 
-    public function signatureSign(): BelongsTo
+    public function value(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Sign::class, 'value_signature_sign_id');
+        return $this->hasOne(SignerDocumentFieldValue::class);
     }
 
     public function scopeViewableBy(Builder $query, User $user): Builder

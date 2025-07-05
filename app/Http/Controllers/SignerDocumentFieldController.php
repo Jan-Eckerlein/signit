@@ -23,7 +23,7 @@ class SignerDocumentFieldController extends Controller
     {
         Gate::authorize('viewAny', SignerDocumentField::class);
         $signerDocumentFields = SignerDocumentField::viewableBy($request->user())
-            ->with(['documentSigner', 'signatureSign'])
+            ->with(['documentSigner', 'value.signatureSign'])
             ->paginate();
         return SignerDocumentFieldResource::collection($signerDocumentFields);
     }
@@ -38,7 +38,7 @@ class SignerDocumentFieldController extends Controller
     {
         Gate::authorize('create', SignerDocumentField::class);
         $signerDocumentField = SignerDocumentField::create($request->validated());
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'value.signatureSign']));
     }
 
     /**
@@ -50,7 +50,7 @@ class SignerDocumentFieldController extends Controller
     public function show(Request $request, SignerDocumentField $signerDocumentField): SignerDocumentFieldResource
     {
         Gate::authorize('view', $signerDocumentField);
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'value.signatureSign']));
     }
 
     /**
@@ -63,7 +63,7 @@ class SignerDocumentFieldController extends Controller
     {
         Gate::authorize('update', $signerDocumentField);
         $signerDocumentField->update($request->validated());
-        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'signatureSign']));
+        return new SignerDocumentFieldResource($signerDocumentField->load(['documentSigner', 'value.signatureSign']));
     }
 
     /**

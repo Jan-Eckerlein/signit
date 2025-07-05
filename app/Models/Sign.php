@@ -28,14 +28,14 @@ class Sign extends Model implements Lockable
         return $this->belongsTo(User::class);
     }
 
-    public function signerDocumentFields(): HasMany
+    public function signerDocumentFieldValues(): HasMany
     {
-        return $this->hasMany(SignerDocumentField::class, 'value_signature_sign_id');
+        return $this->hasMany(SignerDocumentFieldValue::class, 'value_signature_sign_id');
     }
 
     public function isLocked(): bool
     {
-        return $this->signerDocumentFields()->exists();
+        return $this->signerDocumentFieldValues()->exists();
     }
 
     public function validateModification(string $method, array $options): bool

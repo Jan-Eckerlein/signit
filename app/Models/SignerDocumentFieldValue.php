@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Models;
+
+use App\Contracts\Lockable;
+use App\Enums\DocumentStatus;
+use App\Models\User;
+use App\Traits\ProtectsLockedModels;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\UnauthorizedException;
+
+class SignerDocumentFieldValue extends Model implements Lockable
+{
+    use HasFactory, ProtectsLockedModels;
+
+    protected $fillable = [
+        'signer_document_field_id',
+        'value_signature_sign_id',
+        'value_initials',
+        'value_text',
+        'value_checkbox',
+        'value_date',
+    ];
+
+    protected $casts = [
+        'value_checkbox' => 'boolean',
+        'value_date' => 'date',
+    ];
+
+    public function isLocked(): bool
+    {
+        $isEditable = $this->signerDocumentField?->documentSigner?->document?->getOriginal('status') === DocumentStatus::IN_PROGRESS;
+        return !$isEditable || $this->exists;
+    }
+
+    public function validateModification(string $method, array $options): bool
+    {
+        return true;
+    }
+
+    public function signerDocumentField(): BelongsTo
+    {
+        return $this->belongsTo(SignerDocumentField::class);
+    }
+
+    public function signatureSign(): BelongsTo
+    {
+        return $this->belongsTo(Sign::class, 'value_signature_sign_id');
+    }
+
+    public function scopeViewableBy(Builder $query, User $user): Builder
+    {
+        return $query->whereHas('signerDocumentField.documentSigner.document', function (Builder $query) use ($user) {
+            $query->viewableBy($user);
+        });
+    }
+
+    public function isOwnedBy(User | null $user = null): bool
+    {
+        return $this->signerDocumentField?->documentSigner?->document?->isOwnedBy($user ?? Auth::user());
+    }
+
+    public function isSigneableBy(User | null $user = null): bool
+    {
+        return $this->signerDocumentField?->documentSigner?->user?->is($user ?? Auth::user());
+    }
+}
