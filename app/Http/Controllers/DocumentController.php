@@ -10,6 +10,8 @@ use App\Models\Document;
 use App\Models\DocumentLog;
 use App\Enums\Icon;
 use App\Jobs\SendDocumentInProgressNotification;
+use App\Jobs\SendMagicLinkNotification;
+use App\Services\MagicLinkService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
@@ -81,10 +83,21 @@ class DocumentController extends Controller
                 'text' => "Document set to in progress by {$request->user()->name}",
             ]);
             
-            // Queue email notifications to all document signers
+            // Handle notifications for all document signers
             $document->load('documentSigners.user');
+            $magicLinkService = new MagicLinkService();
+            
             foreach ($document->documentSigners as $documentSigner) {
-                if ($documentSigner->user && !$documentSigner->user->isAnonymous()) {
+                if (!$documentSigner->user) {
+                    continue; // Skip if no user associated
+                }
+                
+                if ($documentSigner->user->isAnonymous()) {
+                    // For anonymous users, create magic link and send notification
+                    $token = $magicLinkService->createMagicLink($documentSigner->user, $document);
+                    SendMagicLinkNotification::dispatch($document, $documentSigner->user, $token);
+                } else {
+                    // For regular users, send standard email notification
                     SendDocumentInProgressNotification::dispatch($document, $documentSigner->user);
                 }
             }
