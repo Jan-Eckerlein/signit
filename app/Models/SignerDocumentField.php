@@ -46,17 +46,9 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
-        // change only when its status is draft:
-        if ($this->isDirty('document_signer_id')) {
-            $status = $this->documentSigner?->document?->getOriginal('status');
-            if ($status !== DocumentStatus::DRAFT) {
-                return false;
-            }
-        }
-
         // change only when its status is template or draft:
         $templateOrDraftFields = [
-            'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
+            'document_signer_id', 'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
         ];
         foreach ($templateOrDraftFields as $field) {
             if ($this->isDirty($field)) {
