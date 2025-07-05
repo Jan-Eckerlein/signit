@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
+use App\Models\User;
 
 class DocumentSignerController extends Controller
 {
@@ -38,7 +39,8 @@ class DocumentSignerController extends Controller
     public function store(StoreDocumentSignerRequest $request): DocumentSignerResource
     {
         Gate::authorize('create', DocumentSigner::class);
-        $documentSigner = DocumentSigner::create($request->validated());
+        $user = User::firstOrCreate(['email' => $request->email]);
+        $documentSigner = DocumentSigner::create($request->validated() + ['user_id' => $user->id]);
         return new DocumentSignerResource($documentSigner->load(['document', 'user', 'signerDocumentFields']));
     }
 
