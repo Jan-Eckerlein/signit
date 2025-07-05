@@ -154,19 +154,22 @@
                 </li>
                                     <ul id="tocify-subheader-documents" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="documents-GETapi-documents">
-                                <a href="#documents-GETapi-documents">GET api/documents</a>
+                                <a href="#documents-GETapi-documents">List Documents</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="documents-POSTapi-documents">
-                                <a href="#documents-POSTapi-documents">POST api/documents</a>
+                                <a href="#documents-POSTapi-documents">Create Document</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="documents-GETapi-documents--id-">
-                                <a href="#documents-GETapi-documents--id-">GET api/documents/{id}</a>
+                                <a href="#documents-GETapi-documents--id-">Show Document</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="documents-PUTapi-documents--id-">
-                                <a href="#documents-PUTapi-documents--id-">PUT api/documents/{id}</a>
+                                <a href="#documents-PUTapi-documents--id-">Update Document</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="documents-DELETEapi-documents--id-">
-                                <a href="#documents-DELETEapi-documents--id-">DELETE api/documents/{id}</a>
+                                <a href="#documents-DELETEapi-documents--id-">Delete Document</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="documents-POSTapi-documents--document--create-from-template">
+                                <a href="#documents-POSTapi-documents--document--create-from-template">Create Document from Template</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -263,7 +266,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"password_confirmation\": \"aykcmyuwpwlvqwrsitcpscqldz\",
-    \"handler\": \"token\"
+    \"handler\": \"session\"
 }"
 </code></pre></div>
 
@@ -283,7 +286,7 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "password_confirmation": "aykcmyuwpwlvqwrsitcpscqldz",
-    "handler": "token"
+    "handler": "session"
 };
 
 fetch(url, {
@@ -416,10 +419,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-register"
-               value="token"
+               value="session"
                data-component="body">
     <br>
-<p>Example: <code>token</code></p>
+<p>Example: <code>session</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -444,7 +447,7 @@ Must be one of:
     --data "{
     \"email\": \"gbailey@example.net\",
     \"password\": \"|]|{+-\",
-    \"handler\": \"token\"
+    \"handler\": \"session\"
 }"
 </code></pre></div>
 
@@ -462,7 +465,7 @@ const headers = {
 let body = {
     "email": "gbailey@example.net",
     "password": "|]|{+-",
-    "handler": "token"
+    "handler": "session"
 };
 
 fetch(url, {
@@ -573,10 +576,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-login"
-               value="token"
+               value="session"
                data-component="body">
     <br>
-<p>Example: <code>token</code></p>
+<p>Example: <code>session</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -1132,7 +1135,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/contacts" \
+    --get "http://localhost:8000/api/contacts?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1142,6 +1145,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/contacts"
 );
+
+const params = {
+    "per_page": "20",
+    "all": "0",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -1199,7 +1209,7 @@ access-control-allow-origin: *
             }
         ],
         &quot;path&quot;: &quot;http://localhost:8000/api/contacts&quot;,
-        &quot;per_page&quot;: 15,
+        &quot;per_page&quot;: 20,
         &quot;to&quot;: null,
         &quot;total&quot;: 0
     }
@@ -1286,7 +1296,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-contacts"
+               value="20"
+               data-component="query">
+    <br>
+<p>The number of items to return per page. Example: <code>20</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>all</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-contacts" style="display: none">
+            <input type="radio" name="all"
+                   value="1"
+                   data-endpoint="GETapi-contacts"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-contacts" style="display: none">
+            <input type="radio" name="all"
+                   value="0"
+                   data-endpoint="GETapi-contacts"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get all records without pagination. Example: <code>false</code></p>
+            </div>
+                </form>
 
                     <h2 id="contacts-POSTapi-contacts">POST api/contacts</h2>
 
@@ -2282,7 +2325,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-signers" \
+    --get "http://localhost:8000/api/document-signers?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2292,6 +2335,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/document-signers"
 );
+
+const params = {
+    "per_page": "20",
+    "all": "0",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -2349,7 +2399,7 @@ access-control-allow-origin: *
             }
         ],
         &quot;path&quot;: &quot;http://localhost:8000/api/document-signers&quot;,
-        &quot;per_page&quot;: 15,
+        &quot;per_page&quot;: 20,
         &quot;to&quot;: null,
         &quot;total&quot;: 0
     }
@@ -2436,7 +2486,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-document-signers"
+               value="20"
+               data-component="query">
+    <br>
+<p>The number of items to return per page. Example: <code>20</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>all</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-document-signers" style="display: none">
+            <input type="radio" name="all"
+                   value="1"
+                   data-endpoint="GETapi-document-signers"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-document-signers" style="display: none">
+            <input type="radio" name="all"
+                   value="0"
+                   data-endpoint="GETapi-document-signers"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get all records without pagination. Example: <code>false</code></p>
+            </div>
+                </form>
 
                     <h2 id="document-signers-POSTapi-document-signers">POST api/document-signers</h2>
 
@@ -3044,7 +3127,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="documents-GETapi-documents">GET api/documents</h2>
+                                <h2 id="documents-GETapi-documents">List Documents</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3254,7 +3337,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="documents-POSTapi-documents">POST api/documents</h2>
+                    <h2 id="documents-POSTapi-documents">Create Document</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3433,7 +3516,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="documents-GETapi-documents--id-">GET api/documents/{id}</h2>
+                    <h2 id="documents-GETapi-documents--id-">Show Document</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3583,7 +3666,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="documents-PUTapi-documents--id-">PUT api/documents/{id}</h2>
+                    <h2 id="documents-PUTapi-documents--id-">Update Document</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3603,8 +3686,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"title\": \"b\",
-    \"description\": \"Eius et animi quos velit et.\",
-    \"status\": \"in_progress\"
+    \"description\": \"Eius et animi quos velit et.\"
 }"
 </code></pre></div>
 
@@ -3622,8 +3704,7 @@ const headers = {
 
 let body = {
     "title": "b",
-    "description": "Eius et animi quos velit et.",
-    "status": "in_progress"
+    "description": "Eius et animi quos velit et."
 };
 
 fetch(url, {
@@ -3766,22 +3847,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>Eius et animi quos velit et.</code></p>
         </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="status"                data-endpoint="PUTapi-documents--id-"
-               value="in_progress"
-               data-component="body">
-    <br>
-<p>Example: <code>in_progress</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>draft</code></li> <li><code>open</code></li> <li><code>in_progress</code></li> <li><code>completed</code></li> <li><code>template</code></li></ul>
-        </div>
         </form>
 
-                    <h2 id="documents-DELETEapi-documents--id-">DELETE api/documents/{id}</h2>
+                    <h2 id="documents-DELETEapi-documents--id-">Delete Document</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3915,6 +3983,140 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="documents-POSTapi-documents--document--create-from-template">Create Document from Template</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-documents--document--create-from-template">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/documents/16/create-from-template" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/documents/16/create-from-template"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-documents--document--create-from-template">
+</span>
+<span id="execution-results-POSTapi-documents--document--create-from-template" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-documents--document--create-from-template"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-documents--document--create-from-template"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-documents--document--create-from-template" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-documents--document--create-from-template">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-documents--document--create-from-template" data-method="POST"
+      data-path="api/documents/{document}/create-from-template"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-documents--document--create-from-template', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-documents--document--create-from-template"
+                    onclick="tryItOut('POSTapi-documents--document--create-from-template');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-documents--document--create-from-template"
+                    onclick="cancelTryOut('POSTapi-documents--document--create-from-template');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-documents--document--create-from-template"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/documents/{document}/create-from-template</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-documents--document--create-from-template"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-documents--document--create-from-template"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-documents--document--create-from-template"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>document</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="document"                data-endpoint="POSTapi-documents--document--create-from-template"
+               value="16"
+               data-component="url">
+    <br>
+<p>The document. Example: <code>16</code></p>
+            </div>
+                    </form>
+
                 <h1 id="signer-document-fields">Signer Document Fields</h1>
 
     
@@ -3933,7 +4135,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signer-document-fields" \
+    --get "http://localhost:8000/api/signer-document-fields?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3943,6 +4145,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/signer-document-fields"
 );
+
+const params = {
+    "per_page": "20",
+    "all": "0",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -4000,7 +4209,7 @@ access-control-allow-origin: *
             }
         ],
         &quot;path&quot;: &quot;http://localhost:8000/api/signer-document-fields&quot;,
-        &quot;per_page&quot;: 15,
+        &quot;per_page&quot;: 20,
         &quot;to&quot;: null,
         &quot;total&quot;: 0
     }
@@ -4087,7 +4296,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-signer-document-fields"
+               value="20"
+               data-component="query">
+    <br>
+<p>The number of items to return per page. Example: <code>20</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>all</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-signer-document-fields" style="display: none">
+            <input type="radio" name="all"
+                   value="1"
+                   data-endpoint="GETapi-signer-document-fields"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-signer-document-fields" style="display: none">
+            <input type="radio" name="all"
+                   value="0"
+                   data-endpoint="GETapi-signer-document-fields"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get all records without pagination. Example: <code>false</code></p>
+            </div>
+                </form>
 
                     <h2 id="signer-document-fields-POSTapi-signer-document-fields">POST api/signer-document-fields</h2>
 
@@ -4117,7 +4359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"type\": \"initials\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
@@ -4143,7 +4385,7 @@ let body = {
     "type": "initials",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -4357,7 +4599,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -4529,7 +4771,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signs" \
+    --get "http://localhost:8000/api/signs?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4539,6 +4781,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/signs"
 );
+
+const params = {
+    "per_page": "20",
+    "all": "0",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -4596,7 +4845,7 @@ access-control-allow-origin: *
             }
         ],
         &quot;path&quot;: &quot;http://localhost:8000/api/signs&quot;,
-        &quot;per_page&quot;: 15,
+        &quot;per_page&quot;: 20,
         &quot;to&quot;: null,
         &quot;total&quot;: 0
     }
@@ -4683,7 +4932,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-signs"
+               value="20"
+               data-component="query">
+    <br>
+<p>The number of items to return per page. Example: <code>20</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>all</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-signs" style="display: none">
+            <input type="radio" name="all"
+                   value="1"
+                   data-endpoint="GETapi-signs"
+                   data-component="query"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-signs" style="display: none">
+            <input type="radio" name="all"
+                   value="0"
+                   data-endpoint="GETapi-signs"
+                   data-component="query"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Get all records without pagination. Example: <code>false</code></p>
+            </div>
+                </form>
 
                     <h2 id="signs-POSTapi-signs">POST api/signs</h2>
 

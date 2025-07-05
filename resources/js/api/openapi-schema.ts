@@ -221,9 +221,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiDocuments"];
+        /** List Documents */
+        get: operations["listDocuments"];
         put?: never;
-        post: operations["postApiDocuments"];
+        /** Create Document */
+        post: operations["createDocument"];
         delete?: never;
         options?: never;
         head?: never;
@@ -243,10 +245,36 @@ export interface paths {
             };
             cookie?: never;
         };
-        get: operations["getApiDocumentsId"];
-        put: operations["putApiDocumentsId"];
+        /** Show Document */
+        get: operations["showDocument"];
+        /** Update Document */
+        put: operations["updateDocument"];
         post?: never;
-        delete: operations["deleteApiDocumentsId"];
+        /** Delete Document */
+        delete: operations["deleteDocument"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/documents/{document}/create-from-template": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The document.
+                 * @example 16
+                 */
+                document: number;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Document from Template */
+        post: operations["createDocumentFromTemplate"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -398,7 +426,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -483,7 +511,18 @@ export interface operations {
     };
     getApiContacts: {
         parameters: {
-            query?: never;
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -542,7 +581,7 @@ export interface operations {
                             }[];
                             /** @example http://localhost:8000/api/contacts */
                             path?: string;
-                            /** @example 15 */
+                            /** @example 20 */
                             per_page?: number;
                             /** @example null */
                             to?: string;
@@ -656,9 +695,17 @@ export interface operations {
     };
     getApiDocumentLogs: {
         parameters: {
-            query: {
-                /** @example 20 */
-                per_page: Record<string, never>;
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
             };
             header?: never;
             path?: never;
@@ -760,7 +807,18 @@ export interface operations {
     };
     getApiDocumentSigners: {
         parameters: {
-            query?: never;
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -819,7 +877,7 @@ export interface operations {
                             }[];
                             /** @example http://localhost:8000/api/document-signers */
                             path?: string;
-                            /** @example 15 */
+                            /** @example 20 */
                             per_page?: number;
                             /** @example null */
                             to?: string;
@@ -931,9 +989,20 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiDocuments: {
+    listDocuments: {
         parameters: {
-            query?: never;
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -992,7 +1061,7 @@ export interface operations {
                             }[];
                             /** @example http://localhost:8000/api/documents */
                             path?: string;
-                            /** @example 15 */
+                            /** @example 20 */
                             per_page?: number;
                             /** @example null */
                             to?: string;
@@ -1004,7 +1073,7 @@ export interface operations {
             };
         };
     };
-    postApiDocuments: {
+    createDocument: {
         parameters: {
             query?: never;
             header?: never;
@@ -1028,7 +1097,7 @@ export interface operations {
         };
         responses: never;
     };
-    getApiDocumentsId: {
+    showDocument: {
         parameters: {
             query?: never;
             header?: never;
@@ -1056,7 +1125,7 @@ export interface operations {
             };
         };
     };
-    putApiDocumentsId: {
+    updateDocument: {
         parameters: {
             query?: never;
             header?: never;
@@ -1084,17 +1153,12 @@ export interface operations {
                     owner_user_id?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /**
-                     * @example draft
-                     * @enum {string}
-                     */
-                    status?: "draft" | "open" | "in_progress" | "completed" | "template";
                 };
             };
         };
         responses: never;
     };
-    deleteApiDocumentsId: {
+    deleteDocument: {
         parameters: {
             query?: never;
             header?: never;
@@ -1110,9 +1174,36 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiSignerDocumentFields: {
+    createDocumentFromTemplate: {
         parameters: {
             query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The document.
+                 * @example 16
+                 */
+                document: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    getApiSignerDocumentFields: {
+        parameters: {
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1171,7 +1262,7 @@ export interface operations {
                             }[];
                             /** @example http://localhost:8000/api/signer-document-fields */
                             path?: string;
-                            /** @example 15 */
+                            /** @example 20 */
                             per_page?: number;
                             /** @example null */
                             to?: string;
@@ -1218,7 +1309,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example checkbox
+                     * @example initials
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1266,7 +1357,18 @@ export interface operations {
     };
     getApiSigns: {
         parameters: {
-            query?: never;
+            query?: {
+                /**
+                 * @description The number of items to return per page.
+                 * @example 20
+                 */
+                per_page?: number;
+                /**
+                 * @description Get all records without pagination.
+                 * @example false
+                 */
+                all?: boolean;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1325,7 +1427,7 @@ export interface operations {
                             }[];
                             /** @example http://localhost:8000/api/signs */
                             path?: string;
-                            /** @example 15 */
+                            /** @example 20 */
                             per_page?: number;
                             /** @example null */
                             to?: string;

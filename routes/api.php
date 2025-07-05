@@ -31,6 +31,7 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('contacts', ContactController::class);
     Route::apiResource('documents', DocumentController::class);
+    Route::post('documents/{document}/create-from-template', [DocumentController::class, 'createFromTemplate']);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::apiResource('signer-document-fields', SignerDocumentFieldController::class);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);

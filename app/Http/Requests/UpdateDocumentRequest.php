@@ -27,7 +27,6 @@ class UpdateDocumentRequest extends FormRequest
             'title' => 'sometimes|string|max:255',
             'owner_user_id' => 'sometimes|exists:users,id',
             'description' => 'nullable|string',
-            'status' => ['sometimes', new Enum(DocumentStatus::class)],
         ];
     }
 } 

@@ -13,12 +13,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
 
+/**
+ * @group Documents
+ */
 class DocumentController extends Controller
 {
     /**
-     * @group Documents
-     * @title "List Documents"
-     * @description "List all documents"
+     * List Documents
+     * 
      * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentResource>
      */
     #[SharedPaginationParams]
@@ -31,10 +33,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * @group Documents
-     * @title "Create Document"
-     * @description "Create a new document"
-     * Store a newly created resource in storage.
+     * Create Document
      */
     public function store(StoreDocumentRequest $request): DocumentResource
     {
@@ -45,10 +44,22 @@ class DocumentController extends Controller
     }
 
     /**
-     * @group Documents
-     * @title "Show Document"
-     * @description "Show a document"
-     * Display the specified resource.
+     * Create Document from Template
+     */
+    public function createFromTemplate(Request $request, Document $template): DocumentResource
+    {
+        Gate::authorize('create', Document::class);
+        $document = Document::create([
+            'title' => $template->title,
+            'owner_user_id' => $request->user()->id,
+            'description' => $template->description,
+            'status' => DocumentStatus::DRAFT,
+        ]);
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+    }
+
+    /**
+     * Show Document
      */
     public function show(Request $request, Document $document): DocumentResource
     {
@@ -57,10 +68,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * @group Documents
-     * @title "Update Document"
-     * @description "Update a document"
-     * Update the specified resource in storage.
+     * Update Document
      */
     public function update(UpdateDocumentRequest $request, Document $document): DocumentResource
     {
@@ -70,10 +78,7 @@ class DocumentController extends Controller
     }
 
     /**
-     * @group Documents
-     * @title "Delete Document"
-     * @description "Delete a document"
-     * Remove the specified resource from storage.
+     * Delete Document
      */
     public function destroy(Request $request, Document $document): JsonResponse
     {
