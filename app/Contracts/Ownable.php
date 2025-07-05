@@ -10,6 +10,6 @@ interface Ownable
     public function isOwnedBy(User | null $user = null): bool;
     public function isViewableBy(User | null $user = null): bool;
 
-    public function scopeOwnedBy(Builder $query, User $user): Builder;
-    public function scopeViewableBy(Builder $query, User $user): Builder;
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder;
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder;
 } 

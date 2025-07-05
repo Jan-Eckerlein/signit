@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\UnauthorizedException;
 
 class SignerDocumentFieldValue extends Model implements Lockable, Ownable
 {
@@ -64,15 +63,17 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
         return $this->isOwnedBy($user);
     }
 
-    public function scopeOwnedBy(Builder $query, User $user): Builder
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
     {
+        $user = $user ?? Auth::user();
         return $query->whereHas('signerDocumentField.documentSigner.user', function (Builder $query) use ($user) {
             $query->is($user);
         });
     }
 
-    public function scopeViewableBy(Builder $query, User $user): Builder
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
     {
+        $user = $user ?? Auth::user();
         return $this->ownedBy($user);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Lockable;
+use App\Contracts\Ownable;
 use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
@@ -12,9 +13,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\UnauthorizedException;
 
-class SignerDocumentField extends Model implements Lockable
+class SignerDocumentField extends Model implements Lockable, Ownable
 {
     use HasFactory, ProtectsLockedModels;
 
@@ -64,8 +64,6 @@ class SignerDocumentField extends Model implements Lockable
             }
         }
 
-
-
         return true;
     }
 
@@ -79,20 +77,31 @@ class SignerDocumentField extends Model implements Lockable
         return $this->hasOne(SignerDocumentFieldValue::class);
     }
 
-    public function scopeViewableBy(Builder $query, User $user): Builder
+    public function isOwnedBy(User | null $user = null): bool
     {
+        $user = $user ?? Auth::user();
+        return $this->documentSigner?->document?->isOwnedBy($user);
+    }
+
+    public function isViewableBy(User | null $user = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return $this->documentSigner?->isViewableBy($user);
+    }
+
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
+    {
+        $user = $user ?? Auth::user();
         return $query->whereHas('documentSigner.document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
+            $query->ownedBy($user);
         });
     }
 
-    public function isOwnedBy(User | null $user = null): bool
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
     {
-        return $this->documentSigner?->document?->isOwnedBy($user ?? Auth::user());
-    }
-
-    public function isSigneableBy(User | null $user = null): bool
-    {
-        return $this->documentSigner?->document?->isSigneableBy($user ?? Auth::user());
+        $user = $user ?? Auth::user();
+        return $query->whereHas('documentSigner.document', function (Builder $query) use ($user) {
+            $query->viewableBy($user);
+        });
     }
 } 

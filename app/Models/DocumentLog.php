@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Contracts\Ownable;
 use App\Enums\Icon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
-class DocumentLog extends Model
+class DocumentLog extends Model implements Ownable
 {
     use HasFactory;
 
@@ -33,5 +36,29 @@ class DocumentLog extends Model
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
+    }
+
+    public function isOwnedBy(User | null $user = null): bool
+    {
+        return false;
+    }
+
+    public function isViewableBy(User | null $user = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return $this->document->isViewableBy($user);
+    }
+
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
+    {
+        return $query->whereRaw('1 = 0');
+    }
+
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
+    {
+        $user = $user ?? Auth::user();
+        return $query->whereHas('document', function (Builder $query) use ($user) {
+            $query->viewableBy($user);
+        });
     }
 } 

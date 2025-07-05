@@ -2,65 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\DocumentSigner;
-use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Policies\Composables\ComposablePolicy;
+use App\Policies\Composables\HandlesOwnable;
 
-class DocumentSignerPolicy
+class DocumentSignerPolicy extends ComposablePolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, DocumentSigner $documentSigner): bool
-    {
-        return $documentSigner->isOwnedBy($user) || $documentSigner->isSigneableBy($user);
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, DocumentSigner $documentSigner): bool
-    {
-        return $documentSigner->isOwnedBy($user);
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, DocumentSigner $documentSigner): bool
-    {
-        return $documentSigner->isOwnedBy($user);
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, DocumentSigner $documentSigner): bool
-    {
-        return $documentSigner->isOwnedBy($user);
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, DocumentSigner $documentSigner): bool
-    {
-        return $documentSigner->isOwnedBy($user);
-    }
+    use HandlesOwnable;
 } 

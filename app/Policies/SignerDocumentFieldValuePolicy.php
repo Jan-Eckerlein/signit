@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\SignerDocumentFieldValue;
-use App\Models\User;
+use App\Policies\Composables\ComposablePolicy;
+use App\Policies\Composables\HandlesOwnable;
 
-class SignerDocumentFieldValuePolicy extends OwnablePolicy
+class SignerDocumentFieldValuePolicy extends ComposablePolicy
 {
-    // Inherit all methods from parent class
-    // Only override if custom logic is needed
+    use HandlesOwnable;
 } 

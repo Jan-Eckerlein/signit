@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Lockable;
-use App\Enums\DeletionStatus;
+use App\Contracts\Ownable;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class Sign extends Model implements Lockable
+class Sign extends Model implements Lockable, Ownable
 {
     use HasFactory, SoftDeletes, ProtectsLockedModels;
 
@@ -43,13 +43,26 @@ class Sign extends Model implements Lockable
         return true;
     }
 
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        return $query->where('user_id', $user ? $user->id : Auth::id());
-    }
-
     public function isOwnedBy(User | null $user = null): bool
     {
-        return $this->user_id === ($user ? $user->id : Auth::id());
+        $user = $user ?? Auth::user();
+        return $this->user_id === $user->id;
+    }
+
+    public function isViewableBy(User | null $user = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return $this->isOwnedBy($user);
+    }
+
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
+    {
+        $user = $user ?? Auth::user();
+        return $query->where('user_id', $user->id);
+    }
+
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
+    {
+        return $this->scopeOwnedBy($query, $user);
     }
 } 

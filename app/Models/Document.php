@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\Lockable;
+use App\Contracts\Ownable;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
-class Document extends Model implements Lockable
+class Document extends Model implements Lockable, Ownable
 {
     use HasFactory, ProtectsLockedModels;
 
@@ -65,34 +66,41 @@ class Document extends Model implements Lockable
         return $this->hasMany(DocumentLog::class);
     }
 
-    public function scopeViewableBy(Builder $query, User $user): Builder
+    public function isOwnedBy(User | null $user = null): bool
     {
+        return $this->owner_user_id === ($user ? $user->id : Auth::id());
+    }
+
+    public function isViewableBy(User | null $user = null): bool
+    {
+        return $this->isOwnedBy($user) || $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists();
+    }
+
+    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
+    {
+        $user = $user ?? Auth::user();
+        return $query->where('owner_user_id', $user->id);
+    }
+
+    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
+    {
+        $user = $user ?? Auth::user();
         return $query->where(function (Builder $query) use ($user) {
             $query
                 // EIGENE Dokumente immer
                 ->where('owner_user_id', $user->id)
                 
-                // FREMDE nur wenn sie "offen" oder "completed" sind
+                // FREMDE nur wenn sie "offen", "in progress" oder "completed" sind
                 ->orWhere(function (Builder $query) use ($user) {
                     $query->whereIn('status', [
                             DocumentStatus::OPEN,
-                            DocumentStatus::COMPLETED,
                             DocumentStatus::IN_PROGRESS,
+                            DocumentStatus::COMPLETED,
                         ])
                         ->whereHas('documentSigners', function (Builder $q) use ($user) {
                             $q->where('user_id', $user->id);
                         });
                 });
         });
-    }
-
-    public function isOwnedBy(User | null $user = null): bool
-    {
-        return $this->owner_user_id === ($user ? $user->id : Auth::id());
-    }
-
-    public function isSigneableBy(User | null $user = null): bool
-    {
-        return $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists();
     }
 } 
