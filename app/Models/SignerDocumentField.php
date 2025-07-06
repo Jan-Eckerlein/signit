@@ -22,6 +22,7 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
     protected $fillable = [
+        'document_id',
         'document_signer_id',
         'page',
         'x',
@@ -41,21 +42,29 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
 
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
-        return $this->documentSigner?->document?->getOriginal('status') === DocumentStatus::COMPLETED;
+        return $this->document?->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
-        // change only when its status is template or draft:
-        $templateOrDraftFields = [
+        // change only when its status is draft:
+        $draftFields = [
             'document_signer_id', 'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
         ];
-        foreach ($templateOrDraftFields as $field) {
+        foreach ($draftFields as $field) {
             if ($this->isDirty($field)) {
-                $status = $this->documentSigner?->document?->getOriginal('status');
+                $status = $this->document?->getOriginal('status');
                 if ($status !== DocumentStatus::DRAFT) {
                     return false;
                 }
+            }
+        }
+
+        // Validate that document_signer_id belongs to the same document
+        if ($this->isDirty('document_signer_id') && $this->document_signer_id) {
+            $documentSigner = DocumentSigner::find($this->document_signer_id);
+            if (!$documentSigner || $documentSigner->document_id != $this->document_id) {
+                throw new \Exception('Document signer must belong to the same document as the field.');
             }
         }
 
@@ -67,6 +76,11 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
         return $this->belongsTo(DocumentSigner::class);
     }
 
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class);
+    }
+
     public function value(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(SignerDocumentFieldValue::class);
@@ -75,13 +89,13 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
     public function isOwnedBy(User | null $user = null): bool
     {
         $user = $user ?? Auth::user();
-        return $this->documentSigner?->document?->isOwnedBy($user);
+        return $this->document?->isOwnedBy($user);
     }
 
     public function isViewableBy(User | null $user = null): bool
     {
         $user = $user ?? Auth::user();
-        return $this->documentSigner?->isViewableBy($user);
+        return $this->document?->isViewableBy($user);
     }
 
     public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
@@ -102,8 +116,7 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
 
     public static function canCreateThis(User $user, array $attributes): bool
     {
-        // Users can only create signer document fields for documents they own
-        $documentSigner = DocumentSigner::find($attributes['document_signer_id']);
-        return $documentSigner && $documentSigner->document->isOwnedBy($user);
+        $document = Document::find($attributes['document_id']);
+        return $document && $document->isOwnedBy($user);
     }
 } 

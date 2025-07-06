@@ -24,6 +24,7 @@ class UpdateSignerDocumentFieldRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'document_id' => 'sometimes|exists:documents,id',
             'document_signer_id' => 'sometimes|exists:document_signers,id',
             'page' => 'sometimes|integer|min:1',
             'x' => 'sometimes|numeric',

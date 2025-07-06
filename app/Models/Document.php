@@ -50,7 +50,48 @@ class Document extends Model implements Lockable, Ownable, Validatable
             DocumentStatus::IN_PROGRESS => [DocumentStatus::COMPLETED],
         ];
 
-        return (isset($validTransitions[$from]) && in_array($to, $validTransitions[$from], strict: true));
+        // Check if transition is valid
+        if (!isset($validTransitions[$from]) || !in_array($to, $validTransitions[$from], strict: true)) {
+            return false;
+        }
+
+        // Additional validation for IN_PROGRESS transition
+        if ($to === DocumentStatus::IN_PROGRESS) {
+            return $this->validateInProgressTransition();
+        }
+
+        return true;
+    }
+
+    private function validateInProgressTransition(): bool
+    {
+        // Check if document has signers
+        if ($this->documentSigners()->count() === 0) {
+            throw new \Exception('Document #' . $this->id . ' has no signers');
+            return false;
+        }
+
+        // Check if all signers have at least one field
+        $signersWithoutFields = $this->documentSigners()
+            ->whereDoesntHave('signerDocumentFields')
+            ->count();
+        
+        if ($signersWithoutFields > 0) {
+            throw new \Exception('Signer #' . $signersWithoutFields->id . ' has no fields');
+            return false;
+        }
+
+        // Check if all fields are bound to signers (no unbound fields)
+        $unboundFields = $this->signerDocumentFields()
+            ->whereNull('document_signer_id')
+            ->count();
+        
+        if ($unboundFields > 0) {
+            throw new \Exception('Unbound fields: ' . $unboundFields);
+            return false;
+        }
+
+        return true;;
     }
 
     public function ownerUser(): BelongsTo
@@ -66,6 +107,11 @@ class Document extends Model implements Lockable, Ownable, Validatable
     public function documentLogs(): HasMany
     {
         return $this->hasMany(DocumentLog::class);
+    }
+
+    public function signerDocumentFields(): HasMany
+    {
+        return $this->hasMany(SignerDocumentField::class);
     }
 
     public function isOwnedBy(User | null $user = null): bool

@@ -24,7 +24,8 @@ class StoreSignerDocumentFieldRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document_signer_id' => 'required|exists:document_signers,id',
+            'document_id' => 'required|exists:documents,id',
+            'document_signer_id' => 'nullable|exists:document_signers,id',
             'page' => 'required|integer|min:1',
             'x' => 'required|numeric',
             'y' => 'required|numeric',
