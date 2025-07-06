@@ -18,6 +18,7 @@ class DocumentLog extends Model implements Ownable, Lockable
     use HasFactory, ProtectsLockedModels;
 
     protected $fillable = [
+        'contact_id',
         'document_signer_id',
         'document_id',
         'ip',
