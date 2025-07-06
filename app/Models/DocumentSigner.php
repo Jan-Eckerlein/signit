@@ -23,6 +23,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     protected $fillable = [
         'document_id',
         'user_id',
+        'name',
     ];
 
     public function isLocked(BaseModelEvent | null $event = null): bool

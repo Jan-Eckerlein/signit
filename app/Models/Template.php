@@ -40,6 +40,11 @@ class Template extends Model implements Ownable
         return $this->hasMany(TemplateField::class);
     }
 
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
+    }
+
     public function isOwnedBy(User | null $user = null): bool
     {
         return $this->owner_user_id === ($user ? $user->id : Auth::id());

@@ -11,6 +11,7 @@ use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\SignerDocumentFieldController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\SignerDocumentFieldValueController;
+use App\Http\Controllers\TemplateController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Log;
 
@@ -32,7 +33,7 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('contacts', ContactController::class);
     Route::apiResource('documents', DocumentController::class);
-    Route::post('documents/{document}/create-from-template', [DocumentController::class, 'createFromTemplate']);
+    Route::post('templates/{template}/create-document', [TemplateController::class, 'copyToDocument']);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::post('document-signers/{documentSigner}/complete-signature', [DocumentSignerController::class, 'completeSignature']);
     Route::apiResource('signer-document-fields', SignerDocumentFieldController::class);

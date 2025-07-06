@@ -48,21 +48,6 @@ class DocumentController extends Controller
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
     }
 
-    /**
-     * Create Document from Template
-     */
-    public function createFromTemplate(Request $request, Document $template): DocumentResource
-    {
-        Gate::authorize('create', Document::class);
-        $document = Document::create([
-            'title' => $template->title,
-            'owner_user_id' => $request->user()->id,
-            'description' => $template->description,
-            'status' => DocumentStatus::DRAFT,
-        ]);
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
-    }
-
     public function setInProgress(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('update', $document);
