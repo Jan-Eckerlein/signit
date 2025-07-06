@@ -53,7 +53,7 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
         foreach ($templateOrDraftFields as $field) {
             if ($this->isDirty($field)) {
                 $status = $this->documentSigner?->document?->getOriginal('status');
-                if (!in_array($status, [DocumentStatus::TEMPLATE, DocumentStatus::DRAFT], true)) {
+                if ($status !== DocumentStatus::DRAFT) {
                     return false;
                 }
             }

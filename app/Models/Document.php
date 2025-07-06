@@ -48,7 +48,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
             DocumentStatus::DRAFT => [DocumentStatus::OPEN],
             DocumentStatus::OPEN => [DocumentStatus::DRAFT, DocumentStatus::IN_PROGRESS, DocumentStatus::COMPLETED],
             DocumentStatus::IN_PROGRESS => [DocumentStatus::COMPLETED],
-            DocumentStatus::TEMPLATE => [], // nie änderbar
         ];
 
         return (isset($validTransitions[$from]) && in_array($to, $validTransitions[$from], strict: true));

@@ -44,8 +44,7 @@ class DocumentController extends Controller
     public function store(StoreDocumentRequest $request): DocumentResource
     {
         Gate::authorize('create', Document::class);
-        $status = $request->is_template ? DocumentStatus::TEMPLATE : DocumentStatus::DRAFT;
-        $document = Document::create($request->validated() + ['owner_user_id' => $request->user()->id, 'status' => $status]);
+        $document = Document::create($request->validated());
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
     }
 

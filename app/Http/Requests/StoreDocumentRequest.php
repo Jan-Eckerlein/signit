@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\DocumentStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
 
 class StoreDocumentRequest extends FormRequest
@@ -26,7 +27,14 @@ class StoreDocumentRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'is_template' => 'required|boolean'
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'status' => DocumentStatus::DRAFT,
+            'owner_user_id' => Auth::id(),
+        ]);
     }
 } 
