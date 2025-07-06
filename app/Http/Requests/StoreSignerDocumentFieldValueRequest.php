@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Services\SignerDocumentFieldValueValidationService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSignerDocumentFieldValueRequest extends FormRequest
@@ -37,8 +38,32 @@ class StoreSignerDocumentFieldValueRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $this->validateExactlyOneValue($validator);
+            $this->validateValueFields($validator);
         });
+    }
+    
+    /**
+     * Validate value fields using the shared validation service.
+     */
+    private function validateValueFields($validator)
+    {
+        $signerDocumentFieldId = $this->input('signer_document_field_id');
+        
+        if (!$signerDocumentFieldId) {
+            return; // Let the exists rule handle this
+        }
+        
+        $field = \App\Models\SignerDocumentField::find($signerDocumentFieldId);
+        
+        if (!$field) {
+            return; // Let the exists rule handle this
+        }
+        
+        SignerDocumentFieldValueValidationService::addValidationErrors(
+            $validator, 
+            $this->all(), 
+            $field->type
+        );
     }
 
     /**

@@ -4,19 +4,23 @@ namespace App\Models;
 
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
+use App\Contracts\Validatable;
 use App\Enums\BaseModelEvent;
+use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
+use App\Services\SignerDocumentFieldValueValidationService;
 use App\Traits\ProtectsLockedModels;
+use App\Traits\ValidatesModelModifications;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class SignerDocumentFieldValue extends Model implements Lockable, Ownable
+class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
     protected $fillable = [
         'signer_document_field_id',
@@ -52,6 +56,35 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
     {
         return $this->value_signature_sign_id !== null || $this->value_initials !== null || $this->value_text !== null || $this->value_checkbox !== null || $this->value_date !== null;
     }
+
+    public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
+    {
+        // Only validate on creation or when value fields are being modified
+        if ($event === BaseModelEvent::CREATING || $this->isDirty(['value_signature_sign_id', 'value_initials', 'value_text', 'value_checkbox', 'value_date'])) {
+            return $this->validateValueMatchesFieldType();
+        }
+        
+        return true;
+    }
+    
+    private function validateValueMatchesFieldType(): bool
+    {
+        $field = $this->signerDocumentField;
+        
+        if (!$field) {
+            return true; // Let the foreign key constraint handle this
+        }
+        
+        // Use the shared validation service
+        SignerDocumentFieldValueValidationService::validateValueMatchesFieldType(
+            $this->getAttributes(),
+            $field->type
+        );
+        
+        return true;
+    }
+    
+
 
 
     public function isOwnedBy(User | null $user = null): bool
