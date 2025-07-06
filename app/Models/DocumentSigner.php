@@ -92,4 +92,21 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         $document = Document::find($attributes['document_id']);
         return $document && $document->isOwnedBy($user);
     }
+
+    public function isSignatureCompleted(): bool
+    {
+        return $this->signature_completed_at !== null;
+    }
+
+    public function getCompletedFieldsCount(): int
+    {
+        return $this->signerDocumentFields()
+            ->whereHas('value')
+            ->count();
+    }
+
+    public function getTotalFieldsCount(): int
+    {
+        return $this->signerDocumentFields()->count();
+    }
 } 
