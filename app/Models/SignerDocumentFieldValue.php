@@ -48,6 +48,11 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
         return $this->belongsTo(Sign::class, 'value_signature_sign_id');
     }
 
+    public function isCompleted(): bool
+    {
+        return $this->value_signature_sign_id !== null || $this->value_initials !== null || $this->value_text !== null || $this->value_checkbox !== null || $this->value_date !== null;
+    }
+
 
     public function isOwnedBy(User | null $user = null): bool
     {

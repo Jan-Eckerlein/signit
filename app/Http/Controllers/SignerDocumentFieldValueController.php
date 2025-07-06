@@ -3,32 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSignerDocumentFieldValueRequest;
-use App\Http\Requests\UpdateSignerDocumentFieldValueRequest;
 use App\Http\Resources\SignerDocumentFieldValueResource;
 use App\Models\SignerDocumentFieldValue;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Attributes\SharedPaginationParams;
 
 class SignerDocumentFieldValueController extends Controller
 {
-    /**
-     * @group Signer Document Field Values
-     * @title "List Signer Document Field Values"
-     * @description "List all signer document field values"
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\SignerDocumentFieldValueResource>
-     */
-    #[SharedPaginationParams]
-    public function index(Request $request): ResourceCollection
-    {
-        Gate::authorize('viewAny', SignerDocumentFieldValue::class);
-        return SignerDocumentFieldValue::viewableBy($request->user())
-            ->with(['signatureSign'])
-            ->paginateOrGetAll($request);
-    }
-
     /**
      * @group Signer Document Field Values
      * @title "Create Signer Document Field Value"
@@ -40,43 +20,5 @@ class SignerDocumentFieldValueController extends Controller
         Gate::authorize('create', SignerDocumentFieldValue::class);
         $signerDocumentFieldValue = SignerDocumentFieldValue::create($request->validated());
         return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']));
-    }
-
-    /**
-     * @group Signer Document Field Values
-     * @title "Show Signer Document Field Value"
-     * @description "Show a signer document field value"
-     * Display the specified resource.
-     */
-    public function show(Request $request, SignerDocumentFieldValue $signerDocumentFieldValue): SignerDocumentFieldValueResource
-    {
-        Gate::authorize('view', $signerDocumentFieldValue);
-        return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']));
-    }
-
-    /**
-     * @group Signer Document Field Values
-     * @title "Update Signer Document Field Value"
-     * @description "Update a signer document field value"
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateSignerDocumentFieldValueRequest $request, SignerDocumentFieldValue $signerDocumentFieldValue): SignerDocumentFieldValueResource
-    {
-        Gate::authorize('update', $signerDocumentFieldValue);
-        $signerDocumentFieldValue->update($request->validated());
-        return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']));
-    }
-
-    /**
-     * @group Signer Document Field Values
-     * @title "Delete Signer Document Field Value"
-     * @description "Delete a signer document field value"
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request, SignerDocumentFieldValue $signerDocumentFieldValue): JsonResponse
-    {
-        Gate::authorize('delete', $signerDocumentFieldValue);
-        $signerDocumentFieldValue->delete();
-        return response()->json(['message' => 'Signer document field value deleted successfully']);
     }
 }

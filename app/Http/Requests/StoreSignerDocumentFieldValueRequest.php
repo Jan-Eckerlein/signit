@@ -30,4 +30,44 @@ class StoreSignerDocumentFieldValueRequest extends FormRequest
             'value_date' => 'nullable|date',
         ];
     }
+
+    /**
+     * Configure the validator instance.
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $this->validateExactlyOneValue($validator);
+        });
+    }
+
+    /**
+     * Validate that exactly one value field is filled.
+     */
+    private function validateExactlyOneValue($validator)
+    {
+        $valueFields = [
+            'value_signature_sign_id',
+            'value_initials', 
+            'value_text',
+            'value_checkbox',
+            'value_date'
+        ];
+
+        $filledCount = 0;
+        $filledFields = [];
+
+        foreach ($valueFields as $field) {
+            if ($this->filled($field)) {
+                $filledCount++;
+                $filledFields[] = $field;
+            }
+        }
+
+        if ($filledCount === 0) {
+            $validator->errors()->add('value_fields', 'At least one value field must be filled.');
+        } elseif ($filledCount > 1) {
+            $validator->errors()->add('value_fields', 'Only one value field can be filled. Found: ' . implode(', ', $filledFields));
+        }
+    }
 }

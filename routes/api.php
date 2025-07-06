@@ -10,6 +10,7 @@ use App\Http\Controllers\DocumentLogsController;
 use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\SignerDocumentFieldController;
 use App\Http\Controllers\SignController;
+use App\Http\Controllers\SignerDocumentFieldValueController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Log;
 
@@ -34,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('documents/{document}/create-from-template', [DocumentController::class, 'createFromTemplate']);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::apiResource('signer-document-fields', SignerDocumentFieldController::class);
+    Route::apiResource('signer-document-field-values', SignerDocumentFieldValueController::class);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::prefix('documents')->group(function () {

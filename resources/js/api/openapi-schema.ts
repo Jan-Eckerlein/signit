@@ -280,6 +280,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/signer-document-field-values": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postApiSignerDocumentFieldValues"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/signer-document-fields": {
         parameters: {
             query?: never;
@@ -310,9 +326,9 @@ export interface paths {
             cookie?: never;
         };
         get: operations["getApiSignerDocumentFieldsId"];
-        put?: never;
+        put: operations["putApiSignerDocumentFieldsId"];
         post?: never;
-        delete?: never;
+        delete: operations["deleteApiSignerDocumentFieldsId"];
         options?: never;
         head?: never;
         patch?: never;
@@ -905,10 +921,10 @@ export interface operations {
                      */
                     document_id: string;
                     /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example architecto
+                     * @description Must be a valid email address.
+                     * @example zbailey@example.net
                      */
-                    user_id: string;
+                    email: string;
                 };
             };
         };
@@ -1090,7 +1106,7 @@ export interface operations {
                     title: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     is_template: boolean;
                 };
             };
@@ -1188,6 +1204,45 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
+        responses: never;
+    };
+    postApiSignerDocumentFieldValues: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the signer_document_fields table.
+                     * @example architecto
+                     */
+                    signer_document_field_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the signs table.
+                     * @example null
+                     */
+                    value_signature_sign_id?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example n
+                     */
+                    value_initials?: string | null;
+                    /** @example architecto */
+                    value_text?: string | null;
+                    /** @example true */
+                    value_checkbox?: boolean | null;
+                    /**
+                     * @description Must be a valid date.
+                     * @example 2025-07-06T00:07:55
+                     */
+                    value_date?: string | null;
+                };
+            };
+        };
         responses: never;
     };
     getApiSignerDocumentFields: {
@@ -1309,7 +1364,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example initials
+                     * @example date
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1354,6 +1409,81 @@ export interface operations {
                 };
             };
         };
+    };
+    putApiSignerDocumentFieldsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the document_signers table.
+                     * @example null
+                     */
+                    document_signer_id?: string;
+                    /**
+                     * @description Must be at least 1.
+                     * @example 16
+                     */
+                    page?: number;
+                    /** @example 4326.41688 */
+                    x?: number;
+                    /** @example 4326.41688 */
+                    y?: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 77
+                     */
+                    width?: number;
+                    /**
+                     * @description Must be at least 0.
+                     * @example 8
+                     */
+                    height?: number;
+                    /**
+                     * @example date
+                     * @enum {string}
+                     */
+                    type?: "signature" | "initials" | "text" | "checkbox" | "date";
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example y
+                     */
+                    label?: string;
+                    /** @example Eius et animi quos velit et. */
+                    description?: string | null;
+                    /** @example false */
+                    required?: boolean;
+                };
+            };
+        };
+        responses: never;
+    };
+    deleteApiSignerDocumentFieldsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the signer document field.
+                 * @example 16
+                 */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
     };
     getApiSigns: {
         parameters: {
