@@ -35,6 +35,11 @@ class Template extends Model implements Ownable
         return $this->hasMany(TemplateSigner::class);
     }
 
+    public function templateFields(): HasMany
+    {
+        return $this->hasMany(TemplateField::class);
+    }
+
     public function isOwnedBy(User | null $user = null): bool
     {
         return $this->owner_user_id === ($user ? $user->id : Auth::id());
