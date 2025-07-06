@@ -149,4 +149,14 @@ class DocumentController extends Controller
         $document->delete();
         return response()->json(['message' => 'Document deleted successfully']);
     }
+
+    /**
+     * Get Document Progress
+     */
+    public function getProgress(Request $request, Document $document): JsonResponse
+    {
+        Gate::authorize('view', $document);
+        
+        return response()->json($document->getProgress());
+    }
 } 

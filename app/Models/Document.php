@@ -113,17 +113,40 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $attributes['owner_user_id'] === $user->id;
     }
 
-    public function scopeWithIncompleteFields(Builder $query): Builder
+    public function scopeWithIncompleteSigners(Builder $query): Builder
     {
-        return $query->whereHas('documentSigners.signerDocumentFields', function ($query) {
-            $query->whereDoesntHave('value', function ($valueQuery) {
-                $valueQuery->completed();
-            });
+        return $query->whereHas('documentSigners', function ($query) {
+            $query->whereNull('signature_completed_at');
         });
     }
 
-    public function areAllFieldsCompleted(): bool
+    public function areAllSignersCompleted(): bool
     {
-        return !$this->withIncompleteFields()->exists();
+        return $this->documentSigners()
+            ->whereNull('signature_completed_at')
+            ->doesntExist();
+    }
+
+    public function getProgress(): array
+    {
+        return [
+            'total_signers' => $this->documentSigners()->count(),
+            'completed_signers' => $this->documentSigners()
+                ->whereNotNull('signature_completed_at')
+                ->count(),
+            'signers_progress' => $this->documentSigners()
+                ->with(['user', 'signerDocumentFields.value'])
+                ->get()
+                ->map(function ($signer) {
+                    return [
+                        'id' => $signer->id,
+                        'user_name' => $signer->user->name,
+                        'completed_fields' => $signer->getCompletedFieldsCount(),
+                        'total_fields' => $signer->getTotalFieldsCount(),
+                        'is_completed' => $signer->isSignatureCompleted(),
+                        'completed_at' => $signer->signature_completed_at,
+                    ];
+                }),
+        ];
     }
 } 

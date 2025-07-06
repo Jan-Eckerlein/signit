@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('documents')->group(function () {
         Route::get('{document}/signers', [DocumentController::class, 'signers']);
         Route::get('{document}/fields', [DocumentController::class, 'fields']);
+        Route::get('{document}/progress', [DocumentController::class, 'getProgress']);
     });
     
     Route::prefix('contacts')->group(function () {
