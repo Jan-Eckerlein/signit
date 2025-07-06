@@ -81,4 +81,33 @@ class DocumentSignerController extends Controller
         $documentSigner->delete();
         return response()->json(['message' => 'Document signer deleted successfully']);
     }
+
+    /**
+     * @group Document Signers
+     * @title "Complete Signature"
+     * @description "Complete signature and accept electronic disclosure"
+     * Complete the signature process for a document signer.
+     */
+    public function completeSignature(Request $request, DocumentSigner $documentSigner): JsonResponse
+    {
+        Gate::authorize('update', $documentSigner);
+        
+        $request->validate([
+            'electronic_signature_disclosure_accepted' => 'required|boolean|accepted',
+        ]);
+        
+        // Update signer completion status
+        $documentSigner->update([
+            'signature_completed_at' => now(),
+            'electronic_signature_disclosure_accepted' => true,
+            'disclosure_accepted_at' => now(),
+        ]);
+        
+        // Observer will handle all notifications and status updates
+        return response()->json([
+            'message' => 'Signature completed successfully',
+            'document_status' => $documentSigner->document->status,
+            'is_document_completed' => $documentSigner->document->status === \App\Enums\DocumentStatus::COMPLETED,
+        ]);
+    }
 } 
