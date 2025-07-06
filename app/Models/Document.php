@@ -112,4 +112,18 @@ class Document extends Model implements Lockable, Ownable, Validatable
         // Users can only create documents for themselves
         return $attributes['owner_user_id'] === $user->id;
     }
+
+    public function scopeWithIncompleteFields(Builder $query): Builder
+    {
+        return $query->whereHas('documentSigners.signerDocumentFields', function ($query) {
+            $query->whereDoesntHave('value', function ($valueQuery) {
+                $valueQuery->completed();
+            });
+        });
+    }
+
+    public function areAllFieldsCompleted(): bool
+    {
+        return !$this->withIncompleteFields()->exists();
+    }
 } 

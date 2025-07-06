@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\DocumentStatus;
 use App\Http\Requests\StoreSignerDocumentFieldValueRequest;
 use App\Http\Resources\SignerDocumentFieldValueResource;
 use App\Models\SignerDocumentFieldValue;
@@ -19,6 +20,16 @@ class SignerDocumentFieldValueController extends Controller
     {
         Gate::authorize('create', SignerDocumentFieldValue::class);
         $signerDocumentFieldValue = SignerDocumentFieldValue::create($request->validated());
+        
+
+        // check if all document fields are completed to potentially set document to completed
+        $document = $signerDocumentFieldValue->signerDocumentField->documentSigner->document;
+
+        if ($document->areAllFieldsCompleted()) {
+            $document->status = DocumentStatus::COMPLETED;
+            $document->save();
+        }
+
         return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']));
     }
 }

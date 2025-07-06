@@ -83,4 +83,24 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable
         $signerDocumentField = SignerDocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
         return $signerDocumentField?->documentSigner?->user?->is($user);
     }
+
+    public function scopeCompleted(Builder $query): Builder
+    {
+        return $query->where(function ($q) {
+            $q->whereNotNull('value_signature_sign_id')
+                ->orWhereNotNull('value_initials')
+                ->orWhereNotNull('value_text')
+                ->orWhereNotNull('value_checkbox')
+                ->orWhereNotNull('value_date');
+        });
+    }
+
+    public function scopeIncomplete(Builder $query): Builder
+    {
+        return $query->whereNull('value_signature_sign_id')
+            ->whereNull('value_initials')
+            ->whereNull('value_text')
+            ->whereNull('value_checkbox')
+            ->whereNull('value_date');
+    }
 }
