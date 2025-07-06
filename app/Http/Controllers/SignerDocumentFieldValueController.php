@@ -21,15 +21,13 @@ class SignerDocumentFieldValueController extends Controller
         Gate::authorize('create', SignerDocumentFieldValue::class);
         $signerDocumentFieldValue = SignerDocumentFieldValue::create($request->validated());
         
-
-        // check if all document fields are completed to potentially set document to completed
+        // The observer has already run and potentially updated the document status
         $document = $signerDocumentFieldValue->signerDocumentField->documentSigner->document;
-
-        if ($document->areAllFieldsCompleted()) {
-            $document->status = DocumentStatus::COMPLETED;
-            $document->save();
-        }
-
-        return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']));
+        $wasCompleted = $document->status === DocumentStatus::COMPLETED;
+        
+        return new SignerDocumentFieldValueResource($signerDocumentFieldValue->load(['signatureSign']), [
+            'document_completed' => $wasCompleted,
+            'document_status' => $document->status
+        ]);
     }
 }

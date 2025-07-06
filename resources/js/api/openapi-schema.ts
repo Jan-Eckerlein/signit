@@ -1106,7 +1106,7 @@ export interface operations {
                     title: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     is_template: boolean;
                 };
             };
@@ -1233,11 +1233,11 @@ export interface operations {
                     value_initials?: string | null;
                     /** @example architecto */
                     value_text?: string | null;
-                    /** @example true */
+                    /** @example false */
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-06T00:07:55
+                     * @example 2025-07-06T00:35:40
                      */
                     value_date?: string | null;
                 };
@@ -1364,7 +1364,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example date
+                     * @example checkbox
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1375,7 +1375,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                 };
             };
@@ -1462,7 +1462,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                 };
             };

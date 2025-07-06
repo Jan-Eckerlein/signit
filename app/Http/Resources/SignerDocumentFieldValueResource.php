@@ -14,7 +14,7 @@ class SignerDocumentFieldValueResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $data = [
             'id' => $this->id,
             'signer_document_field_id' => $this->signer_document_field_id,
             'value_signature_sign_id' => $this->value_signature_sign_id,
@@ -26,5 +26,13 @@ class SignerDocumentFieldValueResource extends JsonResource
             'updated_at' => $this->updated_at,
             'signature_sign' => new SignResource($this->whenLoaded('signatureSign')),
         ];
+
+        // Add metadata if provided
+        if (isset($this->additional['document_completed'])) {
+            $data['document_completed'] = $this->additional['document_completed'];
+            $data['document_status'] = $this->additional['document_status'];
+        }
+
+        return $data;
     }
 }

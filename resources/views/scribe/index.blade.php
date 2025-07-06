@@ -3374,7 +3374,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"title\": \"b\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"is_template\": true
+    \"is_template\": false
 }"
 </code></pre></div>
 
@@ -3393,7 +3393,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Eius et animi quos velit et.",
-    "is_template": true
+    "is_template": false
 };
 
 fetch(url, {
@@ -3528,7 +3528,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -4159,8 +4159,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"signer_document_field_id\": \"architecto\",
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
-    \"value_checkbox\": true,
-    \"value_date\": \"2025-07-06T00:07:55\"
+    \"value_checkbox\": false,
+    \"value_date\": \"2025-07-06T00:35:40\"
 }"
 </code></pre></div>
 
@@ -4180,8 +4180,8 @@ let body = {
     "signer_document_field_id": "architecto",
     "value_initials": "n",
     "value_text": "architecto",
-    "value_checkbox": true,
-    "value_date": "2025-07-06T00:07:55"
+    "value_checkbox": false,
+    "value_date": "2025-07-06T00:35:40"
 };
 
 fetch(url, {
@@ -4338,7 +4338,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value_date</code></b>&nbsp;&nbsp;
@@ -4346,10 +4346,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-signer-document-field-values"
-               value="2025-07-06T00:07:55"
+               value="2025-07-06T00:35:40"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-06T00:07:55</code></p>
+<p>Must be a valid date. Example: <code>2025-07-06T00:35:40</code></p>
         </div>
         </form>
 
@@ -4592,10 +4592,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"date\",
+    \"type\": \"checkbox\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": false
+    \"required\": true
 }"
 </code></pre></div>
 
@@ -4618,10 +4618,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "date",
+    "type": "checkbox",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": false
+    "required": true
 };
 
 fetch(url, {
@@ -4787,10 +4787,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-signer-document-fields"
-               value="date"
+               value="checkbox"
                data-component="body">
     <br>
-<p>Example: <code>date</code></p>
+<p>Example: <code>checkbox</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -4835,7 +4835,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -5016,7 +5016,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"type\": \"date\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": false
+    \"required\": true
 }"
 </code></pre></div>
 
@@ -5041,7 +5041,7 @@ let body = {
     "type": "date",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": false
+    "required": true
 };
 
 fetch(url, {
@@ -5271,7 +5271,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
