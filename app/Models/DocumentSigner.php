@@ -36,6 +36,34 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
+        // Check if signature completion fields are being modified
+        $signatureCompletionFields = [
+            'signature_completed_at',
+            'electronic_signature_disclosure_accepted', 
+            'disclosure_accepted_at'
+        ];
+        
+        $isModifyingSignatureCompletion = false;
+        foreach ($signatureCompletionFields as $field) {
+            if ($this->isDirty($field)) {
+                $isModifyingSignatureCompletion = true;
+                break;
+            }
+        }
+        
+        if ($isModifyingSignatureCompletion) {
+            // Check if all fields are completed
+            $completedFields = $this->getCompletedFieldsCount();
+            $totalFields = $this->getTotalFieldsCount();
+            
+            if ($completedFields < $totalFields) {
+                throw new \InvalidArgumentException(
+                    "Cannot complete signature: {$completedFields} of {$totalFields} fields are filled. All fields must be completed before signature can be finalized."
+                );
+            }
+        }
+        
+        // Original validation for document_id changes
         if (!$this->isDirty('document_id')) return true;
 
         $from = $this->getOriginal('document_id');
