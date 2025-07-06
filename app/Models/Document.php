@@ -71,6 +71,13 @@ class Document extends Model implements Lockable, Ownable, Validatable
             return false;
         }
 
+        // Check if all signers are bound to a user
+        $unboundSigners = $this->documentSigners()->whereNull('user_id')->count();
+        if ($unboundSigners > 0) {
+            throw new \Exception('There are unbound signers (no user assigned) in this document.');
+            return false;
+        }
+
         // Check if all signers have at least one field
         $signersWithoutFields = $this->documentSigners()
             ->whereDoesntHave('signerDocumentFields')
@@ -91,7 +98,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
             return false;
         }
 
-        return true;;
+        return true;
     }
 
     public function ownerUser(): BelongsTo

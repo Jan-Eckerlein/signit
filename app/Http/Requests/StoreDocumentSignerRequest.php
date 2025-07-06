@@ -25,7 +25,7 @@ class StoreDocumentSignerRequest extends FormRequest
     {
         return [
             'document_id' => 'required|exists:documents,id',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
         ];
     }
 } 
