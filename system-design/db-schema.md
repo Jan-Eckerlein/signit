@@ -39,6 +39,9 @@ erDiagram
         int id PK
         int document_id FK
         int user_id FK
+        datetime signature_completed_at
+        boolean electronic_signature_disclosure_accepted
+        datetime disclosure_accepted_at
         datetime created_at
         datetime updated_at
     }
@@ -93,6 +96,41 @@ erDiagram
         datetime updated_at
     }
 
+    templates {
+        int id PK
+        string title
+        int owner_user_id FK
+        string description
+        boolean is_public
+        datetime created_at
+        datetime updated_at
+    }
+
+    template_signers {
+        int id PK
+        int template_id FK
+        string placeholder_name
+        string placeholder_email
+        datetime created_at
+        datetime updated_at
+    }
+
+    template_fields {
+        int id PK
+        int template_signer_id FK
+        int page
+        float x
+        float y
+        float width
+        float height
+        DocumentFieldType type
+        string label
+        string description
+        boolean required
+        datetime created_at
+        datetime updated_at
+    }
+
     %% Beziehungen
     users ||--o{ documents                   : "owns"
     users ||--o{ contacts                    : "has_contact"
@@ -107,9 +145,12 @@ erDiagram
     document_signers ||--o{ document_logs            : "logged_by"
     documents ||--o{ magic_links               : "issued_for"
     users ||--o{ magic_links               : "owns"
+    users ||--o{ templates                   : "owns"
+    templates ||--o{ template_signers        : "has_signers"
+    template_signers ||--o{ template_fields  : "has_fields"
 ```
 
-````mermaid
+```mermaid
 classDiagram
     class Icon {
         <<enum>>
@@ -125,7 +166,6 @@ classDiagram
         +open
         +completed
         +in_progress
-        +template
     }
 
     class DocumentFieldType {
@@ -137,4 +177,3 @@ classDiagram
         +date
     }
 ```
-````
