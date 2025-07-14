@@ -35,7 +35,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('viewAny', Document::class);
         return Document::viewableBy($request->user())
-            ->with(['ownerUser', 'documentSigners', 'documentLogs'])
+            ->with(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess'])
             ->paginateOrGetAll($request);
     }
 
@@ -48,7 +48,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('create', Document::class);
         $document = Document::create($request->validated());
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
     }
 
     public function setInProgress(Request $request, Document $document): DocumentResource
@@ -95,7 +95,7 @@ class DocumentController extends Controller
                 'signers_notified' => $document->documentSigners->count(),
             ]);
             
-            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
             
         } catch (\Exception $e) {
             Log::error('Failed to set document to in progress', [
@@ -116,7 +116,7 @@ class DocumentController extends Controller
     public function show(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('view', $document);
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
     }
 
     /**
@@ -128,7 +128,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('update', $document);
         $document->update($request->validated());
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
     }
 
     /**
