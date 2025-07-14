@@ -12,12 +12,15 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
 use App\Attributes\SharedPaginationParams;
 
+/**
+ * @group Contacts
+ */
 class ContactController extends Controller
 {
     /**
-     * @group Contacts
-     * @title "List Contacts"
-     * @description "List all contacts owned by the authenticated user"
+     * List Contacts
+     * 
+     * List all contacts owned by the authenticated user.
      * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\ContactResource>
      */
     #[SharedPaginationParams]
@@ -28,10 +31,9 @@ class ContactController extends Controller
     }
 
     /**
-     * @group Contacts
-     * @title "Create Contact"
-     * @description "Create a new contact"
-     * Store a newly created resource in storage.
+     * Create Contact
+     * 
+     * Store a newly created contact in storage.
      */
     public function store(StoreContactRequest $request): ContactResource
     {
@@ -41,10 +43,9 @@ class ContactController extends Controller
     }
 
     /**
-     * @group Contacts
-     * @title "Show Contact"
-     * @description "Show a contact"
-     * Display the specified resource.
+     * Show Contact
+     * 
+     * Display the specified contact.
      */
     public function show(Contact $contact): ContactResource
     {
@@ -53,10 +54,9 @@ class ContactController extends Controller
     }
 
     /**
-     * @group Contacts
-     * @title "Update Contact"
-     * @description "Update a contact"
-     * Update the specified resource in storage.
+     * Update Contact
+     * 
+     * Update the specified contact in storage.
      */
     public function update(UpdateContactRequest $request, Contact $contact): ContactResource
     {
@@ -66,10 +66,9 @@ class ContactController extends Controller
     }
 
     /**
-     * @group Contacts
-     * @title "Delete Contact"
-     * @description "Delete a contact"
-     * Remove the specified resource from storage.
+     * Delete Contact
+     * 
+     * Remove the specified contact from storage.
      */
     public function destroy(Contact $contact): JsonResponse
     {

@@ -13,7 +13,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postApiAuthRegister"];
+        /**
+         * Register
+         * @description Register a new user.
+         */
+        post: operations["register"];
         delete?: never;
         options?: never;
         head?: never;
@@ -29,7 +33,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postApiAuthLogin"];
+        /**
+         * Login
+         * @description Login a user.
+         */
+        post: operations["login"];
         delete?: never;
         options?: never;
         head?: never;
@@ -45,7 +53,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postApiAuthLogout"];
+        /**
+         * Logout
+         * @description Logout a user.
+         */
+        post: operations["logout"];
         delete?: never;
         options?: never;
         head?: never;
@@ -59,7 +71,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiAuthMe"];
+        /**
+         * Get Authenticated User
+         * @description Retrieve the authenticated user.
+         */
+        get: operations["getAuthenticatedUser"];
         put?: never;
         post?: never;
         delete?: never;
@@ -76,7 +92,11 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put: operations["putApiAuthProfile"];
+        /**
+         * Update User Profile
+         * @description Update the authenticated user's profile.
+         */
+        put: operations["updateUserProfile"];
         post?: never;
         delete?: never;
         options?: never;
@@ -93,7 +113,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postApiAuthRefresh"];
+        /**
+         * Refresh Session
+         * @description Refresh the authenticated user's session.
+         */
+        post: operations["refreshSession"];
         delete?: never;
         options?: never;
         head?: never;
@@ -107,9 +131,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiContacts"];
+        /**
+         * List Contacts
+         * @description List all contacts owned by the authenticated user.
+         */
+        get: operations["listContacts"];
         put?: never;
-        post: operations["postApiContacts"];
+        /**
+         * Create Contact
+         * @description Store a newly created contact in storage.
+         */
+        post: operations["createContact"];
         delete?: never;
         options?: never;
         head?: never;
@@ -123,16 +155,28 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the contact.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
             cookie?: never;
         };
-        get: operations["getApiContactsId"];
-        put: operations["putApiContactsId"];
+        /**
+         * Show Contact
+         * @description Display the specified contact.
+         */
+        get: operations["showContact"];
+        /**
+         * Update Contact
+         * @description Update the specified contact in storage.
+         */
+        put: operations["updateContact"];
         post?: never;
-        delete: operations["deleteApiContactsId"];
+        /**
+         * Delete Contact
+         * @description Remove the specified contact from storage.
+         */
+        delete: operations["deleteContact"];
         options?: never;
         head?: never;
         patch?: never;
@@ -145,7 +189,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiDocumentLogs"];
+        /**
+         * List Document Logs
+         * @description List all document logs that the user can view.
+         */
+        get: operations["listDocumentLogs"];
         put?: never;
         post?: never;
         delete?: never;
@@ -167,7 +215,11 @@ export interface paths {
             };
             cookie?: never;
         };
-        get: operations["getApiDocumentLogsId"];
+        /**
+         * Show Document Log
+         * @description Display the specified document log.
+         */
+        get: operations["showDocumentLog"];
         put?: never;
         post?: never;
         delete?: never;
@@ -183,9 +235,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiDocumentSigners"];
+        /**
+         * List Document Signers
+         * @description List all document signers.
+         */
+        get: operations["listDocumentSigners"];
         put?: never;
-        post: operations["postApiDocumentSigners"];
+        /**
+         * Create Document Signer
+         * @description Store a newly created document signer in storage.
+         */
+        post: operations["createDocumentSigner"];
         delete?: never;
         options?: never;
         head?: never;
@@ -205,10 +265,48 @@ export interface paths {
             };
             cookie?: never;
         };
-        get: operations["getApiDocumentSignersId"];
-        put: operations["putApiDocumentSignersId"];
+        /**
+         * Show Document Signer
+         * @description Display the specified document signer.
+         */
+        get: operations["showDocumentSigner"];
+        /**
+         * Update Document Signer
+         * @description Update the specified document signer in storage.
+         */
+        put: operations["updateDocumentSigner"];
         post?: never;
-        delete: operations["deleteApiDocumentSignersId"];
+        /**
+         * Delete Document Signer
+         * @description Remove the specified document signer from storage.
+         */
+        delete: operations["deleteDocumentSigner"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/document-signers/{documentSigner_id}/complete-signature": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the documentSigner.
+                 * @example 16
+                 */
+                documentSigner_id: number;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Complete Signature
+         * @description Complete the signature process and accept electronic disclosure.
+         */
+        post: operations["completeSignature"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -221,10 +319,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List Documents */
+        /**
+         * List Documents
+         * @description List all documents viewable by the user.
+         */
         get: operations["listDocuments"];
         put?: never;
-        /** Create Document */
+        /**
+         * Create Document
+         * @description Store a newly created document in storage.
+         */
         post: operations["createDocument"];
         delete?: never;
         options?: never;
@@ -245,35 +349,47 @@ export interface paths {
             };
             cookie?: never;
         };
-        /** Show Document */
+        /**
+         * Show Document
+         * @description Display the specified document.
+         */
         get: operations["showDocument"];
-        /** Update Document */
+        /**
+         * Update Document
+         * @description Update the specified document in storage.
+         */
         put: operations["updateDocument"];
         post?: never;
-        /** Delete Document */
+        /**
+         * Delete Document
+         * @description Remove the specified document from storage.
+         */
         delete: operations["deleteDocument"];
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/api/documents/{document}/create-from-template": {
+    "/api/documents/{document_id}/progress": {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
-                 * @description The document.
+                 * @description The ID of the document.
                  * @example 16
                  */
-                document: number;
+                document_id: number;
             };
             cookie?: never;
         };
-        get?: never;
+        /**
+         * Get Document Progress
+         * @description Retrieve the progress of the specified document.
+         */
+        get: operations["getDocumentProgress"];
         put?: never;
-        /** Create Document from Template */
-        post: operations["createDocumentFromTemplate"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -289,7 +405,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["postApiSignerDocumentFieldValues"];
+        /**
+         * Create Signer Document Field Value
+         * @description Store a newly created signer document field value in storage.
+         */
+        post: operations["createSignerDocumentFieldValue"];
         delete?: never;
         options?: never;
         head?: never;
@@ -303,9 +423,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiSignerDocumentFields"];
+        /**
+         * List Signer Document Fields
+         * @description List all signer document fields.
+         */
+        get: operations["listSignerDocumentFields"];
         put?: never;
-        post: operations["postApiSignerDocumentFields"];
+        /**
+         * Create Signer Document Field
+         * @description Store a newly created signer document field in storage.
+         */
+        post: operations["createSignerDocumentField"];
         delete?: never;
         options?: never;
         head?: never;
@@ -325,10 +453,22 @@ export interface paths {
             };
             cookie?: never;
         };
-        get: operations["getApiSignerDocumentFieldsId"];
-        put: operations["putApiSignerDocumentFieldsId"];
+        /**
+         * Show Signer Document Field
+         * @description Display the specified signer document field.
+         */
+        get: operations["showSignerDocumentField"];
+        /**
+         * Update Signer Document Field
+         * @description Update the specified signer document field in storage.
+         */
+        put: operations["updateSignerDocumentField"];
         post?: never;
-        delete: operations["deleteApiSignerDocumentFieldsId"];
+        /**
+         * Delete Signer Document Field
+         * @description Remove the specified signer document field from storage.
+         */
+        delete: operations["deleteSignerDocumentField"];
         options?: never;
         head?: never;
         patch?: never;
@@ -341,9 +481,17 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["getApiSigns"];
+        /**
+         * List Signs
+         * @description List all signs owned by the user
+         */
+        get: operations["listSigns"];
         put?: never;
-        post: operations["postApiSigns"];
+        /**
+         * Create Sign
+         * @description Store a newly created sign for a document in storage.
+         */
+        post: operations["createSign"];
         delete?: never;
         options?: never;
         head?: never;
@@ -363,10 +511,48 @@ export interface paths {
             };
             cookie?: never;
         };
-        get: operations["getApiSignsId"];
-        put: operations["putApiSignsId"];
+        /**
+         * Show Sign
+         * @description Display the specified sign.
+         */
+        get: operations["showSign"];
+        /**
+         * Update Sign
+         * @description Update the specified sign in storage.
+         */
+        put: operations["updateSign"];
         post?: never;
-        delete: operations["deleteApiSignsId"];
+        /**
+         * Delete Sign
+         * @description Remove the specified sign from storage.
+         */
+        delete: operations["deleteSign"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/signs/{sign_id}/force": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                sign_id: number;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Force Delete Sign
+         * @description Force delete a sign (only if not being used).
+         */
+        delete: operations["forceDeleteSign"];
         options?: never;
         head?: never;
         patch?: never;
@@ -384,7 +570,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    postApiAuthRegister: {
+    register: {
         parameters: {
             query?: never;
             header?: never;
@@ -415,7 +601,7 @@ export interface operations {
                      */
                     password_confirmation: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -424,7 +610,7 @@ export interface operations {
         };
         responses: never;
     };
-    postApiAuthLogin: {
+    login: {
         parameters: {
             query?: never;
             header?: never;
@@ -451,7 +637,7 @@ export interface operations {
         };
         responses: never;
     };
-    postApiAuthLogout: {
+    logout: {
         parameters: {
             query?: never;
             header?: never;
@@ -461,7 +647,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiAuthMe: {
+    getAuthenticatedUser: {
         parameters: {
             query?: never;
             header?: never;
@@ -470,32 +656,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        data?: {
-                            /** @example 2 */
-                            id?: number;
-                            /** @example Scribe API */
-                            name?: string;
-                            /** @example scribe@example.com */
-                            email?: string;
-                            /** @example null */
-                            email_verified_at?: string;
-                            /** @example 2025-07-04T18:36:22.000000Z */
-                            created_at?: string;
-                            /** @example 2025-07-04T18:36:22.000000Z */
-                            updated_at?: string;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    putApiAuthProfile: {
+    updateUserProfile: {
         parameters: {
             query?: never;
             header?: never;
@@ -515,7 +689,7 @@ export interface operations {
         };
         responses: never;
     };
-    postApiAuthRefresh: {
+    refreshSession: {
         parameters: {
             query?: never;
             header?: never;
@@ -525,7 +699,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiContacts: {
+    listContacts: {
         parameters: {
             query?: {
                 /**
@@ -545,71 +719,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/contacts?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/contacts?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/contacts?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/contacts */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    postApiContacts: {
+    createContact: {
         parameters: {
             query?: never;
             header?: never;
@@ -634,14 +757,14 @@ export interface operations {
         };
         responses: never;
     };
-    getApiContactsId: {
+    showContact: {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
                  * @description The ID of the contact.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -649,27 +772,27 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            403: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example This action is unauthorized. */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    putApiContactsId: {
+    updateContact: {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
                  * @description The ID of the contact.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -693,14 +816,14 @@ export interface operations {
         };
         responses: never;
     };
-    deleteApiContactsId: {
+    deleteContact: {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
                  * @description The ID of the contact.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -709,7 +832,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiDocumentLogs: {
+    listDocumentLogs: {
         parameters: {
             query?: {
                 /**
@@ -729,71 +852,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/document-logs?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/document-logs?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/document-logs?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/document-logs */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    getApiDocumentLogsId: {
+    showDocumentLog: {
         parameters: {
             query?: never;
             header?: never;
@@ -808,20 +880,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\DocumentLog] 16 */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    getApiDocumentSigners: {
+    listDocumentSigners: {
         parameters: {
             query?: {
                 /**
@@ -841,71 +913,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/document-signers?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/document-signers */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    postApiDocumentSigners: {
+    createDocumentSigner: {
         parameters: {
             query?: never;
             header?: never;
@@ -924,13 +945,23 @@ export interface operations {
                      * @description Must be a valid email address.
                      * @example zbailey@example.net
                      */
-                    email: string;
+                    email?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example i
+                     */
+                    name: string;
+                    /**
+                     * @description Must not be greater than 1000 characters.
+                     * @example Fugiat sunt nihil accusantium harum mollitia.
+                     */
+                    description?: string | null;
                 };
             };
         };
         responses: never;
     };
-    getApiDocumentSignersId: {
+    showDocumentSigner: {
         parameters: {
             query?: never;
             header?: never;
@@ -945,20 +976,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\DocumentSigner]. */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    putApiDocumentSignersId: {
+    updateDocumentSigner: {
         parameters: {
             query?: never;
             header?: never;
@@ -980,16 +1011,26 @@ export interface operations {
                      */
                     document_id?: string;
                     /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
+                     * @description Must be a valid email address.
+                     * @example gbailey@example.net
                      */
-                    user_id?: string;
+                    email?: string;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example m
+                     */
+                    name?: string;
+                    /**
+                     * @description Must not be greater than 1000 characters.
+                     * @example Et fugiat sunt nihil accusantium.
+                     */
+                    description?: string;
                 };
             };
         };
         responses: never;
     };
-    deleteApiDocumentSignersId: {
+    deleteDocumentSigner: {
         parameters: {
             query?: never;
             header?: never;
@@ -1003,6 +1044,32 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
+        responses: never;
+    };
+    completeSignature: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the documentSigner.
+                 * @example 16
+                 */
+                documentSigner_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must be accepted.
+                     * @example true
+                     */
+                    electronic_signature_disclosure_accepted: boolean;
+                };
+            };
+        };
         responses: never;
     };
     listDocuments: {
@@ -1025,65 +1092,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/documents?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/documents?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/documents?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/documents */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
@@ -1104,7 +1120,10 @@ export interface operations {
                      * @example b
                      */
                     title: string;
-                    /** @example Eius et animi quos velit et. */
+                    /**
+                     * @description Must not be greater than 1000 characters.
+                     * @example Et animi quos velit et fugiat.
+                     */
                     description?: string | null;
                     /** @example false */
                     is_template: boolean;
@@ -1128,13 +1147,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\Document] 16 */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
@@ -1163,11 +1182,9 @@ export interface operations {
                      */
                     title?: string;
                     /**
-                     * @description The <code>id</code> of an existing record in the users table.
-                     * @example null
+                     * @description Must not be greater than 1000 characters.
+                     * @example Et animi quos velit et fugiat.
                      */
-                    owner_user_id?: string;
-                    /** @example Eius et animi quos velit et. */
                     description?: string | null;
                 };
             };
@@ -1190,23 +1207,35 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    createDocumentFromTemplate: {
+    getDocumentProgress: {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
-                 * @description The document.
+                 * @description The ID of the document.
                  * @example 16
                  */
-                document: number;
+                document_id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
-        responses: never;
+        responses: {
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example Unauthenticated. */
+                        message?: string;
+                    };
+                };
+            };
+        };
     };
-    postApiSignerDocumentFieldValues: {
+    createSignerDocumentFieldValue: {
         parameters: {
             query?: never;
             header?: never;
@@ -1233,11 +1262,11 @@ export interface operations {
                     value_initials?: string | null;
                     /** @example architecto */
                     value_text?: string | null;
-                    /** @example false */
+                    /** @example true */
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-06T00:35:40
+                     * @example 2025-07-14T12:25:04
                      */
                     value_date?: string | null;
                 };
@@ -1245,7 +1274,7 @@ export interface operations {
         };
         responses: never;
     };
-    getApiSignerDocumentFields: {
+    listSignerDocumentFields: {
         parameters: {
             query?: {
                 /**
@@ -1265,71 +1294,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/signer-document-fields?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/signer-document-fields */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    postApiSignerDocumentFields: {
+    createSignerDocumentField: {
         parameters: {
             query?: never;
             header?: never;
@@ -1340,10 +1318,15 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description The <code>id</code> of an existing record in the document_signers table.
+                     * @description The <code>id</code> of an existing record in the documents table.
                      * @example architecto
                      */
-                    document_signer_id: string;
+                    document_id: string;
+                    /**
+                     * @description The <code>id</code> of an existing record in the document_signers table.
+                     * @example null
+                     */
+                    document_signer_id?: string | null;
                     /**
                      * @description Must be at least 1.
                      * @example 22
@@ -1364,7 +1347,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example checkbox
+                     * @example initials
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1375,14 +1358,14 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
         };
         responses: never;
     };
-    getApiSignerDocumentFieldsId: {
+    showSignerDocumentField: {
         parameters: {
             query?: never;
             header?: never;
@@ -1397,20 +1380,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\SignerDocumentField] 16 */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    putApiSignerDocumentFieldsId: {
+    updateSignerDocumentField: {
         parameters: {
             query?: never;
             header?: never;
@@ -1426,6 +1409,11 @@ export interface operations {
         requestBody?: {
             content: {
                 "application/json": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the documents table.
+                     * @example null
+                     */
+                    document_id?: string;
                     /**
                      * @description The <code>id</code> of an existing record in the document_signers table.
                      * @example null
@@ -1462,14 +1450,14 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
         };
         responses: never;
     };
-    deleteApiSignerDocumentFieldsId: {
+    deleteSignerDocumentField: {
         parameters: {
             query?: never;
             header?: never;
@@ -1485,7 +1473,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiSigns: {
+    listSigns: {
         parameters: {
             query?: {
                 /**
@@ -1505,71 +1493,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/signs?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/signs?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/signs?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/signs */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
         };
     };
-    postApiSigns: {
+    createSign: {
         parameters: {
             query?: never;
             header?: never;
@@ -1579,7 +1516,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    getApiSignsId: {
+    showSign: {
         parameters: {
             query?: never;
             header?: never;
@@ -1594,20 +1531,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\Sign] 16 */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
             };
         };
     };
-    putApiSignsId: {
+    updateSign: {
         parameters: {
             query?: never;
             header?: never;
@@ -1623,7 +1560,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    deleteApiSignsId: {
+    deleteSign: {
         parameters: {
             query?: never;
             header?: never;
@@ -1633,6 +1570,22 @@ export interface operations {
                  * @example 16
                  */
                 id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    forceDeleteSign: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the sign.
+                 * @example 16
+                 */
+                sign_id: number;
             };
             cookie?: never;
         };

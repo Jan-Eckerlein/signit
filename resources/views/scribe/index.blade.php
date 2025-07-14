@@ -72,22 +72,22 @@
                 </li>
                                     <ul id="tocify-subheader-auth" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="auth-POSTapi-auth-register">
-                                <a href="#auth-POSTapi-auth-register">POST api/auth/register</a>
+                                <a href="#auth-POSTapi-auth-register">Register</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-auth-login">
-                                <a href="#auth-POSTapi-auth-login">POST api/auth/login</a>
+                                <a href="#auth-POSTapi-auth-login">Login</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-auth-logout">
-                                <a href="#auth-POSTapi-auth-logout">POST api/auth/logout</a>
+                                <a href="#auth-POSTapi-auth-logout">Logout</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-GETapi-auth-me">
-                                <a href="#auth-GETapi-auth-me">GET api/auth/me</a>
+                                <a href="#auth-GETapi-auth-me">Get Authenticated User</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-PUTapi-auth-profile">
-                                <a href="#auth-PUTapi-auth-profile">PUT api/auth/profile</a>
+                                <a href="#auth-PUTapi-auth-profile">Update User Profile</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-auth-refresh">
-                                <a href="#auth-POSTapi-auth-refresh">POST api/auth/refresh</a>
+                                <a href="#auth-POSTapi-auth-refresh">Refresh Session</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -97,19 +97,19 @@
                 </li>
                                     <ul id="tocify-subheader-contacts" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="contacts-GETapi-contacts">
-                                <a href="#contacts-GETapi-contacts">GET api/contacts</a>
+                                <a href="#contacts-GETapi-contacts">List Contacts</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="contacts-POSTapi-contacts">
-                                <a href="#contacts-POSTapi-contacts">POST api/contacts</a>
+                                <a href="#contacts-POSTapi-contacts">Create Contact</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="contacts-GETapi-contacts--id-">
-                                <a href="#contacts-GETapi-contacts--id-">GET api/contacts/{id}</a>
+                                <a href="#contacts-GETapi-contacts--id-">Show Contact</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="contacts-PUTapi-contacts--id-">
-                                <a href="#contacts-PUTapi-contacts--id-">PUT api/contacts/{id}</a>
+                                <a href="#contacts-PUTapi-contacts--id-">Update Contact</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="contacts-DELETEapi-contacts--id-">
-                                <a href="#contacts-DELETEapi-contacts--id-">DELETE api/contacts/{id}</a>
+                                <a href="#contacts-DELETEapi-contacts--id-">Delete Contact</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -119,10 +119,10 @@
                 </li>
                                     <ul id="tocify-subheader-document-logs" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="document-logs-GETapi-document-logs">
-                                <a href="#document-logs-GETapi-document-logs">GET api/document-logs</a>
+                                <a href="#document-logs-GETapi-document-logs">List Document Logs</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="document-logs-GETapi-document-logs--id-">
-                                <a href="#document-logs-GETapi-document-logs--id-">GET api/document-logs/{id}</a>
+                                <a href="#document-logs-GETapi-document-logs--id-">Show Document Log</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -132,19 +132,22 @@
                 </li>
                                     <ul id="tocify-subheader-document-signers" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="document-signers-GETapi-document-signers">
-                                <a href="#document-signers-GETapi-document-signers">GET api/document-signers</a>
+                                <a href="#document-signers-GETapi-document-signers">List Document Signers</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="document-signers-POSTapi-document-signers">
-                                <a href="#document-signers-POSTapi-document-signers">POST api/document-signers</a>
+                                <a href="#document-signers-POSTapi-document-signers">Create Document Signer</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="document-signers-GETapi-document-signers--id-">
-                                <a href="#document-signers-GETapi-document-signers--id-">GET api/document-signers/{id}</a>
+                                <a href="#document-signers-GETapi-document-signers--id-">Show Document Signer</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="document-signers-PUTapi-document-signers--id-">
-                                <a href="#document-signers-PUTapi-document-signers--id-">PUT api/document-signers/{id}</a>
+                                <a href="#document-signers-PUTapi-document-signers--id-">Update Document Signer</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="document-signers-DELETEapi-document-signers--id-">
-                                <a href="#document-signers-DELETEapi-document-signers--id-">DELETE api/document-signers/{id}</a>
+                                <a href="#document-signers-DELETEapi-document-signers--id-">Delete Document Signer</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="document-signers-POSTapi-document-signers--documentSigner_id--complete-signature">
+                                <a href="#document-signers-POSTapi-document-signers--documentSigner_id--complete-signature">Complete Signature</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -168,8 +171,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="documents-DELETEapi-documents--id-">
                                 <a href="#documents-DELETEapi-documents--id-">Delete Document</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="documents-POSTapi-documents--document--create-from-template">
-                                <a href="#documents-POSTapi-documents--document--create-from-template">Create Document from Template</a>
+                                                                                <li class="tocify-item level-2" data-unique="documents-GETapi-documents--document_id--progress">
+                                <a href="#documents-GETapi-documents--document_id--progress">Get Document Progress</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -179,7 +182,7 @@
                 </li>
                                     <ul id="tocify-subheader-signer-document-field-values" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="signer-document-field-values-POSTapi-signer-document-field-values">
-                                <a href="#signer-document-field-values-POSTapi-signer-document-field-values">POST api/signer-document-field-values</a>
+                                <a href="#signer-document-field-values-POSTapi-signer-document-field-values">Create Signer Document Field Value</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -189,19 +192,19 @@
                 </li>
                                     <ul id="tocify-subheader-signer-document-fields" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-signer-document-fields">
-                                <a href="#signer-document-fields-GETapi-signer-document-fields">GET api/signer-document-fields</a>
+                                <a href="#signer-document-fields-GETapi-signer-document-fields">List Signer Document Fields</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signer-document-fields-POSTapi-signer-document-fields">
-                                <a href="#signer-document-fields-POSTapi-signer-document-fields">POST api/signer-document-fields</a>
+                                <a href="#signer-document-fields-POSTapi-signer-document-fields">Create Signer Document Field</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-GETapi-signer-document-fields--id-">GET api/signer-document-fields/{id}</a>
+                                <a href="#signer-document-fields-GETapi-signer-document-fields--id-">Show Signer Document Field</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signer-document-fields-PUTapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-PUTapi-signer-document-fields--id-">PUT api/signer-document-fields/{id}</a>
+                                <a href="#signer-document-fields-PUTapi-signer-document-fields--id-">Update Signer Document Field</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signer-document-fields-DELETEapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-DELETEapi-signer-document-fields--id-">DELETE api/signer-document-fields/{id}</a>
+                                <a href="#signer-document-fields-DELETEapi-signer-document-fields--id-">Delete Signer Document Field</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -211,19 +214,22 @@
                 </li>
                                     <ul id="tocify-subheader-signs" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="signs-GETapi-signs">
-                                <a href="#signs-GETapi-signs">GET api/signs</a>
+                                <a href="#signs-GETapi-signs">List Signs</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signs-POSTapi-signs">
-                                <a href="#signs-POSTapi-signs">POST api/signs</a>
+                                <a href="#signs-POSTapi-signs">Create Sign</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signs-GETapi-signs--id-">
-                                <a href="#signs-GETapi-signs--id-">GET api/signs/{id}</a>
+                                <a href="#signs-GETapi-signs--id-">Show Sign</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signs-PUTapi-signs--id-">
-                                <a href="#signs-PUTapi-signs--id-">PUT api/signs/{id}</a>
+                                <a href="#signs-PUTapi-signs--id-">Update Sign</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="signs-DELETEapi-signs--id-">
-                                <a href="#signs-DELETEapi-signs--id-">DELETE api/signs/{id}</a>
+                                <a href="#signs-DELETEapi-signs--id-">Delete Sign</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="signs-DELETEapi-signs--sign_id--force">
+                                <a href="#signs-DELETEapi-signs--sign_id--force">Force Delete Sign</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -236,7 +242,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 6, 2025</li>
+        <li>Last updated: July 14, 2025</li>
     </ul>
 </div>
 
@@ -261,12 +267,12 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="auth-POSTapi-auth-register">POST api/auth/register</h2>
+                                <h2 id="auth-POSTapi-auth-register">Register</h2>
 
 <p>
 </p>
 
-
+<p>Register a new user.</p>
 
 <span id="example-requests-POSTapi-auth-register">
 <blockquote>Example request:</blockquote>
@@ -282,7 +288,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"password_confirmation\": \"aykcmyuwpwlvqwrsitcpscqldz\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
@@ -302,7 +308,7 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "password_confirmation": "aykcmyuwpwlvqwrsitcpscqldz",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -435,21 +441,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-register"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
         </form>
 
-                    <h2 id="auth-POSTapi-auth-login">POST api/auth/login</h2>
+                    <h2 id="auth-POSTapi-auth-login">Login</h2>
 
 <p>
 </p>
 
-
+<p>Login a user.</p>
 
 <span id="example-requests-POSTapi-auth-login">
 <blockquote>Example request:</blockquote>
@@ -601,13 +607,13 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="auth-POSTapi-auth-logout">POST api/auth/logout</h2>
+                    <h2 id="auth-POSTapi-auth-logout">Logout</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Logout a user.</p>
 
 <span id="example-requests-POSTapi-auth-logout">
 <blockquote>Example request:</blockquote>
@@ -723,13 +729,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="auth-GETapi-auth-me">GET api/auth/me</h2>
+                    <h2 id="auth-GETapi-auth-me">Get Authenticated User</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Retrieve the authenticated user.</p>
 
 <span id="example-requests-GETapi-auth-me">
 <blockquote>Example request:</blockquote>
@@ -763,7 +769,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-auth-me">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -775,14 +781,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;Scribe API&quot;,
-        &quot;email&quot;: &quot;scribe@example.com&quot;,
-        &quot;email_verified_at&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-04T18:36:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-04T18:36:22.000000Z&quot;
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -868,13 +867,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="auth-PUTapi-auth-profile">PUT api/auth/profile</h2>
+                    <h2 id="auth-PUTapi-auth-profile">Update User Profile</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the authenticated user's profile.</p>
 
 <span id="example-requests-PUTapi-auth-profile">
 <blockquote>Example request:</blockquote>
@@ -1011,13 +1010,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="auth-POSTapi-auth-refresh">POST api/auth/refresh</h2>
+                    <h2 id="auth-POSTapi-auth-refresh">Refresh Session</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Refresh the authenticated user's session.</p>
 
 <span id="example-requests-POSTapi-auth-refresh">
 <blockquote>Example request:</blockquote>
@@ -1137,13 +1136,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="contacts-GETapi-contacts">GET api/contacts</h2>
+                                <h2 id="contacts-GETapi-contacts">List Contacts</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all contacts owned by the authenticated user.</p>
 
 <span id="example-requests-GETapi-contacts">
 <blockquote>Example request:</blockquote>
@@ -1184,7 +1183,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-contacts">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1196,39 +1195,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/contacts?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/contacts?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/contacts?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/contacts&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -1347,13 +1314,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="contacts-POSTapi-contacts">POST api/contacts</h2>
+                    <h2 id="contacts-POSTapi-contacts">Create Contact</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created contact in storage.</p>
 
 <span id="example-requests-POSTapi-contacts">
 <blockquote>Example request:</blockquote>
@@ -1503,13 +1470,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="contacts-GETapi-contacts--id-">GET api/contacts/{id}</h2>
+                    <h2 id="contacts-GETapi-contacts--id-">Show Contact</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified contact.</p>
 
 <span id="example-requests-GETapi-contacts--id-">
 <blockquote>Example request:</blockquote>
@@ -1517,7 +1484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/contacts/1" \
+    --get "http://localhost:8000/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1525,7 +1492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/1"
+    "http://localhost:8000/api/contacts/16"
 );
 
 const headers = {
@@ -1543,7 +1510,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-contacts--id-">
             <blockquote>
-            <p>Example response (403):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1555,7 +1522,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -1646,20 +1613,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-contacts--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the contact. Example: <code>1</code></p>
+<p>The ID of the contact. Example: <code>16</code></p>
             </div>
                     </form>
 
-                    <h2 id="contacts-PUTapi-contacts--id-">PUT api/contacts/{id}</h2>
+                    <h2 id="contacts-PUTapi-contacts--id-">Update Contact</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified contact in storage.</p>
 
 <span id="example-requests-PUTapi-contacts--id-">
 <blockquote>Example request:</blockquote>
@@ -1667,7 +1634,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/contacts/1" \
+    "http://localhost:8000/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1680,7 +1647,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/1"
+    "http://localhost:8000/api/contacts/16"
 );
 
 const headers = {
@@ -1795,10 +1762,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-contacts--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the contact. Example: <code>1</code></p>
+<p>The ID of the contact. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -1825,13 +1792,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="contacts-DELETEapi-contacts--id-">DELETE api/contacts/{id}</h2>
+                    <h2 id="contacts-DELETEapi-contacts--id-">Delete Contact</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified contact from storage.</p>
 
 <span id="example-requests-DELETEapi-contacts--id-">
 <blockquote>Example request:</blockquote>
@@ -1839,7 +1806,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/contacts/1" \
+    "http://localhost:8000/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1847,7 +1814,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/1"
+    "http://localhost:8000/api/contacts/16"
 );
 
 const headers = {
@@ -1952,10 +1919,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-contacts--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the contact. Example: <code>1</code></p>
+<p>The ID of the contact. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -1963,13 +1930,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="document-logs-GETapi-document-logs">GET api/document-logs</h2>
+                                <h2 id="document-logs-GETapi-document-logs">List Document Logs</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all document logs that the user can view.</p>
 
 <span id="example-requests-GETapi-document-logs">
 <blockquote>Example request:</blockquote>
@@ -2010,7 +1977,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-logs">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2022,39 +1989,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/document-logs?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/document-logs?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/document-logs?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/document-logs&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -2173,13 +2108,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="document-logs-GETapi-document-logs--id-">GET api/document-logs/{id}</h2>
+                    <h2 id="document-logs-GETapi-document-logs--id-">Show Document Log</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified document log.</p>
 
 <span id="example-requests-GETapi-document-logs--id-">
 <blockquote>Example request:</blockquote>
@@ -2213,7 +2148,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-logs--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2225,7 +2160,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\DocumentLog] 16&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -2327,13 +2262,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="document-signers-GETapi-document-signers">GET api/document-signers</h2>
+                                <h2 id="document-signers-GETapi-document-signers">List Document Signers</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all document signers.</p>
 
 <span id="example-requests-GETapi-document-signers">
 <blockquote>Example request:</blockquote>
@@ -2374,7 +2309,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-signers">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2386,39 +2321,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/document-signers?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/document-signers?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/document-signers?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/document-signers&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -2537,13 +2440,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="document-signers-POSTapi-document-signers">POST api/document-signers</h2>
+                    <h2 id="document-signers-POSTapi-document-signers">Create Document Signer</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created document signer in storage.</p>
 
 <span id="example-requests-POSTapi-document-signers">
 <blockquote>Example request:</blockquote>
@@ -2557,7 +2460,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"document_id\": \"architecto\",
-    \"email\": \"zbailey@example.net\"
+    \"email\": \"zbailey@example.net\",
+    \"name\": \"i\",
+    \"description\": \"Fugiat sunt nihil accusantium harum mollitia.\"
 }"
 </code></pre></div>
 
@@ -2575,7 +2480,9 @@ const headers = {
 
 let body = {
     "document_id": "architecto",
-    "email": "zbailey@example.net"
+    "email": "zbailey@example.net",
+    "name": "i",
+    "description": "Fugiat sunt nihil accusantium harum mollitia."
 };
 
 fetch(url, {
@@ -2683,7 +2590,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-document-signers"
                value="zbailey@example.net"
@@ -2691,15 +2598,37 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Must be a valid email address. Example: <code>zbailey@example.net</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-document-signers"
+               value="i"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>i</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-document-signers"
+               value="Fugiat sunt nihil accusantium harum mollitia."
+               data-component="body">
+    <br>
+<p>Must not be greater than 1000 characters. Example: <code>Fugiat sunt nihil accusantium harum mollitia.</code></p>
+        </div>
         </form>
 
-                    <h2 id="document-signers-GETapi-document-signers--id-">GET api/document-signers/{id}</h2>
+                    <h2 id="document-signers-GETapi-document-signers--id-">Show Document Signer</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified document signer.</p>
 
 <span id="example-requests-GETapi-document-signers--id-">
 <blockquote>Example request:</blockquote>
@@ -2733,7 +2662,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-signers--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2745,7 +2674,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\DocumentSigner].&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -2843,13 +2772,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="document-signers-PUTapi-document-signers--id-">PUT api/document-signers/{id}</h2>
+                    <h2 id="document-signers-PUTapi-document-signers--id-">Update Document Signer</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified document signer in storage.</p>
 
 <span id="example-requests-PUTapi-document-signers--id-">
 <blockquote>Example request:</blockquote>
@@ -2861,6 +2790,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
+    --data "{
+    \"email\": \"gbailey@example.net\",
+    \"name\": \"m\",
+    \"description\": \"Et fugiat sunt nihil accusantium.\"
+}"
 </code></pre></div>
 
 
@@ -2875,9 +2809,16 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "gbailey@example.net",
+    "name": "m",
+    "description": "Et fugiat sunt nihil accusantium."
+};
+
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -2993,25 +2934,47 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The <code>id</code> of an existing record in the documents table.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="user_id"                data-endpoint="PUTapi-document-signers--id-"
-               value=""
+                              name="email"                data-endpoint="PUTapi-document-signers--id-"
+               value="gbailey@example.net"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the users table.</p>
+<p>Must be a valid email address. Example: <code>gbailey@example.net</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-document-signers--id-"
+               value="m"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>m</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-document-signers--id-"
+               value="Et fugiat sunt nihil accusantium."
+               data-component="body">
+    <br>
+<p>Must not be greater than 1000 characters. Example: <code>Et fugiat sunt nihil accusantium.</code></p>
         </div>
         </form>
 
-                    <h2 id="document-signers-DELETEapi-document-signers--id-">DELETE api/document-signers/{id}</h2>
+                    <h2 id="document-signers-DELETEapi-document-signers--id-">Delete Document Signer</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified document signer from storage.</p>
 
 <span id="example-requests-DELETEapi-document-signers--id-">
 <blockquote>Example request:</blockquote>
@@ -3139,6 +3102,171 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="document-signers-POSTapi-document-signers--documentSigner_id--complete-signature">Complete Signature</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Complete the signature process and accept electronic disclosure.</p>
+
+<span id="example-requests-POSTapi-document-signers--documentSigner_id--complete-signature">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/document-signers/16/complete-signature" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"electronic_signature_disclosure_accepted\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/document-signers/16/complete-signature"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "electronic_signature_disclosure_accepted": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-document-signers--documentSigner_id--complete-signature">
+</span>
+<span id="execution-results-POSTapi-document-signers--documentSigner_id--complete-signature" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-document-signers--documentSigner_id--complete-signature"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-document-signers--documentSigner_id--complete-signature"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-document-signers--documentSigner_id--complete-signature" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-document-signers--documentSigner_id--complete-signature">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-document-signers--documentSigner_id--complete-signature" data-method="POST"
+      data-path="api/document-signers/{documentSigner_id}/complete-signature"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-document-signers--documentSigner_id--complete-signature', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-document-signers--documentSigner_id--complete-signature"
+                    onclick="tryItOut('POSTapi-document-signers--documentSigner_id--complete-signature');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-document-signers--documentSigner_id--complete-signature"
+                    onclick="cancelTryOut('POSTapi-document-signers--documentSigner_id--complete-signature');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-document-signers--documentSigner_id--complete-signature"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/document-signers/{documentSigner_id}/complete-signature</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>documentSigner_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="documentSigner_id"                data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the documentSigner. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>electronic_signature_disclosure_accepted</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature" style="display: none">
+            <input type="radio" name="electronic_signature_disclosure_accepted"
+                   value="true"
+                   data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature" style="display: none">
+            <input type="radio" name="electronic_signature_disclosure_accepted"
+                   value="false"
+                   data-endpoint="POSTapi-document-signers--documentSigner_id--complete-signature"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Must be accepted. Example: <code>true</code></p>
+        </div>
+        </form>
+
                 <h1 id="documents">Documents</h1>
 
     
@@ -3149,7 +3277,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all documents viewable by the user.</p>
 
 <span id="example-requests-GETapi-documents">
 <blockquote>Example request:</blockquote>
@@ -3190,7 +3318,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-documents">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3202,39 +3330,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/documents?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/documents?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/documents?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/documents&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -3359,7 +3455,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created document in storage.</p>
 
 <span id="example-requests-POSTapi-documents">
 <blockquote>Example request:</blockquote>
@@ -3373,7 +3469,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"title\": \"b\",
-    \"description\": \"Eius et animi quos velit et.\",
+    \"description\": \"Et animi quos velit et fugiat.\",
     \"is_template\": false
 }"
 </code></pre></div>
@@ -3392,7 +3488,7 @@ const headers = {
 
 let body = {
     "title": "b",
-    "description": "Eius et animi quos velit et.",
+    "description": "Et animi quos velit et fugiat.",
     "is_template": false
 };
 
@@ -3504,10 +3600,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="POSTapi-documents"
-               value="Eius et animi quos velit et."
+               value="Et animi quos velit et fugiat."
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_template</code></b>&nbsp;&nbsp;
@@ -3538,7 +3634,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified document.</p>
 
 <span id="example-requests-GETapi-documents--id-">
 <blockquote>Example request:</blockquote>
@@ -3572,7 +3668,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-documents--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3584,7 +3680,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\Document] 16&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -3688,7 +3784,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified document in storage.</p>
 
 <span id="example-requests-PUTapi-documents--id-">
 <blockquote>Example request:</blockquote>
@@ -3702,7 +3798,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"title\": \"b\",
-    \"description\": \"Eius et animi quos velit et.\"
+    \"description\": \"Et animi quos velit et fugiat.\"
 }"
 </code></pre></div>
 
@@ -3720,7 +3816,7 @@ const headers = {
 
 let body = {
     "title": "b",
-    "description": "Eius et animi quos velit et."
+    "description": "Et animi quos velit et fugiat."
 };
 
 fetch(url, {
@@ -3842,26 +3938,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Must not be greater than 255 characters. Example: <code>b</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>owner_user_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="owner_user_id"                data-endpoint="PUTapi-documents--id-"
-               value=""
-               data-component="body">
-    <br>
-<p>The <code>id</code> of an existing record in the users table.</p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="description"                data-endpoint="PUTapi-documents--id-"
-               value="Eius et animi quos velit et."
+               value="Et animi quos velit et fugiat."
                data-component="body">
     <br>
-<p>Example: <code>Eius et animi quos velit et.</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
         </div>
         </form>
 
@@ -3871,7 +3956,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified document from storage.</p>
 
 <span id="example-requests-DELETEapi-documents--id-">
 <blockquote>Example request:</blockquote>
@@ -3999,21 +4084,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="documents-POSTapi-documents--document--create-from-template">Create Document from Template</h2>
+                    <h2 id="documents-GETapi-documents--document_id--progress">Get Document Progress</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
+<p>Retrieve the progress of the specified document.</p>
 
-
-<span id="example-requests-POSTapi-documents--document--create-from-template">
+<span id="example-requests-GETapi-documents--document_id--progress">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/documents/16/create-from-template" \
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/documents/16/progress" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4021,7 +4106,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents/16/create-from-template"
+    "http://localhost:8000/api/documents/16/progress"
 );
 
 const headers = {
@@ -4031,59 +4116,75 @@ const headers = {
 };
 
 fetch(url, {
-    method: "POST",
+    method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-documents--document--create-from-template">
-</span>
-<span id="execution-results-POSTapi-documents--document--create-from-template" hidden>
+<span id="example-responses-GETapi-documents--document_id--progress">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-documents--document_id--progress" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-documents--document--create-from-template"></span>:
+                id="execution-response-status-GETapi-documents--document_id--progress"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-documents--document--create-from-template"
+    <pre class="json"><code id="execution-response-content-GETapi-documents--document_id--progress"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-documents--document--create-from-template" hidden>
+<span id="execution-error-GETapi-documents--document_id--progress" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-documents--document--create-from-template">
+    <pre><code id="execution-error-message-GETapi-documents--document_id--progress">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-documents--document--create-from-template" data-method="POST"
-      data-path="api/documents/{document}/create-from-template"
+<form id="form-GETapi-documents--document_id--progress" data-method="GET"
+      data-path="api/documents/{document_id}/progress"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-documents--document--create-from-template', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-documents--document_id--progress', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-documents--document--create-from-template"
-                    onclick="tryItOut('POSTapi-documents--document--create-from-template');">Try it out ⚡
+                    id="btn-tryout-GETapi-documents--document_id--progress"
+                    onclick="tryItOut('GETapi-documents--document_id--progress');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-documents--document--create-from-template"
-                    onclick="cancelTryOut('POSTapi-documents--document--create-from-template');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-documents--document_id--progress"
+                    onclick="cancelTryOut('GETapi-documents--document_id--progress');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-documents--document--create-from-template"
+                    id="btn-executetryout-GETapi-documents--document_id--progress"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/documents/{document}/create-from-template</code></b>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/documents/{document_id}/progress</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4091,7 +4192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-documents--document--create-from-template"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-documents--document_id--progress"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -4102,7 +4203,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-documents--document--create-from-template"
+                              name="Content-Type"                data-endpoint="GETapi-documents--document_id--progress"
                value="application/json"
                data-component="header">
     <br>
@@ -4113,7 +4214,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-documents--document--create-from-template"
+                              name="Accept"                data-endpoint="GETapi-documents--document_id--progress"
                value="application/json"
                data-component="header">
     <br>
@@ -4121,15 +4222,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>document</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>document_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="document"                data-endpoint="POSTapi-documents--document--create-from-template"
+               step="any"               name="document_id"                data-endpoint="GETapi-documents--document_id--progress"
                value="16"
                data-component="url">
     <br>
-<p>The document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4137,13 +4238,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="signer-document-field-values-POSTapi-signer-document-field-values">POST api/signer-document-field-values</h2>
+                                <h2 id="signer-document-field-values-POSTapi-signer-document-field-values">Create Signer Document Field Value</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created signer document field value in storage.</p>
 
 <span id="example-requests-POSTapi-signer-document-field-values">
 <blockquote>Example request:</blockquote>
@@ -4159,8 +4260,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"signer_document_field_id\": \"architecto\",
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
-    \"value_checkbox\": false,
-    \"value_date\": \"2025-07-06T00:35:40\"
+    \"value_checkbox\": true,
+    \"value_date\": \"2025-07-14T12:25:04\"
 }"
 </code></pre></div>
 
@@ -4180,8 +4281,8 @@ let body = {
     "signer_document_field_id": "architecto",
     "value_initials": "n",
     "value_text": "architecto",
-    "value_checkbox": false,
-    "value_date": "2025-07-06T00:35:40"
+    "value_checkbox": true,
+    "value_date": "2025-07-14T12:25:04"
 };
 
 fetch(url, {
@@ -4338,7 +4439,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value_date</code></b>&nbsp;&nbsp;
@@ -4346,10 +4447,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-signer-document-field-values"
-               value="2025-07-06T00:35:40"
+               value="2025-07-14T12:25:04"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-06T00:35:40</code></p>
+<p>Must be a valid date. Example: <code>2025-07-14T12:25:04</code></p>
         </div>
         </form>
 
@@ -4357,13 +4458,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="signer-document-fields-GETapi-signer-document-fields">GET api/signer-document-fields</h2>
+                                <h2 id="signer-document-fields-GETapi-signer-document-fields">List Signer Document Fields</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all signer document fields.</p>
 
 <span id="example-requests-GETapi-signer-document-fields">
 <blockquote>Example request:</blockquote>
@@ -4404,7 +4505,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signer-document-fields">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4416,39 +4517,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/signer-document-fields?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/signer-document-fields?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/signer-document-fields?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/signer-document-fields&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -4567,13 +4636,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="signer-document-fields-POSTapi-signer-document-fields">POST api/signer-document-fields</h2>
+                    <h2 id="signer-document-fields-POSTapi-signer-document-fields">Create Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created signer document field in storage.</p>
 
 <span id="example-requests-POSTapi-signer-document-fields">
 <blockquote>Example request:</blockquote>
@@ -4586,16 +4655,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"document_signer_id\": \"architecto\",
+    \"document_id\": \"architecto\",
     \"page\": 22,
     \"x\": 4326.41688,
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"checkbox\",
+    \"type\": \"initials\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
@@ -4612,16 +4681,16 @@ const headers = {
 };
 
 let body = {
-    "document_signer_id": "architecto",
+    "document_id": "architecto",
     "page": 22,
     "x": 4326.41688,
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "checkbox",
+    "type": "initials",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -4716,15 +4785,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>document_signer_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>document_id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="document_signer_id"                data-endpoint="POSTapi-signer-document-fields"
+                              name="document_id"                data-endpoint="POSTapi-signer-document-fields"
                value="architecto"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the document_signers table. Example: <code>architecto</code></p>
+<p>The <code>id</code> of an existing record in the documents table. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>document_signer_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="document_signer_id"                data-endpoint="POSTapi-signer-document-fields"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the document_signers table.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
@@ -4787,10 +4867,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-signer-document-fields"
-               value="checkbox"
+               value="initials"
                data-component="body">
     <br>
-<p>Example: <code>checkbox</code></p>
+<p>Example: <code>initials</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -4835,17 +4915,17 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
-                    <h2 id="signer-document-fields-GETapi-signer-document-fields--id-">GET api/signer-document-fields/{id}</h2>
+                    <h2 id="signer-document-fields-GETapi-signer-document-fields--id-">Show Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified signer document field.</p>
 
 <span id="example-requests-GETapi-signer-document-fields--id-">
 <blockquote>Example request:</blockquote>
@@ -4879,7 +4959,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signer-document-fields--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4891,7 +4971,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\SignerDocumentField] 16&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -4989,13 +5069,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="signer-document-fields-PUTapi-signer-document-fields--id-">PUT api/signer-document-fields/{id}</h2>
+                    <h2 id="signer-document-fields-PUTapi-signer-document-fields--id-">Update Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified signer document field in storage.</p>
 
 <span id="example-requests-PUTapi-signer-document-fields--id-">
 <blockquote>Example request:</blockquote>
@@ -5016,7 +5096,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"type\": \"date\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
@@ -5041,7 +5121,7 @@ let body = {
     "type": "date",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5152,6 +5232,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>document_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="document_id"                data-endpoint="PUTapi-signer-document-fields--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the documents table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>document_signer_id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -5271,17 +5362,17 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
-                    <h2 id="signer-document-fields-DELETEapi-signer-document-fields--id-">DELETE api/signer-document-fields/{id}</h2>
+                    <h2 id="signer-document-fields-DELETEapi-signer-document-fields--id-">Delete Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified signer document field from storage.</p>
 
 <span id="example-requests-DELETEapi-signer-document-fields--id-">
 <blockquote>Example request:</blockquote>
@@ -5413,13 +5504,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="signs-GETapi-signs">GET api/signs</h2>
+                                <h2 id="signs-GETapi-signs">List Signs</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>List all signs owned by the user</p>
 
 <span id="example-requests-GETapi-signs">
 <blockquote>Example request:</blockquote>
@@ -5460,7 +5551,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signs">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -5472,39 +5563,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8000/api/signs?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8000/api/signs?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8000/api/signs?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8000/api/signs&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -5623,13 +5682,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="signs-POSTapi-signs">POST api/signs</h2>
+                    <h2 id="signs-POSTapi-signs">Create Sign</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Store a newly created sign for a document in storage.</p>
 
 <span id="example-requests-POSTapi-signs">
 <blockquote>Example request:</blockquote>
@@ -5745,13 +5804,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="signs-GETapi-signs--id-">GET api/signs/{id}</h2>
+                    <h2 id="signs-GETapi-signs--id-">Show Sign</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Display the specified sign.</p>
 
 <span id="example-requests-GETapi-signs--id-">
 <blockquote>Example request:</blockquote>
@@ -5785,7 +5844,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signs--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -5797,7 +5856,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\Sign] 16&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -5895,13 +5954,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="signs-PUTapi-signs--id-">PUT api/signs/{id}</h2>
+                    <h2 id="signs-PUTapi-signs--id-">Update Sign</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified sign in storage.</p>
 
 <span id="example-requests-PUTapi-signs--id-">
 <blockquote>Example request:</blockquote>
@@ -6033,13 +6092,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="signs-DELETEapi-signs--id-">DELETE api/signs/{id}</h2>
+                    <h2 id="signs-DELETEapi-signs--id-">Delete Sign</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified sign from storage.</p>
 
 <span id="example-requests-DELETEapi-signs--id-">
 <blockquote>Example request:</blockquote>
@@ -6160,6 +6219,140 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-signs--id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the sign. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="signs-DELETEapi-signs--sign_id--force">Force Delete Sign</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Force delete a sign (only if not being used).</p>
+
+<span id="example-requests-DELETEapi-signs--sign_id--force">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8000/api/signs/16/force" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/signs/16/force"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-signs--sign_id--force">
+</span>
+<span id="execution-results-DELETEapi-signs--sign_id--force" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-signs--sign_id--force"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-signs--sign_id--force"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-signs--sign_id--force" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-signs--sign_id--force">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-signs--sign_id--force" data-method="DELETE"
+      data-path="api/signs/{sign_id}/force"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-signs--sign_id--force', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-signs--sign_id--force"
+                    onclick="tryItOut('DELETEapi-signs--sign_id--force');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-signs--sign_id--force"
+                    onclick="cancelTryOut('DELETEapi-signs--sign_id--force');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-signs--sign_id--force"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/signs/{sign_id}/force</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-signs--sign_id--force"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-signs--sign_id--force"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-signs--sign_id--force"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sign_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sign_id"                data-endpoint="DELETEapi-signs--sign_id--force"
                value="16"
                data-component="url">
     <br>

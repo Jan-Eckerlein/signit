@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('signer-document-field-values', SignerDocumentFieldValueController::class);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
+    Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);
     Route::prefix('documents')->group(function () {
         Route::get('{document}/signers', [DocumentController::class, 'signers']);
         Route::get('{document}/fields', [DocumentController::class, 'fields']);
@@ -47,11 +48,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('contacts')->group(function () {
         Route::get('my-contacts', [ContactController::class, 'myContacts']);
         Route::get('contacts-of', [ContactController::class, 'contactsOf']);
-    });
-    
-    Route::prefix('signs')->group(function () {
-        Route::get('my-signs', [SignController::class, 'mySigns']);
-        Route::post('{sign}/duplicate', [SignController::class, 'duplicate']);
     });
 });
 

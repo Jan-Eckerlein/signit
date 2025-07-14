@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @group Auth
+ */
 class AuthController extends Controller
 {
     /**
-     * @group Auth
-     * @title "Register"
-     * @description "Register a new user"
+     * Register
+     * 
+     * Register a new user.
      * @unauthenticated
      */
     public function register(Request $request): JsonResponse
@@ -49,9 +52,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @group Auth
-     * @title "Login"
-     * @description "Login a user"
+     * Login
+     * 
+     * Login a user.
      * @unauthenticated
      */
 	public function login(Request $request): JsonResponse
@@ -84,9 +87,9 @@ class AuthController extends Controller
 	}
 
     /**
-     * @group Auth
-     * @title "Logout"
-     * @description "Logout a user"
+     * Logout
+     * 
+     * Logout a user.
      */
     public function logout(Request $request): JsonResponse
     {
@@ -104,9 +107,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @group Auth
-     * @title "Get Authenticated User"
-     * @description "Get the authenticated user"
+     * Get Authenticated User
+     * 
+     * Retrieve the authenticated user.
      */
     public function me(Request $request): UserResource
     {
@@ -114,9 +117,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @group Auth
-     * @title "Update User Profile"
-     * @description "Update the authenticated user's profile"
+     * Update User Profile
+     * 
+     * Update the authenticated user's profile.
      */
     public function updateProfile(Request $request): JsonResponse
     {
@@ -135,9 +138,9 @@ class AuthController extends Controller
     }
 
     /**
-     * @group Auth
-     * @title "Refresh Session"
-     * @description "Refresh the authenticated user's session"
+     * Refresh Session
+     * 
+     * Refresh the authenticated user's session.
      */
     public function refresh(Request $request): JsonResponse
     {

@@ -13,12 +13,15 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
 use App\Models\User;
 
+/**
+ * @group Document Signers
+ */
 class DocumentSignerController extends Controller
 {
     /**
-     * @group Document Signers
-     * @title "List Document Signers"
-     * @description "List all document signers"
+     * List Document Signers
+     * 
+     * List all document signers.
      * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentSignerResource>
      */
     #[SharedPaginationParams]
@@ -31,10 +34,9 @@ class DocumentSignerController extends Controller
     }
 
     /**
-     * @group Document Signers
-     * @title "Create Document Signer"
-     * @description "Create a new document signer"
-     * Store a newly created resource in storage.
+     * Create Document Signer
+     * 
+     * Store a newly created document signer in storage.
      */
     public function store(StoreDocumentSignerRequest $request): DocumentSignerResource
     {
@@ -48,10 +50,9 @@ class DocumentSignerController extends Controller
     }
 
     /**
-     * @group Document Signers
-     * @title "Show Document Signer"
-     * @description "Show a document signer"
-     * Display the specified resource.
+     * Show Document Signer
+     * 
+     * Display the specified document signer.
      */
     public function show(Request $request, DocumentSigner $documentSigner): DocumentSignerResource
     {
@@ -60,10 +61,9 @@ class DocumentSignerController extends Controller
     }
 
     /**
-     * @group Document Signers
-     * @title "Update Document Signer"
-     * @description "Update a document signer"
-     * Update the specified resource in storage.
+     * Update Document Signer
+     * 
+     * Update the specified document signer in storage.
      */
     public function update(UpdateDocumentSignerRequest $request, DocumentSigner $documentSigner): DocumentSignerResource
     {
@@ -77,10 +77,9 @@ class DocumentSignerController extends Controller
     }
 
     /**
-     * @group Document Signers
-     * @title "Delete Document Signer"
-     * @description "Delete a document signer"
-     * Remove the specified resource from storage.
+     * Delete Document Signer
+     * 
+     * Remove the specified document signer from storage.
      */
     public function destroy(Request $request, DocumentSigner $documentSigner): JsonResponse
     {
@@ -90,10 +89,9 @@ class DocumentSignerController extends Controller
     }
 
     /**
-     * @group Document Signers
-     * @title "Complete Signature"
-     * @description "Complete signature and accept electronic disclosure"
-     * Complete the signature process for a document signer.
+     * Complete Signature
+     * 
+     * Complete the signature process and accept electronic disclosure.
      */
     public function completeSignature(Request $request, DocumentSigner $documentSigner): JsonResponse
     {

@@ -8,13 +8,15 @@ use App\Http\Resources\SignerDocumentFieldValueResource;
 use App\Models\SignerDocumentFieldValue;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * @group Signer Document Field Values
+ */
 class SignerDocumentFieldValueController extends Controller
 {
     /**
-     * @group Signer Document Field Values
-     * @title "Create Signer Document Field Value"
-     * @description "Create a new signer document field value"
-     * Store a newly created resource in storage.
+     * Create Signer Document Field Value
+     * 
+     * Store a newly created signer document field value in storage.
      */
     public function store(StoreSignerDocumentFieldValueRequest $request): SignerDocumentFieldValueResource
     {

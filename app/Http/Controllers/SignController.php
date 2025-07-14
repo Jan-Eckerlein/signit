@@ -12,12 +12,15 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
 use App\Attributes\SharedPaginationParams;
 
+/**
+ * @group Signs
+ */
 class SignController extends Controller
 {
     /**
-     * @group Signs
-     * @title "List Signs"
-     * @description "List all signs owned by the user"
+     * List Signs
+     * 
+     * List all signs owned by the user
      * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\SignResource>
      */
     #[SharedPaginationParams]
@@ -28,10 +31,9 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Create Sign"
-     * @description "Create a new sign"
-     * Store a newly created sign in storage.
+     * Create Sign
+     * 
+     * Store a newly created sign for a document in storage.
      */
     public function store(StoreSignRequest $request): SignResource
     {
@@ -41,9 +43,8 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Show Sign"
-     * @description "Show a sign"
+     * Show Sign
+     * 
      * Display the specified sign.
      */
     public function show(Request $request, Sign $sign): SignResource
@@ -53,9 +54,8 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Update Sign"
-     * @description "Update a sign"
+     * Update Sign
+     * 
      * Update the specified sign in storage.
      */
     public function update(UpdateSignRequest $request, Sign $sign): SignResource
@@ -66,9 +66,8 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Delete Sign"
-     * @description "Delete a sign"
+     * Delete Sign
+     * 
      * Remove the specified sign from storage.
      */
     public function destroy(Request $request, Sign $sign): JsonResponse
@@ -79,9 +78,8 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Force Delete Sign"
-     * @description "Permanently delete a sign (only if not being used)"
+     * Force Delete Sign
+     * 
      * Force delete a sign (only if not being used).
      */
     public function forceDelete(Request $request, Sign $sign): JsonResponse
@@ -96,9 +94,8 @@ class SignController extends Controller
     }
 
     /**
-     * @group Signs
-     * @title "Restore Sign"
-     * @description "Restore a soft deleted sign"
+     * Restore Sign
+     * 
      * Restore a soft deleted sign.
      */
     public function restore(Request $request, Sign $sign): JsonResponse

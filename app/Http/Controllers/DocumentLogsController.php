@@ -11,13 +11,15 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
 
-
+/**
+ * @group Document Logs
+ */
 class DocumentLogsController extends Controller
 {
     /**
-     * @group Document Logs
-     * @title "List Document Logs"
-     * @description "List all document logs that the user can view"
+     * List Document Logs
+     * 
+     * List all document logs that the user can view.
      * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentLogResource>
      */
     #[SharedPaginationParams]
@@ -34,9 +36,9 @@ class DocumentLogsController extends Controller
 
 
     /**
-     * @group Document Logs
-     * @title "Show Document Log"
-     * @description "Show a specific document log"
+     * Show Document Log
+     * 
+     * Display the specified document log.
      * @return \App\Http\Resources\DocumentLogResource
      */
     public function show(Request $request, DocumentLog $documentLog): DocumentLogResource
