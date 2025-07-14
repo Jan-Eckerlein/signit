@@ -25,8 +25,7 @@ class UpdateDocumentRequest extends FormRequest
     {
         return [
             'title' => 'sometimes|string|max:255',
-            'owner_user_id' => 'sometimes|exists:users,id',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:1000',
         ];
     }
 } 

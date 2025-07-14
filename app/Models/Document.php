@@ -46,13 +46,27 @@ class Document extends Model implements Lockable, Ownable, Validatable
         $to = $this->status;
 
         $validTransitions = [
+            // Draft documents can be opened
             DocumentStatus::DRAFT => [DocumentStatus::OPEN],
-            DocumentStatus::OPEN => [DocumentStatus::DRAFT, DocumentStatus::IN_PROGRESS, DocumentStatus::COMPLETED],
+            // Open documents can be send back to draft or marked as in progress
+            DocumentStatus::OPEN => [DocumentStatus::DRAFT, DocumentStatus::IN_PROGRESS],
+            // In progress documents can be completed
             DocumentStatus::IN_PROGRESS => [DocumentStatus::COMPLETED],
+            // Template documents cannot change the status
+            DocumentStatus::TEMPLATE => [],
+            //! Completed documents are not editable at all
+            DocumentStatus::COMPLETED => [],
         ];
+
+        // If the document is new, only allow 'template' or 'draft' status
+        if (!$this->exists && !in_array($this->status, [DocumentStatus::TEMPLATE, DocumentStatus::DRAFT], strict: true)) {
+            throw new \Exception('New documents must be created as template or draft');
+            return false;
+        }
 
         // Check if transition is valid
         if (!isset($validTransitions[$from]) || !in_array($to, $validTransitions[$from], strict: true)) {
+            throw new \Exception('Invalid status transition from ' . $from . ' to ' . $to);
             return false;
         }
 
@@ -75,7 +89,11 @@ class Document extends Model implements Lockable, Ownable, Validatable
         // Check if all signers are bound to a user
         $unboundSigners = $this->documentSigners()->whereNull('user_id')->count();
         if ($unboundSigners > 0) {
-            throw new \Exception('There are unbound signers (no user assigned) in this document.');
+            $signers = $this->documentSigners()->whereNull('user_id')->get();   
+            $signerNames = $signers->map(function ($signer) {
+                return $signer->name;
+            })->implode(', ');
+            throw new \Exception('There are ' . $unboundSigners . ' unbound signers (no user assigned) in this document. Please assign a user to the signers: ' . $signerNames);
             return false;
         }
 

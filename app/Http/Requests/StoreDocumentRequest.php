@@ -26,14 +26,15 @@ class StoreDocumentRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:1000',
+            'is_template' => 'required|boolean',
         ];
     }
 
     public function prepareForValidation()
     {
         $this->merge([
-            'status' => DocumentStatus::DRAFT,
+            'status' => $this->is_template ? DocumentStatus::TEMPLATE : DocumentStatus::DRAFT,
             'owner_user_id' => Auth::id(),
         ]);
     }
