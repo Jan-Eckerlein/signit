@@ -13,7 +13,7 @@ class UpdateDocumentSignerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $documentSigner = $this->route('document_signer');
+        $documentSigner = DocumentSigner::find($this->route('documentSigner'));
         return $documentSigner && $documentSigner->isMine($this->user());
     }
 
@@ -26,7 +26,9 @@ class UpdateDocumentSignerRequest extends FormRequest
     {
         return [
             'document_id' => 'sometimes|exists:documents,id',
-            'user_id' => 'sometimes|exists:users,id',
+            'email' => 'sometimes|email',
+            'name' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string|max:1000',
         ];
     }
 } 

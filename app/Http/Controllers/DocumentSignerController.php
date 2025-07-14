@@ -39,7 +39,10 @@ class DocumentSignerController extends Controller
     public function store(StoreDocumentSignerRequest $request): DocumentSignerResource
     {
         Gate::authorize('create', DocumentSigner::class);
-        $user = User::firstOrCreate(['email' => $request->email]);
+        if ($request->email) {
+            $user = User::firstOrCreate(['email' => $request->email]);
+            $request->merge(['user_id' => $user->id]);
+        }
         $documentSigner = DocumentSigner::create($request->validated() + ['user_id' => $user->id]);
         return new DocumentSignerResource($documentSigner->load(['document', 'user', 'signerDocumentFields']));
     }
@@ -65,6 +68,10 @@ class DocumentSignerController extends Controller
     public function update(UpdateDocumentSignerRequest $request, DocumentSigner $documentSigner): DocumentSignerResource
     {
         Gate::authorize('update', $documentSigner);
+        if ($request->email) {
+            $user = User::firstOrCreate(['email' => $request->email]);
+            $request->merge(['user_id' => $user->id]);
+        }
         $documentSigner->update($request->validated());
         return new DocumentSignerResource($documentSigner->load(['document', 'user', 'signerDocumentFields']));
     }

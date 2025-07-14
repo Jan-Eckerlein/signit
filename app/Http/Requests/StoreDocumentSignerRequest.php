@@ -26,6 +26,8 @@ class StoreDocumentSignerRequest extends FormRequest
         return [
             'document_id' => 'required|exists:documents,id',
             'email' => 'nullable|email',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
         ];
     }
 } 

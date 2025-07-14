@@ -24,6 +24,8 @@ class DocumentSignerResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
             'document_id' => $this->document_id,
             'user_id' => $this->user_id,
             'created_at' => $this->created_at,

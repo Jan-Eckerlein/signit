@@ -24,6 +24,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         'document_id',
         'user_id',
         'name',
+        'description',
     ];
 
     public function isLocked(BaseModelEvent | null $event = null): bool
@@ -65,7 +66,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         }
         
         // Original validation for document_id changes
-        if (!$this->isDirty('document_id')) return true;
+        if (!$this->isDirty('document_id') || !$this->exists) return true;
 
         $from = $this->getOriginal('document_id');
         $to = $this->document_id;
