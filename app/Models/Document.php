@@ -24,7 +24,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'title',
         'owner_user_id',
         'description',
-        'template_id',
+        'template_document_id',
     ];
 
     protected $guarded = ['status'];
@@ -140,9 +140,9 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(SignerDocumentField::class);
     }
 
-    public function template(): BelongsTo
+    public function templateDocument(): BelongsTo
     {
-        return $this->belongsTo(Template::class);
+        return $this->belongsTo(Document::class, 'template_document_id');
     }
 
     public function isOwnedBy(User | null $user = null): bool
