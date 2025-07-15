@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Models\DocumentSigner;
-use App\Models\SignerDocumentFieldValue;
+use App\Models\DocumentFieldValue;
 use App\Observers\DocumentSignerObserver;
-use App\Observers\SignerDocumentFieldValueObserver;
+use App\Observers\DocumentFieldValueObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Route::model('document_signer', DocumentSigner::class);
 
         // Register observers
-        SignerDocumentFieldValue::observe(SignerDocumentFieldValueObserver::class);
+        DocumentFieldValue::observe(DocumentFieldValueObserver::class);
         DocumentSigner::observe(DocumentSignerObserver::class);
 
         // Register the paginateOrGetAll macro on Builder

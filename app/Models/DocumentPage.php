@@ -13,6 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property int $document_id
+ * @property int $page_number
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class DocumentPage extends Model implements Lockable, Ownable
 {
     /** @use HasFactory<\Database\Factories\DocumentPageFactory> */
@@ -37,9 +44,9 @@ class DocumentPage extends Model implements Lockable, Ownable
         return $this->belongsTo(Document::class);
     }
 
-    public function signerDocumentFields(): HasMany
+    public function documentFields(): HasMany
     {
-        return $this->hasMany(SignerDocumentField::class);
+        return $this->hasMany(DocumentField::class);
     }
 
     // ---------------------------- OWNERSHIP ----------------------------

@@ -9,7 +9,7 @@ use App\Enums\BaseModelEvent;
 use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
-use App\Services\SignerDocumentFieldValueValidationService;
+use App\Services\DocumentFieldValueValidationService;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Validatable
+class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
 {
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
@@ -38,13 +38,13 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Valid
 
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
-        $isEditable = $this->signerDocumentField?->documentSigner?->document?->getOriginal('status') === DocumentStatus::IN_PROGRESS;
+        $isEditable = $this->documentField?->documentSigner?->document?->getOriginal('status') === DocumentStatus::IN_PROGRESS;
         return !$isEditable || $this->exists;
     }
 
-    public function signerDocumentField(): BelongsTo
+    public function documentField(): BelongsTo
     {
-        return $this->belongsTo(SignerDocumentField::class);
+        return $this->belongsTo(DocumentField::class);
     }
 
     public function signatureSign(): BelongsTo
@@ -69,14 +69,14 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Valid
     
     private function validateValueMatchesFieldType(): bool
     {
-        $field = $this->signerDocumentField;
+        $field = $this->documentField;
         
         if (!$field) {
             return true; // Let the foreign key constraint handle this
         }
         
         // Use the shared validation service
-        SignerDocumentFieldValueValidationService::validateValueMatchesFieldType(
+        DocumentFieldValueValidationService::validateValueMatchesFieldType(
             $this->getAttributes(),
             $field->type
         );
@@ -89,7 +89,7 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Valid
 
     public function isOwnedBy(User | null $user = null): bool
     {
-        return $this->signerDocumentField?->documentSigner?->user?->is($user ?? Auth::user());
+        return $this->documentField?->documentSigner?->user?->is($user ?? Auth::user());
     }
 
     public function isViewableBy(User | null $user = null): bool
@@ -100,7 +100,7 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Valid
     public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
     {
         $user = $user ?? Auth::user();
-        return $query->whereHas('signerDocumentField.documentSigner.user', function (Builder $query) use ($user) {
+        return $query->whereHas('documentField.documentSigner.user', function (Builder $query) use ($user) {
             $query->is($user);
         });
     }
@@ -113,8 +113,8 @@ class SignerDocumentFieldValue extends Model implements Lockable, Ownable, Valid
 
     public static function canCreateThis(User $user, array $attributes): bool
     {
-        $signerDocumentField = SignerDocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
-        return $signerDocumentField?->documentSigner?->user?->is($user);
+        $documentField = DocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
+        return $documentField?->documentSigner?->user?->is($user);
     }
 
     public function scopeCompleted(Builder $query): Builder

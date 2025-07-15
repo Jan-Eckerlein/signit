@@ -29,14 +29,14 @@ class Sign extends Model implements Lockable, Ownable
         return $this->belongsTo(User::class);
     }
 
-    public function signerDocumentFieldValues(): HasMany
+    public function documentFieldValues(): HasMany
     {
-        return $this->hasMany(SignerDocumentFieldValue::class, 'value_signature_sign_id');
+        return $this->hasMany(DocumentFieldValue::class, 'value_signature_sign_id');
     }
 
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
-        return $this->signerDocumentFieldValues()->exists();
+        return $this->documentFieldValues()->exists();
     }
 
     public function isOwnedBy(User | null $user = null): bool

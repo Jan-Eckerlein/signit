@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Enums\DocumentFieldType;
 use Illuminate\Validation\Validator;
 
-class SignerDocumentFieldValueValidationService
+class DocumentFieldValueValidationService
 {
     /**
      * Validate that exactly one value field is filled and return the field name.

@@ -63,9 +63,9 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(DocumentPage::class);
     }
 
-    public function signerDocumentFields(): HasMany
+    public function documentFields(): HasMany
     {
-        return $this->hasMany(SignerDocumentField::class);
+        return $this->hasMany(DocumentField::class);
     }
 
     public function templateDocument(): BelongsTo
@@ -135,16 +135,16 @@ class Document extends Model implements Lockable, Ownable, Validatable
 
         // Check if all signers have at least one field
         $signersWithoutFieldsCount = $this->documentSigners()
-            ->whereDoesntHave('signerDocumentFields')
+            ->whereDoesntHave('documentFields')
             ->count();
         
         if ($signersWithoutFieldsCount > 0) {
-            $signersWithoutFieldIds = $this->documentSigners()->whereDoesntHave('signerDocumentFields')->pluck('id')->implode(', ');
+            $signersWithoutFieldIds = $this->documentSigners()->whereDoesntHave('documentFields')->pluck('id')->implode(', ');
             throw new \Exception('There are ' . $signersWithoutFieldsCount . ' signers without fields in this document. Please assign fields to the signers: ' . $signersWithoutFieldIds);
         }
 
         // Check if all fields are bound to signers (no unbound fields)
-        $unboundFields = $this->signerDocumentFields()
+        $unboundFields = $this->documentFields()
             ->whereNull('document_signer_id')
             ->count();
         
@@ -238,7 +238,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
                 ->whereNotNull('signature_completed_at')
                 ->count(),
             'signers_progress' => $this->documentSigners()
-                ->with(['user', 'signerDocumentFields.value'])
+                ->with(['user', 'documentFields.value'])
                 ->get()
                 ->map(function ($signer) {
                     return [

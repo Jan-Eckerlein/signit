@@ -8,9 +8,9 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentLogsController;
 use App\Http\Controllers\DocumentSignerController;
-use App\Http\Controllers\SignerDocumentFieldController;
+use App\Http\Controllers\DocumentFieldController;
 use App\Http\Controllers\SignController;
-use App\Http\Controllers\SignerDocumentFieldValueController;
+use App\Http\Controllers\DocumentFieldValueController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Log;
 
@@ -34,8 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('documents', DocumentController::class);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::post('document-signers/{documentSigner}/complete-signature', [DocumentSignerController::class, 'completeSignature']);
-    Route::apiResource('signer-document-fields', SignerDocumentFieldController::class);
-    Route::apiResource('signer-document-field-values', SignerDocumentFieldValueController::class);
+    Route::apiResource('signer-document-fields', DocumentFieldController::class);
+    Route::apiResource('signer-document-field-values', DocumentFieldValueController::class);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);

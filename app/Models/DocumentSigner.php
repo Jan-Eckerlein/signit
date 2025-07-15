@@ -95,9 +95,9 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         return $this->belongsTo(User::class);
     }
 
-    public function signerDocumentFields(): HasMany
+    public function documentFields(): HasMany
     {
-        return $this->hasMany(SignerDocumentField::class);
+        return $this->hasMany(DocumentField::class);
     }
 
     public function isOwnedBy(User | null $user = null): bool
@@ -141,13 +141,13 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 
     public function getCompletedFieldsCount(): int
     {
-        return $this->signerDocumentFields()
+        return $this->documentFields()
             ->whereHas('value')
             ->count();
     }
 
     public function getTotalFieldsCount(): int
     {
-        return $this->signerDocumentFields()->count();
+        return $this->documentFields()->count();
     }
 } 

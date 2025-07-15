@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Services\SignerDocumentFieldValueValidationService;
+use App\Services\DocumentFieldValueValidationService;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSignerDocumentFieldValueRequest extends FormRequest
+class StoreDocumentFieldValueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -47,19 +47,19 @@ class StoreSignerDocumentFieldValueRequest extends FormRequest
      */
     private function validateValueFields($validator)
     {
-        $signerDocumentFieldId = $this->input('signer_document_field_id');
+        $documentFieldId = $this->input('signer_document_field_id');
         
-        if (!$signerDocumentFieldId) {
+        if (!$documentFieldId) {
             return; // Let the exists rule handle this
         }
         
-        $field = \App\Models\SignerDocumentField::find($signerDocumentFieldId);
+        $field = \App\Models\DocumentField::find($documentFieldId);
         
         if (!$field) {
             return; // Let the exists rule handle this
         }
         
-        SignerDocumentFieldValueValidationService::addValidationErrors(
+        DocumentFieldValueValidationService::addValidationErrors(
             $validator, 
             $this->all(), 
             $field->type

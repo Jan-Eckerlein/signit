@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SignerDocumentFieldResource extends JsonResource
+class DocumentFieldResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,7 +29,7 @@ class SignerDocumentFieldResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'document_signer' => new DocumentSignerResource($this->whenLoaded('documentSigner')),
-            'value' => new SignerDocumentFieldValueResource($this->whenLoaded('value')),
+            'value' => new DocumentFieldValueResource($this->whenLoaded('value')),
         ];
     }
 } 

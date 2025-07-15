@@ -4,23 +4,23 @@ namespace App\Observers;
 
 use App\Enums\Icon;
 use App\Models\DocumentLog;
-use App\Models\SignerDocumentFieldValue;
+use App\Models\DocumentFieldValue;
 use Illuminate\Support\Facades\Log;
 
-class SignerDocumentFieldValueObserver
+class DocumentFieldValueObserver
 {
-    public function created(SignerDocumentFieldValue $signerDocumentFieldValue): void
+    public function created(DocumentFieldValue $documentFieldValue): void
     {
         // Log the field value creation
-        $this->logFieldValueCreation($signerDocumentFieldValue);
+        $this->logFieldValueCreation($documentFieldValue);
 
         // Field value updates are logged but don't trigger document completion
         // Document completion is now handled by DocumentSignerObserver
     }
 
-    private function logFieldValueCreation(SignerDocumentFieldValue $signerDocumentFieldValue): void
+    private function logFieldValueCreation(DocumentFieldValue $documentFieldValue): void
     {
-        $field = $signerDocumentFieldValue->signerDocumentField;
+        $field = $documentFieldValue->documentField;
         $documentSigner = $field->documentSigner;
         $document = $documentSigner->document;
         $user = $documentSigner->user;
@@ -44,21 +44,21 @@ class SignerDocumentFieldValueObserver
             'field_id' => $field->id,
             'field_label' => $field->label,
             'field_type' => $field->type->value,
-            'value_type' => $this->getValueType($signerDocumentFieldValue),
+            'value_type' => $this->getValueType($documentFieldValue),
         ]);
     }
     
-    private function getValueType(SignerDocumentFieldValue $signerDocumentFieldValue): string
+    private function getValueType(DocumentFieldValue $documentFieldValue): string
     {
-        if ($signerDocumentFieldValue->value_signature_sign_id) {
+        if ($documentFieldValue->value_signature_sign_id) {
             return 'signature';
-        } elseif ($signerDocumentFieldValue->value_initials) {
+        } elseif ($documentFieldValue->value_initials) {
             return 'initials';
-        } elseif ($signerDocumentFieldValue->value_text) {
+        } elseif ($documentFieldValue->value_text) {
             return 'text';
-        } elseif ($signerDocumentFieldValue->value_checkbox) {
+        } elseif ($documentFieldValue->value_checkbox) {
             return 'checkbox';
-        } elseif ($signerDocumentFieldValue->value_date) {
+        } elseif ($documentFieldValue->value_date) {
             return 'date';
         }
         

@@ -20,7 +20,7 @@ class DocumentPageResource extends JsonResource
             'page_number' => $this->page_number,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'signer_document_fields' => SignerDocumentFieldResource::collection($this->whenLoaded('signerDocumentFields')),
+            'signer_document_fields' => DocumentFieldResource::collection($this->whenLoaded('documentFields')),
         ];
     }
 }

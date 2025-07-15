@@ -6,7 +6,7 @@ use App\Enums\DocumentFieldType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class StoreSignerDocumentFieldRequest extends FormRequest
+class StoreDocumentFieldRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

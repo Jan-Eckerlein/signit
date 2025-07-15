@@ -32,7 +32,7 @@ class DocumentSignerResource extends JsonResource
             'updated_at' => $this->updated_at,
             'document' => new DocumentResource($this->whenLoaded('document')),
             'user' => new UserResource($this->whenLoaded('user')),
-            'signer_document_fields' => SignerDocumentFieldResource::collection($this->whenLoaded('signerDocumentFields')),
+            'signer_document_fields' => DocumentFieldResource::collection($this->whenLoaded('documentFields')),
         ];
     }
 } 

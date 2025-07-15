@@ -18,7 +18,7 @@ class DocumentPageController extends Controller
     {
         Gate::authorize('viewAny', DocumentPage::class);
         return DocumentPage::viewableBy($request->user())
-            ->with('signerDocumentFields')
+            ->with('documentFields')
             ->paginateOrGetAll($request);
     }
 
@@ -28,6 +28,6 @@ class DocumentPageController extends Controller
     public function show(DocumentPage $documentPage)
     {
         Gate::authorize('view', $documentPage);
-        return new DocumentPageResource($documentPage->load('document', 'signerDocumentFields'));
+        return new DocumentPageResource($documentPage->load('document', 'documentFields'));
     }
 }

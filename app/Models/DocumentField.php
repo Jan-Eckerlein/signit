@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class SignerDocumentField extends Model implements Lockable, Ownable, Validatable
+class DocumentField extends Model implements Lockable, Ownable, Validatable
 {
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
 
@@ -83,7 +83,7 @@ class SignerDocumentField extends Model implements Lockable, Ownable, Validatabl
 
     public function value(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(SignerDocumentFieldValue::class);
+        return $this->hasOne(DocumentFieldValue::class);
     }
 
     public function isOwnedBy(User | null $user = null): bool
