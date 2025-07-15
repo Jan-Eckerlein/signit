@@ -628,7 +628,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -656,14 +656,26 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example Scribe API */
+                            name?: string;
+                            /** @example scribe@example.com */
+                            email?: string;
+                            /** @example null */
+                            email_verified_at?: string;
+                            /** @example 2025-07-15T19:15:24.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-15T19:15:24.000000Z */
+                            updated_at?: string;
+                        };
                     };
                 };
             };
@@ -719,14 +731,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/contacts?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/contacts?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/contacts?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/contacts */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -772,13 +835,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example No query results for model [App\Models\Contact] 16 */
                         message?: string;
                     };
                 };
@@ -852,14 +915,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/document-logs?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/document-logs?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/document-logs?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/document-logs */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -880,13 +994,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example No query results for model [App\Models\DocumentLog] 16 */
                         message?: string;
                     };
                 };
@@ -913,14 +1027,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/document-signers?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/document-signers?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/document-signers?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/document-signers */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -976,13 +1141,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example No query results for model [App\Models\DocumentSigner]. */
                         message?: string;
                     };
                 };
@@ -1092,14 +1257,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/documents?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/documents?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/documents?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/documents */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -1147,13 +1363,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example No query results for model [App\Models\Document] 16 */
                         message?: string;
                     };
                 };
@@ -1222,14 +1438,20 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        data?: {
+                            /** @example 0 */
+                            total_signers?: number;
+                            /** @example 0 */
+                            completed_signers?: number;
+                            /** @example [] */
+                            signers_progress?: unknown[];
+                        };
                     };
                 };
             };
@@ -1266,7 +1488,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-14T12:25:04
+                     * @example 2025-07-15T19:31:51
                      */
                     value_date?: string | null;
                 };
@@ -1294,14 +1516,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/signer-document-fields?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/signer-document-fields */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -1318,20 +1591,15 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example architecto
-                     */
-                    document_id: string;
-                    /**
                      * @description The <code>id</code> of an existing record in the document_signers table.
                      * @example null
                      */
                     document_signer_id?: string | null;
                     /**
-                     * @description Must be at least 1.
-                     * @example 22
+                     * @description The <code>id</code> of an existing record in the document_pages table.
+                     * @example architecto
                      */
-                    page: number;
+                    document_page_id: string;
                     /** @example 4326.41688 */
                     x: number;
                     /** @example 4326.41688 */
@@ -1347,7 +1615,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example initials
+                     * @example text
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1358,7 +1626,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                 };
             };
@@ -1380,13 +1648,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            403: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example This action is unauthorized. */
                         message?: string;
                     };
                 };
@@ -1410,20 +1678,15 @@ export interface operations {
             content: {
                 "application/json": {
                     /**
-                     * @description The <code>id</code> of an existing record in the documents table.
-                     * @example null
-                     */
-                    document_id?: string;
-                    /**
                      * @description The <code>id</code> of an existing record in the document_signers table.
                      * @example null
                      */
                     document_signer_id?: string;
                     /**
-                     * @description Must be at least 1.
-                     * @example 16
+                     * @description The <code>id</code> of an existing record in the document_pages table.
+                     * @example null
                      */
-                    page?: number;
+                    document_page_id?: string;
                     /** @example 4326.41688 */
                     x?: number;
                     /** @example 4326.41688 */
@@ -1493,14 +1756,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8000/api/signs?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8000/api/signs?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8000/api/signs?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8000/api/signs */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -1531,13 +1845,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            401: {
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Unauthenticated. */
+                        /** @example No query results for model [App\Models\Sign] 16 */
                         message?: string;
                     };
                 };

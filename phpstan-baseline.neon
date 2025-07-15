@@ -7,12 +7,6 @@ parameters:
 			path: app/Http/Controllers/AuthController.php
 
 		-
-			message: '#^Call to an undefined method App\\Models\\Document\:\:pdfProcess\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Http/Controllers/DocumentController.php
-
-		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isAnonymous\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -33,12 +27,6 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$recipient of job class App\\Jobs\\SendMagicLinkNotification constructor expects App\\Models\\User in App\\Jobs\\SendMagicLinkNotification\:\:dispatch\(\), Illuminate\\Database\\Eloquent\\Model given\.$#'
 			identifier: argument.type
-			count: 1
-			path: app/Http/Controllers/DocumentController.php
-
-		-
-			message: '#^Relation ''pdfProcess'' is not found in App\\Models\\Document model\.$#'
-			identifier: larastan.relationExistence
 			count: 1
 			path: app/Http/Controllers/DocumentController.php
 
@@ -343,6 +331,18 @@ parameters:
 			path: app/Http/Resources/DocumentPageResource.php
 
 		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentProgressResource.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\DocumentSigner\>\:\:map\(\) contains unresolvable type\.$#'
+			identifier: argument.unresolvableType
+			count: 1
+			path: app/Http/Resources/DocumentProgressResource.php
+
+		-
 			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentResource\:\:\$created_at\.$#'
 			identifier: property.notFound
 			count: 1
@@ -529,20 +529,8 @@ parameters:
 			path: app/Http/Resources/UserResource.php
 
 		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$name\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Models/Document.php
-
-		-
 			message: '#^Call to an undefined static method App\\Models\\Document\:\:forceDeleting\(\)\.$#'
 			identifier: staticMethod.notFound
-			count: 1
-			path: app/Models/Document.php
-
-		-
-			message: '#^Parameter \#1 \$callback of method Illuminate\\Database\\Eloquent\\Collection\<int,App\\Models\\DocumentSigner\>\:\:map\(\) contains unresolvable type\.$#'
-			identifier: argument.unresolvableType
 			count: 1
 			path: app/Models/Document.php
 
@@ -565,18 +553,6 @@ parameters:
 			path: app/Models/DocumentField.php
 
 		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/DocumentField.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/DocumentField.php
-
-		-
 			message: '#^Call to an undefined static method App\\Models\\DocumentField\:\:forceDeleting\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -590,12 +566,6 @@ parameters:
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$type\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Models/DocumentFieldValue.php
-
-		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$user\.$#'
 			identifier: property.notFound
 			count: 1
 			path: app/Models/DocumentFieldValue.php
@@ -693,18 +663,6 @@ parameters:
 		-
 			message: '#^Call to an undefined static method App\\Models\\DocumentSigner\:\:forceDeleting\(\)\.$#'
 			identifier: staticMethod.notFound
-			count: 1
-			path: app/Models/DocumentSigner.php
-
-		-
-			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\: TRelatedModel, TIntermediateModel, TDeclaringModel$#'
-			identifier: generics.lessTypes
-			count: 1
-			path: app/Models/DocumentSigner.php
-
-		-
-			message: '#^Method App\\Models\\DocumentSigner\:\:documentFields\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField, App\\Models\\DocumentPage, \$this\(App\\Models\\DocumentSigner\)\>\.$#'
-			identifier: return.type
 			count: 1
 			path: app/Models/DocumentSigner.php
 
@@ -807,7 +765,7 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$recipient of job class App\\Jobs\\SendDocumentCompletedNotification constructor expects App\\Models\\User in App\\Jobs\\SendDocumentCompletedNotification\:\:dispatch\(\), Illuminate\\Database\\Eloquent\\Model given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: app/Observers/DocumentSignerObserver.php
 
 		-

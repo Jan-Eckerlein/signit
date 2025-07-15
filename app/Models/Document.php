@@ -42,6 +42,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
 
     // ---------------------------- RELATIONS ----------------------------
 
+    /** @return BelongsTo<User, $this> */
     public function ownerUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_user_id');
@@ -53,16 +54,25 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(DocumentSigner::class);
     }
 
+    /** @return HasMany<DocumentLog, $this> */
     public function documentLogs(): HasMany
     {
         return $this->hasMany(DocumentLog::class);
     }
 
+    /** @return HasMany<DocumentPage, $this> */
     public function documentPages(): HasMany
     {
         return $this->hasMany(DocumentPage::class);
     }
 
+    /** @return HasMany<PdfProcess, $this> */
+    public function pdfProcess(): HasMany
+    {
+        return $this->hasMany(PdfProcess::class);
+    }
+
+    /** @return HasMany<DocumentField, $this> */
     public function documentFields(): HasMany
     {
         return $this->hasMany(DocumentField::class);
@@ -127,7 +137,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         $unboundSigners = $this->documentSigners()->whereNull('user_id')->count();
         if ($unboundSigners > 0) {
             $signers = $this->documentSigners()->whereNull('user_id')->get();   
-            $signerNames = $signers->map(function ($signer) {
+            $signerNames = $signers->map(function (DocumentSigner $signer) {
                 return $signer->name;
             })->implode(', ');
             throw new \Exception('There are ' . $unboundSigners . ' unbound signers (no user assigned) in this document. Please assign a user to the signers: ' . $signerNames);
@@ -228,28 +238,5 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->documentSigners()
             ->whereNull('signature_completed_at')
             ->doesntExist();
-    }
-
-    public function getProgress(): array
-    {
-        return [
-            'total_signers' => $this->documentSigners()->count(),
-            'completed_signers' => $this->documentSigners()
-                ->whereNotNull('signature_completed_at')
-                ->count(),
-            'signers_progress' => $this->documentSigners()
-                ->with(['user', 'documentFields.value'])
-                ->get()
-                ->map(function ($signer) {
-                    return [
-                        'id' => $signer->id,
-                        'user_name' => $signer->user->name,
-                        'completed_fields' => $signer->getCompletedFieldsCount(),
-                        'total_fields' => $signer->getTotalFieldsCount(),
-                        'is_completed' => $signer->isSignatureCompleted(),
-                        'completed_at' => $signer->signature_completed_at,
-                    ];
-                }),
-        ];
     }
 } 

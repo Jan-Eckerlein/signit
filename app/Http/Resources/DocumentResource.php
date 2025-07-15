@@ -27,6 +27,7 @@ class DocumentResource extends JsonResource
             'owner_user' => new UserResource($this->whenLoaded('ownerUser')),
             'document_signers' => DocumentSignerResource::collection($this->whenLoaded('documentSigners')),
             'document_logs' => DocumentLogResource::collection($this->whenLoaded('documentLogs')),
+            'document_pages' => DocumentPageResource::collection($this->whenLoaded('documentPages')),
             'pdf_process' => new PdfProcessResource($this->whenLoaded('pdfProcess')),
         ];
     }

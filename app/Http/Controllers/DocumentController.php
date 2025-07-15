@@ -18,6 +18,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
+use App\Http\Resources\DocumentProgressResource;
 
 /**
  * @group Documents
@@ -35,7 +36,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('viewAny', Document::class);
         return Document::viewableBy($request->user())
-            ->with(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess'])
+            ->with(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields'])
             ->paginateOrGetAll($request);
     }
 
@@ -51,7 +52,7 @@ class DocumentController extends Controller
 
         $document->pdfProcess()->create();
 
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
     }
 
     public function setInProgress(Request $request, Document $document): DocumentResource
@@ -98,7 +99,7 @@ class DocumentController extends Controller
                 'signers_notified' => $document->documentSigners->count(),
             ]);
             
-            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
+            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
             
         } catch (\Exception $e) {
             Log::error('Failed to set document to in progress', [
@@ -119,7 +120,7 @@ class DocumentController extends Controller
     public function show(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('view', $document);
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
     }
 
     /**
@@ -131,7 +132,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('update', $document);
         $document->update($request->validated());
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
+        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
     }
 
     /**
@@ -150,11 +151,13 @@ class DocumentController extends Controller
      * Get Document Progress
      * 
      * Retrieve the progress of the specified document.
+     * 
+     * @apiResource App\Http\Resources\DocumentProgressResource
+     * @apiResourceModel App\Models\Document
      */
-    public function getProgress(Request $request, Document $document): JsonResponse
+    public function getProgress(Request $request, Document $document): DocumentProgressResource
     {
         Gate::authorize('view', $document);
-        
-        return response()->json($document->getProgress());
+        return new DocumentProgressResource($document);
     }
 } 

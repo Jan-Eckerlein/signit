@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentField extends Model implements Lockable, Ownable, Validatable
@@ -40,10 +42,40 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         'required' => 'boolean',
     ];
 
+    // ********************* RELATIONSHIPS *********************
+
+    /** @return BelongsTo<DocumentSigner, $this> */
+    public function documentSigner(): BelongsTo
+    {
+        return $this->belongsTo(DocumentSigner::class);
+    }
+
+    /** @return BelongsTo<DocumentPage, $this> */
+    public function documentPage(): BelongsTo
+    {
+        return $this->belongsTo(DocumentPage::class);
+    }
+
+    /** @return HasOneThrough<Document, DocumentPage, $this> */
+    public function document(): HasOneThrough
+    {
+        return $this->hasOneThrough(Document::class, DocumentPage::class);
+    }
+
+    /** @return HasOne<DocumentFieldValue, $this> */
+    public function value(): HasOne
+    {
+        return $this->hasOne(DocumentFieldValue::class);
+    }
+
+    // ************************ LOCKING ************************
+
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->document?->getOriginal('status') === DocumentStatus::COMPLETED;
     }
+
+    // *********************** VALIDATION ************************
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
@@ -71,21 +103,9 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         return true;
     }
 
-    public function documentSigner(): BelongsTo
-    {
-        return $this->belongsTo(DocumentSigner::class);
-    }
+    // *********************** OWNERSHIP ************************
 
-    public function document(): BelongsTo
-    {
-        return $this->belongsTo(Document::class);
-    }
-
-    public function value(): \Illuminate\Database\Eloquent\Relations\HasOne
-    {
-        return $this->hasOne(DocumentFieldValue::class);
-    }
-
+    /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
         $user = $user ?? Auth::user();

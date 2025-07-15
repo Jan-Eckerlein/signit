@@ -34,6 +34,21 @@ trait HandlesOwnable
     {
         return session('auth_via_magic_link') && $this->isActionAllowedForMagicLink($action);
     }
+    
+    protected function getModelClass(): string
+    {
+        
+        // Get the model class from the policy name
+        $modelClass = str_replace('Policy', '', static::class);
+        $modelClass = str_replace('App\\Policies\\', 'App\\Models\\', $modelClass);
+        
+        // Check if the model class exists and implements Ownable
+        if (!class_exists($modelClass) || !is_subclass_of($modelClass, \App\Contracts\Ownable::class)) {
+            throw new \LogicException(static::class . ' must extend Ownable to use HandlesOwnable.');
+        }
+
+        return $modelClass;
+    }
 
     protected function checkOwnablePolicy(): void
     {
@@ -74,15 +89,7 @@ trait HandlesOwnable
      */
     protected function canCreate(User $user): bool
     {
-        // Get the model class from the policy name
-        $modelClass = str_replace('Policy', '', static::class);
-        $modelClass = str_replace('App\\Policies\\', 'App\\Models\\', $modelClass);
-        
-        // Check if the model class exists and implements Ownable
-        if (!class_exists($modelClass) || !is_subclass_of($modelClass, \App\Contracts\Ownable::class)) {
-            throw new \LogicException(static::class . ' must extend Ownable to use HandlesOwnable.');
-        }
-        
+        $modelClass = $this->getModelClass();
         return $this->checkMagicLinkUsedAndAllowed('create') && $modelClass::canCreateThis($user, request()->all());
     }
 
@@ -92,8 +99,10 @@ trait HandlesOwnable
     protected function canUpdate(User $user, Model $model): bool
     {
         $this->checkOwnable($model);
+        $modelClass = $this->getModelClass();
+        $mergedAttributes = array_merge($model->getAttributes(), request()->all());
         
-        return $this->checkMagicLinkUsedAndAllowed('update') && $model->isOwnedBy($user);
+        return $this->checkMagicLinkUsedAndAllowed('update') && $model->isOwnedBy($user) && $modelClass::canUpdateThis($user, $mergedAttributes);
     }
 
     /**
