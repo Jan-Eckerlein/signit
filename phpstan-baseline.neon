@@ -43,6 +43,18 @@ parameters:
 			path: app/Http/Controllers/DocumentController.php
 
 		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$documentSigner\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/DocumentFieldValueController.php
+
+		-
+			message: '#^Class App\\Http\\Resources\\DocumentFieldValueResource constructor invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: app/Http/Controllers/DocumentFieldValueController.php
+
+		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$status\.$#'
 			identifier: property.notFound
 			count: 2
@@ -61,28 +73,16 @@ parameters:
 			path: app/Http/Controllers/SignController.php
 
 		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$documentSigner\.$#'
-			identifier: property.notFound
+			message: '#^Method App\\Http\\Requests\\StoreDocumentFieldValueRequest\:\:validateExactlyOneValue\(\) is unused\.$#'
+			identifier: method.unused
 			count: 1
-			path: app/Http/Controllers/SignerDocumentFieldValueController.php
-
-		-
-			message: '#^Class App\\Http\\Resources\\SignerDocumentFieldValueResource constructor invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: app/Http/Controllers/SignerDocumentFieldValueController.php
+			path: app/Http/Requests/StoreDocumentFieldValueRequest.php
 
 		-
 			message: '#^Call to an undefined method App\\Models\\Document\|Illuminate\\Database\\Eloquent\\Collection\<int, App\\Models\\Document\>\:\:isMine\(\)\.$#'
 			identifier: method.notFound
 			count: 1
 			path: app/Http/Requests/StoreDocumentSignerRequest.php
-
-		-
-			message: '#^Method App\\Http\\Requests\\StoreSignerDocumentFieldValueRequest\:\:validateExactlyOneValue\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: app/Http/Requests/StoreSignerDocumentFieldValueRequest.php
 
 		-
 			message: '#^Call to an undefined method App\\Models\\DocumentSigner\:\:isMine\(\)\.$#'
@@ -125,6 +125,138 @@ parameters:
 			identifier: property.notFound
 			count: 1
 			path: app/Http/Resources/ContactResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$document_signer_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$height\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$label\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$page\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$required\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$type\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$updated_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$width\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$x\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldResource\:\:\$y\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$signer_document_field_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$updated_at\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$value_checkbox\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$value_date\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$value_initials\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$value_signature_sign_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
+
+		-
+			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentFieldValueResource\:\:\$value_text\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/DocumentFieldValueResource.php
 
 		-
 			message: '#^Access to an undefined property App\\Http\\Resources\\DocumentLogResource\:\:\$created_at\.$#'
@@ -361,138 +493,6 @@ parameters:
 			path: app/Http/Resources/SignResource.php
 
 		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$created_at\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$description\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$document_signer_id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$height\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$label\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$page\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$required\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$type\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$updated_at\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$width\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$x\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldResource\:\:\$y\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$created_at\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$signer_document_field_id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$updated_at\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$value_checkbox\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$value_date\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$value_initials\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$value_signature_sign_id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
-			message: '#^Access to an undefined property App\\Http\\Resources\\SignerDocumentFieldValueResource\:\:\$value_text\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Http/Resources/SignerDocumentFieldValueResource.php
-
-		-
 			message: '#^Access to an undefined property App\\Http\\Resources\\UserResource\:\:\$created_at\.$#'
 			identifier: property.notFound
 			count: 1
@@ -545,6 +545,72 @@ parameters:
 			identifier: argument.unresolvableType
 			count: 1
 			path: app/Models/Document.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\DocumentField\:\:\$document_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:ownedBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:viewableBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\DocumentField\:\:forceDeleting\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Models/DocumentField.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$documentSigner\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Models/DocumentFieldValue.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$type\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/DocumentFieldValue.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$user\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Models/DocumentFieldValue.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:is\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Models/DocumentFieldValue.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\DocumentFieldValue\:\:forceDeleting\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Models/DocumentFieldValue.php
 
 		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:viewableBy\(\)\.$#'
@@ -631,6 +697,18 @@ parameters:
 			path: app/Models/DocumentSigner.php
 
 		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\: TRelatedModel, TIntermediateModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: app/Models/DocumentSigner.php
+
+		-
+			message: '#^Method App\\Models\\DocumentSigner\:\:documentFields\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasManyThrough\<App\\Models\\DocumentField, App\\Models\\DocumentPage, \$this\(App\\Models\\DocumentSigner\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/DocumentSigner.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -649,64 +727,28 @@ parameters:
 			path: app/Models/Sign.php
 
 		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:ownedBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/SignerDocumentField.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:viewableBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/SignerDocumentField.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/SignerDocumentField.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/SignerDocumentField.php
-
-		-
-			message: '#^Call to an undefined static method App\\Models\\SignerDocumentField\:\:forceDeleting\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: app/Models/SignerDocumentField.php
-
-		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$documentSigner\.$#'
 			identifier: property.notFound
+			count: 1
+			path: app/Observers/DocumentFieldValueObserver.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Observers/DocumentFieldValueObserver.php
+
+		-
+			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$label\.$#'
+			identifier: property.notFound
 			count: 2
-			path: app/Models/SignerDocumentFieldValue.php
+			path: app/Observers/DocumentFieldValueObserver.php
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$type\.$#'
 			identifier: property.notFound
 			count: 1
-			path: app/Models/SignerDocumentFieldValue.php
-
-		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$user\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Models/SignerDocumentFieldValue.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<Illuminate\\Database\\Eloquent\\Model\>\:\:is\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Models/SignerDocumentFieldValue.php
-
-		-
-			message: '#^Call to an undefined static method App\\Models\\SignerDocumentFieldValue\:\:forceDeleting\(\)\.$#'
-			identifier: staticMethod.notFound
-			count: 1
-			path: app/Models/SignerDocumentFieldValue.php
+			path: app/Observers/DocumentFieldValueObserver.php
 
 		-
 			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
@@ -769,30 +811,6 @@ parameters:
 			path: app/Observers/DocumentSignerObserver.php
 
 		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$documentSigner\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Observers/SignerDocumentFieldValueObserver.php
-
-		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$id\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Observers/SignerDocumentFieldValueObserver.php
-
-		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$label\.$#'
-			identifier: property.notFound
-			count: 2
-			path: app/Observers/SignerDocumentFieldValueObserver.php
-
-		-
-			message: '#^Access to an undefined property Illuminate\\Database\\Eloquent\\Model\:\:\$type\.$#'
-			identifier: property.notFound
-			count: 1
-			path: app/Observers/SignerDocumentFieldValueObserver.php
-
-		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
 			identifier: method.notFound
 			count: 4
@@ -809,6 +827,42 @@ parameters:
 			identifier: function.alreadyNarrowedType
 			count: 1
 			path: app/Policies/ContactPolicy.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: app/Policies/DocumentFieldPolicy.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Policies/DocumentFieldPolicy.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(App\\Policies\\DocumentFieldPolicy\) and ''register'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Policies/DocumentFieldPolicy.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: app/Policies/DocumentFieldValuePolicy.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Policies/DocumentFieldValuePolicy.php
+
+		-
+			message: '#^Call to function method_exists\(\) with \$this\(App\\Policies\\DocumentFieldValuePolicy\) and ''register'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Policies/DocumentFieldValuePolicy.php
 
 		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
@@ -907,49 +961,13 @@ parameters:
 			path: app/Policies/SignPolicy.php
 
 		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
-			identifier: method.notFound
-			count: 4
-			path: app/Policies/SignerDocumentFieldPolicy.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
-			identifier: method.notFound
+			message: '#^Strict comparison using \!\=\= between mixed and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
 			count: 1
-			path: app/Policies/SignerDocumentFieldPolicy.php
-
-		-
-			message: '#^Call to function method_exists\(\) with \$this\(App\\Policies\\SignerDocumentFieldPolicy\) and ''register'' will always evaluate to true\.$#'
-			identifier: function.alreadyNarrowedType
-			count: 1
-			path: app/Policies/SignerDocumentFieldPolicy.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isOwnedBy\(\)\.$#'
-			identifier: method.notFound
-			count: 4
-			path: app/Policies/SignerDocumentFieldValuePolicy.php
-
-		-
-			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Model\:\:isViewableBy\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: app/Policies/SignerDocumentFieldValuePolicy.php
-
-		-
-			message: '#^Call to function method_exists\(\) with \$this\(App\\Policies\\SignerDocumentFieldValuePolicy\) and ''register'' will always evaluate to true\.$#'
-			identifier: function.alreadyNarrowedType
-			count: 1
-			path: app/Policies/SignerDocumentFieldValuePolicy.php
+			path: app/Services/DocumentFieldValueValidationService.php
 
 		-
 			message: '#^Parameter \#1 \$user of static method Illuminate\\Support\\Facades\\Auth\:\:login\(\) expects Illuminate\\Contracts\\Auth\\Authenticatable, Illuminate\\Database\\Eloquent\\Model\|null given\.$#'
 			identifier: argument.type
 			count: 1
 			path: app/Services/MagicLinkService.php
-
-		-
-			message: '#^Strict comparison using \!\=\= between mixed and null will always evaluate to true\.$#'
-			identifier: notIdentical.alwaysTrue
-			count: 1
-			path: app/Services/SignerDocumentFieldValueValidationService.php
