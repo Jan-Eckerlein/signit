@@ -38,6 +38,14 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
+    /**
+     * @phpstan-type StatusArray array<\App\Enums\DocumentStatus>
+     */
+    public function isStatus(array ...$statuses): bool
+    {
+        return in_array($this->status, $statuses, strict: true);
+    }
+
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         if (!$this->isDirty('status')) return true;
