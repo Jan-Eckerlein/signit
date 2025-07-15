@@ -33,18 +33,42 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'status' => DocumentStatus::class,
     ];
 
+    // ---------------------------- LOCKING ----------------------------
+
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
-    /**
-     * @phpstan-type StatusArray array<\App\Enums\DocumentStatus>
-     */
-    public function isStatus(array ...$statuses): bool
+    // ---------------------------- RELATIONS ----------------------------
+
+    public function ownerUser(): BelongsTo
     {
-        return in_array($this->status, $statuses, strict: true);
+        return $this->belongsTo(User::class, 'owner_user_id');
     }
+
+    public function documentSigners(): HasMany
+    {
+        return $this->hasMany(DocumentSigner::class);
+    }
+
+    public function documentLogs(): HasMany
+    {
+        return $this->hasMany(DocumentLog::class);
+    }
+
+    public function signerDocumentFields(): HasMany
+    {
+        return $this->hasMany(SignerDocumentField::class);
+    }
+
+    public function templateDocument(): BelongsTo
+    {
+        return $this->belongsTo(Document::class, 'template_document_id');
+    }
+
+
+    // ---------------------------- VALIDATION ----------------------------
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
@@ -128,30 +152,9 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return true;
     }
 
-    public function ownerUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'owner_user_id');
-    }
 
-    public function documentSigners(): HasMany
-    {
-        return $this->hasMany(DocumentSigner::class);
-    }
+    // ---------------------------- OWNERSHIP ----------------------------
 
-    public function documentLogs(): HasMany
-    {
-        return $this->hasMany(DocumentLog::class);
-    }
-
-    public function signerDocumentFields(): HasMany
-    {
-        return $this->hasMany(SignerDocumentField::class);
-    }
-
-    public function templateDocument(): BelongsTo
-    {
-        return $this->belongsTo(Document::class, 'template_document_id');
-    }
 
     public function isOwnedBy(User | null $user = null): bool
     {
@@ -195,6 +198,17 @@ class Document extends Model implements Lockable, Ownable, Validatable
     {
         // Users can only create documents for themselves
         return $attributes['owner_user_id'] === $user->id;
+    }
+    
+
+    // ---------------------------- UTILITIES ----------------------------
+
+    /**
+     * @phpstan-type StatusArray array<\App\Enums\DocumentStatus>
+     */
+    public function isStatus(array ...$statuses): bool
+    {
+        return in_array($this->status, $statuses, strict: true);
     }
 
     public function scopeWithIncompleteSigners(Builder $query): Builder
