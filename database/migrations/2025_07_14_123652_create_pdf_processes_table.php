@@ -24,7 +24,7 @@ return new class extends Migration
                 'pdf_signing_failed',
                 'pdf_signing_retrying',
                 'pdf_signing_retry_failed',
-            ]);
+            ])->default('pdf_missing');
             $table->timestamps();
         });
     }

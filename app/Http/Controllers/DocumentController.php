@@ -48,6 +48,9 @@ class DocumentController extends Controller
     {
         Gate::authorize('create', Document::class);
         $document = Document::create($request->validated());
+
+        $document->pdfProcess()->create();
+
         return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess']));
     }
 
