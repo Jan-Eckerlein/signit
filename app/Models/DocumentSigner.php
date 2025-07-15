@@ -16,6 +16,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @property int $id
+ * @property int $document_id
+ * @property int|null $user_id
+ * @property string|null $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $signature_completed_at
+ * @property int|null $electronic_signature_disclosure_accepted
+ * @property \Carbon\Carbon|null $disclosure_accepted_at
+ */
 class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 {
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications;

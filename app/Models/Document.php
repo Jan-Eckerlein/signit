@@ -47,6 +47,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->belongsTo(User::class, 'owner_user_id');
     }
 
+    /** @return HasMany<DocumentSigner, $this> */
     public function documentSigners(): HasMany
     {
         return $this->hasMany(DocumentSigner::class);
@@ -79,32 +80,31 @@ class Document extends Model implements Lockable, Ownable, Validatable
     {
         if (!$this->isDirty('status')) return true;
 
+        /** @var DocumentStatus $from */
         $from = $this->getOriginal('status');
         $to = $this->status;
 
         $validTransitions = [
             // Draft documents can be opened
-            DocumentStatus::DRAFT => [DocumentStatus::OPEN],
+            DocumentStatus::DRAFT->value => [DocumentStatus::OPEN->value],
             // Open documents can be send back to draft or marked as in progress
-            DocumentStatus::OPEN => [DocumentStatus::DRAFT, DocumentStatus::IN_PROGRESS],
+            DocumentStatus::OPEN->value => [DocumentStatus::DRAFT->value, DocumentStatus::IN_PROGRESS->value],
             // In progress documents can be completed
-            DocumentStatus::IN_PROGRESS => [DocumentStatus::COMPLETED],
+            DocumentStatus::IN_PROGRESS->value => [DocumentStatus::COMPLETED->value],
             // Template documents cannot change the status
-            DocumentStatus::TEMPLATE => [],
+            DocumentStatus::TEMPLATE->value => [],
             //! Completed documents are not editable at all
-            DocumentStatus::COMPLETED => [],
+            DocumentStatus::COMPLETED->value => [],
         ];
 
         // If the document is new, only allow 'template' or 'draft' status
         if (!$this->exists && !in_array($this->status, [DocumentStatus::TEMPLATE, DocumentStatus::DRAFT], strict: true)) {
             throw new \Exception('New documents must be created as template or draft');
-            return false;
         }
 
         // Check if transition is valid
-        if (!isset($validTransitions[$from]) || !in_array($to, $validTransitions[$from], strict: true)) {
-            throw new \Exception('Invalid status transition from ' . $from . ' to ' . $to);
-            return false;
+        if (!in_array($to->value, $validTransitions[$from->value], strict: true)) {
+            throw new \Exception('Invalid status transition from ' . $from->value . ' to ' . $to->value);
         }
 
         // Additional validation for IN_PROGRESS transition
@@ -120,10 +120,10 @@ class Document extends Model implements Lockable, Ownable, Validatable
         // Check if document has signers
         if ($this->documentSigners()->count() === 0) {
             throw new \Exception('Document #' . $this->id . ' has no signers');
-            return false;
         }
 
         // Check if all signers are bound to a user
+        /** @var int $unboundSigners */
         $unboundSigners = $this->documentSigners()->whereNull('user_id')->count();
         if ($unboundSigners > 0) {
             $signers = $this->documentSigners()->whereNull('user_id')->get();   
@@ -131,17 +131,16 @@ class Document extends Model implements Lockable, Ownable, Validatable
                 return $signer->name;
             })->implode(', ');
             throw new \Exception('There are ' . $unboundSigners . ' unbound signers (no user assigned) in this document. Please assign a user to the signers: ' . $signerNames);
-            return false;
         }
 
         // Check if all signers have at least one field
-        $signersWithoutFields = $this->documentSigners()
+        $signersWithoutFieldsCount = $this->documentSigners()
             ->whereDoesntHave('signerDocumentFields')
             ->count();
         
-        if ($signersWithoutFields > 0) {
-            throw new \Exception('Signer #' . $signersWithoutFields->id . ' has no fields');
-            return false;
+        if ($signersWithoutFieldsCount > 0) {
+            $signersWithoutFieldIds = $this->documentSigners()->whereDoesntHave('signerDocumentFields')->pluck('id')->implode(', ');
+            throw new \Exception('There are ' . $signersWithoutFieldsCount . ' signers without fields in this document. Please assign fields to the signers: ' . $signersWithoutFieldIds);
         }
 
         // Check if all fields are bound to signers (no unbound fields)
@@ -151,7 +150,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
         
         if ($unboundFields > 0) {
             throw new \Exception('Unbound fields: ' . $unboundFields);
-            return false;
         }
 
         return true;
@@ -209,11 +207,13 @@ class Document extends Model implements Lockable, Ownable, Validatable
     // ---------------------------- UTILITIES ----------------------------
 
     /**
-     * @phpstan-type StatusArray array<\App\Enums\DocumentStatus>
+     * @param DocumentStatus $statuses
      */
-    public function isStatus(array ...$statuses): bool
+    public function isStatus(...$statuses): bool
     {
-        return in_array($this->status, $statuses, strict: true);
+        $statusValues = array_map(fn(DocumentStatus $status) => $status->value, $statuses);
+
+        return in_array($this->status->value, $statusValues, strict: true);
     }
 
     public function scopeWithIncompleteSigners(Builder $query): Builder
