@@ -57,6 +57,11 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(DocumentLog::class);
     }
 
+    public function documentPages(): HasMany
+    {
+        return $this->hasMany(DocumentPage::class);
+    }
+
     public function signerDocumentFields(): HasMany
     {
         return $this->hasMany(SignerDocumentField::class);
@@ -199,7 +204,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         // Users can only create documents for themselves
         return $attributes['owner_user_id'] === $user->id;
     }
-    
+
 
     // ---------------------------- UTILITIES ----------------------------
 
