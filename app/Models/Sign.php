@@ -79,4 +79,31 @@ class Sign extends Model implements Lockable, Ownable
         // Users can only create signs for themselves
         return $attributes['user_id'] === $user->id;
     }
+
+
+    // ---------------------------- FORCE DELETE ----------------------------
+
+    /**
+     * Force delete the sign (only if not being used)
+     * @throws \Exception
+     * @return (bool | null)
+     */
+    public function forceDeleteIfNotUsed(): bool | null
+    {
+        if (!$this->isBeingUsed()) {
+            return parent::forceDelete();
+        }
+        
+        throw new \Exception('Cannot force delete sign that is being used by document fields.');
+    }
+
+
+    /**
+     * Check if this sign is being used by any document fields
+     */
+    public function isBeingUsed(): bool
+    {
+        return $this->documentFieldValues()->exists();
+    }
+
 } 
