@@ -26,11 +26,13 @@ class MagicLink extends Model
         'token', // Hide the hashed token from JSON/array output
     ];
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /** @return BelongsTo<Document, $this> */
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
@@ -38,6 +40,7 @@ class MagicLink extends Model
 
     /**
      * Check if the magic link is expired
+     * @return bool
      */
     public function isExpired(): bool
     {
@@ -46,6 +49,7 @@ class MagicLink extends Model
 
     /**
      * Check if the magic link is valid (not expired)
+     * @return bool
      */
     public function isValid(): bool
     {
@@ -54,6 +58,7 @@ class MagicLink extends Model
 
     /**
      * Set the token (automatically hash it)
+     * @param string $value
      */
     public function setTokenAttribute(string $value): void
     {
@@ -62,6 +67,8 @@ class MagicLink extends Model
 
     /**
      * Check if the provided token matches this magic link
+     * @param string $token
+     * @return bool
      */
     public function checkToken(string $token): bool
     {

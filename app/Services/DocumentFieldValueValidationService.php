@@ -23,7 +23,7 @@ class DocumentFieldValueValidationService
         $filledFields = [];
         
         foreach ($valueFields as $field) {
-            if (isset($data[$field]) && $data[$field] !== null) {
+            if (isset($data[$field])) {
                 $filledFields[] = $field;
             }
         }
