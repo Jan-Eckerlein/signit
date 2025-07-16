@@ -18,10 +18,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DocumentFieldBuilder;
+use Illuminate\Database\Eloquent\HasBuilder;
 
+// ---------------------------- PROPERTIES ----------------------------
+
+/**
+ * @property int $id
+ * @property int $document_id
+ * @property int|null $document_signer_id
+ * @property int $page
+ * @property float $x
+ * @property float $y
+ * @property float $width
+ * @property float $height
+ * @property DocumentFieldType $type
+ * @property string $label
+ * @property string|null $description
+ * @property bool $required
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ */
 class DocumentField extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
+
+    protected static string $builder = DocumentFieldBuilder::class;
 
     protected $fillable = [
         'document_id',
@@ -42,7 +64,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         'required' => 'boolean',
     ];
 
-    // ********************* RELATIONSHIPS *********************
+    // ---------------------------- RELATIONS ----------------------------
 
     /** @return BelongsTo<DocumentSigner, $this> */
     public function documentSigner(): BelongsTo
@@ -68,15 +90,17 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         return $this->hasOne(DocumentFieldValue::class);
     }
 
-    // ************************ LOCKING ************************
+    // ---------------------------- LOCKING ----------------------------
 
+    /** @return bool */
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->document?->getOriginal('status') === DocumentStatus::COMPLETED;
     }
 
-    // *********************** VALIDATION ************************
+    // ---------------------------- VALIDATION ----------------------------
 
+    /** @return bool */
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         // change only when its status is draft:
@@ -103,7 +127,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         return true;
     }
 
-    // *********************** OWNERSHIP ************************
+    // ---------------------------- OWNERSHIP ----------------------------
 
     /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
@@ -112,28 +136,17 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         return $this->document?->isOwnedBy($user);
     }
 
+    /** @return bool */
     public function isViewableBy(User | null $user = null): bool
     {
         $user = $user ?? Auth::user();
         return $this->document?->isViewableBy($user);
     }
 
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->whereHas('documentSigner.document', function (Builder $query) use ($user) {
-            $query->ownedBy($user);
-        });
-    }
 
-    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->whereHas('documentSigner.document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
-        });
-    }
+    // ---------------------------- UTILITIES ----------------------------
 
+    /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
         $document = Document::find($attributes['document_id']);

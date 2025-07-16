@@ -9,18 +9,22 @@ use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DocumentSignerBuilder;
+use Illuminate\Database\Eloquent\HasBuilder;
+
+// ---------------------------- PROPERTIES ----------------------------
 
 /**
  * @property int $id
  * @property int $document_id
  * @property int|null $user_id
  * @property string|null $name
+ * @property string|null $description
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $signature_completed_at
@@ -29,7 +33,9 @@ use Illuminate\Support\Facades\Auth;
  */
 class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
+
+    protected static string $builder = DocumentSignerBuilder::class;
 
     protected $fillable = [
         'document_id',
@@ -38,6 +44,29 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         'description',
     ];
 
+    // ---------------------------- RELATIONS ----------------------------
+
+    /** @return BelongsTo<Document, $this> */
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class);
+    }
+
+    /** @return BelongsTo<User, $this> */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /** @return HasMany<DocumentField, $this> */
+    public function documentFields(): HasMany
+    {
+        return $this->hasMany(DocumentField::class);
+    }
+
+    // ---------------------------- LOCKING ----------------------------
+
+    /** @return bool */
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return in_array(
@@ -47,6 +76,9 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         );
     }
 
+    // ---------------------------- VALIDATION ----------------------------
+
+    /** @return bool */
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
         // Check if signature completion fields are being modified
@@ -85,48 +117,24 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         return $from === $to;
     }
 
-    public function document(): BelongsTo
-    {
-        return $this->belongsTo(Document::class);
-    }
+    // ---------------------------- OWNERSHIP ----------------------------
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function documentFields(): HasMany
-    {
-        return $this->hasMany(DocumentField::class);
-    }
-
+    /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
         return $this->document->isOwnedBy($user);
     }
 
+    /** @return bool */
     public function isViewableBy(User | null $user = null): bool
     {
         $user = $user ?? Auth::user();
         return $this->document->isViewableBy($user);
     }
 
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->whereHas('document', function (Builder $query) use ($user) {
-            $query->ownedBy($user);
-        });
-    }
+    // ---------------------------- UTILITIES ----------------------------
 
-    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->whereHas('document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
-        });
-    }
-
+    /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
         // Users can only create document signers for documents they own
@@ -134,11 +142,13 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         return $document && $document->isOwnedBy($user);
     }
 
+    /** @return bool */
     public function isSignatureCompleted(): bool
     {
         return $this->signature_completed_at !== null;
     }
 
+    /** @return int */
     public function getCompletedFieldsCount(): int
     {
         return $this->documentFields()
@@ -146,6 +156,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
             ->count();
     }
 
+    /** @return int */
     public function getTotalFieldsCount(): int
     {
         return $this->documentFields()->count();

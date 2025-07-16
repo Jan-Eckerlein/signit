@@ -8,12 +8,25 @@ use App\Enums\BaseModelEvent;
 use App\Enums\PdfProcessStatus;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\PdfProcessBuilder;
+use Illuminate\Database\Eloquent\HasBuilder;
+
+// ---------------------------- PROPERTIES ----------------------------
+
+/**
+ * @property int $id
+ * @property int $document_id
+ * @property PdfProcessStatus $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ */
 
 class PdfProcess extends Model implements Lockable, Ownable
 {
-    use ProtectsLockedModels;
+    use ProtectsLockedModels, HasBuilder;
+
+    protected static string $builder = PdfProcessBuilder::class;
 
     protected $fillable = [
         'document_id',
@@ -25,40 +38,37 @@ class PdfProcess extends Model implements Lockable, Ownable
 
     // ---------------------------- RELATIONS ----------------------------
 
+    /** @return BelongsTo<Document, $this> */
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
     }
 
-    // ---------------------------- LOCKING -----------------------------
+    // ---------------------------- LOCKING ----------------------------
 
+    /** @return bool */
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
         return $this->getOriginal('status') === PdfProcessStatus::PDF_SIGNED;
     }
 
-    // ---------------------------- OWNERSHIP ---------------------------
+    // ---------------------------- OWNERSHIP ----------------------------
 
+    /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
         return $this->document->isOwnedBy($user);
     }
 
+    /** @return bool */
     public function isViewableBy(User | null $user = null): bool
     {
         return $this->isOwnedBy($user);
     }
 
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        return $query->where('document.owner_user_id', $user->id);
-    }
+    // ---------------------------- UTILITIES ----------------------------
 
-    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
-    {
-        return $query->where('document.owner_user_id', $user->id);
-    }
-
+    /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
         $document = Document::find($attributes['document_id']);

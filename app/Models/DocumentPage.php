@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Document;
 
 /**
  * @property int $id
@@ -39,11 +40,13 @@ class DocumentPage extends Model implements Lockable, Ownable
 
     // ---------------------------- RELATIONS ----------------------------
 
+    /** @return BelongsTo<Document, $this> */
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
     }
 
+    /** @return HasMany<DocumentField, $this> */
     public function documentFields(): HasMany
     {
         return $this->hasMany(DocumentField::class);
@@ -51,19 +54,23 @@ class DocumentPage extends Model implements Lockable, Ownable
 
     // ---------------------------- OWNERSHIP ----------------------------
 
+    /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
         return $this->document->isOwnedBy($user);
     }
 
+    /** @return bool */
     public function isViewableBy(User | null $user = null): bool
     {
         return $this->document->isViewableBy($user);
     }
 
+    /** @return Builder<DocumentPage> */
     public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
     {
         return $query->whereHas('document', function (Builder $query) use ($user) {
+            if (!($query instanceof DocumentBuilder)) return;
             $query->ownedBy($user);
         });
     }
@@ -71,6 +78,7 @@ class DocumentPage extends Model implements Lockable, Ownable
     public function scopeViewableBy(Builder $query, User | null $user = null): Builder
     {
         return $query->whereHas('document', function (Builder $query) use ($user) {
+            if (!($query instanceof DocumentBuilder)) return;
             $query->viewableBy($user);
         });
     }

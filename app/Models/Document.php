@@ -15,10 +15,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DocumentBuilder;
+use Illuminate\Database\Eloquent\HasBuilder;
 
 class Document extends Model implements Lockable, Ownable, Validatable
 {
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications;
+    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
 
     protected $fillable = [
         'title',
@@ -26,6 +28,8 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'description',
         'template_document_id',
     ];
+
+    protected static string $builder = DocumentBuilder::class;
 
     protected $guarded = ['status'];
 
@@ -78,6 +82,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(DocumentField::class);
     }
 
+    /** @return BelongsTo<Document, $this> */
     public function templateDocument(): BelongsTo
     {
         return $this->belongsTo(Document::class, 'template_document_id');
@@ -179,34 +184,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->isOwnedBy($user) || $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists();
     }
 
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->where('owner_user_id', $user->id);
-    }
-
-    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
-    {
-        $user = $user ?? Auth::user();
-        return $query->where(function (Builder $query) use ($user) {
-            $query
-                // EIGENE Dokumente immer
-                ->where('owner_user_id', $user->id)
-                
-                // FREMDE nur wenn sie "offen", "in progress" oder "completed" sind
-                ->orWhere(function (Builder $query) use ($user) {
-                    $query->whereIn('status', [
-                            DocumentStatus::OPEN,
-                            DocumentStatus::IN_PROGRESS,
-                            DocumentStatus::COMPLETED,
-                        ])
-                        ->whereHas('documentSigners', function (Builder $q) use ($user) {
-                            $q->where('user_id', $user->id);
-                        });
-                });
-        });
-    }
-
     public static function canCreateThis(User $user, array $attributes): bool
     {
         // Users can only create documents for themselves
@@ -224,13 +201,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
         $statusValues = array_map(fn(DocumentStatus $status) => $status->value, $statuses);
 
         return in_array($this->status->value, $statusValues, strict: true);
-    }
-
-    public function scopeWithIncompleteSigners(Builder $query): Builder
-    {
-        return $query->whereHas('documentSigners', function ($query) {
-            $query->whereNull('signature_completed_at');
-        });
     }
 
     public function areAllSignersCompleted(): bool
