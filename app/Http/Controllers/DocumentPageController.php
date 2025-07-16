@@ -17,7 +17,8 @@ class DocumentPageController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('viewAny', DocumentPage::class);
-        return DocumentPage::viewableBy($request->user())
+        return DocumentPage::query()
+            ->viewableBy($request->user())
             ->with('documentFields')
             ->paginateOrGetAll($request);
     }

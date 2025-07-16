@@ -5,6 +5,7 @@ namespace App\Builders;
 use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\OwnableBuilder;
 use App\Models\User;
+use App\Builders\DocumentBuilder;
 
 /**
  * @template TModelClass of \App\Models\DocumentPage
@@ -16,9 +17,10 @@ class DocumentPageBuilder extends BaseBuilder implements OwnableBuilder
     public function ownedBy(User | null $user = null): self
     {
         return $this->whereHas('document', function (Builder $query) use ($user) {
-            $this
-                ->getBuilder($query, DocumentBuilder::class)
-                ->ownedBy($user);
+            $query->where(function (Builder $q) use ($user) {
+                $this->getBuilder($q, DocumentBuilder::class)
+                    ->ownedBy($user);
+            });
         });
     }
 
@@ -26,9 +28,10 @@ class DocumentPageBuilder extends BaseBuilder implements OwnableBuilder
     public function viewableBy(User | null $user = null): self
     {
         return $this->whereHas('document', function (Builder $query) use ($user) {
-            $this
-                ->getBuilder($query, DocumentBuilder::class)
-                ->viewableBy($user);
+            $query->where(function (Builder $q) use ($user) {
+                $this->getBuilder($q, DocumentBuilder::class)
+                    ->viewableBy($user);
+            });
         });
     }
 } 

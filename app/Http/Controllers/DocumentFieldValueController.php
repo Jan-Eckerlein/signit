@@ -26,10 +26,11 @@ class DocumentFieldValueController extends Controller
         // The observer has already run and potentially updated the document status
         $document = $documentFieldValue->documentField->documentSigner->document;
         $wasCompleted = $document->status === DocumentStatus::COMPLETED;
-        
-        return new DocumentFieldValueResource($documentFieldValue->load(['signatureSign']), [
-            'document_completed' => $wasCompleted,
-            'document_status' => $document->status
-        ]);
+
+        return (new DocumentFieldValueResource($documentFieldValue->load(['signatureSign'])))
+            ->additional([
+                'document_completed' => $wasCompleted,
+                'document_status' => $document->status
+            ]);
     }
 }
