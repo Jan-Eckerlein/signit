@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Services\DocumentFieldValueValidationService;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class StoreDocumentFieldValueRequest extends FormRequest
 {
@@ -35,7 +36,7 @@ class StoreDocumentFieldValueRequest extends FormRequest
     /**
      * Configure the validator instance.
      */
-    public function withValidator($validator)
+    public function withValidator(Validator $validator): void
     {
         $validator->after(function ($validator) {
             $this->validateValueFields($validator);
@@ -45,7 +46,7 @@ class StoreDocumentFieldValueRequest extends FormRequest
     /**
      * Validate value fields using the shared validation service.
      */
-    private function validateValueFields($validator)
+    private function validateValueFields(Validator $validator): void
     {
         $documentFieldId = $this->input('signer_document_field_id');
         

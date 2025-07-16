@@ -30,7 +30,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
 class DocumentLog extends Model implements Ownable, Lockable
 {
     /** @use HasBuilder<\App\Builders\DocumentLogBuilder> */
-    use HasFactory, ProtectsLockedModels, HasBuilder;
+    use HasBuilder;
+    use ProtectsLockedModels;
 
     protected static string $builder = DocumentLogBuilder::class;
 

@@ -35,7 +35,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
 class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 {
     /** @use HasBuilder<\App\Builders\DocumentSignerBuilder> */
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
+    use HasBuilder;
+    use ProtectsLockedModels, ValidatesModelModifications;
 
     protected static string $builder = DocumentSignerBuilder::class;
 

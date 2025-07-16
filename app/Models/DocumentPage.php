@@ -27,7 +27,8 @@ class DocumentPage extends Model implements Lockable, Ownable
 {
     /** @use HasFactory<\Database\Factories\DocumentPageFactory> */
     /** @use HasBuilder<\App\Builders\DocumentPageBuilder> */
-    use HasFactory, ProtectsLockedModels, HasBuilder;
+    use HasBuilder;
+    use ProtectsLockedModels;
 
     protected static string $builder = DocumentPageBuilder::class;
 

@@ -16,6 +16,7 @@ use App\Builders\SignBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $user_id
  * @property \Carbon\Carbon $created_at
@@ -25,11 +26,12 @@ use Illuminate\Database\Eloquent\HasBuilder;
 class Sign extends Model implements Lockable, Ownable
 {
     /** @use HasBuilder<\App\Builders\SignBuilder> */
-    use HasFactory, SoftDeletes, ProtectsLockedModels, HasBuilder;
+    use HasBuilder;
+    use SoftDeletes, ProtectsLockedModels;
 
     protected static string $builder = SignBuilder::class;
 
-    protected $allowSoftDeletes = true;
+    protected bool $allowSoftDeletes = true;
 
     protected $fillable = [
         'user_id',
