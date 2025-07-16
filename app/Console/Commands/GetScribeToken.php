@@ -23,7 +23,7 @@ class GetScribeToken extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         if (!file_exists(storage_path('app/private/scribe-token.txt'))) {
             echo "Scribe token not found, Run the following command to generate a new one:\n";
