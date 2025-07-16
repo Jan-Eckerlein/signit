@@ -4,14 +4,21 @@ namespace App\Policies\Composables;
 
 use App\Contracts\Ownable;
 use App\Contracts\OwnablePolicy;
+
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
-
+/**
+ * @mixin ComposablePolicy
+ * @mixin OwnablePolicy
+ * 
+ * @template TModelClass of \Illuminate\Database\Eloquent\Model&\App\Contracts\Ownable
+ * @phpstan-require-implements \App\Contracts\OwnablePolicy
+ */
 trait HandlesOwnable
 {
     protected function bootHandlesOwnable()    {
-        if (!method_exists($this, 'register')) {
+        if (!$this instanceof ComposablePolicy) {
             throw new \LogicException(static::class . ' must extend ComposablePolicy to use HandlesOwnable.');
         }
         $this->register('viewAny', $this->canViewAny(...));
@@ -21,13 +28,6 @@ trait HandlesOwnable
         $this->register('delete', $this->canDelete(...));
         $this->register('restore', $this->canRestore(...));
         $this->register('forceDelete', $this->canForceDelete(...));
-    }
-
-    protected function checkOwnable(Model $model): void
-    {
-        if (!$model instanceof Ownable) {
-            throw new \LogicException(static::class . ' must extend Ownable to use HandlesOwnable.');
-        }
     }
 
     protected function checkMagicLinkUsedAndAllowed(string $action): bool
@@ -76,11 +76,11 @@ trait HandlesOwnable
 
     /**
      * Determine whether the user can view the model.
+     * 
+     * @param TModelClass $model
      */
-    protected function canView(User $user, Model $model): bool
+    protected function canView(User $user, Model&Ownable $model): bool
     {
-        $this->checkOwnable($model);
-        
         return $this->checkMagicLinkUsedAndAllowed('view') && $model->isViewableBy($user);
     }
 
@@ -95,10 +95,11 @@ trait HandlesOwnable
 
     /**
      * Determine whether the user can update the model.
+     * 
+     * @param TModelClass $model
      */
-    protected function canUpdate(User $user, Model $model): bool
+    protected function canUpdate(User $user, Model&Ownable $model): bool
     {
-        $this->checkOwnable($model);
         $modelClass = $this->getModelClass();
         $mergedAttributes = array_merge($model->getAttributes(), request()->all());
         
@@ -107,31 +108,31 @@ trait HandlesOwnable
 
     /**
      * Determine whether the user can delete the model.
+     * 
+     * @param TModelClass $model
      */
-    protected function canDelete(User $user, Model $model): bool
-    {
-        $this->checkOwnable($model);
-        
+    protected function canDelete(User $user, Model&Ownable $model): bool
+    {   
         return $this->checkMagicLinkUsedAndAllowed('delete') && $model->isOwnedBy($user);
     }
 
     /**
      * Determine whether the user can restore the model.
+     * 
+     * @param TModelClass $model
      */
-    protected function canRestore(User $user, Model $model): bool
+    protected function canRestore(User $user, Model&Ownable $model): bool
     {
-        $this->checkOwnable($model);
-        
         return $this->checkMagicLinkUsedAndAllowed('restore') && $model->isOwnedBy($user);
     }
 
     /**
      * Determine whether the user can permanently delete the model.
+     * 
+     * @param TModelClass $model
      */
-    protected function canForceDelete(User $user, Model $model): bool
+    protected function canForceDelete(User $user, Model&Ownable $model): bool
     {
-        $this->checkOwnable($model);
-        
         return $this->checkMagicLinkUsedAndAllowed('forceDelete') && $model->isOwnedBy($user);
     }
 } 
