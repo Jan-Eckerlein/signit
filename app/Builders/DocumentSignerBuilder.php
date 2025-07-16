@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Contracts\OwnableBuilder;
 
 /**
- * @template TModelClass of \App\Models\DocumentSigner
- * @extends BaseBuilder<TModelClass>
+ * @extends BaseBuilder<\App\Models\DocumentSigner>
  */
 class DocumentSignerBuilder extends BaseBuilder implements OwnableBuilder
 {

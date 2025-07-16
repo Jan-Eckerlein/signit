@@ -10,8 +10,7 @@ use App\Builders\DocumentSignerBuilder;
 use App\Models\User;
 
 /**
- * @template TModelClass of \App\Models\Document
- * @extends BaseBuilder<TModelClass>
+ * @extends BaseBuilder<\App\Models\Document>
  */
 class DocumentBuilder extends BaseBuilder implements OwnableBuilder
 {
@@ -44,14 +43,14 @@ class DocumentBuilder extends BaseBuilder implements OwnableBuilder
 		return $this;
     }
 
-    /** @return $this */
-    public function withIncompleteSigners(): self
-    {
-        $this->whereHas('documentSigners', function (Builder $query) {
-            $this
-                ->getBuilder($query, DocumentSignerBuilder::class)
-                ->whereNull('signature_completed_at');
-        });
-        return $this;
-    }
+    // /** @return $this */
+    // public function withIncompleteSigners(): self
+    // {
+    //     $this->whereHas('documentSigners', function (Builder $query) {
+    //         $this
+    //             ->getBuilder($query, DocumentSignerBuilder::class)
+    //             ->whereNull('signature_completed_at');
+    //     });
+    //     return $this;
+    // }
 } 

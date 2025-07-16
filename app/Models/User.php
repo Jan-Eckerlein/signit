@@ -14,13 +14,14 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\HasBuilder;
 
-/**
- * @template TModelClass of User
- */
+
 class User extends Authenticatable
 {
+    use Notifiable, HasApiTokens;
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens, HasBuilder;
+    use HasFactory;
+    /** @use HasBuilder<UserBuilder> */
+    use HasBuilder;
 
     protected static string $builder = UserBuilder::class;
 

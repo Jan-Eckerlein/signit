@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
 class BaseBuilder extends Builder
 {
     /**
-     * @template T of Builder
-     * @param Builder $query
+     * @template T of BaseBuilder
+     * @param BaseBuilder<TModelClass> $query
      * @param class-string<T> $builderClass
      * @return T
      * @throws \Exception
      */
-    public function getBuilder(Builder $query, string $builderClass): Builder
+    public function getBuilder(BaseBuilder $query, string $builderClass): BaseBuilder
     {
         if (!$query instanceof $builderClass) {
             throw new \Exception('Query is not a ' . $builderClass);
