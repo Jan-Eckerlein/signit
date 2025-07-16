@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 // ---------------------------- PROPERTIES ----------------------------
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $document_id
  * @property PdfProcessStatus $status

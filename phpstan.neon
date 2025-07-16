@@ -5,6 +5,8 @@ includes:
 
 parameters:
 
+    checkModelProperties: true
+
     paths:
         - app/
 

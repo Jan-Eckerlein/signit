@@ -1,0 +1,5 @@
+services:
+    -
+        class: App\PHPStan\OwnablePropertiesExtension
+        tags:
+            - phpstan.broker.dynamicMethodParameterTypeExtension 

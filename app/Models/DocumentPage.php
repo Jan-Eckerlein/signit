@@ -16,6 +16,7 @@ use App\Builders\DocumentPageBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $document_id
  * @property int $page_number

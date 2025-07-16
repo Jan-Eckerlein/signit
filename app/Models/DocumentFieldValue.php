@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $signer_document_field_id
  * @property int|null $value_signature_sign_id

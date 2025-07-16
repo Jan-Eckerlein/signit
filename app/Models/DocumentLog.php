@@ -15,6 +15,7 @@ use App\Builders\DocumentLogBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $contact_id
  * @property int $document_signer_id

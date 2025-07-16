@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 // ---------------------------- PROPERTIES ----------------------------
 
 /**
+ * @implements Ownable<self>
  * @property int $id
  * @property int $document_id
  * @property int|null $document_signer_id

@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property int $document_id
+ * @property string $token
+ * @property \Carbon\Carbon $expires_at
+*/
 class MagicLink extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'user_id',

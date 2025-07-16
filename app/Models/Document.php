@@ -17,10 +17,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\HasBuilder;
 
+/**
+ * @implements Ownable<self>
+ * @property int $id
+ * @property string $title
+ * @property int $owner_user_id
+ * @property string $description
+ * @property int $template_document_id
+ * @property DocumentStatus $status
+ */
 class Document extends Model implements Lockable, Ownable, Validatable
 {
     /** @use HasBuilder<\App\Builders\DocumentBuilder> */
-    use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
+    use HasBuilder;
+    use ProtectsLockedModels, ValidatesModelModifications;
 
     protected static string $builder = DocumentBuilder::class;
 
