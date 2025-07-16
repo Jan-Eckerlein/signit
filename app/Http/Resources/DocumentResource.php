@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin Document */
 class DocumentResource extends JsonResource
 {
     /**
@@ -20,8 +22,7 @@ class DocumentResource extends JsonResource
             'owner_user_id' => $this->owner_user_id,
             'description' => $this->description,
             'status' => $this->status,
-            'pdf_process_id' => $this->pdf_process_id,
-            'template_id' => $this->template_id,
+            'template_document_id' => $this->template_document_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'owner_user' => new UserResource($this->whenLoaded('ownerUser')),

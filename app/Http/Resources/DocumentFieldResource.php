@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DocumentField;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin DocumentField */
 class DocumentFieldResource extends JsonResource
 {
     /**

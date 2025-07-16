@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\PdfProcess;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin PdfProcess */
 class PdfProcessResource extends JsonResource
 {
     /**

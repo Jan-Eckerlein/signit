@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DocumentSigner;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -12,6 +13,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * 
  * This resource represents a document signer, which links a user to a document
  * for signing purposes.
+ * 
+ * @mixin DocumentSigner
  */
 class DocumentSignerResource extends JsonResource
 {

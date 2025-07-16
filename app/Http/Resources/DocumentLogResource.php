@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\DocumentLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin DocumentLog */
 class DocumentLogResource extends JsonResource
 {
     /**
