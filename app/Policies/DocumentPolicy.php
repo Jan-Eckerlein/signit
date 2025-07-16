@@ -10,10 +10,11 @@ use App\Policies\Composables\HandlesOwnable;
 
 class DocumentPolicy extends ComposablePolicy implements OwnablePolicy
 {
+	/** @use HandlesOwnable<\App\Models\Document> */
 	use HandlesOwnable;
 
 	public function getMagicLinkAllowedActions(): array
 	{
-		return ['view', 'read'];
+		return ['view'];
 	}
 }
