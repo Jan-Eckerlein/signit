@@ -17,7 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait HandlesOwnable
 {
-    protected function bootHandlesOwnable()    {
+    protected function bootHandlesOwnable(): void
+    {
         if (!$this instanceof ComposablePolicy) {
             throw new \LogicException(static::class . ' must extend ComposablePolicy to use HandlesOwnable.');
         }

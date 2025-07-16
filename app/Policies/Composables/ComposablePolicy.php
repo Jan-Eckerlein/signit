@@ -6,6 +6,7 @@ use Closure;
 
 abstract class ComposablePolicy
 {
+    /** @var array<string, array<Closure>> */
     protected array $gateChains = [];
 
     public function __construct()
@@ -18,7 +19,10 @@ abstract class ComposablePolicy
         $this->gateChains[$action][] = $callback;
     }
 
-    protected function runChain(string $action, ...$args): bool
+    /**
+     * @param array<int, mixed> $args
+     */ 
+    protected function runChain(string $action, array ...$args): bool
     {
         if (!isset($this->gateChains[$action])) {
             throw new \RuntimeException("No gatechain registered for '$action'");
@@ -33,7 +37,10 @@ abstract class ComposablePolicy
         return true;
     }
 
-    public function __call(string $method, array $arguments)
+    /**
+     * @param array<int, mixed> $arguments
+     */
+    public function __call(string $method, array $arguments): bool
     {
         return $this->runChain($method, ...$arguments);
     }
