@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DocumentSignerBuilder;
+use App\Builders\DocumentSignerBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 // ---------------------------- PROPERTIES ----------------------------
@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentSigner extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasBuilder<\App\Builders\DocumentSignerBuilder> */
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
 
     protected static string $builder = DocumentSignerBuilder::class;

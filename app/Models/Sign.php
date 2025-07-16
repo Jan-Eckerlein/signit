@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-use App\Models\SignBuilder;
+use App\Builders\SignBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class Sign extends Model implements Lockable, Ownable
 {
+    /** @use HasBuilder<\App\Builders\SignBuilder> */
     use HasFactory, SoftDeletes, ProtectsLockedModels, HasBuilder;
 
     protected static string $builder = SignBuilder::class;

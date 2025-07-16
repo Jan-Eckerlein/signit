@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DocumentLogBuilder;
+use App\Builders\DocumentLogBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentLog extends Model implements Ownable, Lockable
 {
+    /** @use HasBuilder<\App\Builders\DocumentLogBuilder> */
     use HasFactory, ProtectsLockedModels, HasBuilder;
 
     protected static string $builder = DocumentLogBuilder::class;

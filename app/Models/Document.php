@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\DocumentBuilder;
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Contracts\Validatable;
@@ -9,18 +10,19 @@ use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DocumentBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 class Document extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasBuilder<\App\Builders\DocumentBuilder> */
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
+
+    protected static string $builder = DocumentBuilder::class;
 
     protected $fillable = [
         'title',
@@ -28,8 +30,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'description',
         'template_document_id',
     ];
-
-    protected static string $builder = DocumentBuilder::class;
 
     protected $guarded = ['status'];
 

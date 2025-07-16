@@ -6,10 +6,9 @@ use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Contracts\Validatable;
 use App\Enums\BaseModelEvent;
-use App\Enums\DocumentFieldType;
 use App\Enums\DocumentStatus;
 use App\Models\User;
-use App\Models\DocumentFieldValueBuilder;
+use App\Builders\DocumentFieldValueBuilder;
 use App\Services\DocumentFieldValueValidationService;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
@@ -33,6 +32,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasBuilder<\App\Builders\DocumentFieldValueBuilder> */
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
 
     protected static string $builder = DocumentFieldValueBuilder::class;
@@ -124,27 +124,5 @@ class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
     {
         $documentField = DocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
         return $documentField?->documentSigner?->user?->is($user);
-    }
-
-    /** @return Builder<DocumentFieldValue> */
-    public function scopeCompleted(Builder $query): Builder
-    {
-        return $query->where(function ($q) {
-            $q->whereNotNull('value_signature_sign_id')
-                ->orWhereNotNull('value_initials')
-                ->orWhereNotNull('value_text')
-                ->orWhereNotNull('value_checkbox')
-                ->orWhereNotNull('value_date');
-        });
-    }
-
-    /** @return Builder<DocumentFieldValue> */
-    public function scopeIncomplete(Builder $query): Builder
-    {
-        return $query->whereNull('value_signature_sign_id')
-            ->whereNull('value_initials')
-            ->whereNull('value_text')
-            ->whereNull('value_checkbox')
-            ->whereNull('value_date');
     }
 }

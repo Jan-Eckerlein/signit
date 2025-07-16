@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Builders\DocumentBuilder;
+use App\Contracts\OwnableBuilder;
 
-/** @extends Builder<DocumentLog> */
-class DocumentLogBuilder extends Builder
+/**
+ * @template TModelClass of \App\Models\DocumentLog
+ * @extends BaseBuilder<TModelClass>
+ */
+class DocumentLogBuilder extends BaseBuilder implements OwnableBuilder
 {
     /** @return $this */
     public function ownedBy(User | null $user = null): self
@@ -20,7 +26,9 @@ class DocumentLogBuilder extends Builder
     {
         $user = $user ?? Auth::user();
         $this->whereHas('document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
+            $this
+                ->getBuilder($query, DocumentBuilder::class)
+                ->viewableBy($user);
         });
         return $this;
     }

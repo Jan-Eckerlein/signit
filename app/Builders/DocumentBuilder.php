@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\DocumentStatus;
 use App\Contracts\OwnableBuilder;
+use App\Builders\DocumentSignerBuilder;
+use App\Models\User;
 
-/** @extends Builder<Document> */
-class DocumentBuilder extends Builder implements OwnableBuilder
+/**
+ * @template TModelClass of \App\Models\Document
+ * @extends BaseBuilder<TModelClass>
+ */
+class DocumentBuilder extends BaseBuilder implements OwnableBuilder
 {
     /** @return $this */
     public function ownedBy(User | null $user = null): self
@@ -43,7 +48,9 @@ class DocumentBuilder extends Builder implements OwnableBuilder
     public function withIncompleteSigners(): self
     {
         $this->whereHas('documentSigners', function (Builder $query) {
-            $query->whereNull('signature_completed_at');
+            $this
+                ->getBuilder($query, DocumentSignerBuilder::class)
+                ->whereNull('signature_completed_at');
         });
         return $this;
     }

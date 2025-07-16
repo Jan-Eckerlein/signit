@@ -1,19 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Builders;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
+use App\Contracts\OwnableBuilder;
 
-/** @extends Builder<DocumentSigner> */
-class DocumentSignerBuilder extends Builder
+/**
+ * @template TModelClass of \App\Models\PdfProcess
+ * @extends BaseBuilder<TModelClass>
+ */
+class PdfProcessBuilder extends BaseBuilder implements OwnableBuilder
 {
     /** @return $this */
     public function ownedBy(User | null $user = null): self
     {
-        $user = $user ?? Auth::user();
         $this->whereHas('document', function (Builder $query) use ($user) {
-            $query->ownedBy($user);
+            $this
+                ->getBuilder($query, DocumentBuilder::class)
+                ->ownedBy($user);
         });
         return $this;
     }
@@ -21,9 +26,10 @@ class DocumentSignerBuilder extends Builder
     /** @return $this */
     public function viewableBy(User | null $user = null): self
     {
-        $user = $user ?? Auth::user();
         $this->whereHas('document', function (Builder $query) use ($user) {
-            $query->viewableBy($user);
+            $this
+                ->getBuilder($query, DocumentBuilder::class)
+                ->ownedBy($user);
         });
         return $this;
     }

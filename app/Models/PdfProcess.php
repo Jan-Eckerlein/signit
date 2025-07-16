@@ -9,7 +9,7 @@ use App\Enums\PdfProcessStatus;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\PdfProcessBuilder;
+use App\Builders\PdfProcessBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 // ---------------------------- PROPERTIES ----------------------------
@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 
 class PdfProcess extends Model implements Lockable, Ownable
 {
+    /** @use HasBuilder<\App\Builders\PdfProcessBuilder> */
     use ProtectsLockedModels, HasBuilder;
 
     protected static string $builder = PdfProcessBuilder::class;

@@ -7,12 +7,13 @@ use App\Contracts\Ownable;
 use App\Enums\BaseModelEvent;
 use App\Enums\DocumentStatus;
 use App\Traits\ProtectsLockedModels;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Document;
+use App\Builders\DocumentPageBuilder;
+use Illuminate\Database\Eloquent\HasBuilder;
 
 /**
  * @property int $id
@@ -24,7 +25,9 @@ use App\Models\Document;
 class DocumentPage extends Model implements Lockable, Ownable
 {
     /** @use HasFactory<\Database\Factories\DocumentPageFactory> */
-    use HasFactory, ProtectsLockedModels;
+    use HasFactory, ProtectsLockedModels, HasBuilder;
+
+    protected static string $builder = DocumentPageBuilder::class;
 
     protected $fillable = [
         'document_id',
@@ -66,23 +69,7 @@ class DocumentPage extends Model implements Lockable, Ownable
         return $this->document->isViewableBy($user);
     }
 
-    /** @return Builder<DocumentPage> */
-    public function scopeOwnedBy(Builder $query, User | null $user = null): Builder
-    {
-        return $query->whereHas('document', function (Builder $query) use ($user) {
-            if (!($query instanceof DocumentBuilder)) return;
-            $query->ownedBy($user);
-        });
-    }
-
-    public function scopeViewableBy(Builder $query, User | null $user = null): Builder
-    {
-        return $query->whereHas('document', function (Builder $query) use ($user) {
-            if (!($query instanceof DocumentBuilder)) return;
-            $query->viewableBy($user);
-        });
-    }
-
+    /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
         $document = Document::find($attributes['document_id']);

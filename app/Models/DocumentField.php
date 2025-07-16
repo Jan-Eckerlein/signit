@@ -11,14 +11,13 @@ use App\Enums\DocumentStatus;
 use App\Models\User;
 use App\Traits\ProtectsLockedModels;
 use App\Traits\ValidatesModelModifications;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\Auth;
-use App\Models\DocumentFieldBuilder;
+use App\Builders\DocumentFieldBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
 
 // ---------------------------- PROPERTIES ----------------------------
@@ -41,6 +40,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentField extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasBuilder<\App\Builders\DocumentFieldBuilder> */
     use HasFactory, ProtectsLockedModels, ValidatesModelModifications, HasBuilder;
 
     protected static string $builder = DocumentFieldBuilder::class;

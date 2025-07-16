@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Models;
+namespace App\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DocumentField;
+use App\Builders\BaseBuilder;
+use App\Contracts\OwnableBuilder;
+use App\Models\User;
 
-/** @extends Builder<DocumentFieldValue> */
-class DocumentFieldValueBuilder extends Builder
+
+/**
+ * @template TModelClass of DocumentField
+ * @extends BaseBuilder<TModelClass>
+ */
+class DocumentFieldBuilder extends BaseBuilder implements OwnableBuilder
 {
     /** @return $this */
     public function ownedBy(User | null $user = null): self
     {
         $user = $user ?? Auth::user();
-        $this->whereHas('documentField.documentSigner.user', function (Builder $query) use ($user) {
-            $query->is($user);
+        $this->whereHas('documentSigner.document', function (Builder $query) use ($user) {
+			$this
+				->getBuilder($query, DocumentBuilder::class)
+				->ownedBy($user);
         });
         return $this;
     }
@@ -22,7 +32,11 @@ class DocumentFieldValueBuilder extends Builder
     public function viewableBy(User | null $user = null): self
     {
         $user = $user ?? Auth::user();
-        $this->ownedBy($user);
+        $this->whereHas('documentSigner.document', function (Builder $query) use ($user) {
+			$this
+				->getBuilder($query, DocumentBuilder::class)
+				->viewableBy($user);
+        });
         return $this;
     }
 

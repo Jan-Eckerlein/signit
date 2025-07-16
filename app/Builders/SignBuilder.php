@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Builders;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use App\Contracts\OwnableBuilder;
 
-/** @extends Builder<Sign> */
-class SignBuilder extends Builder
+/**
+ * @template TModelClass of \App\Models\Sign
+ * @extends BaseBuilder<TModelClass>
+ */
+class SignBuilder extends BaseBuilder implements OwnableBuilder
 {
     /** @return $this */
     public function ownedBy(User | null $user = null): self
