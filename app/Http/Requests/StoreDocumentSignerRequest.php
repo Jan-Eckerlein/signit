@@ -13,7 +13,7 @@ class StoreDocumentSignerRequest extends FormRequest
     public function authorize(): bool
     {
         $document = Document::find($this->document_id);
-        return $document && $document->isMine($this->user());
+        return $document && $document->isOwnedBy($this->user());
     }
 
     /**
