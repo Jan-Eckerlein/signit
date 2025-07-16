@@ -16,7 +16,7 @@ trait ProtectsLockedModels
         return $this;
     }
 
-    protected static function bootProtectsLockedModels()
+    protected static function bootProtectsLockedModels(): void
     {
         static::saving(function ($model) {
             $model->maybePreventModification(BaseModelEvent::SAVING);

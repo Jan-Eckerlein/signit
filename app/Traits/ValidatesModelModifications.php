@@ -9,7 +9,7 @@ trait ValidatesModelModifications
 {
     protected bool $bypassValidateModification = false;
 
-    protected static function bootValidatesModelModifications()
+    protected static function bootValidatesModelModifications(): void
     {
         static::saving(function ($model) {
             $model->maybeValidateModification(BaseModelEvent::SAVING, []);
@@ -20,6 +20,11 @@ trait ValidatesModelModifications
         });
     }
 
+    /**
+     * @param BaseModelEvent $event
+     * @param array<string, mixed> $options
+     * @return bool
+     */
     protected function maybeValidateModification(BaseModelEvent $event, array $options): bool
     {
         if ($this->bypassValidateModification) {

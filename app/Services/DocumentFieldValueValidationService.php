@@ -9,6 +9,9 @@ class DocumentFieldValueValidationService
 {
     /**
      * Validate that exactly one value field is filled and return the field name.
+     * 
+     * @param array<string, mixed> $data
+     * @return string
      */
     public static function validateExactlyOneValue(array $data): string
     {
@@ -39,6 +42,9 @@ class DocumentFieldValueValidationService
     
     /**
      * Validate that the value type matches the field type.
+     * 
+     * @param array<string, mixed> $data
+     * @param DocumentFieldType $fieldType
      */
     public static function validateValueMatchesFieldType(array $data, DocumentFieldType $fieldType): void
     {
@@ -68,6 +74,9 @@ class DocumentFieldValueValidationService
     
     /**
      * Add validation errors to a Laravel validator.
+     * 
+     * @param array<string, mixed> $data
+     * @param DocumentFieldType|null $fieldType
      */
     public static function addValidationErrors(Validator $validator, array $data, ?DocumentFieldType $fieldType = null): void
     {

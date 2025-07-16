@@ -9,6 +9,10 @@ use ReflectionMethod;
 
 class ExtractSharedPaginationParams extends GetFromQueryParamAttribute
 {
+    /**
+     * @param array<string, mixed> $routeRules
+     * @return array<string, array<string, mixed>>
+     */
     public function __invoke(ExtractedEndpointData $endpointData, array $routeRules = []): array
     {
         $method = $endpointData->method;

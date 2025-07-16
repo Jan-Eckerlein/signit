@@ -34,7 +34,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Register the paginateOrGetAll macro on Builder
         Builder::macro('paginateOrGetAll', function(Request $request, ?string $resourceClass = null, int $defaultPerPage = 20, int $maxPerPage = 1000) {
-            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            /** @var \Illuminate\Database\Eloquent\Builder<\Illuminate\Database\Eloquent\Model> $this */
+
             
             // Allow bypassing pagination with ?all=true
             if ($request->boolean('all')) {
