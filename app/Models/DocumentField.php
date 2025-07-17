@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @property int $id
  * @property int $document_page_id
  * @property int|null $document_signer_id
- * @property int $page
  * @property float $x
  * @property float $y
  * @property float $width
@@ -50,7 +49,6 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     protected $fillable = [
         'document_page_id',
         'document_signer_id',
-        'page',
         'x',
         'y',
         'width',
@@ -107,7 +105,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     {
         // change only when its status is draft:
         $draftFields = [
-            'document_page_id', 'document_signer_id', 'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
+            'document_page_id', 'document_signer_id', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
         ];
         foreach ($draftFields as $field) {
             if ($this->isDirty($field)) {

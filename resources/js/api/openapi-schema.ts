@@ -601,7 +601,7 @@ export interface operations {
                      */
                     password_confirmation: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -737,12 +737,42 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
+                        /** @example [
+                         *       {
+                         *         "id": 1,
+                         *         "user_id": 2,
+                         *         "email": "hirthe.theo@hauck.com",
+                         *         "name": "Alanis McLaughlin",
+                         *         "created_at": "2025-07-17T15:31:47.000000Z",
+                         *         "updated_at": "2025-07-17T15:31:47.000000Z"
+                         *       },
+                         *       {
+                         *         "id": 2,
+                         *         "user_id": 3,
+                         *         "email": "nstokes@yahoo.com",
+                         *         "name": "Dr. Grayson Glover",
+                         *         "created_at": "2025-07-17T15:31:47.000000Z",
+                         *         "updated_at": "2025-07-17T15:31:47.000000Z"
+                         *       }
+                         *     ] */
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example 2 */
+                            user_id?: number;
+                            /** @example hirthe.theo@hauck.com */
+                            email?: string;
+                            /** @example Alanis McLaughlin */
+                            name?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            updated_at?: string;
+                        }[];
                         links?: {
-                            /** @example http://localhost:8000/api/contacts?page=1 */
+                            /** @example /?page=1 */
                             first?: string;
-                            /** @example http://localhost:8000/api/contacts?page=1 */
+                            /** @example /?page=1 */
                             last?: string;
                             /** @example null */
                             prev?: string;
@@ -752,8 +782,8 @@ export interface operations {
                         meta?: {
                             /** @example 1 */
                             current_page?: number;
-                            /** @example null */
-                            from?: string;
+                            /** @example 1 */
+                            from?: number;
                             /** @example 1 */
                             last_page?: number;
                             /** @example [
@@ -763,7 +793,7 @@ export interface operations {
                              *         "active": false
                              *       },
                              *       {
-                             *         "url": "http://localhost:8000/api/contacts?page=1",
+                             *         "url": "/?page=1",
                              *         "label": "1",
                              *         "active": true
                              *       },
@@ -781,13 +811,13 @@ export interface operations {
                                 /** @example false */
                                 active?: boolean;
                             }[];
-                            /** @example http://localhost:8000/api/contacts */
+                            /** @example / */
                             path?: string;
                             /** @example 20 */
                             per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
+                            /** @example 2 */
+                            to?: number;
+                            /** @example 2 */
                             total?: number;
                         };
                     };
@@ -818,7 +848,31 @@ export interface operations {
                 };
             };
         };
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example 2 */
+                            user_id?: number;
+                            /** @example okon.justina@gaylord.com */
+                            email?: string;
+                            /** @example Mittie Considine */
+                            name?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     showContact: {
         parameters: {
@@ -835,14 +889,26 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\Contact] 16 */
-                        message?: string;
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example 2 */
+                            user_id?: number;
+                            /** @example hirthe.theo@hauck.com */
+                            email?: string;
+                            /** @example Alanis McLaughlin */
+                            name?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            updated_at?: string;
+                        };
                     };
                 };
             };
@@ -877,7 +943,31 @@ export interface operations {
                 };
             };
         };
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example 2 */
+                            user_id?: number;
+                            /** @example okon.justina@gaylord.com */
+                            email?: string;
+                            /** @example Mittie Considine */
+                            name?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     deleteContact: {
         parameters: {
@@ -893,7 +983,31 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example 1 */
+                            id?: number;
+                            /** @example 2 */
+                            user_id?: number;
+                            /** @example hirthe.theo@hauck.com */
+                            email?: string;
+                            /** @example Alanis McLaughlin */
+                            name?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            created_at?: string;
+                            /** @example 2025-07-17T15:31:47.000000Z */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     listDocumentLogs: {
         parameters: {
@@ -915,65 +1029,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/document-logs?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/document-logs?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/document-logs?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/document-logs */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Server Error */
+                        message?: string;
                     };
                 };
             };
@@ -1027,65 +1090,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/document-signers?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/document-signers?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/document-signers */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Server Error */
+                        message?: string;
                     };
                 };
             };
@@ -1263,59 +1275,46 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/documents?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/documents?page=1 */
-                            last?: string;
+                        /** @example [
+                         *       {
+                         *         "id": null,
+                         *         "title": null,
+                         *         "owner_user_id": null,
+                         *         "description": null,
+                         *         "status": null,
+                         *         "template_document_id": null,
+                         *         "created_at": null,
+                         *         "updated_at": null
+                         *       },
+                         *       {
+                         *         "id": null,
+                         *         "title": null,
+                         *         "owner_user_id": null,
+                         *         "description": null,
+                         *         "status": null,
+                         *         "template_document_id": null,
+                         *         "created_at": null,
+                         *         "updated_at": null
+                         *       }
+                         *     ] */
+                        data?: {
                             /** @example null */
-                            prev?: string;
+                            id?: string;
                             /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
+                            title?: string;
                             /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/documents?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/documents */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
+                            owner_user_id?: string;
                             /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                            description?: string;
+                            /** @example null */
+                            status?: string;
+                            /** @example null */
+                            template_document_id?: string;
+                            /** @example null */
+                            created_at?: string;
+                            /** @example null */
+                            updated_at?: string;
+                        }[];
                     };
                 };
             };
@@ -1346,7 +1345,35 @@ export interface operations {
                 };
             };
         };
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example null */
+                            id?: string;
+                            /** @example null */
+                            title?: string;
+                            /** @example null */
+                            owner_user_id?: string;
+                            /** @example null */
+                            description?: string;
+                            /** @example null */
+                            status?: string;
+                            /** @example null */
+                            template_document_id?: string;
+                            /** @example null */
+                            created_at?: string;
+                            /** @example null */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     showDocument: {
         parameters: {
@@ -1363,14 +1390,30 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\Document] 16 */
-                        message?: string;
+                        data?: {
+                            /** @example null */
+                            id?: string;
+                            /** @example null */
+                            title?: string;
+                            /** @example null */
+                            owner_user_id?: string;
+                            /** @example null */
+                            description?: string;
+                            /** @example null */
+                            status?: string;
+                            /** @example null */
+                            template_document_id?: string;
+                            /** @example null */
+                            created_at?: string;
+                            /** @example null */
+                            updated_at?: string;
+                        };
                     };
                 };
             };
@@ -1405,7 +1448,35 @@ export interface operations {
                 };
             };
         };
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example null */
+                            id?: string;
+                            /** @example null */
+                            title?: string;
+                            /** @example null */
+                            owner_user_id?: string;
+                            /** @example null */
+                            description?: string;
+                            /** @example null */
+                            status?: string;
+                            /** @example null */
+                            template_document_id?: string;
+                            /** @example null */
+                            created_at?: string;
+                            /** @example null */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     deleteDocument: {
         parameters: {
@@ -1421,7 +1492,35 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
-        responses: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data?: {
+                            /** @example null */
+                            id?: string;
+                            /** @example null */
+                            title?: string;
+                            /** @example null */
+                            owner_user_id?: string;
+                            /** @example null */
+                            description?: string;
+                            /** @example null */
+                            status?: string;
+                            /** @example null */
+                            template_document_id?: string;
+                            /** @example null */
+                            created_at?: string;
+                            /** @example null */
+                            updated_at?: string;
+                        };
+                    };
+                };
+            };
+        };
     };
     getDocumentProgress: {
         parameters: {
@@ -1484,11 +1583,11 @@ export interface operations {
                     value_initials?: string | null;
                     /** @example architecto */
                     value_text?: string | null;
-                    /** @example true */
+                    /** @example false */
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-15T19:31:51
+                     * @example 2025-07-17T15:31:47
                      */
                     value_date?: string | null;
                 };
@@ -1516,65 +1615,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/signer-document-fields?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/signer-document-fields?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/signer-document-fields */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Server Error */
+                        message?: string;
                     };
                 };
             };
@@ -1615,7 +1663,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example text
+                     * @example signature
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1626,7 +1674,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
@@ -1648,13 +1696,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            403: {
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example This action is unauthorized. */
+                        /** @example Server Error */
                         message?: string;
                     };
                 };
@@ -1702,7 +1750,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example date
+                     * @example checkbox
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1756,65 +1804,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            500: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8000/api/signs?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8000/api/signs?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8000/api/signs?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8000/api/signs */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Server Error */
+                        message?: string;
                     };
                 };
             };

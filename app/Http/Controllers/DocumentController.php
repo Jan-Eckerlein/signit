@@ -29,7 +29,9 @@ class DocumentController extends Controller
      * List Documents
      * 
      * List all documents viewable by the user.
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentResource>
+     * 
+     * @apiResourceCollection App\Http\Resources\DocumentResource
+     * @apiResourceModel App\Models\Document
      */
     #[SharedPaginationParams]
     public function index(Request $request): ResourceCollection
@@ -44,6 +46,9 @@ class DocumentController extends Controller
      * Create Document
      * 
      * Store a newly created document in storage.
+     * 
+     * @apiResource App\Http\Resources\DocumentResource
+     * @apiResourceModel App\Models\Document
      */
     public function store(StoreDocumentRequest $request): DocumentResource
     {
@@ -116,6 +121,9 @@ class DocumentController extends Controller
      * Show Document
      * 
      * Display the specified document.
+     * 
+     * @apiResource App\Http\Resources\DocumentResource
+     * @apiResourceModel App\Models\Document
      */
     public function show(Request $request, Document $document): DocumentResource
     {
@@ -127,6 +135,9 @@ class DocumentController extends Controller
      * Update Document
      * 
      * Update the specified document in storage.
+     * 
+     * @apiResource App\Http\Resources\DocumentResource
+     * @apiResourceModel App\Models\Document
      */
     public function update(UpdateDocumentRequest $request, Document $document): DocumentResource
     {
@@ -139,6 +150,9 @@ class DocumentController extends Controller
      * Delete Document
      * 
      * Remove the specified document from storage.
+     * 
+     * @apiResource App\Http\Resources\DocumentResource
+     * @apiResourceModel App\Models\Document
      */
     public function destroy(Request $request, Document $document): JsonResponse
     {

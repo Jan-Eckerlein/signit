@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Contracts\Ownable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
-    
+
 /**
  * @implements Ownable<self>
  * @property int $id
@@ -21,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class Contact extends Model implements Ownable
 {
+    /** @use HasFactory<\Database\Factories\ContactFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\ContactBuilder> */
     use HasBuilder;
 

@@ -36,6 +36,7 @@ class DocumentFieldController extends Controller
      * Create Signer Document Field
      * 
      * Store a newly created signer document field in storage.
+     * @return \App\Http\Resources\DocumentFieldResource
      */
     public function store(StoreDocumentFieldRequest $request): DocumentFieldResource
     {
@@ -48,6 +49,7 @@ class DocumentFieldController extends Controller
      * Show Signer Document Field
      * 
      * Display the specified signer document field.
+     * @return \App\Http\Resources\DocumentFieldResource
      */
     public function show(Request $request, DocumentField $documentField): DocumentFieldResource
     {
@@ -59,6 +61,7 @@ class DocumentFieldController extends Controller
      * Update Signer Document Field
      * 
      * Update the specified signer document field in storage.
+     * @return \App\Http\Resources\DocumentFieldResource
      */
     public function update(UpdateDocumentFieldRequest $request, DocumentField $documentField): DocumentFieldResource
     {

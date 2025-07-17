@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
 use App\Attributes\SharedPaginationParams;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 /**
  * @group Contacts
@@ -21,9 +22,9 @@ class ContactController extends Controller
      * List Contacts
      * 
      * List all contacts owned by the authenticated user.
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\ContactResource>
      */
     #[SharedPaginationParams]
+    #[ResponseFromApiResource(ContactResource::class, Contact::class, collection: true, paginate: 20)]
     public function index(Request $request): ResourceCollection
     {
         Gate::authorize('viewAny', Contact::class);
@@ -35,6 +36,7 @@ class ContactController extends Controller
      * 
      * Store a newly created contact in storage.
      */
+    #[ResponseFromApiResource(ContactResource::class, Contact::class)]
     public function store(StoreContactRequest $request): ContactResource
     {
         Gate::authorize('create', Contact::class);
@@ -47,6 +49,7 @@ class ContactController extends Controller
      * 
      * Display the specified contact.
      */
+    #[ResponseFromApiResource(ContactResource::class, Contact::class)]
     public function show(Contact $contact): ContactResource
     {
         Gate::authorize('view', $contact);
@@ -58,6 +61,7 @@ class ContactController extends Controller
      * 
      * Update the specified contact in storage.
      */
+    #[ResponseFromApiResource(ContactResource::class, Contact::class)]
     public function update(UpdateContactRequest $request, Contact $contact): ContactResource
     {
         Gate::authorize('update', $contact);
@@ -70,6 +74,7 @@ class ContactController extends Controller
      * 
      * Remove the specified contact from storage.
      */
+    #[ResponseFromApiResource(ContactResource::class, Contact::class)]
     public function destroy(Contact $contact): JsonResponse
     {
         Gate::authorize('delete', $contact);
