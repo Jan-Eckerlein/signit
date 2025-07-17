@@ -21,7 +21,7 @@ class DocumentFieldValueResource extends JsonResource
     {
         $data = [
             'id' => $this->id,
-            'signer_document_field_id' => $this->signer_document_field_id,
+            'document_field_id' => $this->document_field_id,
             'value_signature_sign_id' => $this->value_signature_sign_id,
             'value_initials' => $this->value_initials,
             'value_text' => $this->value_text,

@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 /**
  * @implements Ownable<self>
  * @property int $id
- * @property int $signer_document_field_id
+ * @property int $document_field_id
  * @property int|null $value_signature_sign_id
  * @property string|null $value_initials
  * @property string|null $value_text
@@ -40,7 +40,7 @@ class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
     protected static string $builder = DocumentFieldValueBuilder::class;
 
     protected $fillable = [
-        'signer_document_field_id',
+        'document_field_id',
         'value_signature_sign_id',
         'value_initials',
         'value_text',
@@ -124,7 +124,7 @@ class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
-        $documentField = DocumentField::find($attributes['signer_document_field_id'])->with('documentSigner.user')->first();
+        $documentField = DocumentField::with('documentSigner.user')->find($attributes['document_field_id']);
         return $documentField?->documentSigner?->user?->is($user);
     }
 }

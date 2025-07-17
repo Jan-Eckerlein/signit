@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 /**
  * @implements Ownable<self>
  * @property int $id
- * @property int $document_id
+ * @property int $document_page_id
  * @property int|null $document_signer_id
  * @property int $page
  * @property float $x
@@ -48,7 +48,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     protected static string $builder = DocumentFieldBuilder::class;
 
     protected $fillable = [
-        'document_id',
+        'document_page_id',
         'document_signer_id',
         'page',
         'x',
@@ -107,7 +107,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     {
         // change only when its status is draft:
         $draftFields = [
-            'document_signer_id', 'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
+            'document_page_id', 'document_signer_id', 'page', 'x', 'y', 'width', 'height', 'type', 'label', 'description', 'required'
         ];
         foreach ($draftFields as $field) {
             if ($this->isDirty($field)) {
@@ -121,7 +121,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         // Validate that document_signer_id belongs to the same document
         if ($this->isDirty('document_signer_id') && $this->document_signer_id) {
             $documentSigner = DocumentSigner::find($this->document_signer_id);
-            if (!$documentSigner || $documentSigner->document_id != $this->document_id) {
+            if (!$documentSigner || $documentSigner->document_id != $this->documentPage?->document_id) {
                 throw new \Exception('Document signer must belong to the same document as the field.');
             }
         }
@@ -151,7 +151,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
-        $document = Document::find($attributes['document_id']);
-        return $document && $document->isOwnedBy($user);
+        $documentPage = DocumentPage::with('document')->find($attributes['document_page_id']);
+        return $documentPage && $documentPage->document->isOwnedBy($user);
     }
 } 

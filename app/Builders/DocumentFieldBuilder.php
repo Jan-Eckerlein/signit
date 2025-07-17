@@ -36,19 +36,16 @@ class DocumentFieldBuilder extends BaseBuilder implements OwnableBuilder
 			$this
 				->getBuilder($query, DocumentBuilder::class)
 				->viewableBy($user);
-        });
+    });
         return $this;
     }
 
     /** @return $this */
     public function completed(): self
     {
-        $this->where(function ($q) {
-            $q->whereNotNull('value_signature_sign_id')
-                ->orWhereNotNull('value_initials')
-                ->orWhereNotNull('value_text')
-                ->orWhereNotNull('value_checkbox')
-                ->orWhereNotNull('value_date');
+        $this->whereHas('value', function (Builder $query) {
+            $this->getBuilder($query, DocumentFieldValueBuilder::class)
+                ->completed();
         });
         return $this;
     }
@@ -56,11 +53,10 @@ class DocumentFieldBuilder extends BaseBuilder implements OwnableBuilder
     /** @return $this */
     public function incomplete(): self
     {
-        $this->whereNull('value_signature_sign_id')
-            ->whereNull('value_initials')
-            ->whereNull('value_text')
-            ->whereNull('value_checkbox')
-            ->whereNull('value_date');
+        $this->whereHas('value', function (Builder $query) {
+            $this->getBuilder($query, DocumentFieldValueBuilder::class)
+                ->incomplete();
+        });
         return $this;
     }
 } 
