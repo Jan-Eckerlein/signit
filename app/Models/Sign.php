@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class Sign extends Model implements Lockable, Ownable
 {
+    /** @use HasFactory<\Database\Factories\SignFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\SignBuilder> */
     use HasBuilder;
     use SoftDeletes, ProtectsLockedModels;

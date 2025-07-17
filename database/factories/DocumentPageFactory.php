@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Document;
+use App\Models\DocumentPage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DocumentPageFactory extends Factory
 {
+    protected $model = DocumentPage::class;
+
     /**
      * Define the model's default state.
      *

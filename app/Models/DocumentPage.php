@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 class DocumentPage extends Model implements Lockable, Ownable
 {
     /** @use HasFactory<\Database\Factories\DocumentPageFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\DocumentPageBuilder> */
     use HasBuilder;
     use ProtectsLockedModels;

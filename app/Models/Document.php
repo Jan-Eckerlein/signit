@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class Document extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasFactory<\Database\Factories\DocumentFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\DocumentBuilder> */
     use HasBuilder;
     use ProtectsLockedModels, ValidatesModelModifications;

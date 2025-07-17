@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
 {
+    /** @use HasFactory<\Database\Factories\DocumentFieldValueFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\DocumentFieldValueBuilder> */
     use HasBuilder;
     use ProtectsLockedModels, ValidatesModelModifications;

@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  */
 class DocumentLog extends Model implements Ownable, Lockable
 {
+    /** @use HasFactory<\Database\Factories\DocumentLogFactory> */
+    use HasFactory;
     /** @use HasBuilder<\App\Builders\DocumentLogBuilder> */
     use HasBuilder;
     use ProtectsLockedModels;
