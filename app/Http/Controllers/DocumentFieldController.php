@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 /**
  * @group Signer Document Fields
@@ -21,8 +22,8 @@ class DocumentFieldController extends Controller
      * List Signer Document Fields
      * 
      * List all signer document fields.
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentFieldResource>
      */
+    #[ResponseFromApiResource(DocumentFieldResource::class, DocumentField::class, collection: true, paginate: 20, factoryStates: ['validForScribe'])]
     #[SharedPaginationParams]
     public function index(Request $request): ResourceCollection
     {
@@ -36,8 +37,8 @@ class DocumentFieldController extends Controller
      * Create Signer Document Field
      * 
      * Store a newly created signer document field in storage.
-     * @return \App\Http\Resources\DocumentFieldResource
      */
+    #[ResponseFromApiResource(DocumentFieldResource::class, DocumentField::class)]
     public function store(StoreDocumentFieldRequest $request): DocumentFieldResource
     {
         Gate::authorize('create', DocumentField::class);
@@ -49,8 +50,8 @@ class DocumentFieldController extends Controller
      * Show Signer Document Field
      * 
      * Display the specified signer document field.
-     * @return \App\Http\Resources\DocumentFieldResource
      */
+    #[ResponseFromApiResource(DocumentFieldResource::class, DocumentField::class)]
     public function show(Request $request, DocumentField $documentField): DocumentFieldResource
     {
         Gate::authorize('view', $documentField);
@@ -61,8 +62,8 @@ class DocumentFieldController extends Controller
      * Update Signer Document Field
      * 
      * Update the specified signer document field in storage.
-     * @return \App\Http\Resources\DocumentFieldResource
      */
+    #[ResponseFromApiResource(DocumentFieldResource::class, DocumentField::class)]
     public function update(UpdateDocumentFieldRequest $request, DocumentField $documentField): DocumentFieldResource
     {
         Gate::authorize('update', $documentField);

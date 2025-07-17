@@ -288,7 +288,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"password_confirmation\": \"aykcmyuwpwlvqwrsitcpscqldz\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
@@ -308,7 +308,7 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "password_confirmation": "aykcmyuwpwlvqwrsitcpscqldz",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -441,10 +441,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-register"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -469,7 +469,7 @@ Must be one of:
     --data "{
     \"email\": \"gbailey@example.net\",
     \"password\": \"|]|{+-\",
-    \"handler\": \"token\"
+    \"handler\": \"session\"
 }"
 </code></pre></div>
 
@@ -487,7 +487,7 @@ const headers = {
 let body = {
     "email": "gbailey@example.net",
     "password": "|]|{+-",
-    "handler": "token"
+    "handler": "session"
 };
 
 fetch(url, {
@@ -598,10 +598,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-login"
-               value="token"
+               value="session"
                data-component="body">
     <br>
-<p>Example: <code>token</code></p>
+<p>Example: <code>session</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -786,8 +786,8 @@ access-control-allow-origin: *
         &quot;name&quot;: &quot;Scribe API&quot;,
         &quot;email&quot;: &quot;scribe@example.com&quot;,
         &quot;email_verified_at&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-15T19:15:24.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-15T19:15:24.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-17T19:20:11.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T19:20:11.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1201,16 +1201,16 @@ fetch(url, {
             &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;user_id&quot;: 3,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1424,8 +1424,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1585,8 +1585,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1746,8 +1746,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1923,8 +1923,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T15:31:47.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2074,19 +2074,67 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-logs">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: null,
+            &quot;document_signer_id&quot;: 2,
+            &quot;document_id&quot;: 4,
+            &quot;ip&quot;: &quot;155.108.169.192&quot;,
+            &quot;date&quot;: &quot;1971-08-02T05:36:21.000000Z&quot;,
+            &quot;icon&quot;: &quot;create&quot;,
+            &quot;text&quot;: &quot;Consequatur ut et sunt quisquam sit repellendus ut.&quot;,
+            &quot;created_at&quot;: null,
+            &quot;updated_at&quot;: null
+        },
+        {
+            &quot;id&quot;: null,
+            &quot;document_signer_id&quot;: 4,
+            &quot;document_id&quot;: 8,
+            &quot;ip&quot;: &quot;34.175.195.46&quot;,
+            &quot;date&quot;: &quot;2025-03-13T22:52:59.000000Z&quot;,
+            &quot;icon&quot;: &quot;watch&quot;,
+            &quot;text&quot;: &quot;Assumenda at aut illum provident ea nam ducimus.&quot;,
+            &quot;created_at&quot;: null,
+            &quot;updated_at&quot;: null
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;/?page=1&quot;,
+        &quot;last&quot;: &quot;/?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;/?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: 20,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
 }</code>
  </pre>
     </span>
@@ -2245,19 +2293,22 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-logs--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\DocumentLog] 16&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: null,
+        &quot;document_signer_id&quot;: 2,
+        &quot;document_id&quot;: 4,
+        &quot;ip&quot;: &quot;114.30.126.172&quot;,
+        &quot;date&quot;: &quot;2015-12-31T04:05:34.000000Z&quot;,
+        &quot;icon&quot;: &quot;create&quot;,
+        &quot;text&quot;: &quot;Id a consectetur assumenda eaque neque sit sunt nihil.&quot;,
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
+    }
 }</code>
  </pre>
     </span>
@@ -3422,26 +3473,58 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: null,
-            &quot;title&quot;: null,
-            &quot;owner_user_id&quot;: null,
-            &quot;description&quot;: null,
-            &quot;status&quot;: null,
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
+            &quot;owner_user_id&quot;: 2,
+            &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
+            &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: null,
-            &quot;updated_at&quot;: null
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
         },
         {
-            &quot;id&quot;: null,
-            &quot;title&quot;: null,
-            &quot;owner_user_id&quot;: null,
-            &quot;description&quot;: null,
-            &quot;status&quot;: null,
+            &quot;id&quot;: 2,
+            &quot;title&quot;: &quot;Deleniti nemo odit.&quot;,
+            &quot;owner_user_id&quot;: 3,
+            &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
+            &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: null,
-            &quot;updated_at&quot;: null
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
         }
-    ]
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;/?page=1&quot;,
+        &quot;last&quot;: &quot;/?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;/?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: 20,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
 }</code>
  </pre>
     </span>
@@ -3581,7 +3664,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"title\": \"b\",
     \"description\": \"Et animi quos velit et fugiat.\",
-    \"is_template\": false
+    \"is_template\": true
 }"
 </code></pre></div>
 
@@ -3600,7 +3683,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Et animi quos velit et fugiat.",
-    "is_template": false
+    "is_template": true
 };
 
 fetch(url, {
@@ -3619,14 +3702,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;title&quot;: null,
-        &quot;owner_user_id&quot;: null,
-        &quot;description&quot;: null,
-        &quot;status&quot;: null,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
+        &quot;owner_user_id&quot;: 2,
+        &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
+        &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3753,7 +3836,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -3803,14 +3886,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;title&quot;: null,
-        &quot;owner_user_id&quot;: null,
-        &quot;description&quot;: null,
-        &quot;status&quot;: null,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
+        &quot;owner_user_id&quot;: 2,
+        &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
+        &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3966,14 +4049,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;title&quot;: null,
-        &quot;owner_user_id&quot;: null,
-        &quot;description&quot;: null,
-        &quot;status&quot;: null,
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
+        &quot;owner_user_id&quot;: 2,
+        &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
+        &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4138,25 +4221,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-documents--id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;title&quot;: null,
-        &quot;owner_user_id&quot;: null,
-        &quot;description&quot;: null,
-        &quot;status&quot;: null,
-        &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
-    }
-}</code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-DELETEapi-documents--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-documents--id-"></span>:
@@ -4425,7 +4490,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
     \"value_checkbox\": false,
-    \"value_date\": \"2025-07-17T15:31:47\"
+    \"value_date\": \"2025-07-17T20:13:22\"
 }"
 </code></pre></div>
 
@@ -4446,7 +4511,7 @@ let body = {
     "value_initials": "n",
     "value_text": "architecto",
     "value_checkbox": false,
-    "value_date": "2025-07-17T15:31:47"
+    "value_date": "2025-07-17T20:13:22"
 };
 
 fetch(url, {
@@ -4458,7 +4523,26 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-signer-document-field-values">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: null,
+        &quot;document_field_id&quot;: 2,
+        &quot;value_signature_sign_id&quot;: null,
+        &quot;value_initials&quot;: null,
+        &quot;value_text&quot;: null,
+        &quot;value_checkbox&quot;: null,
+        &quot;value_date&quot;: &quot;2023-08-19T00:00:00.000000Z&quot;,
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-signer-document-field-values" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-signer-document-field-values"></span>:
@@ -4611,10 +4695,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-signer-document-field-values"
-               value="2025-07-17T15:31:47"
+               value="2025-07-17T20:13:22"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-17T15:31:47</code></p>
+<p>Must be a valid date. Example: <code>2025-07-17T20:13:22</code></p>
         </div>
         </form>
 
@@ -4669,19 +4753,75 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signer-document-fields">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;document_signer_id&quot;: 1,
+            &quot;page&quot;: null,
+            &quot;x&quot;: 878,
+            &quot;y&quot;: 721,
+            &quot;width&quot;: 228,
+            &quot;height&quot;: 56,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;label&quot;: &quot;non&quot;,
+            &quot;description&quot;: null,
+            &quot;required&quot;: false,
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;document_signer_id&quot;: 2,
+            &quot;page&quot;: null,
+            &quot;x&quot;: 938,
+            &quot;y&quot;: 846,
+            &quot;width&quot;: 65,
+            &quot;height&quot;: 148,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;label&quot;: &quot;qui&quot;,
+            &quot;description&quot;: &quot;Fugiat tempora eligendi mollitia rem ea sint officiis et.&quot;,
+            &quot;required&quot;: false,
+            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;/?page=1&quot;,
+        &quot;last&quot;: &quot;/?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;/?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: 20,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
 }</code>
  </pre>
     </span>
@@ -4824,10 +4964,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"signature\",
+    \"type\": \"checkbox\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": false
+    \"required\": true
 }"
 </code></pre></div>
 
@@ -4849,10 +4989,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "signature",
+    "type": "checkbox",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": false
+    "required": true
 };
 
 fetch(url, {
@@ -4864,7 +5004,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-signer-document-fields">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;document_signer_id&quot;: 1,
+        &quot;page&quot;: null,
+        &quot;x&quot;: 970,
+        &quot;y&quot;: 952,
+        &quot;width&quot;: 130,
+        &quot;height&quot;: 244,
+        &quot;type&quot;: &quot;initials&quot;,
+        &quot;label&quot;: &quot;mollitia&quot;,
+        &quot;description&quot;: null,
+        &quot;required&quot;: false,
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-signer-document-fields" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-signer-document-fields"></span>:
@@ -5018,10 +5181,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-signer-document-fields"
-               value="signature"
+               value="checkbox"
                data-component="body">
     <br>
-<p>Example: <code>signature</code></p>
+<p>Example: <code>checkbox</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5066,7 +5229,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -5110,19 +5273,26 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signer-document-fields--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;document_signer_id&quot;: 1,
+        &quot;page&quot;: null,
+        &quot;x&quot;: 72,
+        &quot;y&quot;: 880,
+        &quot;width&quot;: 150,
+        &quot;height&quot;: 133,
+        &quot;type&quot;: &quot;initials&quot;,
+        &quot;label&quot;: &quot;commodi&quot;,
+        &quot;description&quot;: &quot;Odit et et modi.&quot;,
+        &quot;required&quot;: false,
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5243,10 +5413,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"checkbox\",
+    \"type\": \"date\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": false
+    \"required\": true
 }"
 </code></pre></div>
 
@@ -5267,10 +5437,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "checkbox",
+    "type": "date",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": false
+    "required": true
 };
 
 fetch(url, {
@@ -5282,7 +5452,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-signer-document-fields--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;document_signer_id&quot;: 1,
+        &quot;page&quot;: null,
+        &quot;x&quot;: 970,
+        &quot;y&quot;: 952,
+        &quot;width&quot;: 130,
+        &quot;height&quot;: 244,
+        &quot;type&quot;: &quot;initials&quot;,
+        &quot;label&quot;: &quot;mollitia&quot;,
+        &quot;description&quot;: null,
+        &quot;required&quot;: false,
+        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-signer-document-fields--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-signer-document-fields--id-"></span>:
@@ -5452,10 +5645,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-signer-document-fields--id-"
-               value="checkbox"
+               value="date"
                data-component="body">
     <br>
-<p>Example: <code>checkbox</code></p>
+<p>Example: <code>date</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5500,7 +5693,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -5859,7 +6052,21 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-signs">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 2,
+        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-signs" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-signs"></span>:
@@ -5982,19 +6189,17 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signs--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\Sign] 16&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 2,
+        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -6131,7 +6336,21 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PUTapi-signs--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 2,
+        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-PUTapi-signs--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-PUTapi-signs--id-"></span>:

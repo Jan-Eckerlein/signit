@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @property string $description
  * @property int $template_document_id
  * @property DocumentStatus $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Document extends Model implements Lockable, Ownable, Validatable
 {
@@ -107,6 +109,15 @@ class Document extends Model implements Lockable, Ownable, Validatable
     {
         if (!$this->isDirty('status')) return true;
 
+        
+        // If the document is new, only allow 'template' or 'draft' status
+        if (!$this->exists) {
+            if (!in_array($this->status, [DocumentStatus::TEMPLATE, DocumentStatus::DRAFT], strict: true)) {
+                throw new \Exception('New documents must be created as template or draft');
+            }
+            return true;
+        }
+
         /** @var DocumentStatus $from */
         $from = $this->getOriginal('status');
         $to = $this->status;
@@ -123,11 +134,6 @@ class Document extends Model implements Lockable, Ownable, Validatable
             //! Completed documents are not editable at all
             DocumentStatus::COMPLETED->value => [],
         ];
-
-        // If the document is new, only allow 'template' or 'draft' status
-        if (!$this->exists && !in_array($this->status, [DocumentStatus::TEMPLATE, DocumentStatus::DRAFT], strict: true)) {
-            throw new \Exception('New documents must be created as template or draft');
-        }
 
         // Check if transition is valid
         if (!in_array($to->value, $validTransitions[$from->value], strict: true)) {

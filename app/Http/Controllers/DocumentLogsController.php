@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
-
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 /**
  * @group Document Logs
  */
@@ -20,8 +20,8 @@ class DocumentLogsController extends Controller
      * List Document Logs
      * 
      * List all document logs that the user can view.
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection<\App\Http\Resources\DocumentLogResource>
      */
+    #[ResponseFromApiResource(DocumentLogResource::class, DocumentLog::class, collection: true, paginate: 20)]
     #[SharedPaginationParams]
     public function index(Request $request): ResourceCollection
     {
@@ -39,8 +39,8 @@ class DocumentLogsController extends Controller
      * Show Document Log
      * 
      * Display the specified document log.
-     * @return \App\Http\Resources\DocumentLogResource
      */
+    #[ResponseFromApiResource(DocumentLogResource::class, DocumentLog::class)]
     public function show(Request $request, DocumentLog $documentLog): DocumentLogResource
     {
         Gate::authorize('view', $documentLog);

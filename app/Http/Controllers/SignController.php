@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
 use App\Attributes\SharedPaginationParams;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 /**
  * @group Signs
@@ -35,6 +36,7 @@ class SignController extends Controller
      * 
      * Store a newly created sign for a document in storage.
      */
+    #[ResponseFromApiResource(SignResource::class, Sign::class)]
     public function store(StoreSignRequest $request): SignResource
     {
         Gate::authorize('create', Sign::class);
@@ -47,6 +49,7 @@ class SignController extends Controller
      * 
      * Display the specified sign.
      */
+    #[ResponseFromApiResource(SignResource::class, Sign::class)]
     public function show(Request $request, Sign $sign): SignResource
     {
         Gate::authorize('view', $sign);
@@ -58,6 +61,7 @@ class SignController extends Controller
      * 
      * Update the specified sign in storage.
      */
+    #[ResponseFromApiResource(SignResource::class, Sign::class)]
     public function update(UpdateSignRequest $request, Sign $sign): SignResource
     {
         Gate::authorize('update', $sign);

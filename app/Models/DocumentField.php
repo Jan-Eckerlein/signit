@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Facades\Auth;
 use App\Builders\DocumentFieldBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Znck\Eloquent\Relations\BelongsToThrough;
 
 // ---------------------------- PROPERTIES ----------------------------
 
@@ -45,6 +46,7 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
     /** @use HasBuilder<\App\Builders\DocumentFieldBuilder> */
     use HasBuilder;
     use ProtectsLockedModels, ValidatesModelModifications;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected static string $builder = DocumentFieldBuilder::class;
 
@@ -80,10 +82,10 @@ class DocumentField extends Model implements Lockable, Ownable, Validatable
         return $this->belongsTo(DocumentPage::class);
     }
 
-    /** @return HasOneThrough<Document, DocumentPage, $this> */
-    public function document(): HasOneThrough
+    /** @return BelongsToThrough<Document, $this> */
+    public function document(): BelongsToThrough
     {
-        return $this->hasOneThrough(Document::class, DocumentPage::class);
+        return $this->belongsToThrough(Document::class, DocumentPage::class);
     }
 
     /** @return HasOne<DocumentFieldValue, $this> */

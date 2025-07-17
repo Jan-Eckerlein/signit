@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
 use App\Http\Resources\DocumentProgressResource;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 /**
  * @group Documents
@@ -29,11 +30,9 @@ class DocumentController extends Controller
      * List Documents
      * 
      * List all documents viewable by the user.
-     * 
-     * @apiResourceCollection App\Http\Resources\DocumentResource
-     * @apiResourceModel App\Models\Document
      */
     #[SharedPaginationParams]
+    #[ResponseFromApiResource(DocumentResource::class, Document::class, collection: true, paginate: 20)]
     public function index(Request $request): ResourceCollection
     {
         Gate::authorize('viewAny', Document::class);
@@ -46,10 +45,8 @@ class DocumentController extends Controller
      * Create Document
      * 
      * Store a newly created document in storage.
-     * 
-     * @apiResource App\Http\Resources\DocumentResource
-     * @apiResourceModel App\Models\Document
      */
+    #[ResponseFromApiResource(DocumentResource::class, Document::class)]
     public function store(StoreDocumentRequest $request): DocumentResource
     {
         Gate::authorize('create', Document::class);
@@ -121,10 +118,8 @@ class DocumentController extends Controller
      * Show Document
      * 
      * Display the specified document.
-     * 
-     * @apiResource App\Http\Resources\DocumentResource
-     * @apiResourceModel App\Models\Document
      */
+    #[ResponseFromApiResource(DocumentResource::class, Document::class)]
     public function show(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('view', $document);
@@ -135,10 +130,8 @@ class DocumentController extends Controller
      * Update Document
      * 
      * Update the specified document in storage.
-     * 
-     * @apiResource App\Http\Resources\DocumentResource
-     * @apiResourceModel App\Models\Document
      */
+    #[ResponseFromApiResource(DocumentResource::class, Document::class)]
     public function update(UpdateDocumentRequest $request, Document $document): DocumentResource
     {
         Gate::authorize('update', $document);
@@ -150,9 +143,6 @@ class DocumentController extends Controller
      * Delete Document
      * 
      * Remove the specified document from storage.
-     * 
-     * @apiResource App\Http\Resources\DocumentResource
-     * @apiResourceModel App\Models\Document
      */
     public function destroy(Request $request, Document $document): JsonResponse
     {
@@ -165,10 +155,8 @@ class DocumentController extends Controller
      * Get Document Progress
      * 
      * Retrieve the progress of the specified document.
-     * 
-     * @apiResource App\Http\Resources\DocumentProgressResource
-     * @apiResourceModel App\Models\Document
      */
+    #[ResponseFromApiResource(DocumentProgressResource::class, Document::class)]
     public function getProgress(Request $request, Document $document): DocumentProgressResource
     {
         Gate::authorize('view', $document);

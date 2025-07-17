@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDocumentFieldValueRequest;
 use App\Http\Resources\DocumentFieldValueResource;
 use App\Models\DocumentFieldValue;
 use Illuminate\Support\Facades\Gate;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 /**
  * @group Signer Document Field Values
@@ -18,6 +19,7 @@ class DocumentFieldValueController extends Controller
      * 
      * Store a newly created signer document field value in storage.
      */
+    #[ResponseFromApiResource(DocumentFieldValueResource::class, DocumentFieldValue::class)]
     public function store(StoreDocumentFieldValueRequest $request): DocumentFieldValueResource
     {
         Gate::authorize('create', DocumentFieldValue::class);
