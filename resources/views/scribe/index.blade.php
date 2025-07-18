@@ -181,8 +181,8 @@
                     <a href="#signer-document-field-values">Signer Document Field Values</a>
                 </li>
                                     <ul id="tocify-subheader-signer-document-field-values" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="signer-document-field-values-POSTapi-signer-document-field-values">
-                                <a href="#signer-document-field-values-POSTapi-signer-document-field-values">Create Signer Document Field Value</a>
+                                                    <li class="tocify-item level-2" data-unique="signer-document-field-values-POSTapi-document-field-values">
+                                <a href="#signer-document-field-values-POSTapi-document-field-values">Create Signer Document Field Value</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -191,20 +191,20 @@
                     <a href="#signer-document-fields">Signer Document Fields</a>
                 </li>
                                     <ul id="tocify-subheader-signer-document-fields" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-signer-document-fields">
-                                <a href="#signer-document-fields-GETapi-signer-document-fields">List Signer Document Fields</a>
+                                                    <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-document-fields">
+                                <a href="#signer-document-fields-GETapi-document-fields">List Signer Document Fields</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-POSTapi-signer-document-fields">
-                                <a href="#signer-document-fields-POSTapi-signer-document-fields">Create Signer Document Field</a>
+                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-POSTapi-document-fields">
+                                <a href="#signer-document-fields-POSTapi-document-fields">Create Signer Document Field</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-GETapi-signer-document-fields--id-">Show Signer Document Field</a>
+                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-GETapi-document-fields--id-">
+                                <a href="#signer-document-fields-GETapi-document-fields--id-">Show Signer Document Field</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-PUTapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-PUTapi-signer-document-fields--id-">Update Signer Document Field</a>
+                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-PUTapi-document-fields--id-">
+                                <a href="#signer-document-fields-PUTapi-document-fields--id-">Update Signer Document Field</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-DELETEapi-signer-document-fields--id-">
-                                <a href="#signer-document-fields-DELETEapi-signer-document-fields--id-">Delete Signer Document Field</a>
+                                                                                <li class="tocify-item level-2" data-unique="signer-document-fields-DELETEapi-document-fields--id-">
+                                <a href="#signer-document-fields-DELETEapi-document-fields--id-">Delete Signer Document Field</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -242,7 +242,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 17, 2025</li>
+        <li>Last updated: July 18, 2025</li>
     </ul>
 </div>
 
@@ -1201,16 +1201,16 @@ fetch(url, {
             &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;user_id&quot;: 3,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1424,8 +1424,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1585,8 +1585,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1746,8 +1746,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1923,8 +1923,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2303,7 +2303,7 @@ fetch(url, {
         &quot;document_signer_id&quot;: 2,
         &quot;document_id&quot;: 4,
         &quot;ip&quot;: &quot;114.30.126.172&quot;,
-        &quot;date&quot;: &quot;2015-12-31T04:05:34.000000Z&quot;,
+        &quot;date&quot;: &quot;2015-12-30T13:56:49.000000Z&quot;,
         &quot;icon&quot;: &quot;create&quot;,
         &quot;text&quot;: &quot;Id a consectetur assumenda eaque neque sit sunt nihil.&quot;,
         &quot;created_at&quot;: null,
@@ -3479,8 +3479,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
@@ -3489,8 +3489,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3708,8 +3708,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3892,8 +3892,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4055,8 +4055,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4467,7 +4467,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="signer-document-field-values-POSTapi-signer-document-field-values">Create Signer Document Field Value</h2>
+                                <h2 id="signer-document-field-values-POSTapi-document-field-values">Create Signer Document Field Value</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4475,13 +4475,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <p>Store a newly created signer document field value in storage.</p>
 
-<span id="example-requests-POSTapi-signer-document-field-values">
+<span id="example-requests-POSTapi-document-field-values">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/signer-document-field-values" \
+    "http://localhost:8000/api/document-field-values" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4489,15 +4489,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"signer_document_field_id\": \"architecto\",
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
-    \"value_checkbox\": false,
-    \"value_date\": \"2025-07-17T20:13:22\"
+    \"value_checkbox\": true,
+    \"value_date\": \"2025-07-18T10:22:07\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-field-values"
+    "http://localhost:8000/api/document-field-values"
 );
 
 const headers = {
@@ -4510,8 +4510,8 @@ let body = {
     "signer_document_field_id": "architecto",
     "value_initials": "n",
     "value_text": "architecto",
-    "value_checkbox": false,
-    "value_date": "2025-07-17T20:13:22"
+    "value_checkbox": true,
+    "value_date": "2025-07-18T10:22:07"
 };
 
 fetch(url, {
@@ -4522,7 +4522,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-signer-document-field-values">
+<span id="example-responses-POSTapi-document-field-values">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -4530,56 +4530,56 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;document_field_id&quot;: 2,
+        &quot;id&quot;: 1,
+        &quot;document_field_id&quot;: 1,
         &quot;value_signature_sign_id&quot;: null,
-        &quot;value_initials&quot;: null,
+        &quot;value_initials&quot;: &quot;gz&quot;,
         &quot;value_text&quot;: null,
         &quot;value_checkbox&quot;: null,
-        &quot;value_date&quot;: &quot;2023-08-19T00:00:00.000000Z&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
+        &quot;value_date&quot;: null,
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-signer-document-field-values" hidden>
+<span id="execution-results-POSTapi-document-field-values" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-signer-document-field-values"></span>:
+                id="execution-response-status-POSTapi-document-field-values"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-signer-document-field-values"
+    <pre class="json"><code id="execution-response-content-POSTapi-document-field-values"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-signer-document-field-values" hidden>
+<span id="execution-error-POSTapi-document-field-values" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-signer-document-field-values">
+    <pre><code id="execution-error-message-POSTapi-document-field-values">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-signer-document-field-values" data-method="POST"
-      data-path="api/signer-document-field-values"
+<form id="form-POSTapi-document-field-values" data-method="POST"
+      data-path="api/document-field-values"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-signer-document-field-values', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-document-field-values', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-signer-document-field-values"
-                    onclick="tryItOut('POSTapi-signer-document-field-values');">Try it out ⚡
+                    id="btn-tryout-POSTapi-document-field-values"
+                    onclick="tryItOut('POSTapi-document-field-values');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-signer-document-field-values"
-                    onclick="cancelTryOut('POSTapi-signer-document-field-values');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-document-field-values"
+                    onclick="cancelTryOut('POSTapi-document-field-values');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-signer-document-field-values"
+                    id="btn-executetryout-POSTapi-document-field-values"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4587,7 +4587,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/signer-document-field-values</code></b>
+            <b><code>api/document-field-values</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4595,7 +4595,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-signer-document-field-values"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-document-field-values"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -4606,7 +4606,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="Content-Type"                data-endpoint="POSTapi-document-field-values"
                value="application/json"
                data-component="header">
     <br>
@@ -4617,7 +4617,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="Accept"                data-endpoint="POSTapi-document-field-values"
                value="application/json"
                data-component="header">
     <br>
@@ -4629,7 +4629,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="signer_document_field_id"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="signer_document_field_id"                data-endpoint="POSTapi-document-field-values"
                value="architecto"
                data-component="body">
     <br>
@@ -4640,7 +4640,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="value_signature_sign_id"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="value_signature_sign_id"                data-endpoint="POSTapi-document-field-values"
                value=""
                data-component="body">
     <br>
@@ -4651,7 +4651,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="value_initials"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="value_initials"                data-endpoint="POSTapi-document-field-values"
                value="n"
                data-component="body">
     <br>
@@ -4662,7 +4662,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="value_text"                data-endpoint="POSTapi-signer-document-field-values"
+                              name="value_text"                data-endpoint="POSTapi-document-field-values"
                value="architecto"
                data-component="body">
     <br>
@@ -4672,33 +4672,33 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b style="line-height: 2;"><code>value_checkbox</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="POSTapi-signer-document-field-values" style="display: none">
+                <label data-endpoint="POSTapi-document-field-values" style="display: none">
             <input type="radio" name="value_checkbox"
                    value="true"
-                   data-endpoint="POSTapi-signer-document-field-values"
+                   data-endpoint="POSTapi-document-field-values"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="POSTapi-signer-document-field-values" style="display: none">
+        <label data-endpoint="POSTapi-document-field-values" style="display: none">
             <input type="radio" name="value_checkbox"
                    value="false"
-                   data-endpoint="POSTapi-signer-document-field-values"
+                   data-endpoint="POSTapi-document-field-values"
                    data-component="body"             >
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value_date</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="value_date"                data-endpoint="POSTapi-signer-document-field-values"
-               value="2025-07-17T20:13:22"
+                              name="value_date"                data-endpoint="POSTapi-document-field-values"
+               value="2025-07-18T10:22:07"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-17T20:13:22</code></p>
+<p>Must be a valid date. Example: <code>2025-07-18T10:22:07</code></p>
         </div>
         </form>
 
@@ -4706,7 +4706,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="signer-document-fields-GETapi-signer-document-fields">List Signer Document Fields</h2>
+                                <h2 id="signer-document-fields-GETapi-document-fields">List Signer Document Fields</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4714,13 +4714,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <p>List all signer document fields.</p>
 
-<span id="example-requests-GETapi-signer-document-fields">
+<span id="example-requests-GETapi-document-fields">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signer-document-fields?per_page=20&amp;all=" \
+    --get "http://localhost:8000/api/document-fields?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4728,7 +4728,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-fields"
+    "http://localhost:8000/api/document-fields"
 );
 
 const params = {
@@ -4751,7 +4751,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-signer-document-fields">
+<span id="example-responses-GETapi-document-fields">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -4763,31 +4763,31 @@ fetch(url, {
             &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
             &quot;page&quot;: null,
-            &quot;x&quot;: 878,
-            &quot;y&quot;: 721,
-            &quot;width&quot;: 228,
-            &quot;height&quot;: 56,
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;label&quot;: &quot;non&quot;,
-            &quot;description&quot;: null,
+            &quot;x&quot;: 906,
+            &quot;y&quot;: 770,
+            &quot;width&quot;: 124,
+            &quot;height&quot;: 257,
+            &quot;type&quot;: &quot;checkbox&quot;,
+            &quot;label&quot;: &quot;et&quot;,
+            &quot;description&quot;: &quot;Quaerat expedita quia fugiat ut non deserunt dolorem.&quot;,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
             &quot;page&quot;: null,
-            &quot;x&quot;: 938,
-            &quot;y&quot;: 846,
-            &quot;width&quot;: 65,
-            &quot;height&quot;: 148,
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;label&quot;: &quot;qui&quot;,
-            &quot;description&quot;: &quot;Fugiat tempora eligendi mollitia rem ea sint officiis et.&quot;,
-            &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+            &quot;x&quot;: 536,
+            &quot;y&quot;: 490,
+            &quot;width&quot;: 148,
+            &quot;height&quot;: 271,
+            &quot;type&quot;: &quot;initials&quot;,
+            &quot;label&quot;: &quot;maiores&quot;,
+            &quot;description&quot;: null,
+            &quot;required&quot;: true,
+            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -4825,43 +4825,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-signer-document-fields" hidden>
+<span id="execution-results-GETapi-document-fields" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-signer-document-fields"></span>:
+                id="execution-response-status-GETapi-document-fields"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-signer-document-fields"
+    <pre class="json"><code id="execution-response-content-GETapi-document-fields"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-signer-document-fields" hidden>
+<span id="execution-error-GETapi-document-fields" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-signer-document-fields">
+    <pre><code id="execution-error-message-GETapi-document-fields">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-signer-document-fields" data-method="GET"
-      data-path="api/signer-document-fields"
+<form id="form-GETapi-document-fields" data-method="GET"
+      data-path="api/document-fields"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-signer-document-fields', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-document-fields', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-signer-document-fields"
-                    onclick="tryItOut('GETapi-signer-document-fields');">Try it out ⚡
+                    id="btn-tryout-GETapi-document-fields"
+                    onclick="tryItOut('GETapi-document-fields');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-signer-document-fields"
-                    onclick="cancelTryOut('GETapi-signer-document-fields');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-document-fields"
+                    onclick="cancelTryOut('GETapi-document-fields');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-signer-document-fields"
+                    id="btn-executetryout-GETapi-document-fields"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4869,7 +4869,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/signer-document-fields</code></b>
+            <b><code>api/document-fields</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4877,7 +4877,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-signer-document-fields"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-document-fields"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -4888,7 +4888,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-signer-document-fields"
+                              name="Content-Type"                data-endpoint="GETapi-document-fields"
                value="application/json"
                data-component="header">
     <br>
@@ -4899,7 +4899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-signer-document-fields"
+                              name="Accept"                data-endpoint="GETapi-document-fields"
                value="application/json"
                data-component="header">
     <br>
@@ -4911,7 +4911,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="per_page"                data-endpoint="GETapi-signer-document-fields"
+               step="any"               name="per_page"                data-endpoint="GETapi-document-fields"
                value="20"
                data-component="query">
     <br>
@@ -4921,17 +4921,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <b style="line-height: 2;"><code>all</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="GETapi-signer-document-fields" style="display: none">
+                <label data-endpoint="GETapi-document-fields" style="display: none">
             <input type="radio" name="all"
                    value="1"
-                   data-endpoint="GETapi-signer-document-fields"
+                   data-endpoint="GETapi-document-fields"
                    data-component="query"             >
             <code>true</code>
         </label>
-        <label data-endpoint="GETapi-signer-document-fields" style="display: none">
+        <label data-endpoint="GETapi-document-fields" style="display: none">
             <input type="radio" name="all"
                    value="0"
-                   data-endpoint="GETapi-signer-document-fields"
+                   data-endpoint="GETapi-document-fields"
                    data-component="query"             >
             <code>false</code>
         </label>
@@ -4940,7 +4940,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="signer-document-fields-POSTapi-signer-document-fields">Create Signer Document Field</h2>
+                    <h2 id="signer-document-fields-POSTapi-document-fields">Create Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4948,13 +4948,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <p>Store a newly created signer document field in storage.</p>
 
-<span id="example-requests-POSTapi-signer-document-fields">
+<span id="example-requests-POSTapi-document-fields">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/signer-document-fields" \
+    "http://localhost:8000/api/document-fields" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4964,7 +4964,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"checkbox\",
+    \"type\": \"text\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
     \"required\": true
@@ -4974,7 +4974,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-fields"
+    "http://localhost:8000/api/document-fields"
 );
 
 const headers = {
@@ -4989,7 +4989,7 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "checkbox",
+    "type": "text",
     "label": "y",
     "description": "Eius et animi quos velit et.",
     "required": true
@@ -5003,7 +5003,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-signer-document-fields">
+<span id="example-responses-POSTapi-document-fields">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -5022,49 +5022,49 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-signer-document-fields" hidden>
+<span id="execution-results-POSTapi-document-fields" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-signer-document-fields"></span>:
+                id="execution-response-status-POSTapi-document-fields"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-signer-document-fields"
+    <pre class="json"><code id="execution-response-content-POSTapi-document-fields"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-signer-document-fields" hidden>
+<span id="execution-error-POSTapi-document-fields" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-signer-document-fields">
+    <pre><code id="execution-error-message-POSTapi-document-fields">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-signer-document-fields" data-method="POST"
-      data-path="api/signer-document-fields"
+<form id="form-POSTapi-document-fields" data-method="POST"
+      data-path="api/document-fields"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-signer-document-fields', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-document-fields', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-signer-document-fields"
-                    onclick="tryItOut('POSTapi-signer-document-fields');">Try it out ⚡
+                    id="btn-tryout-POSTapi-document-fields"
+                    onclick="tryItOut('POSTapi-document-fields');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-signer-document-fields"
-                    onclick="cancelTryOut('POSTapi-signer-document-fields');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-document-fields"
+                    onclick="cancelTryOut('POSTapi-document-fields');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-signer-document-fields"
+                    id="btn-executetryout-POSTapi-document-fields"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -5072,7 +5072,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/signer-document-fields</code></b>
+            <b><code>api/document-fields</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -5080,7 +5080,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-signer-document-fields"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-document-fields"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -5091,7 +5091,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-signer-document-fields"
+                              name="Content-Type"                data-endpoint="POSTapi-document-fields"
                value="application/json"
                data-component="header">
     <br>
@@ -5102,7 +5102,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-signer-document-fields"
+                              name="Accept"                data-endpoint="POSTapi-document-fields"
                value="application/json"
                data-component="header">
     <br>
@@ -5114,7 +5114,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="document_signer_id"                data-endpoint="POSTapi-signer-document-fields"
+                              name="document_signer_id"                data-endpoint="POSTapi-document-fields"
                value=""
                data-component="body">
     <br>
@@ -5125,7 +5125,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="document_page_id"                data-endpoint="POSTapi-signer-document-fields"
+                              name="document_page_id"                data-endpoint="POSTapi-document-fields"
                value="architecto"
                data-component="body">
     <br>
@@ -5136,7 +5136,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="x"                data-endpoint="POSTapi-signer-document-fields"
+               step="any"               name="x"                data-endpoint="POSTapi-document-fields"
                value="4326.41688"
                data-component="body">
     <br>
@@ -5147,7 +5147,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="y"                data-endpoint="POSTapi-signer-document-fields"
+               step="any"               name="y"                data-endpoint="POSTapi-document-fields"
                value="4326.41688"
                data-component="body">
     <br>
@@ -5158,7 +5158,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="width"                data-endpoint="POSTapi-signer-document-fields"
+               step="any"               name="width"                data-endpoint="POSTapi-document-fields"
                value="77"
                data-component="body">
     <br>
@@ -5169,7 +5169,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="height"                data-endpoint="POSTapi-signer-document-fields"
+               step="any"               name="height"                data-endpoint="POSTapi-document-fields"
                value="8"
                data-component="body">
     <br>
@@ -5180,11 +5180,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="type"                data-endpoint="POSTapi-signer-document-fields"
-               value="checkbox"
+                              name="type"                data-endpoint="POSTapi-document-fields"
+               value="text"
                data-component="body">
     <br>
-<p>Example: <code>checkbox</code></p>
+<p>Example: <code>text</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5193,7 +5193,7 @@ Must be one of:
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="label"                data-endpoint="POSTapi-signer-document-fields"
+                              name="label"                data-endpoint="POSTapi-document-fields"
                value="y"
                data-component="body">
     <br>
@@ -5204,7 +5204,7 @@ Must be one of:
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="POSTapi-signer-document-fields"
+                              name="description"                data-endpoint="POSTapi-document-fields"
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
@@ -5214,17 +5214,17 @@ Must be one of:
             <b style="line-height: 2;"><code>required</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="POSTapi-signer-document-fields" style="display: none">
+                <label data-endpoint="POSTapi-document-fields" style="display: none">
             <input type="radio" name="required"
                    value="true"
-                   data-endpoint="POSTapi-signer-document-fields"
+                   data-endpoint="POSTapi-document-fields"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="POSTapi-signer-document-fields" style="display: none">
+        <label data-endpoint="POSTapi-document-fields" style="display: none">
             <input type="radio" name="required"
                    value="false"
-                   data-endpoint="POSTapi-signer-document-fields"
+                   data-endpoint="POSTapi-document-fields"
                    data-component="body"             >
             <code>false</code>
         </label>
@@ -5233,7 +5233,7 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="signer-document-fields-GETapi-signer-document-fields--id-">Show Signer Document Field</h2>
+                    <h2 id="signer-document-fields-GETapi-document-fields--id-">Show Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5241,13 +5241,13 @@ Must be one of:
 
 <p>Display the specified signer document field.</p>
 
-<span id="example-requests-GETapi-signer-document-fields--id-">
+<span id="example-requests-GETapi-document-fields--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signer-document-fields/16" \
+    --get "http://localhost:8000/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5255,7 +5255,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-fields/16"
+    "http://localhost:8000/api/document-fields/16"
 );
 
 const headers = {
@@ -5271,7 +5271,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-signer-document-fields--id-">
+<span id="example-responses-GETapi-document-fields--id-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -5290,49 +5290,49 @@ fetch(url, {
         &quot;label&quot;: &quot;commodi&quot;,
         &quot;description&quot;: &quot;Odit et et modi.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-signer-document-fields--id-" hidden>
+<span id="execution-results-GETapi-document-fields--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-signer-document-fields--id-"></span>:
+                id="execution-response-status-GETapi-document-fields--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-signer-document-fields--id-"
+    <pre class="json"><code id="execution-response-content-GETapi-document-fields--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-signer-document-fields--id-" hidden>
+<span id="execution-error-GETapi-document-fields--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-signer-document-fields--id-">
+    <pre><code id="execution-error-message-GETapi-document-fields--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-signer-document-fields--id-" data-method="GET"
-      data-path="api/signer-document-fields/{id}"
+<form id="form-GETapi-document-fields--id-" data-method="GET"
+      data-path="api/document-fields/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-signer-document-fields--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-document-fields--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-signer-document-fields--id-"
-                    onclick="tryItOut('GETapi-signer-document-fields--id-');">Try it out ⚡
+                    id="btn-tryout-GETapi-document-fields--id-"
+                    onclick="tryItOut('GETapi-document-fields--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-signer-document-fields--id-"
-                    onclick="cancelTryOut('GETapi-signer-document-fields--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-document-fields--id-"
+                    onclick="cancelTryOut('GETapi-document-fields--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-signer-document-fields--id-"
+                    id="btn-executetryout-GETapi-document-fields--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -5340,7 +5340,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/signer-document-fields/{id}</code></b>
+            <b><code>api/document-fields/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -5348,7 +5348,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-signer-document-fields--id-"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-document-fields--id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -5359,7 +5359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-signer-document-fields--id-"
+                              name="Content-Type"                data-endpoint="GETapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5370,7 +5370,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-signer-document-fields--id-"
+                              name="Accept"                data-endpoint="GETapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5382,15 +5382,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="GETapi-signer-document-fields--id-"
+               step="any"               name="id"                data-endpoint="GETapi-document-fields--id-"
                value="16"
                data-component="url">
     <br>
-<p>The ID of the signer document field. Example: <code>16</code></p>
+<p>The ID of the document field. Example: <code>16</code></p>
             </div>
                     </form>
 
-                    <h2 id="signer-document-fields-PUTapi-signer-document-fields--id-">Update Signer Document Field</h2>
+                    <h2 id="signer-document-fields-PUTapi-document-fields--id-">Update Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5398,13 +5398,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <p>Update the specified signer document field in storage.</p>
 
-<span id="example-requests-PUTapi-signer-document-fields--id-">
+<span id="example-requests-PUTapi-document-fields--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/signer-document-fields/16" \
+    "http://localhost:8000/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5413,17 +5413,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"date\",
+    \"type\": \"signature\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-fields/16"
+    "http://localhost:8000/api/document-fields/16"
 );
 
 const headers = {
@@ -5437,10 +5437,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "date",
+    "type": "signature",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5451,7 +5451,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-signer-document-fields--id-">
+<span id="example-responses-PUTapi-document-fields--id-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -5470,49 +5470,49 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T20:13:22.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
     }
 }</code>
  </pre>
     </span>
-<span id="execution-results-PUTapi-signer-document-fields--id-" hidden>
+<span id="execution-results-PUTapi-document-fields--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-signer-document-fields--id-"></span>:
+                id="execution-response-status-PUTapi-document-fields--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-signer-document-fields--id-"
+    <pre class="json"><code id="execution-response-content-PUTapi-document-fields--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-signer-document-fields--id-" hidden>
+<span id="execution-error-PUTapi-document-fields--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-signer-document-fields--id-">
+    <pre><code id="execution-error-message-PUTapi-document-fields--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-signer-document-fields--id-" data-method="PUT"
-      data-path="api/signer-document-fields/{id}"
+<form id="form-PUTapi-document-fields--id-" data-method="PUT"
+      data-path="api/document-fields/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-signer-document-fields--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-document-fields--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-signer-document-fields--id-"
-                    onclick="tryItOut('PUTapi-signer-document-fields--id-');">Try it out ⚡
+                    id="btn-tryout-PUTapi-document-fields--id-"
+                    onclick="tryItOut('PUTapi-document-fields--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-signer-document-fields--id-"
-                    onclick="cancelTryOut('PUTapi-signer-document-fields--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-document-fields--id-"
+                    onclick="cancelTryOut('PUTapi-document-fields--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-signer-document-fields--id-"
+                    id="btn-executetryout-PUTapi-document-fields--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -5520,11 +5520,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/signer-document-fields/{id}</code></b>
+            <b><code>api/document-fields/{id}</code></b>
         </p>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/signer-document-fields/{id}</code></b>
+            <b><code>api/document-fields/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -5532,7 +5532,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-document-fields--id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -5543,7 +5543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="Content-Type"                data-endpoint="PUTapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5554,7 +5554,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="Accept"                data-endpoint="PUTapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5566,11 +5566,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="PUTapi-signer-document-fields--id-"
+               step="any"               name="id"                data-endpoint="PUTapi-document-fields--id-"
                value="16"
                data-component="url">
     <br>
-<p>The ID of the signer document field. Example: <code>16</code></p>
+<p>The ID of the document field. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -5578,7 +5578,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="document_signer_id"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="document_signer_id"                data-endpoint="PUTapi-document-fields--id-"
                value=""
                data-component="body">
     <br>
@@ -5589,7 +5589,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="document_page_id"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="document_page_id"                data-endpoint="PUTapi-document-fields--id-"
                value=""
                data-component="body">
     <br>
@@ -5600,7 +5600,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="x"                data-endpoint="PUTapi-signer-document-fields--id-"
+               step="any"               name="x"                data-endpoint="PUTapi-document-fields--id-"
                value="4326.41688"
                data-component="body">
     <br>
@@ -5611,7 +5611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="y"                data-endpoint="PUTapi-signer-document-fields--id-"
+               step="any"               name="y"                data-endpoint="PUTapi-document-fields--id-"
                value="4326.41688"
                data-component="body">
     <br>
@@ -5622,7 +5622,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="width"                data-endpoint="PUTapi-signer-document-fields--id-"
+               step="any"               name="width"                data-endpoint="PUTapi-document-fields--id-"
                value="77"
                data-component="body">
     <br>
@@ -5633,7 +5633,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>number</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="height"                data-endpoint="PUTapi-signer-document-fields--id-"
+               step="any"               name="height"                data-endpoint="PUTapi-document-fields--id-"
                value="8"
                data-component="body">
     <br>
@@ -5644,11 +5644,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="type"                data-endpoint="PUTapi-signer-document-fields--id-"
-               value="date"
+                              name="type"                data-endpoint="PUTapi-document-fields--id-"
+               value="signature"
                data-component="body">
     <br>
-<p>Example: <code>date</code></p>
+<p>Example: <code>signature</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5657,7 +5657,7 @@ Must be one of:
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="label"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="label"                data-endpoint="PUTapi-document-fields--id-"
                value="y"
                data-component="body">
     <br>
@@ -5668,7 +5668,7 @@ Must be one of:
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="description"                data-endpoint="PUTapi-signer-document-fields--id-"
+                              name="description"                data-endpoint="PUTapi-document-fields--id-"
                value="Eius et animi quos velit et."
                data-component="body">
     <br>
@@ -5678,26 +5678,26 @@ Must be one of:
             <b style="line-height: 2;"><code>required</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <label data-endpoint="PUTapi-signer-document-fields--id-" style="display: none">
+                <label data-endpoint="PUTapi-document-fields--id-" style="display: none">
             <input type="radio" name="required"
                    value="true"
-                   data-endpoint="PUTapi-signer-document-fields--id-"
+                   data-endpoint="PUTapi-document-fields--id-"
                    data-component="body"             >
             <code>true</code>
         </label>
-        <label data-endpoint="PUTapi-signer-document-fields--id-" style="display: none">
+        <label data-endpoint="PUTapi-document-fields--id-" style="display: none">
             <input type="radio" name="required"
                    value="false"
-                   data-endpoint="PUTapi-signer-document-fields--id-"
+                   data-endpoint="PUTapi-document-fields--id-"
                    data-component="body"             >
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
-                    <h2 id="signer-document-fields-DELETEapi-signer-document-fields--id-">Delete Signer Document Field</h2>
+                    <h2 id="signer-document-fields-DELETEapi-document-fields--id-">Delete Signer Document Field</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5705,13 +5705,13 @@ Must be one of:
 
 <p>Remove the specified signer document field from storage.</p>
 
-<span id="example-requests-DELETEapi-signer-document-fields--id-">
+<span id="example-requests-DELETEapi-document-fields--id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/signer-document-fields/16" \
+    "http://localhost:8000/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5719,7 +5719,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signer-document-fields/16"
+    "http://localhost:8000/api/document-fields/16"
 );
 
 const headers = {
@@ -5735,45 +5735,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-DELETEapi-signer-document-fields--id-">
+<span id="example-responses-DELETEapi-document-fields--id-">
 </span>
-<span id="execution-results-DELETEapi-signer-document-fields--id-" hidden>
+<span id="execution-results-DELETEapi-document-fields--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-signer-document-fields--id-"></span>:
+                id="execution-response-status-DELETEapi-document-fields--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-signer-document-fields--id-"
+    <pre class="json"><code id="execution-response-content-DELETEapi-document-fields--id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi-signer-document-fields--id-" hidden>
+<span id="execution-error-DELETEapi-document-fields--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-signer-document-fields--id-">
+    <pre><code id="execution-error-message-DELETEapi-document-fields--id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi-signer-document-fields--id-" data-method="DELETE"
-      data-path="api/signer-document-fields/{id}"
+<form id="form-DELETEapi-document-fields--id-" data-method="DELETE"
+      data-path="api/document-fields/{id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-signer-document-fields--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-document-fields--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-signer-document-fields--id-"
-                    onclick="tryItOut('DELETEapi-signer-document-fields--id-');">Try it out ⚡
+                    id="btn-tryout-DELETEapi-document-fields--id-"
+                    onclick="tryItOut('DELETEapi-document-fields--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-signer-document-fields--id-"
-                    onclick="cancelTryOut('DELETEapi-signer-document-fields--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-DELETEapi-document-fields--id-"
+                    onclick="cancelTryOut('DELETEapi-document-fields--id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-signer-document-fields--id-"
+                    id="btn-executetryout-DELETEapi-document-fields--id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -5781,7 +5781,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
-            <b><code>api/signer-document-fields/{id}</code></b>
+            <b><code>api/document-fields/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -5789,7 +5789,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-signer-document-fields--id-"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-document-fields--id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -5800,7 +5800,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-signer-document-fields--id-"
+                              name="Content-Type"                data-endpoint="DELETEapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5811,7 +5811,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-signer-document-fields--id-"
+                              name="Accept"                data-endpoint="DELETEapi-document-fields--id-"
                value="application/json"
                data-component="header">
     <br>
@@ -5823,11 +5823,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="DELETEapi-signer-document-fields--id-"
+               step="any"               name="id"                data-endpoint="DELETEapi-document-fields--id-"
                value="16"
                data-component="url">
     <br>
-<p>The ID of the signer document field. Example: <code>16</code></p>
+<p>The ID of the document field. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -6061,8 +6061,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6197,8 +6197,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6345,8 +6345,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-10T10:40:14.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-05T11:07:40.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
     }
 }</code>
  </pre>

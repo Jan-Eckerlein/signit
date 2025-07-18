@@ -34,8 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('documents', DocumentController::class);
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::post('document-signers/{documentSigner}/complete-signature', [DocumentSignerController::class, 'completeSignature']);
-    Route::apiResource('signer-document-fields', DocumentFieldController::class);
-    Route::apiResource('signer-document-field-values', DocumentFieldValueController::class);
+    Route::apiResource('document-fields', DocumentFieldController::class);
+    Route::apiResource('document-field-values', DocumentFieldValueController::class);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);

@@ -27,7 +27,7 @@ trait ValidatesModelModifications
      */
     protected function maybeValidateModification(BaseModelEvent $event, array $options): bool
     {
-        if ($this->bypassValidateModification) {
+        if ($this->bypassValidateModification || !config('model-protection.validation.enabled', false)) {
             return true;
         }
 
