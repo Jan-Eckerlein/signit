@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
-use App\Models\PdfProcess;
+use App\Models\PdfProcessPageThumbnail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin PdfProcess */
-class PdfProcessResource extends JsonResource
+/** @mixin PdfProcessPageThumbnail */
+class PdfProcessPageThumbnailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +18,11 @@ class PdfProcessResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'document_id' => $this->document_id,
-            'pdf_final_path' => $this->pdf_final_path,
-            'pages' => PdfProcessPageResource::collection($this->whenLoaded('pages')),
+            'pdf_process_page_id' => $this->pdf_process_page_id,
+            'path' => $this->path,
+            'size' => $this->size,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
     }
-}
+} 

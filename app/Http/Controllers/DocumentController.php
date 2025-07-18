@@ -21,6 +21,18 @@ use App\Attributes\SharedPaginationParams;
 use App\Http\Resources\DocumentProgressResource;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
+
+const ALL_RELATIONS = [
+    'ownerUser',
+    'documentSigners',
+    'documentLogs',
+    'pdfProcess',
+    'pdfProcess.pages',
+    'pdfProcess.pages.thumbnails',
+    'documentPages',
+    'documentPages.documentFields',
+];
+
 /**
  * @group Documents
  */
@@ -37,7 +49,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('viewAny', Document::class);
         return Document::viewableBy($request->user())
-            ->with(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields'])
+            ->with(ALL_RELATIONS)
             ->paginateOrGetAll($request);
     }
 
@@ -54,7 +66,7 @@ class DocumentController extends Controller
 
         $document->pdfProcess()->create();
 
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
+        return new DocumentResource($document->load(ALL_RELATIONS));
     }
 
     public function setInProgress(Request $request, Document $document): DocumentResource
@@ -101,7 +113,7 @@ class DocumentController extends Controller
                 'signers_notified' => $document->documentSigners->count(),
             ]);
             
-            return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
+            return new DocumentResource($document->load(ALL_RELATIONS));
             
         } catch (\Exception $e) {
             Log::error('Failed to set document to in progress', [
@@ -123,7 +135,7 @@ class DocumentController extends Controller
     public function show(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('view', $document);
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
+        return new DocumentResource($document->load(ALL_RELATIONS));
     }
 
     /**
@@ -136,7 +148,7 @@ class DocumentController extends Controller
     {
         Gate::authorize('update', $document);
         $document->update($request->validated());
-        return new DocumentResource($document->load(['ownerUser', 'documentSigners', 'documentLogs', 'pdfProcess', 'documentPages', 'documentPages.documentFields']));
+        return new DocumentResource($document->load(ALL_RELATIONS));
     }
 
     /**

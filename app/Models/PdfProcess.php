@@ -5,12 +5,12 @@ namespace App\Models;
 use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Enums\BaseModelEvent;
-use App\Enums\PdfProcessStatus;
 use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Builders\PdfProcessBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 // ---------------------------- PROPERTIES ----------------------------
 
@@ -18,12 +18,12 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @implements Ownable<self>
  * @property int $id
  * @property int $document_id
- * @property PdfProcessStatus $status
+ * @property string $pdf_final_path
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
 
-class PdfProcess extends Model implements Lockable, Ownable
+class PdfProcess extends Model implements Ownable
 {
     /** @use HasBuilder<\App\Builders\PdfProcessBuilder> */
     use ProtectsLockedModels, HasBuilder;
@@ -32,10 +32,7 @@ class PdfProcess extends Model implements Lockable, Ownable
 
     protected $fillable = [
         'document_id',
-    ];
-
-    protected $casts = [
-        'status' => PdfProcessStatus::class,
+        'pdf_final_path',
     ];
 
     // ---------------------------- RELATIONS ----------------------------
@@ -46,12 +43,10 @@ class PdfProcess extends Model implements Lockable, Ownable
         return $this->belongsTo(Document::class);
     }
 
-    // ---------------------------- LOCKING ----------------------------
-
-    /** @return bool */
-    public function isLocked(BaseModelEvent | null $event = null): bool
+    /** @return HasMany<PdfProcessPage, $this> */
+    public function pages(): HasMany
     {
-        return $this->getOriginal('status') === PdfProcessStatus::PDF_SIGNED;
+        return $this->hasMany(PdfProcessPage::class);
     }
 
     // ---------------------------- OWNERSHIP ----------------------------
