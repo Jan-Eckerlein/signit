@@ -35,6 +35,12 @@ class PdfProcessPage extends Model
         return $this->belongsTo(PdfProcess::class);
     }
 
+    /** @return BelongsTo<DocumentPage, $this> */
+    public function pages(): BelongsTo
+    {
+        return $this->belongsTo(DocumentPage::class);
+    }
+
     /** @return HasMany<PdfProcessPageThumbnail, $this> */
     public function thumbnails(): HasMany
     {
