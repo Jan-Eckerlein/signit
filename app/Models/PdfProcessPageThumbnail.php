@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\ThumbnailSizes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,9 +16,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class PdfProcessPageThumbnail extends Model
 {
-    /** @use HasFactory<\Database\Factories\PdfProcessPageThumbnailFactory> */
-    use HasFactory;
-
     protected $fillable = [
         'pdf_process_page_id',
         'path',

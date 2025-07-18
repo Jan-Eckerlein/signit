@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pdf_process_page_thumbnails', function (Blueprint $table) {
+        Schema::create('pdf_process_uploads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pdf_process_page_id')->constrained('pdf_process_pages')->restrictOnDelete();
+            $table->foreignId('pdf_process_id')->constrained('pdf_processes')->restrictOnDelete();
+            $table->string('name');
             $table->string('path');
-            $table->enum('size', ['20', '200', '400', '600', '800', '1000', '1200', '1400', '1600']);
+            $table->integer('size');
+            $table->float('order');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pdf_process_page_thumbnails');
+        Schema::dropIfExists('pdf_process_uploads');
     }
 };

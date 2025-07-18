@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('pdf_process_pages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pdf_process_id')->constrained('pdf_processes')->restrictOnDelete();
+            $table->foreignId('document_page_id')->nullable()->constrained('document_pages')->restrictOnDelete();
+            $table->integer('order');
+            $table->string('pdf_original_path');
+            $table->string('pdf_processed_path')->nullable();
+            $table->boolean('is_up_to_date')->default(false);
             $table->timestamps();
         });
     }

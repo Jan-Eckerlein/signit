@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @template TModelClass of \Illuminate\Database\Eloquent\Model&\App\Contracts\Ownable
  * @phpstan-require-implements \App\Contracts\OwnablePolicy
+ * @phpstan-require-extends \App\Policies\Composables\ComposablePolicy
  */
 trait HandlesOwnable
 {

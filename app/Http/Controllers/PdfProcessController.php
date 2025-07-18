@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
+
 class PdfProcessController extends Controller
 {
     /**

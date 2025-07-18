@@ -137,8 +137,6 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         return $this->document->isViewableBy($user);
     }
 
-    // ---------------------------- UTILITIES ----------------------------
-
     /** @return bool */
     public static function canCreateThis(User $user, array $attributes): bool
     {
@@ -146,6 +144,9 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         $document = Document::find($attributes['document_id']);
         return $document && $document->isOwnedBy($user);
     }
+    
+    // ---------------------------- UTILITIES ----------------------------
+
 
     /** @return bool */
     public function isSignatureCompleted(): bool

@@ -11,6 +11,7 @@ use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\DocumentFieldController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\DocumentFieldValueController;
+use App\Http\Controllers\PdfProcessUploadController;
 
 Route::prefix('auth')->group(function () {
     // Registration and Login
@@ -34,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('document-signers/{documentSigner}/complete-signature', [DocumentSignerController::class, 'completeSignature']);
     Route::apiResource('document-fields', DocumentFieldController::class);
     Route::apiResource('document-field-values', DocumentFieldValueController::class)->only(['store']);
+    Route::apiResource('pdf-process-uploads', PdfProcessUploadController::class)->only(['store']);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);

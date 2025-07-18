@@ -6,6 +6,10 @@ use App\Contracts\Lockable;
 use App\Enums\BaseModelEvent;
 use App\Exceptions\LockedModelException;
 
+/**
+ * @mixin \Illuminate\Database\Eloquent\Model
+ * @phpstan-require-implements \App\Contracts\Lockable
+ */
 trait ProtectsLockedModels
 {
     protected bool $bypassLockedProtection = false;

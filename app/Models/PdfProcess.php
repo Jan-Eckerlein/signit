@@ -18,12 +18,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @implements Ownable<self>
  * @property int $id
  * @property int $document_id
- * @property string $pdf_final_path
+ * @property bool $is
+ * @property string|null $pdf_final_path
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
 
-class PdfProcess extends Model implements Ownable
+class PdfProcess extends Model implements Ownable, Lockable
 {
     /** @use HasBuilder<\App\Builders\PdfProcessBuilder> */
     use ProtectsLockedModels, HasBuilder;
@@ -47,6 +48,20 @@ class PdfProcess extends Model implements Ownable
     public function pages(): HasMany
     {
         return $this->hasMany(PdfProcessPage::class);
+    }
+
+    /** @return HasMany<PdfProcessUpload, $this> */
+    public function uploads(): HasMany
+    {
+        return $this->hasMany(PdfProcessUpload::class);
+    }
+
+    // ---------------------------- LOCKING ----------------------------
+
+    /** @return bool */
+    public function isLocked(BaseModelEvent | null $event = null): bool
+    {
+        return $this->pdf_final_path !== null;
     }
 
     // ---------------------------- OWNERSHIP ----------------------------
