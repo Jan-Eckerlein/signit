@@ -469,7 +469,7 @@ Must be one of:
     --data "{
     \"email\": \"gbailey@example.net\",
     \"password\": \"|]|{+-\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
@@ -487,7 +487,7 @@ const headers = {
 let body = {
     "email": "gbailey@example.net",
     "password": "|]|{+-",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -598,10 +598,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-login"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -1201,16 +1201,16 @@ fetch(url, {
             &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;user_id&quot;: 3,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1424,8 +1424,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1585,8 +1585,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1746,8 +1746,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1923,8 +1923,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2081,26 +2081,26 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: null,
-            &quot;document_signer_id&quot;: 2,
-            &quot;document_id&quot;: 4,
-            &quot;ip&quot;: &quot;155.108.169.192&quot;,
-            &quot;date&quot;: &quot;1971-08-02T05:36:21.000000Z&quot;,
+            &quot;id&quot;: 1,
+            &quot;document_signer_id&quot;: 1,
+            &quot;document_id&quot;: 2,
+            &quot;ip&quot;: &quot;125.161.29.220&quot;,
+            &quot;date&quot;: &quot;2007-06-23T16:20:59.000000Z&quot;,
             &quot;icon&quot;: &quot;create&quot;,
-            &quot;text&quot;: &quot;Consequatur ut et sunt quisquam sit repellendus ut.&quot;,
-            &quot;created_at&quot;: null,
-            &quot;updated_at&quot;: null
+            &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         },
         {
-            &quot;id&quot;: null,
-            &quot;document_signer_id&quot;: 4,
-            &quot;document_id&quot;: 8,
-            &quot;ip&quot;: &quot;34.175.195.46&quot;,
-            &quot;date&quot;: &quot;2025-03-13T22:52:59.000000Z&quot;,
+            &quot;id&quot;: 2,
+            &quot;document_signer_id&quot;: 2,
+            &quot;document_id&quot;: 4,
+            &quot;ip&quot;: &quot;158.139.113.99&quot;,
+            &quot;date&quot;: &quot;1975-12-05T02:51:11.000000Z&quot;,
             &quot;icon&quot;: &quot;watch&quot;,
-            &quot;text&quot;: &quot;Assumenda at aut illum provident ea nam ducimus.&quot;,
-            &quot;created_at&quot;: null,
-            &quot;updated_at&quot;: null
+            &quot;text&quot;: &quot;Ut aut deserunt et error neque recusandae et.&quot;,
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2299,15 +2299,15 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: null,
-        &quot;document_signer_id&quot;: 2,
-        &quot;document_id&quot;: 4,
-        &quot;ip&quot;: &quot;114.30.126.172&quot;,
-        &quot;date&quot;: &quot;2015-12-30T13:56:49.000000Z&quot;,
+        &quot;id&quot;: 1,
+        &quot;document_signer_id&quot;: 1,
+        &quot;document_id&quot;: 2,
+        &quot;ip&quot;: &quot;125.161.29.220&quot;,
+        &quot;date&quot;: &quot;2007-06-23T16:20:59.000000Z&quot;,
         &quot;icon&quot;: &quot;create&quot;,
-        &quot;text&quot;: &quot;Id a consectetur assumenda eaque neque sit sunt nihil.&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null
+        &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3479,8 +3479,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
@@ -3489,8 +3489,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3664,7 +3664,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"title\": \"b\",
     \"description\": \"Et animi quos velit et fugiat.\",
-    \"is_template\": true
+    \"is_template\": false
 }"
 </code></pre></div>
 
@@ -3683,7 +3683,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Et animi quos velit et fugiat.",
-    "is_template": true
+    "is_template": false
 };
 
 fetch(url, {
@@ -3708,8 +3708,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3836,7 +3836,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -3892,8 +3892,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4055,8 +4055,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4489,8 +4489,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"signer_document_field_id\": \"architecto\",
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
-    \"value_checkbox\": true,
-    \"value_date\": \"2025-07-18T10:22:07\"
+    \"value_checkbox\": false,
+    \"value_date\": \"2025-07-18T10:41:29\"
 }"
 </code></pre></div>
 
@@ -4510,8 +4510,8 @@ let body = {
     "signer_document_field_id": "architecto",
     "value_initials": "n",
     "value_text": "architecto",
-    "value_checkbox": true,
-    "value_date": "2025-07-18T10:22:07"
+    "value_checkbox": false,
+    "value_date": "2025-07-18T10:41:29"
 };
 
 fetch(url, {
@@ -4537,8 +4537,8 @@ fetch(url, {
         &quot;value_text&quot;: null,
         &quot;value_checkbox&quot;: null,
         &quot;value_date&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4687,7 +4687,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value_date</code></b>&nbsp;&nbsp;
@@ -4695,10 +4695,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-document-field-values"
-               value="2025-07-18T10:22:07"
+               value="2025-07-18T10:41:29"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-18T10:22:07</code></p>
+<p>Must be a valid date. Example: <code>2025-07-18T10:41:29</code></p>
         </div>
         </form>
 
@@ -4763,31 +4763,31 @@ fetch(url, {
             &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
             &quot;page&quot;: null,
-            &quot;x&quot;: 906,
-            &quot;y&quot;: 770,
-            &quot;width&quot;: 124,
-            &quot;height&quot;: 257,
-            &quot;type&quot;: &quot;checkbox&quot;,
-            &quot;label&quot;: &quot;et&quot;,
-            &quot;description&quot;: &quot;Quaerat expedita quia fugiat ut non deserunt dolorem.&quot;,
-            &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;x&quot;: 765,
+            &quot;y&quot;: 660,
+            &quot;width&quot;: 46,
+            &quot;height&quot;: 35,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;label&quot;: &quot;molestias&quot;,
+            &quot;description&quot;: null,
+            &quot;required&quot;: true,
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
             &quot;page&quot;: null,
-            &quot;x&quot;: 536,
-            &quot;y&quot;: 490,
-            &quot;width&quot;: 148,
-            &quot;height&quot;: 271,
+            &quot;x&quot;: 975,
+            &quot;y&quot;: 986,
+            &quot;width&quot;: 47,
+            &quot;height&quot;: 297,
             &quot;type&quot;: &quot;initials&quot;,
-            &quot;label&quot;: &quot;maiores&quot;,
-            &quot;description&quot;: null,
+            &quot;label&quot;: &quot;ad&quot;,
+            &quot;description&quot;: &quot;Corrupti qui ut illo nihil occaecati delectus voluptatum.&quot;,
             &quot;required&quot;: true,
-            &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5022,8 +5022,8 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5290,8 +5290,8 @@ fetch(url, {
         &quot;label&quot;: &quot;commodi&quot;,
         &quot;description&quot;: &quot;Odit et et modi.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5413,7 +5413,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"signature\",
+    \"type\": \"date\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
     \"required\": false
@@ -5437,7 +5437,7 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "signature",
+    "type": "date",
     "label": "y",
     "description": "Eius et animi quos velit et.",
     "required": false
@@ -5470,8 +5470,8 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T10:22:07.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T10:41:29.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5645,10 +5645,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-document-fields--id-"
-               value="signature"
+               value="date"
                data-component="body">
     <br>
-<p>Example: <code>signature</code></p>
+<p>Example: <code>date</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -6061,8 +6061,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T01:08:21.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:35:47.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6197,8 +6197,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T01:08:21.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:35:47.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6345,8 +6345,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T00:48:59.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T01:16:25.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T01:08:21.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T01:35:47.000000Z&quot;
     }
 }</code>
  </pre>

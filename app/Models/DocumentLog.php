@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\HasBuilder;
 /**
  * @implements Ownable<self>
  * @property int $id
- * @property int $contact_id
  * @property int $document_signer_id
  * @property int $document_id
  * @property string $ip
@@ -38,7 +37,6 @@ class DocumentLog extends Model implements Ownable, Lockable
     protected static string $builder = DocumentLogBuilder::class;
 
     protected $fillable = [
-        'contact_id',
         'document_signer_id',
         'document_id',
         'ip',

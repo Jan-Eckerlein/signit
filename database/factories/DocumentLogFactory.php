@@ -19,7 +19,6 @@ class DocumentLogFactory extends Factory
     public function definition(): array
     {
         return [
-            'contact_id' => Contact::factory(),
             'document_signer_id' => DocumentSigner::factory(),
             'document_id' => Document::factory(),
             'ip' => $this->faker->ipv4(),
