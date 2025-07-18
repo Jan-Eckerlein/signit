@@ -62,13 +62,17 @@ class DocumentController extends Controller
     #[ResponseFromApiResource(DocumentResource::class, Document::class)]
     public function store(StoreDocumentRequest $request): DocumentResource
     {
-        $request->merge([
-            'status' => $request->is_template ? DocumentStatus::TEMPLATE->value : DocumentStatus::DRAFT->value,
-            'owner_user_id' => $request->user()->id,
-        ]);
+        $data = array_merge(
+            $request->validated(),
+            [
+                'status' => $request->is_template ? DocumentStatus::TEMPLATE->value : DocumentStatus::DRAFT->value,
+                'owner_user_id' => $request->user()->id,
+            ]
+        );
+        $request->merge($data);
         Log::info('Creating document', ['request' => $request->all()]);
         Gate::authorize('create', Document::class);
-        $document = Document::create($request->validated());
+        $document = Document::create($data);
 
         $document->pdfProcess()->create();
 

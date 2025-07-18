@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @implements Ownable<self>
@@ -44,9 +45,8 @@ class Document extends Model implements Lockable, Ownable, Validatable
         'owner_user_id',
         'description',
         'template_document_id',
+        'status',
     ];
-
-    protected $guarded = ['status'];
 
     protected $casts = [
         'status' => DocumentStatus::class,
@@ -85,10 +85,10 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasMany(DocumentPage::class);
     }
 
-    /** @return HasMany<PdfProcess, $this> */
-    public function pdfProcess(): HasMany
+    /** @return HasOne<PdfProcess, $this> */
+    public function pdfProcess(): HasOne
     {
-        return $this->hasMany(PdfProcess::class);
+        return $this->hasOne(PdfProcess::class);
     }
 
     /** @return HasMany<DocumentField, $this> */
