@@ -12,7 +12,7 @@ class StorePdfProcessUploadRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class StorePdfProcessUploadRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'pdf_process_id' => 'required|exists:pdf_processes,id',
             'pdfs' => 'required|array',
             'pdfs.*' => 'required|file|mimes:pdf',
             'orders' => 'required|array',
@@ -32,7 +33,7 @@ class StorePdfProcessUploadRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $length = count($this->input('pdfs'));
+        $length = count($this->file('pdfs'));
         if ($length !== count($this->input('orders'))) {
             $validator->errors()->add('orders', 'The orders array must have the same length as the pdfs array.');
         }

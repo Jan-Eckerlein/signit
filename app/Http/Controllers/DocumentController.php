@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
 use App\Http\Resources\DocumentProgressResource;
+use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
 
@@ -61,6 +62,11 @@ class DocumentController extends Controller
     #[ResponseFromApiResource(DocumentResource::class, Document::class)]
     public function store(StoreDocumentRequest $request): DocumentResource
     {
+        $request->merge([
+            'status' => $request->is_template ? DocumentStatus::TEMPLATE->value : DocumentStatus::DRAFT->value,
+            'owner_user_id' => $request->user()->id,
+        ]);
+        Log::info('Creating document', ['request' => $request->all()]);
         Gate::authorize('create', Document::class);
         $document = Document::create($request->validated());
 

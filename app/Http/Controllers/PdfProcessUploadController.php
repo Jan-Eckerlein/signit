@@ -22,9 +22,10 @@ class PdfProcessUploadController extends Controller
      * 
      * Upload new raw pdfs to a pdf process.
      */
-    public function store(StorePdfProcessUploadRequest $request, PdfProcess $pdfProcess): JsonResponse
+    public function store(StorePdfProcessUploadRequest $request): JsonResponse
     {
-        Gate::authorize('update', $pdfProcess);
+        $pdfProcess = PdfProcess::findOrFail($request->input('pdf_process_id'));
+        // Gate::authorize('update', $pdfProcess);
         
         $files = $request->file('pdfs');
         $orders = $request->input('orders');

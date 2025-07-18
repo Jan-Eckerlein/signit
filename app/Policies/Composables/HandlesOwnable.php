@@ -7,6 +7,7 @@ use App\Contracts\OwnablePolicy;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @mixin ComposablePolicy
@@ -34,7 +35,7 @@ trait HandlesOwnable
 
     protected function checkMagicLinkUsedAndAllowed(string $action): bool
     {
-        return session('auth_via_magic_link') && $this->isActionAllowedForMagicLink($action);
+        return !session('auth_via_magic_link') || $this->isActionAllowedForMagicLink($action);
     }
     
     protected function getModelClass(): string
@@ -105,7 +106,7 @@ trait HandlesOwnable
         $modelClass = $this->getModelClass();
         $mergedAttributes = array_merge($model->getAttributes(), request()->all());
         
-        return $this->checkMagicLinkUsedAndAllowed('update') && $model->isOwnedBy($user) && $modelClass::canUpdateThis($user, $mergedAttributes);
+        return $this->checkMagicLinkUsedAndAllowed('update') && $model->isOwnedBy($user) && $modelClass::canCreateThis($user, $mergedAttributes);
     }
 
     /**

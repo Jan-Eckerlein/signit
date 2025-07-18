@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @implements Ownable<self>
@@ -205,6 +206,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
     public static function canCreateThis(User $user, array $attributes): bool
     {
         // Users can only create documents for themselves
+        Log::info('canCreateThis', ['attributes' => $attributes, 'user' => $user]);
         return $attributes['owner_user_id'] === $user->id;
     }
 

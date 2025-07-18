@@ -621,7 +621,7 @@ export interface operations {
                      */
                     password_confirmation: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -648,7 +648,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -763,16 +763,16 @@ export interface operations {
                          *         "user_id": 2,
                          *         "email": "hirthe.theo@hauck.com",
                          *         "name": "Alanis McLaughlin",
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "user_id": 3,
                          *         "email": "nstokes@yahoo.com",
                          *         "name": "Dr. Grayson Glover",
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -784,9 +784,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -884,9 +884,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -924,9 +924,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -979,9 +979,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1019,9 +1019,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1061,22 +1061,22 @@ export interface operations {
                          *         "document_signer_id": 1,
                          *         "document_id": 2,
                          *         "ip": "125.161.29.220",
-                         *         "date": "2007-06-23T07:17:58.000000Z",
+                         *         "date": "2007-06-23T04:57:55.000000Z",
                          *         "icon": "create",
                          *         "text": "Commodi incidunt iure odit.",
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "document_signer_id": 2,
                          *         "document_id": 4,
                          *         "ip": "158.139.113.99",
-                         *         "date": "1975-12-04T17:48:10.000000Z",
+                         *         "date": "1975-12-04T15:28:07.000000Z",
                          *         "icon": "watch",
                          *         "text": "Ut aut deserunt et error neque recusandae et.",
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -1088,15 +1088,15 @@ export interface operations {
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-23T07:17:58.000000Z */
+                            /** @example 2007-06-23T04:57:55.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1185,15 +1185,15 @@ export interface operations {
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-23T07:17:58.000000Z */
+                            /** @example 2007-06-23T04:57:55.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1221,14 +1221,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            500: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Server Error */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8001/api/document-signers?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8001/api/document-signers?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8001/api/document-signers?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8001/api/document-signers */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -1414,8 +1465,8 @@ export interface operations {
                          *         "description": "Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
@@ -1424,8 +1475,8 @@ export interface operations {
                          *         "description": "Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -1441,9 +1492,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1547,9 +1598,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1591,9 +1642,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1650,9 +1701,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1720,10 +1771,15 @@ export interface operations {
         requestBody: {
             content: {
                 "multipart/form-data": {
+                    /**
+                     * @description The <code>id</code> of an existing record in the pdf_processes table.
+                     * @example architecto
+                     */
+                    pdf_process_id: string;
                     /** @description Must be a file. */
                     pdfs: string[];
                     /** @example [
-                     *       4326.41688
+                     *       16
                      *     ] */
                     orders: number[];
                 };
@@ -1762,7 +1818,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-18T19:44:30
+                     * @example 2025-07-18T22:04:33
                      */
                     value_date?: string | null;
                 };
@@ -1790,9 +1846,9 @@ export interface operations {
                             value_checkbox?: string;
                             /** @example null */
                             value_date?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1831,31 +1887,31 @@ export interface operations {
                          *         "id": 1,
                          *         "document_signer_id": 1,
                          *         "document_page_id": 1,
-                         *         "x": 44,
-                         *         "y": 745,
-                         *         "width": 159,
-                         *         "height": 259,
-                         *         "type": "initials",
-                         *         "label": "voluptatem",
-                         *         "description": "Aspernatur quis harum nihil nemo alias et aut.",
+                         *         "x": 397,
+                         *         "y": 682,
+                         *         "width": 259,
+                         *         "height": 186,
+                         *         "type": "text",
+                         *         "label": "tenetur",
+                         *         "description": "Quia perspiciatis deserunt ducimus corrupti et.",
                          *         "required": false,
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "document_signer_id": 2,
                          *         "document_page_id": 2,
-                         *         "x": 577,
-                         *         "y": 631,
-                         *         "width": 92,
-                         *         "height": 273,
-                         *         "type": "date",
-                         *         "label": "sit",
-                         *         "description": "Dolor temporibus quae molestiae qui et.",
+                         *         "x": 144,
+                         *         "y": 371,
+                         *         "width": 61,
+                         *         "height": 216,
+                         *         "type": "initials",
+                         *         "label": "aut",
+                         *         "description": null,
                          *         "required": false,
-                         *         "created_at": "2025-07-18T19:44:30.000000Z",
-                         *         "updated_at": "2025-07-18T19:44:30.000000Z"
+                         *         "created_at": "2025-07-18T22:04:33.000000Z",
+                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -1865,25 +1921,25 @@ export interface operations {
                             document_signer_id?: number;
                             /** @example 1 */
                             document_page_id?: number;
-                            /** @example 44 */
+                            /** @example 397 */
                             x?: number;
-                            /** @example 745 */
+                            /** @example 682 */
                             y?: number;
-                            /** @example 159 */
-                            width?: number;
                             /** @example 259 */
+                            width?: number;
+                            /** @example 186 */
                             height?: number;
-                            /** @example initials */
+                            /** @example text */
                             type?: string;
-                            /** @example voluptatem */
+                            /** @example tenetur */
                             label?: string;
-                            /** @example Aspernatur quis harum nihil nemo alias et aut. */
+                            /** @example Quia perspiciatis deserunt ducimus corrupti et. */
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1977,7 +2033,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example date
+                     * @example checkbox
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -1988,7 +2044,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
@@ -2023,9 +2079,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2077,9 +2133,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2128,7 +2184,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example initials
+                     * @example signature
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2139,7 +2195,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
@@ -2174,9 +2230,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T19:44:30.000000Z */
+                            /** @example 2025-07-18T22:04:33.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2220,14 +2276,65 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            500: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example Server Error */
-                        message?: string;
+                        /** @example [] */
+                        data?: unknown[];
+                        links?: {
+                            /** @example http://localhost:8001/api/signs?page=1 */
+                            first?: string;
+                            /** @example http://localhost:8001/api/signs?page=1 */
+                            last?: string;
+                            /** @example null */
+                            prev?: string;
+                            /** @example null */
+                            next?: string;
+                        };
+                        meta?: {
+                            /** @example 1 */
+                            current_page?: number;
+                            /** @example null */
+                            from?: string;
+                            /** @example 1 */
+                            last_page?: number;
+                            /** @example [
+                             *       {
+                             *         "url": null,
+                             *         "label": "&laquo; Previous",
+                             *         "active": false
+                             *       },
+                             *       {
+                             *         "url": "http://localhost:8001/api/signs?page=1",
+                             *         "label": "1",
+                             *         "active": true
+                             *       },
+                             *       {
+                             *         "url": null,
+                             *         "label": "Next &raquo;",
+                             *         "active": false
+                             *       }
+                             *     ] */
+                            links?: {
+                                /** @example null */
+                                url?: string;
+                                /** @example &laquo; Previous */
+                                label?: string;
+                                /** @example false */
+                                active?: boolean;
+                            }[];
+                            /** @example http://localhost:8001/api/signs */
+                            path?: string;
+                            /** @example 20 */
+                            per_page?: number;
+                            /** @example null */
+                            to?: string;
+                            /** @example 0 */
+                            total?: number;
+                        };
                     };
                 };
             };
@@ -2253,9 +2360,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T10:11:22.000000Z */
+                            /** @example 2024-10-11T12:31:25.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T10:38:48.000000Z */
+                            /** @example 2024-11-06T12:58:51.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2289,9 +2396,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T10:11:22.000000Z */
+                            /** @example 2024-10-11T12:31:25.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T10:38:48.000000Z */
+                            /** @example 2024-11-06T12:58:51.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2325,9 +2432,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T10:11:22.000000Z */
+                            /** @example 2024-10-11T12:31:25.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T10:38:48.000000Z */
+                            /** @example 2024-11-06T12:58:51.000000Z */
                             updated_at?: string;
                         };
                     };

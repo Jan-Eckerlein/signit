@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost:8000";
+        var tryItOutBaseUrl = "http://localhost:8001";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -261,7 +261,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost:8000</code>
+    <strong>Base URL</strong>: <code>http://localhost:8001</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -290,7 +290,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/register" \
+    "http://localhost:8001/api/auth/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -298,14 +298,14 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"password_confirmation\": \"aykcmyuwpwlvqwrsitcpscqldz\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/register"
+    "http://localhost:8001/api/auth/register"
 );
 
 const headers = {
@@ -318,7 +318,7 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "password_confirmation": "aykcmyuwpwlvqwrsitcpscqldz",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -451,10 +451,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-register"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -473,20 +473,20 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/login" \
+    "http://localhost:8001/api/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"email\": \"gbailey@example.net\",
     \"password\": \"|]|{+-\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/login"
+    "http://localhost:8001/api/auth/login"
 );
 
 const headers = {
@@ -497,7 +497,7 @@ const headers = {
 let body = {
     "email": "gbailey@example.net",
     "password": "|]|{+-",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -608,10 +608,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-login"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -631,7 +631,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/logout" \
+    "http://localhost:8001/api/auth/logout" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -639,7 +639,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/logout"
+    "http://localhost:8001/api/auth/logout"
 );
 
 const headers = {
@@ -753,7 +753,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/auth/me" \
+    --get "http://localhost:8001/api/auth/me" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -761,7 +761,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/me"
+    "http://localhost:8001/api/auth/me"
 );
 
 const headers = {
@@ -898,7 +898,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/auth/profile" \
+    "http://localhost:8001/api/auth/profile" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -910,7 +910,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/profile"
+    "http://localhost:8001/api/auth/profile"
 );
 
 const headers = {
@@ -1041,7 +1041,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/auth/refresh" \
+    "http://localhost:8001/api/auth/refresh" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1049,7 +1049,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/auth/refresh"
+    "http://localhost:8001/api/auth/refresh"
 );
 
 const headers = {
@@ -1167,7 +1167,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/contacts?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/contacts?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1175,7 +1175,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts"
+    "http://localhost:8001/api/contacts"
 );
 
 const params = {
@@ -1211,16 +1211,16 @@ fetch(url, {
             &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;user_id&quot;: 3,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1387,7 +1387,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/contacts" \
+    "http://localhost:8001/api/contacts" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1400,7 +1400,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts"
+    "http://localhost:8001/api/contacts"
 );
 
 const headers = {
@@ -1434,8 +1434,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1559,7 +1559,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/contacts/16" \
+    --get "http://localhost:8001/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1567,7 +1567,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/16"
+    "http://localhost:8001/api/contacts/16"
 );
 
 const headers = {
@@ -1595,8 +1595,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1709,7 +1709,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/contacts/16" \
+    "http://localhost:8001/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1722,7 +1722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/16"
+    "http://localhost:8001/api/contacts/16"
 );
 
 const headers = {
@@ -1756,8 +1756,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1897,7 +1897,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/contacts/16" \
+    "http://localhost:8001/api/contacts/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1905,7 +1905,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/contacts/16"
+    "http://localhost:8001/api/contacts/16"
 );
 
 const headers = {
@@ -1933,8 +1933,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2051,7 +2051,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-logs?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/document-logs?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2059,7 +2059,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-logs"
+    "http://localhost:8001/api/document-logs"
 );
 
 const params = {
@@ -2095,22 +2095,22 @@ fetch(url, {
             &quot;document_signer_id&quot;: 1,
             &quot;document_id&quot;: 2,
             &quot;ip&quot;: &quot;125.161.29.220&quot;,
-            &quot;date&quot;: &quot;2007-06-23T07:17:58.000000Z&quot;,
+            &quot;date&quot;: &quot;2007-06-23T04:57:55.000000Z&quot;,
             &quot;icon&quot;: &quot;create&quot;,
             &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
             &quot;document_id&quot;: 4,
             &quot;ip&quot;: &quot;158.139.113.99&quot;,
-            &quot;date&quot;: &quot;1975-12-04T17:48:10.000000Z&quot;,
+            &quot;date&quot;: &quot;1975-12-04T15:28:07.000000Z&quot;,
             &quot;icon&quot;: &quot;watch&quot;,
             &quot;text&quot;: &quot;Ut aut deserunt et error neque recusandae et.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2277,7 +2277,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-logs/16" \
+    --get "http://localhost:8001/api/document-logs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2285,7 +2285,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-logs/16"
+    "http://localhost:8001/api/document-logs/16"
 );
 
 const headers = {
@@ -2313,11 +2313,11 @@ fetch(url, {
         &quot;document_signer_id&quot;: 1,
         &quot;document_id&quot;: 2,
         &quot;ip&quot;: &quot;125.161.29.220&quot;,
-        &quot;date&quot;: &quot;2007-06-23T07:17:58.000000Z&quot;,
+        &quot;date&quot;: &quot;2007-06-23T04:57:55.000000Z&quot;,
         &quot;icon&quot;: &quot;create&quot;,
         &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2434,7 +2434,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-signers?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/document-signers?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2442,7 +2442,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers"
+    "http://localhost:8001/api/document-signers"
 );
 
 const params = {
@@ -2467,7 +2467,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-signers">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2479,7 +2479,39 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: [],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
+        &quot;last&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: null,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;http://localhost:8001/api/document-signers&quot;,
+        &quot;per_page&quot;: 20,
+        &quot;to&quot;: null,
+        &quot;total&quot;: 0
+    }
 }</code>
  </pre>
     </span>
@@ -2612,7 +2644,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/document-signers" \
+    "http://localhost:8001/api/document-signers" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2627,7 +2659,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers"
+    "http://localhost:8001/api/document-signers"
 );
 
 const headers = {
@@ -2794,7 +2826,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-signers/16" \
+    --get "http://localhost:8001/api/document-signers/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2802,7 +2834,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers/16"
+    "http://localhost:8001/api/document-signers/16"
 );
 
 const headers = {
@@ -2944,7 +2976,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/document-signers/16" \
+    "http://localhost:8001/api/document-signers/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2958,7 +2990,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers/16"
+    "http://localhost:8001/api/document-signers/16"
 );
 
 const headers = {
@@ -3140,7 +3172,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/document-signers/16" \
+    "http://localhost:8001/api/document-signers/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3148,7 +3180,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers/16"
+    "http://localhost:8001/api/document-signers/16"
 );
 
 const headers = {
@@ -3274,7 +3306,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/document-signers/16/complete-signature" \
+    "http://localhost:8001/api/document-signers/16/complete-signature" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3286,7 +3318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-signers/16/complete-signature"
+    "http://localhost:8001/api/document-signers/16/complete-signature"
 );
 
 const headers = {
@@ -3443,7 +3475,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/documents?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/documents?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3451,7 +3483,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents"
+    "http://localhost:8001/api/documents"
 );
 
 const params = {
@@ -3489,8 +3521,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
@@ -3499,8 +3531,8 @@ fetch(url, {
             &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3667,7 +3699,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/documents" \
+    "http://localhost:8001/api/documents" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3681,7 +3713,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents"
+    "http://localhost:8001/api/documents"
 );
 
 const headers = {
@@ -3718,8 +3750,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3864,7 +3896,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/documents/16" \
+    --get "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3872,7 +3904,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents/16"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -3902,8 +3934,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4016,7 +4048,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/documents/16" \
+    "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4029,7 +4061,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents/16"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -4065,8 +4097,8 @@ fetch(url, {
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4206,7 +4238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/documents/16" \
+    "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4214,7 +4246,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents/16"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -4340,7 +4372,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/documents/16/progress" \
+    --get "http://localhost:8001/api/documents/16/progress" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4348,7 +4380,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/documents/16/progress"
+    "http://localhost:8001/api/documents/16/progress"
 );
 
 const headers = {
@@ -4491,17 +4523,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/pdf-process-uploads" \
+    "http://localhost:8001/api/pdf-process-uploads" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "orders[]=4326.41688"\
-    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/phpe58f6vg0au1vcpumty4" </code></pre></div>
+    --form "pdf_process_id=architecto"\
+    --form "orders[]=16"\
+    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/phph2gsb3dafol3eipp6uo" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/pdf-process-uploads"
+    "http://localhost:8001/api/pdf-process-uploads"
 );
 
 const headers = {
@@ -4511,7 +4544,8 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('orders[]', '4326.41688');
+body.append('pdf_process_id', 'architecto');
+body.append('orders[]', '16');
 body.append('pdfs[]', document.querySelector('input[name="pdfs[]"]').files[0]);
 
 fetch(url, {
@@ -4606,6 +4640,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pdf_process_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pdf_process_id"                data-endpoint="POSTapi-pdf-process-uploads"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the pdf_processes table. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>pdfs</code></b>&nbsp;&nbsp;
 <small>file[]</small>&nbsp;
  &nbsp;
@@ -4620,7 +4665,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>orders</code></b>&nbsp;&nbsp;
-<small>number[]</small>&nbsp;
+<small>integer[]</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="orders[0]"                data-endpoint="POSTapi-pdf-process-uploads"
@@ -4651,7 +4696,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/document-field-values" \
+    "http://localhost:8001/api/document-field-values" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4660,14 +4705,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
     \"value_checkbox\": true,
-    \"value_date\": \"2025-07-18T19:44:30\"
+    \"value_date\": \"2025-07-18T22:04:33\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-field-values"
+    "http://localhost:8001/api/document-field-values"
 );
 
 const headers = {
@@ -4681,7 +4726,7 @@ let body = {
     "value_initials": "n",
     "value_text": "architecto",
     "value_checkbox": true,
-    "value_date": "2025-07-18T19:44:30"
+    "value_date": "2025-07-18T22:04:33"
 };
 
 fetch(url, {
@@ -4707,8 +4752,8 @@ fetch(url, {
         &quot;value_text&quot;: null,
         &quot;value_checkbox&quot;: null,
         &quot;value_date&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4865,10 +4910,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-document-field-values"
-               value="2025-07-18T19:44:30"
+               value="2025-07-18T22:04:33"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-18T19:44:30</code></p>
+<p>Must be a valid date. Example: <code>2025-07-18T22:04:33</code></p>
         </div>
         </form>
 
@@ -4890,7 +4935,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-fields?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/document-fields?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4898,7 +4943,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-fields"
+    "http://localhost:8001/api/document-fields"
 );
 
 const params = {
@@ -4933,31 +4978,31 @@ fetch(url, {
             &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
             &quot;document_page_id&quot;: 1,
-            &quot;x&quot;: 44,
-            &quot;y&quot;: 745,
-            &quot;width&quot;: 159,
-            &quot;height&quot;: 259,
-            &quot;type&quot;: &quot;initials&quot;,
-            &quot;label&quot;: &quot;voluptatem&quot;,
-            &quot;description&quot;: &quot;Aspernatur quis harum nihil nemo alias et aut.&quot;,
+            &quot;x&quot;: 397,
+            &quot;y&quot;: 682,
+            &quot;width&quot;: 259,
+            &quot;height&quot;: 186,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;label&quot;: &quot;tenetur&quot;,
+            &quot;description&quot;: &quot;Quia perspiciatis deserunt ducimus corrupti et.&quot;,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
             &quot;document_page_id&quot;: 2,
-            &quot;x&quot;: 577,
-            &quot;y&quot;: 631,
-            &quot;width&quot;: 92,
-            &quot;height&quot;: 273,
-            &quot;type&quot;: &quot;date&quot;,
-            &quot;label&quot;: &quot;sit&quot;,
-            &quot;description&quot;: &quot;Dolor temporibus quae molestiae qui et.&quot;,
+            &quot;x&quot;: 144,
+            &quot;y&quot;: 371,
+            &quot;width&quot;: 61,
+            &quot;height&quot;: 216,
+            &quot;type&quot;: &quot;initials&quot;,
+            &quot;label&quot;: &quot;aut&quot;,
+            &quot;description&quot;: null,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -5124,7 +5169,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/document-fields" \
+    "http://localhost:8001/api/document-fields" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5134,17 +5179,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"date\",
+    \"type\": \"checkbox\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-fields"
+    "http://localhost:8001/api/document-fields"
 );
 
 const headers = {
@@ -5159,10 +5204,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "date",
+    "type": "checkbox",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5192,8 +5237,8 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5351,10 +5396,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-document-fields"
-               value="date"
+               value="checkbox"
                data-component="body">
     <br>
-<p>Example: <code>date</code></p>
+<p>Example: <code>checkbox</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5399,7 +5444,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -5417,7 +5462,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/document-fields/16" \
+    --get "http://localhost:8001/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5425,7 +5470,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-fields/16"
+    "http://localhost:8001/api/document-fields/16"
 );
 
 const headers = {
@@ -5460,8 +5505,8 @@ fetch(url, {
         &quot;label&quot;: &quot;commodi&quot;,
         &quot;description&quot;: &quot;Odit et et modi.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5574,7 +5619,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/document-fields/16" \
+    "http://localhost:8001/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5583,17 +5628,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"initials\",
+    \"type\": \"signature\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-fields/16"
+    "http://localhost:8001/api/document-fields/16"
 );
 
 const headers = {
@@ -5607,10 +5652,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "initials",
+    "type": "signature",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5640,8 +5685,8 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-18T19:44:30.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-18T22:04:33.000000Z&quot;
     }
 }</code>
  </pre>
@@ -5815,10 +5860,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-document-fields--id-"
-               value="initials"
+               value="signature"
                data-component="body">
     <br>
-<p>Example: <code>initials</code></p>
+<p>Example: <code>signature</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5863,7 +5908,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -5881,7 +5926,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/document-fields/16" \
+    "http://localhost:8001/api/document-fields/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5889,7 +5934,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/document-fields/16"
+    "http://localhost:8001/api/document-fields/16"
 );
 
 const headers = {
@@ -6019,7 +6064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signs?per_page=20&amp;all=" \
+    --get "http://localhost:8001/api/signs?per_page=20&amp;all=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6027,7 +6072,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs"
+    "http://localhost:8001/api/signs"
 );
 
 const params = {
@@ -6052,7 +6097,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signs">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -6064,7 +6109,39 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
+    &quot;data&quot;: [],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
+        &quot;last&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: null,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;http://localhost:8001/api/signs&quot;,
+        &quot;per_page&quot;: 20,
+        &quot;to&quot;: null,
+        &quot;total&quot;: 0
+    }
 }</code>
  </pre>
     </span>
@@ -6197,7 +6274,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/signs" \
+    "http://localhost:8001/api/signs" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6205,7 +6282,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs"
+    "http://localhost:8001/api/signs"
 );
 
 const headers = {
@@ -6231,8 +6308,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T10:11:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T10:38:48.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T12:31:25.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T12:58:51.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6333,7 +6410,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/signs/16" \
+    --get "http://localhost:8001/api/signs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6341,7 +6418,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs/16"
+    "http://localhost:8001/api/signs/16"
 );
 
 const headers = {
@@ -6367,8 +6444,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T10:11:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T10:38:48.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T12:31:25.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T12:58:51.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6481,7 +6558,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/signs/16" \
+    "http://localhost:8001/api/signs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6489,7 +6566,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs/16"
+    "http://localhost:8001/api/signs/16"
 );
 
 const headers = {
@@ -6515,8 +6592,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-11T10:11:22.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-06T10:38:48.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-11T12:31:25.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-06T12:58:51.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6633,7 +6710,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/signs/16" \
+    "http://localhost:8001/api/signs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6641,7 +6718,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs/16"
+    "http://localhost:8001/api/signs/16"
 );
 
 const headers = {
@@ -6767,7 +6844,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/signs/16/force" \
+    "http://localhost:8001/api/signs/16/force" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6775,7 +6852,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/signs/16/force"
+    "http://localhost:8001/api/signs/16/force"
 );
 
 const headers = {

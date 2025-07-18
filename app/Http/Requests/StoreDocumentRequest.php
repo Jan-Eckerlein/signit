@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\DocumentStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 
 class StoreDocumentRequest extends FormRequest
@@ -19,6 +20,7 @@ class StoreDocumentRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     * @hideFromApiDocs status
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
@@ -31,11 +33,5 @@ class StoreDocumentRequest extends FormRequest
         ];
     }
 
-    public function prepareForValidation()
-    {
-        $this->merge([
-            'status' => $this->is_template ? DocumentStatus::TEMPLATE : DocumentStatus::DRAFT,
-            'owner_user_id' => Auth::id(),
-        ]);
-    }
+
 } 
