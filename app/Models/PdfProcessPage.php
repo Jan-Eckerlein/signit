@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property int $pdf_process_id
  * @property int|null $document_page_id
- * @property int $order
+ * @property float|null $tmp_order
  * @property string $pdf_original_path
  * @property string|null $pdf_processed_path
  * @property bool $is_up_to_date

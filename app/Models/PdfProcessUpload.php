@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $path
  * @property string $size
- * @property float $order
+ * @property int $order
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  */

@@ -26,7 +26,7 @@ class StorePdfProcessUploadRequest extends FormRequest
             'pdfs' => 'required|array',
             'pdfs.*' => 'required|file|mimes:pdf',
             'orders' => 'required|array',
-            'orders.*' => 'required|numeric',
+            'orders.*' => 'required|integer',
         ];
     }
 

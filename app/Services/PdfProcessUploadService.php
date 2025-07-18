@@ -7,7 +7,7 @@ use Illuminate\Http\UploadedFile;
 
 class PdfProcessUploadService
 {
-    public function upload(PdfProcess $pdfProcess, UploadedFile $file, float $order): void
+    public function upload(PdfProcess $pdfProcess, UploadedFile $file, int $order): void
     {
         $pdfProcess->uploads()->create([
             'name' => $file->getClientOriginalName(),
