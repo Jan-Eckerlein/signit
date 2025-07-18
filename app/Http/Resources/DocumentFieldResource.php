@@ -19,7 +19,7 @@ class DocumentFieldResource extends JsonResource
         return [
             'id' => $this->id,
             'document_signer_id' => $this->document_signer_id,
-            'page' => $this->page,
+            'document_page_id' => $this->document_page_id,
             'x' => $this->x,
             'y' => $this->y,
             'width' => $this->width,
@@ -31,6 +31,7 @@ class DocumentFieldResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'document_signer' => new DocumentSignerResource($this->whenLoaded('documentSigner')),
+            'document_page' => new DocumentPageResource($this->whenLoaded('documentPage')),
             'value' => new DocumentFieldValueResource($this->whenLoaded('value')),
         ];
     }
