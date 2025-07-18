@@ -11,8 +11,6 @@ use App\Http\Controllers\DocumentSignerController;
 use App\Http\Controllers\DocumentFieldController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\DocumentFieldValueController;
-use App\Models\Contact;
-use Illuminate\Support\Facades\Log;
 
 Route::prefix('auth')->group(function () {
     // Registration and Login
@@ -35,19 +33,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('document-signers', DocumentSignerController::class);
     Route::post('document-signers/{documentSigner}/complete-signature', [DocumentSignerController::class, 'completeSignature']);
     Route::apiResource('document-fields', DocumentFieldController::class);
-    Route::apiResource('document-field-values', DocumentFieldValueController::class);
+    Route::apiResource('document-field-values', DocumentFieldValueController::class)->only(['store']);
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);
     Route::prefix('documents')->group(function () {
-        Route::get('{document}/signers', [DocumentController::class, 'signers']);
-        Route::get('{document}/fields', [DocumentController::class, 'fields']);
         Route::get('{document}/progress', [DocumentController::class, 'getProgress']);
-    });
-    
-    Route::prefix('contacts')->group(function () {
-        Route::get('my-contacts', [ContactController::class, 'myContacts']);
-        Route::get('contacts-of', [ContactController::class, 'contactsOf']);
     });
 });
 
