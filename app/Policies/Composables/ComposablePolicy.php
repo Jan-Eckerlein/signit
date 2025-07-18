@@ -22,7 +22,7 @@ abstract class ComposablePolicy
     /**
      * @param array<int, mixed> $args
      */ 
-    protected function runChain(string $action, array ...$args): bool
+    protected function runChain(string $action, array $args): bool
     {
         if (!isset($this->gateChains[$action])) {
             throw new \RuntimeException("No gatechain registered for '$action'");
@@ -42,7 +42,7 @@ abstract class ComposablePolicy
      */
     public function __call(string $method, array $arguments): bool
     {
-        return $this->runChain($method, ...$arguments);
+        return $this->runChain($method, $arguments);
     }
 
     protected function bootTraits(): void

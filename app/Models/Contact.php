@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\ContactBuilder;
 use App\Contracts\Ownable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\HasBuilder;
@@ -24,6 +25,8 @@ class Contact extends Model implements Ownable
     use HasFactory;
     /** @use HasBuilder<\App\Builders\ContactBuilder> */
     use HasBuilder;
+
+    protected static string $builder = ContactBuilder::class;
 
     protected $fillable = [
         'user_id',
