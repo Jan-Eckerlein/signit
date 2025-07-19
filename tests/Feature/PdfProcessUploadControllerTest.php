@@ -7,6 +7,7 @@ use App\Models\PdfProcess;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -38,6 +39,33 @@ class PdfProcessUploadControllerTest extends TestCase
 			null,
 			true
 		);
+	}
+
+	public function test_upload_fails_if_not_authenticated()
+	{
+		Auth::logout();
+
+		$response = $this->postJson('/api/pdf-process-uploads', [
+			'pdf_process_id' => $this->pdfProcess->id,
+			'pdfs' => [$this->file],
+			'orders' => [1],
+		]);
+
+		$this->assertStatusOrDump($response, 403);
+	}
+
+	public function test_upload_fails_if_not_authorized()
+	{
+		$user = User::factory()->create();
+		$this->actingAs($user);
+
+		$response = $this->postJson('/api/pdf-process-uploads', [
+			'pdf_process_id' => $this->pdfProcess->id,
+			'pdfs' => [$this->file],
+			'orders' => [1],
+		]);
+
+		$this->assertStatusOrDump($response, 403);
 	}
 
     public function test_uploads_pdf_file_to_pdf_process()
