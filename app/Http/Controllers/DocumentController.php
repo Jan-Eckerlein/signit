@@ -137,6 +137,14 @@ class DocumentController extends Controller
         }
     }
 
+    public function revertToDraft(Request $request, Document $document): DocumentResource
+    {
+        Gate::authorize('update', $document);
+        $document->status = DocumentStatus::DRAFT;
+        $document->save();
+        return new DocumentResource($document->load(ALL_RELATIONS));
+    }
+
     /**
      * Show Document
      * 

@@ -146,4 +146,60 @@ class DocumentControllerTest extends TestCase
         $response = $this->getJson('/api/documents/' . $doc->id . '/progress');
         $response->assertOk()->assertJsonStructure(['data']);
     }
+
+	public function test_revert_to_draft_changes_status()
+	{
+		// Create a Document that can be opened for signing
+		$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
+		$documentPage = DocumentPage::factory()
+			->recycle($doc)
+			->create();
+		$documentSigner = DocumentSigner::factory()
+			->recycle($doc)
+			->create();
+		$documentField = DocumentField::factory()
+			->count(3)
+			->create([
+				'document_page_id' => $documentPage->id,
+				'document_signer_id' => $documentSigner->id,
+			]);
+
+		// Open the document for signing
+		$doc->status = DocumentStatus::OPEN;
+		$doc->save();
+
+		// Revert the document to draft
+		$response = $this->postJson('/api/documents/' . $doc->id . '/revert-to-draft');
+		$response->assertOk()->assertJsonPath('data.status', DocumentStatus::DRAFT->value);
+	}
+
+	public function test_revert_to_draft_fails_if_document_is_not_open()
+	{
+		// Create a Document that can be opened for signing
+		$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
+		$documentPage = DocumentPage::factory()
+			->recycle($doc)
+			->create();
+		$documentSigner = DocumentSigner::factory()
+			->recycle($doc)
+			->create();
+		$documentField = DocumentField::factory()
+			->count(3)
+			->create([
+				'document_page_id' => $documentPage->id,
+				'document_signer_id' => $documentSigner->id,
+			]);
+
+		// Open the document for signing
+		$doc->status = DocumentStatus::OPEN;
+		$doc->save();
+
+		// Set the document to in progress as if another user has signed it
+		$doc->status = DocumentStatus::IN_PROGRESS;
+		$doc->save();
+
+		// Revert the document to draft
+		$response = $this->postJson('/api/documents/' . $doc->id . '/revert-to-draft');
+		$this->assertStatusOrDump($response, 422);
+	}
 } 
