@@ -2,65 +2,20 @@
 
 namespace App\Policies;
 
+use App\Contracts\OwnablePolicy;
 use App\Models\PdfProcess;
 use App\Models\User;
+use App\Policies\Composables\HandlesOwnable;
+use App\Policies\Composables\ComposablePolicy;
 use Illuminate\Auth\Access\Response;
 
-class PdfProcessPolicy
+class PdfProcessPolicy extends ComposablePolicy implements OwnablePolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return false;
-    }
+    /** @use HandlesOwnable<\App\Models\PdfProcess> */
+    use HandlesOwnable;
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, PdfProcess $pdfProcess): bool
+    public function getMagicLinkAllowedActions(): array
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(User $user): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, PdfProcess $pdfProcess): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, PdfProcess $pdfProcess): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, PdfProcess $pdfProcess): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, PdfProcess $pdfProcess): bool
-    {
-        return false;
+        return [];
     }
 }

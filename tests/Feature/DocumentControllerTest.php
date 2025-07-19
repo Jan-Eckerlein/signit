@@ -26,18 +26,6 @@ class DocumentControllerTest extends TestCase
         $this->actingAs($this->user);
     }
 
-	protected function assertStatusOrDump($response, $status)
-	{
-		try {
-			$response->assertStatus($status);
-		} catch (\Exception $e) {
-			dump('failed to assert status ' . $status . ' for response:');
-			dump(json_encode(json_decode($response->getContent()), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-			throw $e;
-		}
-		return $response;
-	}
-
     public function test_index_lists_documents()
     {
         Document::factory()->count(2)->create(['owner_user_id' => $this->user->id]);

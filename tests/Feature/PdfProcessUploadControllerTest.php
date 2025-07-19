@@ -48,7 +48,7 @@ class PdfProcessUploadControllerTest extends TestCase
             'orders' => [1],
         ]);
 
-        $response->assertStatus(200)->assertJson(['message' => 'Pdf process upload created successfully']);
+        $this->assertStatusOrDump($response, 200)->assertJson(['message' => 'Pdf process upload created successfully']);
 
         // Assert the file was stored in the 'uploads' directory
         $this->assertTrue(Storage::disk('local')->exists('uploads/' . $this->file->hashName()));

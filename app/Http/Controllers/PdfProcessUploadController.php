@@ -27,7 +27,7 @@ class PdfProcessUploadController extends Controller
     public function store(StorePdfProcessUploadRequest $request): JsonResponse
     {
         $pdfProcess = PdfProcess::findOrFail($request->input('pdf_process_id'));
-        // Gate::authorize('update', $pdfProcess);
+        Gate::authorize('update', $pdfProcess);
         
         $files = $request->file('pdfs');
         $orders = $request->input('orders');
