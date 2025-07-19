@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePdfProcessUploadRequest;
 use App\Models\PdfProcess;
+use App\Models\PdfProcessUpload;
 use App\Services\PdfProcessPagesService;
 use App\Services\PdfProcessUploadService;
 use Illuminate\Http\JsonResponse;
@@ -26,11 +27,12 @@ class PdfProcessUploadController extends Controller
      */
     public function store(StorePdfProcessUploadRequest $request): JsonResponse
     {
+        Gate::authorize('create', PdfProcessUpload::class);
+
         $pdfProcess = PdfProcess::findOrFail($request->input('pdf_process_id'));
-        Gate::authorize('update', $pdfProcess);
-        
         $files = $request->file('pdfs');
         $orders = $request->input('orders');
+
         foreach ($files as $i => $file) {
             $order = $orders[$i] ?? null;
             $this->pdfProcessUploadService->upload($pdfProcess, $file, $order);

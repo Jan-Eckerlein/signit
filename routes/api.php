@@ -42,6 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('{document}/progress', [DocumentController::class, 'getProgress']);
         Route::post('{document}/open-for-signing', [DocumentController::class, 'openForSigning']);
     });
+    Route::apiResource('pdf-process-uploads', PdfProcessUploadController::class)->only(['store']);
 });
 
-Route::apiResource('pdf-process-uploads', PdfProcessUploadController::class)->only(['store']);

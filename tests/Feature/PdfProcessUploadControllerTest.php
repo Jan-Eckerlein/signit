@@ -6,7 +6,6 @@ use App\Models\Document;
 use App\Models\PdfProcess;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -51,7 +50,7 @@ class PdfProcessUploadControllerTest extends TestCase
 			'orders' => [1],
 		]);
 
-		$this->assertStatusOrDump($response, 403);
+		$this->assertStatusOrDump($response, 401);
 	}
 
 	public function test_upload_fails_if_not_authorized()
