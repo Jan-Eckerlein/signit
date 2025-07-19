@@ -25,6 +25,7 @@ class PdfProcessPage extends Model
         'pdf_original_path',
         'pdf_processed_path',
         'is_up_to_date',
+        'tmp_order',
     ];
 
     // ---------------------------- RELATIONS ----------------------------
@@ -36,7 +37,7 @@ class PdfProcessPage extends Model
     }
 
     /** @return BelongsTo<DocumentPage, $this> */
-    public function pages(): BelongsTo
+    public function documentPage(): BelongsTo
     {
         return $this->belongsTo(DocumentPage::class);
     }

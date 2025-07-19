@@ -38,10 +38,15 @@ class PdfProcessUploadService
 			$singlePagePath = 'uploads/pages/' . uniqid() . "_page_{$pageNo}.pdf";
 			Storage::put($singlePagePath, $pdf->Output('S'));
 
+			//TODO: This is a hack to get the order of the pages. It's not a good solution.
+			$tmp_order_base = $pdfProcessUpload->order;
+			$tmp_order = (float)((int)$tmp_order_base + (float)($pageNo / 10000));
+
 			$pdfProcessUpload->pdfProcess->pages()->create([
 				'pdf_original_path' => $singlePagePath,
 				'pdf_processed_path' => null,
 				'is_up_to_date' => false,
+				'tmp_order' => $tmp_order,
 			]);
 		}
 	}

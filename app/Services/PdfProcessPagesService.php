@@ -12,11 +12,12 @@ class PdfProcessPagesService
 		$documentId = $pdfProcess->document->id;
 		$this->rebalanceTmpOrder($pdfProcess);
 		$pdfProcess->pages()->whereNotNull('tmp_order')->orderBy('tmp_order')->get()->each(function (PdfProcessPage $processPage) use ($documentId) {
-			$processPage->pages()->create([
+			$documentPage = $processPage->documentPage()->create([
 				'page_number' => $processPage->tmp_order,
 				'document_id' => $documentId,
 			]);
 			$processPage->update([
+				'document_page_id' => $documentPage->id,
 				'tmp_order' => null,
 			]);
 		});

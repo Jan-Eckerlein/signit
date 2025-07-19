@@ -97,4 +97,21 @@ class PdfProcessUploadControllerTest extends TestCase
 			$this->assertTrue(Storage::disk('local')->exists($filePath));
 		}
 	}
+
+	public function test_uploaded_files_are_committed_to_document_pages()
+	{
+		$response = $this->postJson('/api/pdf-process-uploads', [
+			'pdf_process_id' => $this->pdfProcess->id,
+			'pdfs' => [$this->file],
+			'orders' => [1],
+		]);
+
+		$this->pdfProcess->refresh();
+		$createdPdfProcessPages = $this->pdfProcess->pages()->get();
+		$this->assertEquals($this->pageCount, $createdPdfProcessPages->count());
+
+		$createdPdfProcessPages->each(function ($page) {
+			$this->assertNotNull($page->document_page_id);
+		});
+	}
 } 
