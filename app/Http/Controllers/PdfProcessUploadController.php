@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePdfProcessUploadRequest;
 use App\Models\PdfProcess;
+use App\Services\PdfProcessPagesService;
 use App\Services\PdfProcessUploadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
@@ -14,7 +15,8 @@ class PdfProcessUploadController extends Controller
 {
 
     public function __construct(
-        private PdfProcessUploadService $pdfProcessUploadService
+        private PdfProcessUploadService $pdfProcessUploadService,
+        private PdfProcessPagesService $pdfProcessPagesService
     ) {}
 
     /**
@@ -33,6 +35,7 @@ class PdfProcessUploadController extends Controller
             $order = $orders[$i] ?? null;
             $this->pdfProcessUploadService->upload($pdfProcess, $file, $order);
         }
+        $this->pdfProcessPagesService->commitPages($pdfProcess);
 
         return response()->json([
             'message' => 'Pdf process upload created successfully',
