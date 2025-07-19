@@ -91,5 +91,10 @@ class PdfProcessUploadControllerTest extends TestCase
         ]);
 
 		$this->assertEquals($this->pageCount, $this->pdfProcess->pages()->count());
+		$filePaths = $this->pdfProcess->pages()->pluck('pdf_original_path')->toArray();
+
+		foreach ($filePaths as $filePath) {
+			$this->assertTrue(Storage::disk('local')->exists($filePath));
+		}
 	}
 } 
