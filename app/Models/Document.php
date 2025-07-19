@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -91,10 +92,10 @@ class Document extends Model implements Lockable, Ownable, Validatable
         return $this->hasOne(PdfProcess::class);
     }
 
-    /** @return HasMany<DocumentField, $this> */
-    public function documentFields(): HasMany
+    /** @return HasManyThrough<DocumentField, DocumentPage, $this> */
+    public function documentFields(): HasManyThrough
     {
-        return $this->hasMany(DocumentField::class);
+        return $this->hasManyThrough(DocumentField::class, DocumentPage::class);
     }
 
     /** @return BelongsTo<Document, $this> */

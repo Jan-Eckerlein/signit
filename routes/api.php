@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);
     Route::prefix('documents')->group(function () {
         Route::get('{document}/progress', [DocumentController::class, 'getProgress']);
+        Route::post('{document}/set-in-progress', [DocumentController::class, 'setInProgress']);
     });
 });
 

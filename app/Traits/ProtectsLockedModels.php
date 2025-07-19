@@ -31,10 +31,7 @@ trait ProtectsLockedModels
         });
 
         static::deleting(function ($model) {
-            $allowedSoftDeletes = $model->getAllowedSoftDeletes();
-            if (!$allowedSoftDeletes) {
-                $model->maybePreventModification(BaseModelEvent::DELETING);
-            }
+            $model->maybePreventModification(BaseModelEvent::DELETING);
         });
 
         // Only register forceDeleting event if the model uses SoftDeletes
@@ -59,15 +56,5 @@ trait ProtectsLockedModels
         if ($this->isLocked($event)) {
             throw new LockedModelException(static::class);
         }
-    }
-
-    protected function getAllowedSoftDeletes(): bool
-    {
-        /** @phpstan-ignore-next-line */
-        if (!in_array(\Illuminate\Database\Eloquent\SoftDeletes::class, class_uses_recursive($this))) {
-            throw new \LogicException(static::class . ' must use SoftDeletes trait to allow soft deletes.');
-        }
-        /** @phpstan-ignore-next-line */
-        return (property_exists($this, 'allowSoftDeletes') && $this->allowSoftDeletes);
     }
 }

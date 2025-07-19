@@ -396,6 +396,28 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/documents/{document_id}/set-in-progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                document_id: number;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postApiDocumentsDocument_idSetInProgress"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/pdf-process-uploads": {
         parameters: {
             query?: never;
@@ -648,7 +670,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -763,16 +785,16 @@ export interface operations {
                          *         "user_id": 2,
                          *         "email": "hirthe.theo@hauck.com",
                          *         "name": "Alanis McLaughlin",
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "user_id": 3,
                          *         "email": "nstokes@yahoo.com",
                          *         "name": "Dr. Grayson Glover",
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -784,9 +806,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -884,9 +906,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -924,9 +946,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -979,9 +1001,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1019,9 +1041,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1059,24 +1081,24 @@ export interface operations {
                          *       {
                          *         "id": 1,
                          *         "document_signer_id": 1,
-                         *         "document_id": 2,
+                         *         "document_id": 4,
                          *         "ip": "125.161.29.220",
-                         *         "date": "2007-06-23T04:57:55.000000Z",
+                         *         "date": "2007-06-22T15:49:09.000000Z",
                          *         "icon": "create",
                          *         "text": "Commodi incidunt iure odit.",
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "document_signer_id": 2,
-                         *         "document_id": 4,
+                         *         "document_id": 6,
                          *         "ip": "158.139.113.99",
-                         *         "date": "1975-12-04T15:28:07.000000Z",
+                         *         "date": "1975-12-04T02:19:21.000000Z",
                          *         "icon": "watch",
                          *         "text": "Ut aut deserunt et error neque recusandae et.",
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -1084,19 +1106,19 @@ export interface operations {
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 2 */
+                            /** @example 4 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-23T04:57:55.000000Z */
+                            /** @example 2007-06-22T15:49:09.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1181,19 +1203,19 @@ export interface operations {
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 2 */
+                            /** @example 4 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-23T04:57:55.000000Z */
+                            /** @example 2007-06-22T15:49:09.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1459,28 +1481,28 @@ export interface operations {
                     "application/json": {
                         /** @example [
                          *       {
-                         *         "id": 1,
+                         *         "id": 3,
                          *         "title": "Adipisci quidem nostrum qui.",
                          *         "owner_user_id": 2,
                          *         "description": "Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       },
                          *       {
-                         *         "id": 2,
+                         *         "id": 4,
                          *         "title": "Deleniti nemo odit.",
                          *         "owner_user_id": 3,
                          *         "description": "Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       }
                          *     ] */
                         data?: {
-                            /** @example 1 */
+                            /** @example 3 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
@@ -1492,9 +1514,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1586,7 +1608,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
+                            /** @example 3 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
@@ -1598,9 +1620,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1630,7 +1652,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
+                            /** @example 3 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
@@ -1642,9 +1664,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1689,7 +1711,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
+                            /** @example 3 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
@@ -1701,9 +1723,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1760,6 +1782,22 @@ export interface operations {
                 };
             };
         };
+    };
+    postApiDocumentsDocument_idSetInProgress: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                document_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
     };
     uploadPdfs: {
         parameters: {
@@ -1818,7 +1856,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-18T22:04:33
+                     * @example 2025-07-19T11:13:19
                      */
                     value_date?: string | null;
                 };
@@ -1846,9 +1884,9 @@ export interface operations {
                             value_checkbox?: string;
                             /** @example null */
                             value_date?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1895,8 +1933,8 @@ export interface operations {
                          *         "label": "tenetur",
                          *         "description": "Quia perspiciatis deserunt ducimus corrupti et.",
                          *         "required": false,
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
@@ -1910,8 +1948,8 @@ export interface operations {
                          *         "label": "aut",
                          *         "description": null,
                          *         "required": false,
-                         *         "created_at": "2025-07-18T22:04:33.000000Z",
-                         *         "updated_at": "2025-07-18T22:04:33.000000Z"
+                         *         "created_at": "2025-07-19T11:13:19.000000Z",
+                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -1937,9 +1975,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -2079,9 +2117,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2133,9 +2171,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2184,7 +2222,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example signature
+                     * @example date
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2195,7 +2233,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                 };
             };
@@ -2230,9 +2268,9 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-18T22:04:33.000000Z */
+                            /** @example 2025-07-19T11:13:19.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2360,9 +2398,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T12:31:25.000000Z */
+                            /** @example 2024-10-12T01:40:11.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T12:58:51.000000Z */
+                            /** @example 2024-11-07T02:07:37.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2396,9 +2434,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T12:31:25.000000Z */
+                            /** @example 2024-10-12T01:40:11.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T12:58:51.000000Z */
+                            /** @example 2024-11-07T02:07:37.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2432,9 +2470,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-11T12:31:25.000000Z */
+                            /** @example 2024-10-12T01:40:11.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-06T12:58:51.000000Z */
+                            /** @example 2024-11-07T02:07:37.000000Z */
                             updated_at?: string;
                         };
                     };
