@@ -147,18 +147,18 @@ class Document extends Model implements Lockable, Ownable, Validatable
         }
 
         // Additional validation for IN_PROGRESS transition
-        if ($to === DocumentStatus::IN_PROGRESS) {
-            return $this->validateInProgressTransition();
+        if ($to === DocumentStatus::OPEN) {
+            $this->validateOpenForSigningTransition();
         }
 
         return true;
     }
 
-    private function validateInProgressTransition(): bool
+    private function validateOpenForSigningTransition(): void
     {
         // Check if document has signers
         if ($this->documentSigners()->count() === 0) {
-            throw new \Exception('Document #' . $this->id . ' has no signers');
+            throw new UnprocessableEntityHttpException('Document #' . $this->id . ' has no signers');
         }
 
         // Check if all signers are bound to a user
@@ -169,7 +169,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
             $signerNames = $signers->map(function (DocumentSigner $signer) {
                 return $signer->name;
             })->implode(', ');
-            throw new \Exception('There are ' . $unboundSigners . ' unbound signers (no user assigned) in this document. Please assign a user to the signers: ' . $signerNames);
+            throw new UnprocessableEntityHttpException('There are ' . $unboundSigners . ' unbound signers (no user assigned) in this document. Please assign a user to the signers: ' . $signerNames);
         }
 
         // Check if all signers have at least one field
@@ -179,7 +179,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
         
         if ($signersWithoutFieldsCount > 0) {
             $signersWithoutFieldIds = $this->documentSigners()->whereDoesntHave('documentFields')->pluck('id')->implode(', ');
-            throw new \Exception('There are ' . $signersWithoutFieldsCount . ' signers without fields in this document. Please assign fields to the signers: ' . $signersWithoutFieldIds);
+            throw new UnprocessableEntityHttpException('There are ' . $signersWithoutFieldsCount . ' signers without fields in this document. Please assign fields to the signers: ' . $signersWithoutFieldIds);
         }
 
         // Check if all fields are bound to signers (no unbound fields)
@@ -188,10 +188,8 @@ class Document extends Model implements Lockable, Ownable, Validatable
             ->count();
         
         if ($unboundFields > 0) {
-            throw new \Exception('Unbound fields: ' . $unboundFields);
+            throw new UnprocessableEntityHttpException('Unbound fields: ' . $unboundFields);
         }
-
-        return true;
     }
 
 

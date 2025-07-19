@@ -109,26 +109,26 @@ class DocumentControllerTest extends TestCase
         $this->assertStatusOrDump($response, 200)->assertJsonPath('data.status', DocumentStatus::OPEN->value);
     }
 
-	// public function test_set_in_progress_fails_if_fields_are_unbound()
-	// {
-	// 	$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
-	// 	$documentPage = DocumentPage::factory()
-	// 		->recycle($doc)
-	// 		->create();
-	// 	$documentField = DocumentField::factory()
-	// 		->recycle($documentPage)
-	// 		->count(3)
-	// 		->create();
+	public function test_set_in_progress_fails_if_fields_are_unbound()
+	{
+		$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
+		$documentPage = DocumentPage::factory()
+			->recycle($doc)
+			->create();
+		$documentField = DocumentField::factory()
+			->recycle($documentPage)
+			->count(3)
+			->create();
 
-	// 	$response = $this->postJson('/api/documents/' . $doc->id . '/set-in-progress');
+		$response = $this->postJson('/api/documents/' . $doc->id . '/open-for-signing');
 
-	// 	try {
-	// 		$response->assertStatus(403);
-	// 	} catch (\Exception $e) {
-	// 		dump(json_encode(json_decode($response->getContent()), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-	// 		throw $e;
-	// 	}
-	// }
+		try {
+			$response->assertStatus(422);
+		} catch (\Exception $e) {
+			dump(json_encode(json_decode($response->getContent()), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+			throw $e;
+		}
+	}
 
     public function test_get_progress_returns_progress()
     {
