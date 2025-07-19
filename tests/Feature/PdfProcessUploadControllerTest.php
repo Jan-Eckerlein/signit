@@ -78,7 +78,7 @@ class PdfProcessUploadControllerTest extends TestCase
         $this->assertStatusOrDump($response, 200)->assertJson(['message' => 'Pdf process upload created successfully']);
 
         // Assert the file was stored in the 'uploads' directory
-        $this->assertTrue(Storage::disk('local')->exists('uploads/' . $this->file->hashName()));
+        $this->assertTrue(Storage::disk('local')->exists('pdf_process/uploads/' . $this->file->hashName()));
     }
 
 	public function test_uploaded_files_are_split_into_pages()

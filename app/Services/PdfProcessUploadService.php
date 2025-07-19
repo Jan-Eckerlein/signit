@@ -14,7 +14,7 @@ class PdfProcessUploadService
     {
         $pdfProcessUpload = $pdfProcess->uploads()->create([
             'name' => $file->getClientOriginalName(),
-            'path' => $file->store('uploads', 'local'),
+            'path' => $file->store('pdf_process/uploads', 'local'),
             'size' => $file->getSize(),
             'order' => $order,
         ]);
@@ -35,7 +35,7 @@ class PdfProcessUploadService
 			$tplIdx = $pdf->importPage($pageNo);
 			$pdf->useTemplate($tplIdx);
 
-			$singlePagePath = 'uploads/pages/' . uniqid() . "_page_{$pageNo}.pdf";
+			$singlePagePath = 'pdf_process/pages/' . uniqid() . "_page_{$pageNo}.pdf";
 			Storage::put($singlePagePath, $pdf->Output('S'));
 
 			//TODO: This is a hack to get the order of the pages. It's not a good solution.
