@@ -102,12 +102,34 @@ class DocumentControllerTest extends TestCase
 
 		$documentField = DocumentField::factory()
 			->count(3)
-			->recycle([$documentPage, $documentSigner])
-			->create();
+			->create([
+				'document_page_id' => $documentPage->id,
+				'document_signer_id' => $documentSigner->id,
+			]);
 
         $response = $this->postJson('/api/documents/' . $doc->id . '/open-for-signing');
         $this->assertStatusOrDump($response, 200)->assertJsonPath('data.status', DocumentStatus::OPEN->value);
     }
+
+	public function test_open_for_signing_fails_if_document_has_no_signers()
+	{
+		$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
+		$response = $this->postJson('/api/documents/' . $doc->id . '/open-for-signing');
+		$this->assertStatusOrDump($response, 422);
+	}
+
+	public function test_open_for_signing_fails_if_signer_has_no_fields()
+	{
+		$doc = Document::factory()->create(['owner_user_id' => $this->user->id]);
+		$documentPage = DocumentPage::factory()
+			->recycle($doc)
+			->create();
+		$documentSigner = DocumentSigner::factory()
+			->recycle($doc)
+			->create();
+		$response = $this->postJson('/api/documents/' . $doc->id . '/open-for-signing');
+		$this->assertStatusOrDump($response, 422);
+	}
 
 	public function test_set_in_progress_fails_if_fields_are_unbound()
 	{
