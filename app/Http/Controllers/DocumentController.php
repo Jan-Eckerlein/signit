@@ -82,6 +82,7 @@ class DocumentController extends Controller
     public function setInProgress(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('update', $document);
+        Log::info('setting document to in progress', ['document' => $document->id]);
         
         try {
             // Update document status

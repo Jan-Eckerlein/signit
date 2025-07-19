@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Contracts\Validatable;
 use App\Enums\BaseModelEvent;
+use Illuminate\Support\Facades\Log;
 
 trait ValidatesModelModifications
 {
@@ -28,6 +29,7 @@ trait ValidatesModelModifications
     protected function maybeValidateModification(BaseModelEvent $event, array $options): bool
     {
         if ($this->bypassValidateModification || !config('model-protection.validation.enabled', false)) {
+            Log::warning('bypassing validation', ['event' => $event, 'bypass' => $this->bypassValidateModification, 'enabled' => config('model-protection.validation.enabled')]);
             return true;
         }
 

@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Contracts\Lockable;
 use App\Enums\BaseModelEvent;
 use App\Exceptions\LockedModelException;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Model
@@ -45,7 +46,8 @@ trait ProtectsLockedModels
 
     protected function maybePreventModification(BaseModelEvent | null $event = null): void
     {
-        if ($this->bypassLockedProtection || !config('model-protection.locking.enabled', false)) {
+        // Log::info('maybePreventModification', ['event' => $event, 'bypass' => $this->bypassLockedProtection, 'enabled' => config('model-protection.locking.enabled', false)]);
+        if ($this->bypassLockedProtection || config('model-protection.locking.enabled')) {
             return;
         }
 

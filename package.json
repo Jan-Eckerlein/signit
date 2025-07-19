@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "openapi:generate": "php artisan scribe:generate --verbose && npx openapi-typescript ./storage/app/private/scribe/openapi.yaml -o ./resources/js/api/openapi-schema.ts"
+        "openapi:generate": "SCRIBE_RUNNING=true php artisan scribe:generate --verbose && npx openapi-typescript ./storage/app/private/scribe/openapi.yaml -o ./resources/js/api/openapi-schema.ts"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.1.11",

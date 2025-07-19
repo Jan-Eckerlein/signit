@@ -105,10 +105,17 @@ class DocumentControllerTest extends TestCase
 			->create();
 		$documentField = DocumentField::factory()
 			->recycle($documentPage)
+			->count(3)
 			->create();
 
 		$response = $this->postJson('/api/documents/' . $doc->id . '/set-in-progress');
-		$response->assertStatus(403);
+
+		try {
+			$response->assertStatus(403);
+		} catch (\Exception $e) {
+			dump(json_encode(json_decode($response->getContent()), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+			throw $e;
+		}
 	}
 
     public function test_get_progress_returns_progress()

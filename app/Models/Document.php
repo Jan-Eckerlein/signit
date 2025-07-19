@@ -109,6 +109,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
 
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
+        Log::info('running validateModification');
         if (!$this->isDirty('status')) return true;
 
         
@@ -119,6 +120,8 @@ class Document extends Model implements Lockable, Ownable, Validatable
             }
             return true;
         }
+
+        Log::info('validateModification', ['event' => $event, 'options' => $options]);
 
         /** @var DocumentStatus $from */
         $from = $this->getOriginal('status');

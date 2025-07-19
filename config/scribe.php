@@ -9,9 +9,10 @@ use function Knuckles\Scribe\Config\{removeStrategies, configureStrategy};
 
 // Disable model protection for Scribe model generation
 // Scribe will generate models via their factories to create example data in the docs
-config(['model-protection.locking.enabled' => false]);
-config(['model-protection.validation.enabled' => false]);
-
+if (env('SCRIBE_RUNNING') === 'true') {
+    config(['model-protection.locking.enabled' => false]);
+    config(['model-protection.validation.enabled' => false]);
+}
 return [
     // The HTML <title> for the generated documentation.
     'title' => config('app.name').' API Documentation',

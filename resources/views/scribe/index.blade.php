@@ -482,7 +482,7 @@ Must be one of:
     --data "{
     \"email\": \"gbailey@example.net\",
     \"password\": \"|]|{+-\",
-    \"handler\": \"session\"
+    \"handler\": \"token\"
 }"
 </code></pre></div>
 
@@ -500,7 +500,7 @@ const headers = {
 let body = {
     "email": "gbailey@example.net",
     "password": "|]|{+-",
-    "handler": "session"
+    "handler": "token"
 };
 
 fetch(url, {
@@ -611,10 +611,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-login"
-               value="session"
+               value="token"
                data-component="body">
     <br>
-<p>Example: <code>session</code></p>
+<p>Example: <code>token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -1214,16 +1214,16 @@ fetch(url, {
             &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
             &quot;user_id&quot;: 3,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1437,8 +1437,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1598,8 +1598,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1759,8 +1759,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1936,8 +1936,8 @@ fetch(url, {
         &quot;user_id&quot;: 2,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2094,26 +2094,26 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 1,
+            &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 1,
-            &quot;document_id&quot;: 4,
+            &quot;document_id&quot;: 5,
             &quot;ip&quot;: &quot;125.161.29.220&quot;,
-            &quot;date&quot;: &quot;2007-06-22T15:49:09.000000Z&quot;,
+            &quot;date&quot;: &quot;2007-06-22T14:55:41.000000Z&quot;,
             &quot;icon&quot;: &quot;create&quot;,
             &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;
         },
         {
-            &quot;id&quot;: 2,
+            &quot;id&quot;: 3,
             &quot;document_signer_id&quot;: 2,
-            &quot;document_id&quot;: 6,
+            &quot;document_id&quot;: 7,
             &quot;ip&quot;: &quot;158.139.113.99&quot;,
-            &quot;date&quot;: &quot;1975-12-04T02:19:21.000000Z&quot;,
+            &quot;date&quot;: &quot;1975-12-04T01:25:53.000000Z&quot;,
             &quot;icon&quot;: &quot;watch&quot;,
             &quot;text&quot;: &quot;Ut aut deserunt et error neque recusandae et.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2280,7 +2280,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/document-logs/16" \
+    --get "http://localhost:8001/api/document-logs/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2288,7 +2288,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/document-logs/16"
+    "http://localhost:8001/api/document-logs/1"
 );
 
 const headers = {
@@ -2312,15 +2312,15 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
+        &quot;id&quot;: 2,
         &quot;document_signer_id&quot;: 1,
-        &quot;document_id&quot;: 4,
+        &quot;document_id&quot;: 5,
         &quot;ip&quot;: &quot;125.161.29.220&quot;,
-        &quot;date&quot;: &quot;2007-06-22T15:49:09.000000Z&quot;,
+        &quot;date&quot;: &quot;2007-06-22T14:55:41.000000Z&quot;,
         &quot;icon&quot;: &quot;create&quot;,
         &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2412,10 +2412,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-document-logs--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the document log. Example: <code>16</code></p>
+<p>The ID of the document log. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -3518,24 +3518,24 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 3,
+            &quot;id&quot;: 4,
             &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
             &quot;owner_user_id&quot;: 2,
             &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
         },
         {
-            &quot;id&quot;: 4,
+            &quot;id&quot;: 5,
             &quot;title&quot;: &quot;Deleniti nemo odit.&quot;,
             &quot;owner_user_id&quot;: 3,
             &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3709,7 +3709,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"title\": \"b\",
     \"description\": \"Et animi quos velit et fugiat.\",
-    \"is_template\": true
+    \"is_template\": false
 }"
 </code></pre></div>
 
@@ -3728,7 +3728,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Et animi quos velit et fugiat.",
-    "is_template": true
+    "is_template": false
 };
 
 fetch(url, {
@@ -3747,14 +3747,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 3,
+        &quot;id&quot;: 4,
         &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
         &quot;owner_user_id&quot;: 2,
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3881,7 +3881,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -3899,7 +3899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/documents/16" \
+    --get "http://localhost:8001/api/documents/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3907,7 +3907,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/16"
+    "http://localhost:8001/api/documents/3"
 );
 
 const headers = {
@@ -3931,14 +3931,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 3,
+        &quot;id&quot;: 4,
         &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
         &quot;owner_user_id&quot;: 2,
         &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4030,10 +4030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-documents--id-"
-               value="16"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4051,7 +4051,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8001/api/documents/16" \
+    "http://localhost:8001/api/documents/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4064,7 +4064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/16"
+    "http://localhost:8001/api/documents/3"
 );
 
 const headers = {
@@ -4094,14 +4094,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 3,
+        &quot;id&quot;: 4,
         &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
         &quot;owner_user_id&quot;: 2,
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4197,10 +4197,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-documents--id-"
-               value="16"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>3</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4241,7 +4241,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8001/api/documents/16" \
+    "http://localhost:8001/api/documents/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4249,7 +4249,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/16"
+    "http://localhost:8001/api/documents/3"
 );
 
 const headers = {
@@ -4354,10 +4354,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-documents--id-"
-               value="16"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4375,7 +4375,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/documents/16/progress" \
+    --get "http://localhost:8001/api/documents/3/progress" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4383,7 +4383,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/16/progress"
+    "http://localhost:8001/api/documents/3/progress"
 );
 
 const headers = {
@@ -4501,10 +4501,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="document_id"                data-endpoint="GETapi-documents--document_id--progress"
-               value="16"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4522,7 +4522,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8001/api/documents/16/set-in-progress" \
+    "http://localhost:8001/api/documents/3/set-in-progress" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4530,7 +4530,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/16/set-in-progress"
+    "http://localhost:8001/api/documents/3/set-in-progress"
 );
 
 const headers = {
@@ -4635,10 +4635,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="document_id"                data-endpoint="POSTapi-documents--document_id--set-in-progress"
-               value="16"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>16</code></p>
+<p>The ID of the document. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -4666,7 +4666,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --form "pdf_process_id=architecto"\
     --form "orders[]=16"\
-    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/phpumtt2cdglg0e7sqmFLA" </code></pre></div>
+    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/php4skve21frofeectbqmD" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -4842,7 +4842,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
     \"value_checkbox\": true,
-    \"value_date\": \"2025-07-19T11:13:19\"
+    \"value_date\": \"2025-07-19T12:06:47\"
 }"
 </code></pre></div>
 
@@ -4863,7 +4863,7 @@ let body = {
     "value_initials": "n",
     "value_text": "architecto",
     "value_checkbox": true,
-    "value_date": "2025-07-19T11:13:19"
+    "value_date": "2025-07-19T12:06:47"
 };
 
 fetch(url, {
@@ -4882,15 +4882,15 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;document_field_id&quot;: 1,
+        &quot;id&quot;: null,
+        &quot;document_field_id&quot;: 2,
         &quot;value_signature_sign_id&quot;: null,
-        &quot;value_initials&quot;: &quot;gz&quot;,
+        &quot;value_initials&quot;: null,
         &quot;value_text&quot;: null,
         &quot;value_checkbox&quot;: null,
-        &quot;value_date&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;value_date&quot;: &quot;2023-08-17T00:00:00.000000Z&quot;,
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
     }
 }</code>
  </pre>
@@ -5047,10 +5047,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-document-field-values"
-               value="2025-07-19T11:13:19"
+               value="2025-07-19T12:06:47"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-19T11:13:19</code></p>
+<p>Must be a valid date. Example: <code>2025-07-19T12:06:47</code></p>
         </div>
         </form>
 
@@ -5115,31 +5115,45 @@ fetch(url, {
             &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
             &quot;document_page_id&quot;: 1,
-            &quot;x&quot;: 397,
-            &quot;y&quot;: 682,
-            &quot;width&quot;: 259,
-            &quot;height&quot;: 186,
-            &quot;type&quot;: &quot;text&quot;,
-            &quot;label&quot;: &quot;tenetur&quot;,
-            &quot;description&quot;: &quot;Quia perspiciatis deserunt ducimus corrupti et.&quot;,
+            &quot;x&quot;: 378,
+            &quot;y&quot;: 522,
+            &quot;width&quot;: 1,
+            &quot;height&quot;: 258,
+            &quot;type&quot;: &quot;initials&quot;,
+            &quot;label&quot;: &quot;excepturi&quot;,
+            &quot;description&quot;: null,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:46.000000Z&quot;,
+            &quot;document_page&quot;: {
+                &quot;id&quot;: 1,
+                &quot;document_id&quot;: 4,
+                &quot;page_number&quot;: 9,
+                &quot;created_at&quot;: &quot;1999-08-23T01:38:33.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;1975-05-09T20:08:45.000000Z&quot;
+            }
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
             &quot;document_page_id&quot;: 2,
-            &quot;x&quot;: 144,
-            &quot;y&quot;: 371,
-            &quot;width&quot;: 61,
-            &quot;height&quot;: 216,
-            &quot;type&quot;: &quot;initials&quot;,
-            &quot;label&quot;: &quot;aut&quot;,
-            &quot;description&quot;: null,
+            &quot;x&quot;: 850,
+            &quot;y&quot;: 287,
+            &quot;width&quot;: 269,
+            &quot;height&quot;: 35,
+            &quot;type&quot;: &quot;text&quot;,
+            &quot;label&quot;: &quot;fugiat&quot;,
+            &quot;description&quot;: &quot;Quo dolores exercitationem dolore voluptas.&quot;,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+            &quot;document_page&quot;: {
+                &quot;id&quot;: 2,
+                &quot;document_id&quot;: 5,
+                &quot;page_number&quot;: 1,
+                &quot;created_at&quot;: &quot;2017-02-27T17:59:26.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2018-05-09T07:33:34.000000Z&quot;
+            }
         }
     ],
     &quot;links&quot;: {
@@ -5316,10 +5330,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"checkbox\",
+    \"type\": \"signature\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": false
+    \"required\": true
 }"
 </code></pre></div>
 
@@ -5341,10 +5355,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "checkbox",
+    "type": "signature",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": false
+    "required": true
 };
 
 fetch(url, {
@@ -5374,8 +5388,15 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;document_page&quot;: {
+            &quot;id&quot;: 1,
+            &quot;document_id&quot;: 4,
+            &quot;page_number&quot;: 1,
+            &quot;created_at&quot;: &quot;2022-01-21T12:47:53.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2013-02-14T00:13:02.000000Z&quot;
+        }
     }
 }</code>
  </pre>
@@ -5533,10 +5554,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-document-fields"
-               value="checkbox"
+               value="signature"
                data-component="body">
     <br>
-<p>Example: <code>checkbox</code></p>
+<p>Example: <code>signature</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5581,7 +5602,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -5642,8 +5663,15 @@ fetch(url, {
         &quot;label&quot;: &quot;commodi&quot;,
         &quot;description&quot;: &quot;Odit et et modi.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;document_page&quot;: {
+            &quot;id&quot;: 1,
+            &quot;document_id&quot;: 4,
+            &quot;page_number&quot;: 9,
+            &quot;created_at&quot;: &quot;1978-02-21T03:10:37.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;1995-01-30T23:03:05.000000Z&quot;
+        }
     }
 }</code>
  </pre>
@@ -5765,10 +5793,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"date\",
+    \"type\": \"text\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
@@ -5789,10 +5817,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "date",
+    "type": "text",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5822,8 +5850,15 @@ fetch(url, {
         &quot;label&quot;: &quot;mollitia&quot;,
         &quot;description&quot;: null,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T11:13:19.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-19T12:06:47.000000Z&quot;,
+        &quot;document_page&quot;: {
+            &quot;id&quot;: 1,
+            &quot;document_id&quot;: 4,
+            &quot;page_number&quot;: 9,
+            &quot;created_at&quot;: &quot;1991-12-17T10:23:15.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;1973-10-25T19:02:46.000000Z&quot;
+        }
     }
 }</code>
  </pre>
@@ -5997,10 +6032,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-document-fields--id-"
-               value="date"
+               value="text"
                data-component="body">
     <br>
-<p>Example: <code>date</code></p>
+<p>Example: <code>text</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -6045,7 +6080,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -6445,8 +6480,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T01:40:11.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T02:07:37.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-12T02:33:39.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-07T03:01:05.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6581,8 +6616,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T01:40:11.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T02:07:37.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-12T02:33:39.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-07T03:01:05.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6729,8 +6764,8 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T01:40:11.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T02:07:37.000000Z&quot;
+        &quot;created_at&quot;: &quot;2024-10-12T02:33:39.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2024-11-07T03:01:05.000000Z&quot;
     }
 }</code>
  </pre>

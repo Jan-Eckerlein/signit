@@ -209,7 +209,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document log.
-                 * @example 16
+                 * @example 1
                  */
                 id: number;
             };
@@ -343,7 +343,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 id: number;
             };
@@ -377,7 +377,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 document_id: number;
             };
@@ -403,7 +403,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 document_id: number;
             };
@@ -670,7 +670,7 @@ export interface operations {
                     /** @example |]|{+- */
                     password: string;
                     /**
-                     * @example session
+                     * @example token
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -785,16 +785,16 @@ export interface operations {
                          *         "user_id": 2,
                          *         "email": "hirthe.theo@hauck.com",
                          *         "name": "Alanis McLaughlin",
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:46.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:46.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
                          *         "user_id": 3,
                          *         "email": "nstokes@yahoo.com",
                          *         "name": "Dr. Grayson Glover",
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:46.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:46.000000Z"
                          *       }
                          *     ] */
                         data?: {
@@ -806,9 +806,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -906,9 +906,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -946,9 +946,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1001,9 +1001,9 @@ export interface operations {
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1041,9 +1041,9 @@ export interface operations {
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1079,46 +1079,46 @@ export interface operations {
                     "application/json": {
                         /** @example [
                          *       {
-                         *         "id": 1,
+                         *         "id": 2,
                          *         "document_signer_id": 1,
-                         *         "document_id": 4,
+                         *         "document_id": 5,
                          *         "ip": "125.161.29.220",
-                         *         "date": "2007-06-22T15:49:09.000000Z",
+                         *         "date": "2007-06-22T14:55:41.000000Z",
                          *         "icon": "create",
                          *         "text": "Commodi incidunt iure odit.",
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:47.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:47.000000Z"
                          *       },
                          *       {
-                         *         "id": 2,
+                         *         "id": 3,
                          *         "document_signer_id": 2,
-                         *         "document_id": 6,
+                         *         "document_id": 7,
                          *         "ip": "158.139.113.99",
-                         *         "date": "1975-12-04T02:19:21.000000Z",
+                         *         "date": "1975-12-04T01:25:53.000000Z",
                          *         "icon": "watch",
                          *         "text": "Ut aut deserunt et error neque recusandae et.",
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:47.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:47.000000Z"
                          *       }
                          *     ] */
                         data?: {
-                            /** @example 1 */
+                            /** @example 2 */
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 4 */
+                            /** @example 5 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-22T15:49:09.000000Z */
+                            /** @example 2007-06-22T14:55:41.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1184,7 +1184,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document log.
-                 * @example 16
+                 * @example 1
                  */
                 id: number;
             };
@@ -1199,23 +1199,23 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
+                            /** @example 2 */
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 4 */
+                            /** @example 5 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-22T15:49:09.000000Z */
+                            /** @example 2007-06-22T14:55:41.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1481,28 +1481,28 @@ export interface operations {
                     "application/json": {
                         /** @example [
                          *       {
-                         *         "id": 3,
+                         *         "id": 4,
                          *         "title": "Adipisci quidem nostrum qui.",
                          *         "owner_user_id": 2,
                          *         "description": "Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:46.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:46.000000Z"
                          *       },
                          *       {
-                         *         "id": 4,
+                         *         "id": 5,
                          *         "title": "Deleniti nemo odit.",
                          *         "owner_user_id": 3,
                          *         "description": "Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:46.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:46.000000Z"
                          *       }
                          *     ] */
                         data?: {
-                            /** @example 3 */
+                            /** @example 4 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
@@ -1514,9 +1514,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1595,7 +1595,7 @@ export interface operations {
                      * @example Et animi quos velit et fugiat.
                      */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     is_template: boolean;
                 };
             };
@@ -1608,7 +1608,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 3 */
+                            /** @example 4 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
@@ -1620,9 +1620,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1637,7 +1637,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 id: number;
             };
@@ -1652,7 +1652,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 3 */
+                            /** @example 4 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
@@ -1664,9 +1664,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1681,7 +1681,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 id: number;
             };
@@ -1711,7 +1711,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 3 */
+                            /** @example 4 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
@@ -1723,9 +1723,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1740,7 +1740,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 id: number;
             };
@@ -1756,7 +1756,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 document_id: number;
             };
@@ -1790,7 +1790,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 16
+                 * @example 3
                  */
                 document_id: number;
             };
@@ -1856,7 +1856,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-19T11:13:19
+                     * @example 2025-07-19T12:06:47
                      */
                     value_date?: string | null;
                 };
@@ -1870,23 +1870,23 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
-                            id?: number;
-                            /** @example 1 */
+                            /** @example null */
+                            id?: string;
+                            /** @example 2 */
                             document_field_id?: number;
                             /** @example null */
                             value_signature_sign_id?: string;
-                            /** @example gz */
+                            /** @example null */
                             value_initials?: string;
                             /** @example null */
                             value_text?: string;
                             /** @example null */
                             value_checkbox?: string;
-                            /** @example null */
+                            /** @example 2023-08-17T00:00:00.000000Z */
                             value_date?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example null */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example null */
                             updated_at?: string;
                         };
                     };
@@ -1925,31 +1925,45 @@ export interface operations {
                          *         "id": 1,
                          *         "document_signer_id": 1,
                          *         "document_page_id": 1,
-                         *         "x": 397,
-                         *         "y": 682,
-                         *         "width": 259,
-                         *         "height": 186,
-                         *         "type": "text",
-                         *         "label": "tenetur",
-                         *         "description": "Quia perspiciatis deserunt ducimus corrupti et.",
+                         *         "x": 378,
+                         *         "y": 522,
+                         *         "width": 1,
+                         *         "height": 258,
+                         *         "type": "initials",
+                         *         "label": "excepturi",
+                         *         "description": null,
                          *         "required": false,
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:46.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:46.000000Z",
+                         *         "document_page": {
+                         *           "id": 1,
+                         *           "document_id": 4,
+                         *           "page_number": 9,
+                         *           "created_at": "1999-08-23T01:38:33.000000Z",
+                         *           "updated_at": "1975-05-09T20:08:45.000000Z"
+                         *         }
                          *       },
                          *       {
                          *         "id": 2,
                          *         "document_signer_id": 2,
                          *         "document_page_id": 2,
-                         *         "x": 144,
-                         *         "y": 371,
-                         *         "width": 61,
-                         *         "height": 216,
-                         *         "type": "initials",
-                         *         "label": "aut",
-                         *         "description": null,
+                         *         "x": 850,
+                         *         "y": 287,
+                         *         "width": 269,
+                         *         "height": 35,
+                         *         "type": "text",
+                         *         "label": "fugiat",
+                         *         "description": "Quo dolores exercitationem dolore voluptas.",
                          *         "required": false,
-                         *         "created_at": "2025-07-19T11:13:19.000000Z",
-                         *         "updated_at": "2025-07-19T11:13:19.000000Z"
+                         *         "created_at": "2025-07-19T12:06:47.000000Z",
+                         *         "updated_at": "2025-07-19T12:06:47.000000Z",
+                         *         "document_page": {
+                         *           "id": 2,
+                         *           "document_id": 5,
+                         *           "page_number": 1,
+                         *           "created_at": "2017-02-27T17:59:26.000000Z",
+                         *           "updated_at": "2018-05-09T07:33:34.000000Z"
+                         *         }
                          *       }
                          *     ] */
                         data?: {
@@ -1959,26 +1973,38 @@ export interface operations {
                             document_signer_id?: number;
                             /** @example 1 */
                             document_page_id?: number;
-                            /** @example 397 */
+                            /** @example 378 */
                             x?: number;
-                            /** @example 682 */
+                            /** @example 522 */
                             y?: number;
-                            /** @example 259 */
+                            /** @example 1 */
                             width?: number;
-                            /** @example 186 */
+                            /** @example 258 */
                             height?: number;
-                            /** @example text */
+                            /** @example initials */
                             type?: string;
-                            /** @example tenetur */
+                            /** @example excepturi */
                             label?: string;
-                            /** @example Quia perspiciatis deserunt ducimus corrupti et. */
+                            /** @example null */
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:46.000000Z */
                             updated_at?: string;
+                            document_page?: {
+                                /** @example 1 */
+                                id?: number;
+                                /** @example 4 */
+                                document_id?: number;
+                                /** @example 9 */
+                                page_number?: number;
+                                /** @example 1999-08-23T01:38:33.000000Z */
+                                created_at?: string;
+                                /** @example 1975-05-09T20:08:45.000000Z */
+                                updated_at?: string;
+                            };
                         }[];
                         links?: {
                             /** @example /?page=1 */
@@ -2071,7 +2097,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example checkbox
+                     * @example signature
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2082,7 +2108,7 @@ export interface operations {
                     label: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example false */
+                    /** @example true */
                     required?: boolean;
                 };
             };
@@ -2117,10 +2143,22 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             updated_at?: string;
+                            document_page?: {
+                                /** @example 1 */
+                                id?: number;
+                                /** @example 4 */
+                                document_id?: number;
+                                /** @example 1 */
+                                page_number?: number;
+                                /** @example 2022-01-21T12:47:53.000000Z */
+                                created_at?: string;
+                                /** @example 2013-02-14T00:13:02.000000Z */
+                                updated_at?: string;
+                            };
                         };
                     };
                 };
@@ -2171,10 +2209,22 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             updated_at?: string;
+                            document_page?: {
+                                /** @example 1 */
+                                id?: number;
+                                /** @example 4 */
+                                document_id?: number;
+                                /** @example 9 */
+                                page_number?: number;
+                                /** @example 1978-02-21T03:10:37.000000Z */
+                                created_at?: string;
+                                /** @example 1995-01-30T23:03:05.000000Z */
+                                updated_at?: string;
+                            };
                         };
                     };
                 };
@@ -2222,7 +2272,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example date
+                     * @example text
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2233,7 +2283,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
@@ -2268,10 +2318,22 @@ export interface operations {
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T11:13:19.000000Z */
+                            /** @example 2025-07-19T12:06:47.000000Z */
                             updated_at?: string;
+                            document_page?: {
+                                /** @example 1 */
+                                id?: number;
+                                /** @example 4 */
+                                document_id?: number;
+                                /** @example 9 */
+                                page_number?: number;
+                                /** @example 1991-12-17T10:23:15.000000Z */
+                                created_at?: string;
+                                /** @example 1973-10-25T19:02:46.000000Z */
+                                updated_at?: string;
+                            };
                         };
                     };
                 };
@@ -2398,9 +2460,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-12T01:40:11.000000Z */
+                            /** @example 2024-10-12T02:33:39.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T02:07:37.000000Z */
+                            /** @example 2024-11-07T03:01:05.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2434,9 +2496,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-12T01:40:11.000000Z */
+                            /** @example 2024-10-12T02:33:39.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T02:07:37.000000Z */
+                            /** @example 2024-11-07T03:01:05.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2470,9 +2532,9 @@ export interface operations {
                             id?: number;
                             /** @example 2 */
                             user_id?: number;
-                            /** @example 2024-10-12T01:40:11.000000Z */
+                            /** @example 2024-10-12T02:33:39.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T02:07:37.000000Z */
+                            /** @example 2024-11-07T03:01:05.000000Z */
                             updated_at?: string;
                         };
                     };
