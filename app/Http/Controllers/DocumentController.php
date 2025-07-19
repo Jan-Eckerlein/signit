@@ -79,14 +79,14 @@ class DocumentController extends Controller
         return new DocumentResource($document->load(ALL_RELATIONS));
     }
 
-    public function setInProgress(Request $request, Document $document): DocumentResource
+    public function openForSigning(Request $request, Document $document): DocumentResource
     {
         Gate::authorize('update', $document);
         Log::info('setting document to in progress', ['document' => $document->id]);
         
         try {
             // Update document status
-            $document->status = DocumentStatus::IN_PROGRESS;
+            $document->status = DocumentStatus::OPEN;
             $document->save();
             
             // Create audit log

@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * @implements Ownable<self>
@@ -142,7 +143,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
 
         // Check if transition is valid
         if (!in_array($to->value, $validTransitions[$from->value], strict: true)) {
-            throw new \Exception('Invalid status transition from ' . $from->value . ' to ' . $to->value);
+            throw new UnprocessableEntityHttpException('Invalid status transition from ' . $from->value . ' to ' . $to->value);
         }
 
         // Additional validation for IN_PROGRESS transition
