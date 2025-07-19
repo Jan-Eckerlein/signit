@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MagicLinkNotification extends Mailable
+class DocumentOpenedMagicLinkMailable extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,9 @@ class MagicLinkNotification extends Mailable
         public Document $document,
         public User $recipient,
         public string $magicLinkToken
-    ) {}
+    ) {
+        $this->onQueue('emails');
+    }
 
     /**
      * Get the message envelope.
@@ -37,7 +39,7 @@ class MagicLinkNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.documents.magic-link',
+            markdown: 'emails.documents.document-opened-magic-link',
             with: [
                 'document' => $this->document,
                 'recipient' => $this->recipient,

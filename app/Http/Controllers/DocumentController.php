@@ -18,9 +18,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
+use App\Events\DocumentOpened;
 use App\Http\Resources\DocumentProgressResource;
 use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
+use App\Services\UserAgent;
 
 
 const ALL_RELATIONS = [
@@ -84,57 +86,13 @@ class DocumentController extends Controller
         Gate::authorize('update', $document);
         Log::info('setting document to in progress', ['document' => $document->id]);
         
-        try {
-            // Update document status
-            $document->status = DocumentStatus::OPEN;
-            $document->save();
-            
-            // Create audit log
-            DocumentLog::create([
-                'document_id' => $document->id,
-                'document_signer_id' => null, // System action
-                'ip' => $request->ip(),
-                'date' => now(),
-                'icon' => Icon::SEND,
-                'text' => "Document set to in progress by {$request->user()->name}",
-            ]);
-            
-            // Handle notifications for all document signers
-            $document->load('documentSigners.user');
-            $magicLinkService = new MagicLinkService();
-            
-            foreach ($document->documentSigners as $documentSigner) {
-                if (!$documentSigner->user) {
-                    continue; // Skip if no user associated
-                }
-                
-                if ($documentSigner->user->isAnonymous()) {
-                    // For anonymous users, create magic link and send notification
-                    $token = $magicLinkService->createMagicLink($documentSigner->user, $document);
-                    SendMagicLinkNotification::dispatch($document, $documentSigner->user, $token);
-                } else {
-                    // For regular users, send standard email notification
-                    SendDocumentInProgressNotification::dispatch($document, $documentSigner->user);
-                }
-            }
-            
-            Log::info('Document set to in progress', [
-                'document_id' => $document->id,
-                'user_id' => $request->user()->id,
-                'signers_notified' => $document->documentSigners->count(),
-            ]);
-            
-            return new DocumentResource($document->load(ALL_RELATIONS));
-            
-        } catch (\Exception $e) {
-            Log::error('Failed to set document to in progress', [
-                'document_id' => $document->id,
-                'user_id' => $request->user()->id,
-                'error' => $e->getMessage(),
-            ]);
-            
-            throw $e;
-        }
+        $document->status = DocumentStatus::OPEN;
+        $document->save();
+
+        $userAgent = new UserAgent($request);
+        DocumentOpened::dispatch($document, $userAgent);
+        
+        return new DocumentResource($document->load(ALL_RELATIONS));
     }
 
     public function revertToDraft(Request $request, Document $document): DocumentResource

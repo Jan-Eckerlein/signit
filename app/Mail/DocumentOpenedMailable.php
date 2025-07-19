@@ -11,14 +11,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DocumentInProgressNotification extends Mailable
+class DocumentOpenedMailable extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public function __construct(
         public Document $document,
         public User $recipient
-    ) {}
+    ) {
+        $this->onQueue('emails');
+    }
 
     /**
      * Get the message envelope.
@@ -36,7 +38,7 @@ class DocumentInProgressNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.documents.in-progress',
+            markdown: 'emails.documents.document-opened',
             with: [
                 'document' => $this->document,
                 'recipient' => $this->recipient,
