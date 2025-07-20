@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendDocumentOpenedNotification
+class SendDocumentOpenedNotificationListener
 {
     /**
      * Create the event listener.

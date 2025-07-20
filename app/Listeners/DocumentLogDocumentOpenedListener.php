@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class DocumentLogDocumentOpened
+class DocumentLogDocumentOpenedListener
 {
     /**
      * Create the event listener.
