@@ -25,15 +25,20 @@ class LogDocumentOpenedEmailSent
      */
     public function handle(MessageSent $event): void
     {
-        $mailable = $event->data['mailable'] ?? null;
-
-        if ($mailable instanceof DocumentOpenedMailable || $mailable instanceof DocumentOpenedMagicLinkMailable) {
+        if (
+            isset($event->data['__laravel_mailable']) &&
+            in_array($event->data['__laravel_mailable'], [
+                \App\Mail\DocumentOpenedMailable::class,
+                \App\Mail\DocumentOpenedMagicLinkMailable::class,
+            ]) &&
+            isset($event->data['document'], $event->data['recipient'])
+        ) {
             DocumentLog::create([
-                'document_id' => $mailable->document->id,
-                'document_signer_id' => null, // or set if you have it
+                'document_id' => $event->data['document']->id,
+                'document_signer_id' => null,
                 'date' => now(),
-                'icon' => Icon::SEND,
-                'text' => "Document opened email sent to {$mailable->recipient->email}",
+                'icon' => \App\Enums\Icon::SEND->value,
+                'text' => "Document opened email sent to {$event->data['recipient']->email}",
             ]);
         }
     }

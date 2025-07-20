@@ -69,4 +69,21 @@ class DocumentOpenedEventTest extends TestCase
         });
         Mail::assertQueuedCount(2);
     }
+
+	public function test_log_is_created_when_document_opened_email_is_sent()
+	{
+		// Arrange
+		$user = User::factory()->create();
+		$document = Document::factory()->create();
+
+		// Act: Send the mail (not queue)
+		Mail::to($user->email)->queue(new DocumentOpenedMailable($document, $user));
+
+		// Assert: A DocumentLog was created
+		$this->assertDatabaseHas('document_logs', [
+			'document_id' => $document->id,
+			'icon' => \App\Enums\Icon::SEND->value,
+			'text' => "Document opened email sent to {$user->email}",
+		]);
+	}
 } 
