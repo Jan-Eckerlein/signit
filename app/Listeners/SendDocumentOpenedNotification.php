@@ -34,12 +34,12 @@ class SendDocumentOpenedNotification
 
                 $token = $this->magicLinkService->createMagicLink($documentSigner->user, $event->document);
                 Mail::to($documentSigner->user->email)
-                    ->send(new DocumentOpenedMagicLinkMailable($event->document, $documentSigner->user, $token));
+                    ->queue(new DocumentOpenedMagicLinkMailable($event->document, $documentSigner->user, $token));
             } else {
                 // For regular users, send standard email notification
 
                 Mail::to($documentSigner->user->email)
-                    ->send(new DocumentOpenedMailable($event->document, $documentSigner->user));
+                    ->queue(new DocumentOpenedMailable($event->document, $documentSigner->user));
             }
         }
     }

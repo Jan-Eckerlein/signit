@@ -41,4 +41,14 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function anonymous(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'name' => null,
+            'password' => null,
+            'email_verified_at' => null,
+            'remember_token' => null,
+        ]);
+    }
 }

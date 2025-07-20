@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Enums\Icon;
+use App\Mail\DocumentOpenedMagicLinkMailable;
 use App\Mail\DocumentOpenedMailable;
 use App\Models\DocumentLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +27,7 @@ class LogDocumentOpenedEmailSent
     {
         $mailable = $event->data['mailable'] ?? null;
 
-        if ($mailable instanceof DocumentOpenedMailable) {
+        if ($mailable instanceof DocumentOpenedMailable || $mailable instanceof DocumentOpenedMagicLinkMailable) {
             DocumentLog::create([
                 'document_id' => $mailable->document->id,
                 'document_signer_id' => null, // or set if you have it
