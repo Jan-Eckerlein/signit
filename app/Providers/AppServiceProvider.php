@@ -29,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Route::model('document_signer', DocumentSigner::class);
 
         // Register observers
-        DocumentFieldValue::observe(DocumentFieldValueObserver::class);
         DocumentSigner::observe(DocumentSignerObserver::class);
 
         // Register the paginateOrGetAll macro on Builder

@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature\Lifecycles;
 
-use App\Mail\DocumentOpenedMailable;
 use App\Mail\TestMailable;
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\Facades\Event;
