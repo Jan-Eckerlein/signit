@@ -65,28 +65,10 @@ class DocumentSignerObserver
     {
         $document = $documentSigner->document;
         
-        // Log the signature completion
-        $this->logSignatureCompletion($documentSigner);
-        
-        // Check if this is the first signature for the document
-        if ($this->isFirstSignature($document)) {
-            $this->handleFirstSignature($document, $documentSigner);
-        }
-        
         // Check if all signers are now completed
         if ($this->areAllSignersCompleted($document)) {
             $this->handleDocumentCompletion($document, $documentSigner);
         }
-    }
-
-    /**
-     * Check if this is the first signature for the document
-     */
-    private function isFirstSignature(Document $document): bool
-    {
-        return $document->documentSigners()
-            ->whereNotNull('signature_completed_at')
-            ->count() === 1;
     }
 
     /**
@@ -97,36 +79,6 @@ class DocumentSignerObserver
         return $document->documentSigners()
             ->whereNull('signature_completed_at')
             ->doesntExist();
-    }
-
-    /**
-     * Handle first signature logic
-     */
-    private function handleFirstSignature(Document $document, DocumentSigner $documentSigner): void
-    {
-        // Update document status to IN_PROGRESS when first signature is placed
-        $document->update(['status' => DocumentStatus::IN_PROGRESS]);
-        
-        // Create audit log
-        DocumentLog::create([
-            'document_id' => $document->id,
-            'document_signer_id' => $documentSigner->id,
-            'ip' => request()->ip(),
-            'date' => now(),
-            'icon' => Icon::SEND,
-            'text' => "First signature completed by {$documentSigner->user->name}",
-        ]);
-        
-        // Send notification to document owner
-        if ($document->ownerUser) {
-            SendFirstSignatureNotification::dispatch($document);
-        }
-        
-        Log::info('First signature completed', [
-            'document_id' => $document->id,
-            'signer_id' => $documentSigner->id,
-            'user_id' => $documentSigner->user_id,
-        ]);
     }
 
     /**
@@ -154,24 +106,6 @@ class DocumentSignerObserver
             'document_id' => $document->id,
             'completed_by_signer_id' => $documentSigner->id,
             'user_id' => $documentSigner->user_id,
-        ]);
-    }
-
-    /**
-     * Log signature completion
-     */
-    private function logSignatureCompletion(DocumentSigner $documentSigner): void
-    {
-        $document = $documentSigner->document;
-        $user = $documentSigner->user;
-        
-        DocumentLog::create([
-            'document_id' => $document->id,
-            'document_signer_id' => $documentSigner->id,
-            'ip' => request()->ip(),
-            'date' => now(),
-            'icon' => Icon::CHECKMARK,
-            'text' => "Signature completed by {$user->name}",
         ]);
     }
 

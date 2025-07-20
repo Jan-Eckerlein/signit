@@ -7,7 +7,6 @@ The document **"{{ $document->title }}"** has received its first signature and i
 
 **Document Details:**
 - **Title:** {{ $document->title }}
-- **First Signature:** {{ $document->first_signature_at->format('M j, Y g:i A') }}
 - **Status:** In Progress
 
 The document will be completed once all required fields are filled by all signers.

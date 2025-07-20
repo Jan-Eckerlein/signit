@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FirstSignatureNotification extends Mailable
+class DocumentSetInProgessMailable extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,9 @@ class FirstSignatureNotification extends Mailable
      */
     public function __construct(
         public Document $document
-    ) {}
+    ) {
+        $this->onQueue('emails');
+    }
 
     /**
      * Get the message envelope.
@@ -37,7 +39,7 @@ class FirstSignatureNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.documents.first-signature',
+            markdown: 'emails.documents.document-set-in-progress',
             with: [
                 'document' => $this->document,
             ],
