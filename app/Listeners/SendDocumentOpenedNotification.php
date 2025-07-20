@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\DocumentOpened;
+use App\Events\DocumentOpenedEvent;
 use App\Mail\DocumentOpenedMagicLinkMailable;
 use App\Mail\DocumentOpenedMailable;
 use App\Services\MagicLinkService;
@@ -22,7 +22,7 @@ class SendDocumentOpenedNotification
     /**
      * Handle the event.
      */
-    public function handle(DocumentOpened $event): void
+    public function handle(DocumentOpenedEvent $event): void
     {
         foreach ($event->document->documentSigners as $documentSigner) {
             if (!$documentSigner->user) {

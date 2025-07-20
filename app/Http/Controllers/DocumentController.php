@@ -18,7 +18,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
-use App\Events\DocumentOpened;
+use App\Events\DocumentOpenedEvent;
 use App\Http\Resources\DocumentProgressResource;
 use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
@@ -90,7 +90,7 @@ class DocumentController extends Controller
         $document->save();
 
         $userAgent = new UserAgent($request);
-        DocumentOpened::dispatch($document, $userAgent);
+        DocumentOpenedEvent::dispatch($document, $userAgent);
         
         return new DocumentResource($document->load(ALL_RELATIONS));
     }

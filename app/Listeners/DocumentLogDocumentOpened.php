@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Enums\Icon;
-use App\Events\DocumentOpened;
+use App\Events\DocumentOpenedEvent;
 use App\Models\DocumentLog;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -22,7 +22,7 @@ class DocumentLogDocumentOpened
     /**
      * Handle the event.
      */
-    public function handle(DocumentOpened $event): void
+    public function handle(DocumentOpenedEvent $event): void
     {
         DocumentLog::create([
             'document_id' => $event->document->id,

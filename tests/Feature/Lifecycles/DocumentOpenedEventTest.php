@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Lifecycles;
 
-use App\Events\DocumentOpened;
+use App\Events\DocumentOpenedEvent;
 use App\Mail\DocumentOpenedMailable;
 use App\Mail\DocumentOpenedMagicLinkMailable;
 use App\Models\Document;
@@ -58,7 +58,7 @@ class DocumentOpenedEventTest extends TestCase
         ]);
 
         // Fire the event
-        event(new DocumentOpened($document, UserAgent::fake($existingUser)));
+        event(new DocumentOpenedEvent($document, UserAgent::fake($existingUser)));
 
         // Assert emails sent
         Mail::assertQueued(DocumentOpenedMailable::class, function ($mail) use ($existingUser) {

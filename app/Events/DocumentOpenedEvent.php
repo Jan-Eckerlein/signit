@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 use App\Services\UserAgent;
 
-class DocumentOpened
+class DocumentOpenedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
