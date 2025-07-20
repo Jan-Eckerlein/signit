@@ -11,7 +11,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Attributes\SharedPaginationParams;
+use App\Events\SignatureCompletedEvent;
 use App\Models\User;
+use App\Services\UserAgent;
 
 /**
  * @group Document Signers
@@ -108,6 +110,8 @@ class DocumentSignerController extends Controller
             'electronic_signature_disclosure_accepted' => true,
             'disclosure_accepted_at' => now(),
         ]);
+
+        SignatureCompletedEvent::dispatch($documentSigner, UserAgent::fromRequest($request));
         
         // Observer will handle all notifications and status updates
         return response()->json([

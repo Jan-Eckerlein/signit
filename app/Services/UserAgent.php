@@ -4,30 +4,27 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class UserAgent
 {
-    public string $ip;
-    public ?string $email;
-    public ?string $name;
 
-    public function __construct(Request $request)
+    public function __construct(
+        public string $ip,
+        public ?string $email,
+        public ?string $name
+    ) { }
+
+    public static function fromRequest(Request $request): self
     {
-        $this->ip = $request->ip();
-        $this->email = $request->user()?->email;
-        $this->name = $request->user()?->name;
+        return new self($request->ip(), $request->user()?->email, $request->user()?->name);
     }
 
     public static function fake(User $fromUser): self
     {
-        $request = Request::create('/test', 'GET', [], [], [], [
-            'REMOTE_ADDR' => '123.123.123.123',
-        ]);
+        $faker = Faker::create();
+        $ip = $faker->ipv4();
 
-        $request->setUserResolver(function () use ($fromUser) {
-            return $fromUser;
-        });
-
-        return new self($request);
+        return new self($ip, $fromUser->email, $fromUser->name);
     }
 } 

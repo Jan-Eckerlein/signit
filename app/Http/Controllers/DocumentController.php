@@ -89,8 +89,7 @@ class DocumentController extends Controller
         $document->status = DocumentStatus::OPEN;
         $document->save();
 
-        $userAgent = new UserAgent($request);
-        DocumentOpenedEvent::dispatch($document, $userAgent);
+        DocumentOpenedEvent::dispatch($document, UserAgent::fromRequest($request));
         
         return new DocumentResource($document->load(ALL_RELATIONS));
     }
