@@ -53,7 +53,10 @@ class PdfProcessRenderService
                     $pdf->Rect($x, $y, $width, $height);
                     if ($value?->value_checkbox) {
                         $pdf->SetFont('Arial', 'B', 14);
-                        $pdf->Text($x + 1, $y + $height - 1, '✔');
+                        $pdf->Text($x + 1, $y + $height - 1, 'YES');
+                    } else {
+                        $pdf->SetFont('Arial', 'B', 14);
+                        $pdf->Text($x + 1, $y + $height - 1, 'NO');
                     }
                     break;
                 case 'date':

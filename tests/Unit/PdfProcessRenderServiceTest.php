@@ -31,7 +31,7 @@ class PdfProcessRenderServiceTest extends TestCase
         ]);
 
         // Create DocumentFields
-        $fields = DocumentField::factory()->count(2)->create([
+        $fields = DocumentField::factory()->count(6)->create([
             'document_page_id' => $processPage->document_page_id,
         ]);
 
