@@ -92,4 +92,18 @@ class SignControllerTest extends TestCase
 		$response->assertOk();
 		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => now()]);
 	}
+
+	public function test_unarchive_unarchives_sign()
+	{
+		$sign = Sign::factory()->create(['user_id' => $this->user->id]);
+		$documentField = DocumentFieldValue::factory()
+			->as(DocumentFieldType::SIGNATURE, $sign->id)
+			->create();
+		$response = $this->deleteJson('/api/signs/' . $sign->id);
+		$response->assertOk();
+		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => now()]);
+		$response = $this->postJson('/api/signs/' . $sign->id . '/unarchive');
+		$response->assertOk();
+		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => null]);
+	}
 } 
