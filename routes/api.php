@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('document-logs', DocumentLogsController::class)->only(['index', 'show']);
     Route::apiResource('signs', SignController::class);
     Route::delete('signs/{sign}/force', [SignController::class, 'forceDelete']);
+    Route::post('signs/{sign}/restore', [SignController::class, 'restore']);
     Route::prefix('documents')->group(function () {
         Route::get('{document}/progress', [DocumentController::class, 'getProgress']);
         Route::post('{document}/open-for-signing', [DocumentController::class, 'openForSigning']);

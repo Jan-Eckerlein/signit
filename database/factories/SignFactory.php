@@ -19,6 +19,9 @@ class SignFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'name' => $this->faker->name,
+            'description' => $this->faker->sentence,
+            'image_path' => null,
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'deleted_at' => null,

@@ -41,8 +41,18 @@ class SignController extends Controller
     #[ResponseFromApiResource(SignResource::class, Sign::class)]
     public function store(StoreSignRequest $request): SignResource
     {
+        $name = $request->input('name') 
+            ?? 'Sign-' . Sign::ownedBy($request->user())->count() + 1;
+
+        $merge = [
+            'user_id' => $request->user()->id,
+            'name' => $name,
+        ];
+
+        $request->merge($merge);
+
         Gate::authorize('create', Sign::class);
-        $data = $request->validated() + ['user_id' => $request->user()->id];
+        $data = $request->validated() + $merge;
         $sign = Sign::create($data);
 
         ProcessSignatureImage::dispatch($request->file('image'), $sign->id);
@@ -108,8 +118,9 @@ class SignController extends Controller
      * 
      * Restore a soft deleted sign.
      */
-    public function restore(Request $request, Sign $sign): JsonResponse
+    public function restore(Request $request, int $signId): JsonResponse
     {
+        $sign = Sign::withTrashed()->findOrFail($signId);
         Gate::authorize('restore', $sign);
         $sign->restore();
         return response()->json(['message' => 'Sign restored successfully']);

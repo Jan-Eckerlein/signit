@@ -100,7 +100,7 @@ class Sign extends Model implements Lockable, Ownable
     public function forceDeleteIfNotUsed(): bool | null
     {
         if (!$this->isBeingUsed()) {
-            return parent::forceDelete();
+            return $this->forceDelete();
         }
         
         throw new \Exception('Cannot force delete sign that is being used by document fields.');
