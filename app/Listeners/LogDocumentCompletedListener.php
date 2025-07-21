@@ -26,7 +26,7 @@ class LogDocumentCompletedListener
     {
         DocumentLog::create([
             'document_id' => $event->document->id,
-            'document_signer_id' => null,
+            'document_signer_id' => $event->userAgent->user->id,
             'ip' => $event->userAgent->ip,
             'date' => now(),
             'icon' => Icon::CHECKMARK,
@@ -36,7 +36,7 @@ class LogDocumentCompletedListener
 
         Log::info('Document completed', [
             'document_id' => $event->document->id,
-            // 'user_id' => $event->userAgent->user->id,
+            'completed_by_user_id' => $event->userAgent->user->id,
         ]);
     }
 }

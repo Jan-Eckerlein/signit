@@ -8,6 +8,7 @@ use App\Models\DocumentLog;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class DocumentLogDocumentOpenedListener
 {
@@ -30,7 +31,12 @@ class DocumentLogDocumentOpenedListener
             'ip' => $event->userAgent->ip,
             'date' => now(),
             'icon' => Icon::SEND,
-            'text' => "Document set to in progress by {$event->userAgent->name}",
+            'text' => "Document set to in progress by {$event->userAgent->user->name}",
+        ]);
+
+        Log::info('Document opened', [
+            'document_id' => $event->document->id,
+            'opened_by_user_id' => $event->userAgent->user->id,
         ]);
     }
 }

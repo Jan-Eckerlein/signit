@@ -11,13 +11,12 @@ class UserAgent
 
     public function __construct(
         public string $ip,
-        public ?string $email,
-        public ?string $name
+        public User $user
     ) { }
 
     public static function fromRequest(Request $request): self
     {
-        return new self($request->ip(), $request->user()?->email, $request->user()?->name);
+        return new self($request->ip(), $request->user());
     }
 
     public static function fake(User $fromUser): self
@@ -25,6 +24,6 @@ class UserAgent
         $faker = Faker::create();
         $ip = $faker->ipv4();
 
-        return new self($ip, $fromUser->email, $fromUser->name);
+        return new self($ip, $fromUser);
     }
 } 
