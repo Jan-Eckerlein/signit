@@ -71,7 +71,27 @@ class PdfProcessRenderService
                     break;
                 case 'signature':
                     if ($value?->signatureSign && $value->signatureSign->image_path) {
-                        $pdf->Image(Storage::path($value->signatureSign->image_path), $x, $y, $width, $height);
+                        $imagePath = Storage::path($value->signatureSign->image_path);
+
+                        // Get image size in pixels
+                        [$imgWidthPx, $imgHeightPx] = getimagesize($imagePath);
+
+                        // FPDF uses mm, so just use the bounding box as is
+                        $boxWidth = $width;
+                        $boxHeight = $height;
+
+                        // Calculate scale to fit within box, preserving aspect ratio
+                        $scale = min($boxWidth / $imgWidthPx, $boxHeight / $imgHeightPx);
+
+                        // Calculate new image dimensions in mm
+                        $imgWidth = $imgWidthPx * $scale;
+                        $imgHeight = $imgHeightPx * $scale;
+
+                        // Center the image in the bounding box
+                        $imgX = $x + ($boxWidth - $imgWidth) / 2;
+                        $imgY = $y + ($boxHeight - $imgHeight) / 2;
+
+                        $pdf->Image($imagePath, $imgX, $imgY, $imgWidth, $imgHeight);
                     } else {
                         $pdf->SetFont('Arial', 'I', 10);
                         $pdf->SetXY($x, $y);
