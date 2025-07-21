@@ -32,37 +32,6 @@ class DocumentFieldFactory extends Factory
         ];
     }
 
-    public function configure()
-    {
-        return $this->afterMaking(function (DocumentField $field) {
-            // Only set if not already set
-            if (!$field->document_page_id || !$field->document_signer_id) {
-                // Create a Document with at least one page and one signer
-                $document = \App\Models\Document::factory()
-                    ->hasDocumentPages(1)
-                    ->hasDocumentSigners(1)
-                    ->create();
-                $page = $document->documentPages->first();
-                $signer = $document->documentSigners->first();
-                $field->document_page_id = $page->id;
-                $field->document_signer_id = $signer->id;
-            }
-        })->afterCreating(function (DocumentField $field) {
-            // If not set, set after creation as well
-            if (!$field->document_page_id || !$field->document_signer_id) {
-                $document = \App\Models\Document::factory()
-                    ->hasDocumentPages(1)
-                    ->hasDocumentSigners(1)
-                    ->create();
-                $page = $document->documentPages->first();
-                $signer = $document->documentSigners->first();
-                $field->document_page_id = $page->id;
-                $field->document_signer_id = $signer->id;
-                $field->save();
-            }
-        });
-    }
-
     public function as(DocumentFieldType $type): self
     {
         return $this->state(function (array $attributes) use ($type) {

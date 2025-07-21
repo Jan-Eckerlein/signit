@@ -4,7 +4,11 @@ namespace Tests\Feature\Controllers;
 
 use App\Enums\DocumentFieldType;
 use App\Jobs\ProcessSignatureImage;
+use App\Models\Document;
+use App\Models\DocumentField;
 use App\Models\DocumentFieldValue;
+use App\Models\DocumentPage;
+use App\Models\DocumentSigner;
 use App\Models\Sign;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -85,9 +89,22 @@ class SignControllerTest extends TestCase
 	public function test_destroy_archives_sign()
 	{
 		$sign = Sign::factory()->create(['user_id' => $this->user->id]);
-		$documentField = DocumentFieldValue::factory()
+
+        $document = Document::factory()->create();
+        $documentPage = DocumentPage::factory()->create(['document_id' => $document->id]);
+        $documentSigner = DocumentSigner::factory()->create(['document_id' => $document->id, 'user_id' => $this->user->id]);
+
+        $documentField = DocumentField::factory()->as(DocumentFieldType::SIGNATURE)->create([
+			'document_page_id' => $documentPage->id,
+			'document_signer_id' => $documentSigner->id,
+		]);
+
+		$documentFieldValue = DocumentFieldValue::factory()
 			->as(DocumentFieldType::SIGNATURE, $sign->id)
-			->create();
+			->create([
+				'document_field_id' => $documentField->id,
+			]);
+            
 		$response = $this->deleteJson('/api/signs/' . $sign->id);
 		$response->assertOk();
 		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => now()]);
@@ -96,9 +113,22 @@ class SignControllerTest extends TestCase
 	public function test_unarchive_unarchives_sign()
 	{
 		$sign = Sign::factory()->create(['user_id' => $this->user->id]);
-		$documentField = DocumentFieldValue::factory()
+
+        $document = Document::factory()->create();
+        $documentPage = DocumentPage::factory()->create(['document_id' => $document->id]);
+        $documentSigner = DocumentSigner::factory()->create(['document_id' => $document->id, 'user_id' => $this->user->id]);
+
+        $documentField = DocumentField::factory()->as(DocumentFieldType::SIGNATURE)->create([
+			'document_page_id' => $documentPage->id,
+			'document_signer_id' => $documentSigner->id,
+		]);
+
+		$documentFieldValue = DocumentFieldValue::factory()
 			->as(DocumentFieldType::SIGNATURE, $sign->id)
-			->create();
+			->create([
+				'document_field_id' => $documentField->id,
+			]);
+            
 		$response = $this->deleteJson('/api/signs/' . $sign->id);
 		$response->assertOk();
 		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => now()]);
