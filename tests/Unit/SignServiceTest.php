@@ -38,4 +38,25 @@ class SignServiceTest extends TestCase
         $this->assertTrue(Storage::disk('local')->exists($path));
         $this->assertStringEndsWith('.png', $path);
     }
+
+    public function test_process_and_store_signature_rejects_non_transparent_png()
+    {
+        // Arrange
+        $service = new SignService();
+        $sampleWhiteBgPath = base_path('tests/files/sample-signature-white-bg.png');
+        $uploadedFile = new UploadedFile(
+            $sampleWhiteBgPath,
+            'sample-signature-white-bg.png',
+            'image/png',
+            null,
+            true
+        );
+
+        // Assert
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Signature image must have a transparent background.');
+
+        // Act
+        $service->processAndStoreSignature($uploadedFile);
+    }
 } 
