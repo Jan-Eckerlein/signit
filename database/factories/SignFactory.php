@@ -22,9 +22,9 @@ class SignFactory extends Factory
             'name' => $this->faker->name,
             'description' => $this->faker->sentence,
             'image_path' => null,
+            'archived_at' => null,
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'deleted_at' => null,
         ];
     }
 }

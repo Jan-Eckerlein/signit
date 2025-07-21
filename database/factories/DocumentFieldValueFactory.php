@@ -17,26 +17,21 @@ class DocumentFieldValueFactory extends Factory
 
     public function definition(): array
     {
-        $random_type = $this->faker->randomElement(DocumentFieldType::cases());
-        $values = $this->getValues($random_type);
-
         return [
-            'document_field_id' => DocumentField::factory(),
-            ...$values,
+            // Don't set value fields here
         ];
     }
 
-    public function as(DocumentFieldType $type): self
+    public function as(DocumentFieldType $type, $value = null): self
     {
-        return $this->state(function (array $attributes) use ($type) {
-            return [
-                'document_field_id' => DocumentField::factory(),
-                ...$this->getValues($type),
-            ];
-        });
+        return $this
+            ->for(DocumentField::factory()->as($type), 'documentField')
+            ->state(function (array $attributes) use ($type, $value) {
+                return $this->getValues($type, $value);
+            });
     }
 
-    protected function getValues(DocumentFieldType $type): array
+    protected function getValues(DocumentFieldType $type, $value = null): array
     {
         // Add this for debugging
         if (!($type instanceof DocumentFieldType)) {
@@ -51,11 +46,11 @@ class DocumentFieldValueFactory extends Factory
         ];
 
         $value_map = [
-            'value_signature_sign_id' => fn() => Sign::factory(),
-            'value_initials' => fn() => $this->faker->lexify('??'),
-            'value_text' => fn() => $this->faker->sentence(),
-            'value_checkbox' => fn() => $this->faker->boolean(),
-            'value_date' => fn() => $this->faker->date(),
+            'value_signature_sign_id' => fn() => $value ?? Sign::factory(),
+            'value_initials' => fn() => $value ?? $this->faker->lexify('??'),
+            'value_text' => fn() => $value ?? $this->faker->sentence(),
+            'value_checkbox' => fn() => $value ?? $this->faker->boolean(),
+            'value_date' => fn() => $value ?? $this->faker->date(),
         ];
 
         $types = array_keys($value_map);

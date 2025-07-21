@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Builders\SignBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @implements Ownable<self>
@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @property string|null $description
  * @property string $image_path
  * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon|null $archived_at
  * @property \Carbon\Carbon|null $updated_at
- * @property \Carbon\Carbon|null $deleted_at
  */
 class Sign extends Model implements Lockable, Ownable
 {
@@ -32,17 +32,25 @@ class Sign extends Model implements Lockable, Ownable
     use HasFactory;
     /** @use HasBuilder<\App\Builders\SignBuilder> */
     use HasBuilder;
-    use SoftDeletes, ProtectsLockedModels;
+    use ProtectsLockedModels;
 
     protected static string $builder = SignBuilder::class;
-
-    protected bool $allowSoftDeletes = true;
 
     protected $fillable = [
         'user_id',
         'name',
         'description',
+        'archived_at',
     ];
+
+    protected static function booted()
+    {
+        static::deleted(function (Sign $sign) {
+            if ($sign->image_path) {
+                Storage::delete($sign->image_path);
+            }
+        });
+    }
 
     // ---------------------------- RELATIONS ----------------------------
 
@@ -90,22 +98,7 @@ class Sign extends Model implements Lockable, Ownable
     }
 
 
-    // ---------------------------- FORCE DELETE ----------------------------
-
-    /**
-     * Force delete the sign (only if not being used)
-     * @throws \Exception
-     * @return (bool | null)
-     */
-    public function forceDeleteIfNotUsed(): bool | null
-    {
-        if (!$this->isBeingUsed()) {
-            return $this->forceDelete();
-        }
-        
-        throw new \Exception('Cannot force delete sign that is being used by document fields.');
-    }
-
+    // ---------------------------- ARCHIVE ----------------------------
 
     /**
      * Check if this sign is being used by any document fields
@@ -115,4 +108,13 @@ class Sign extends Model implements Lockable, Ownable
         return $this->documentFieldValues()->exists();
     }
 
+    public function archive(): bool
+    {
+        return $this->update(['archived_at' => now()]);
+    }
+
+    public function unarchive(): bool
+    {
+        return $this->update(['archived_at' => null]);
+    }
 } 

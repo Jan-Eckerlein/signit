@@ -93,24 +93,18 @@ class SignController extends Controller
     public function destroy(Request $request, Sign $sign): JsonResponse
     {
         Gate::authorize('delete', $sign);
-        $deletionStatus = $sign->delete();
-        return response()->json(['message' => 'Sign deleted successfully', 'status' => $deletionStatus]);
-    }
-
-    /**
-     * Force Delete Sign
-     * 
-     * Force delete a sign (only if not being used).
-     */
-    public function forceDelete(Request $request, Sign $sign): JsonResponse
-    {
-        Gate::authorize('forceDelete', $sign);
-        try {
-            $sign->forceDeleteIfNotUsed();
-            return response()->json(['message' => 'Sign permanently deleted successfully']);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 422);
+        if ($sign->isBeingUsed()) {
+            $sign->archive();
+            return response()->json([
+                'status' => 'archived',
+                'message' => 'Sign is being used by document fields, archived instead'
+            ]);
         }
+        $sign->delete();
+        return response()->json([
+            'status' => 'deleted',
+            'message' => 'Sign deleted successfully',
+        ]);
     }
 
     /**
@@ -118,11 +112,10 @@ class SignController extends Controller
      * 
      * Restore a soft deleted sign.
      */
-    public function restore(Request $request, int $signId): JsonResponse
+    public function unarchive(Request $request, Sign $sign): JsonResponse
     {
-        $sign = Sign::withTrashed()->findOrFail($signId);
-        Gate::authorize('restore', $sign);
-        $sign->restore();
-        return response()->json(['message' => 'Sign restored successfully']);
+        Gate::authorize('update', $sign);
+        $sign->unarchive();
+        return response()->json(['message' => 'Sign unarchived successfully']);
     }
 } 

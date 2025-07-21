@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Enums\DocumentFieldType;
 use App\Jobs\ProcessSignatureImage;
+use App\Models\DocumentFieldValue;
 use App\Models\Sign;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -77,28 +79,17 @@ class SignControllerTest extends TestCase
         $sign = Sign::factory()->create(['user_id' => $this->user->id]);
         $response = $this->deleteJson('/api/signs/' . $sign->id);
         $response->assertOk();
-        $this->assertSoftDeleted($sign);
-    }
-
-    public function test_and_restore_sign()
-    {
-        $sign = Sign::factory()->create(['user_id' => $this->user->id]);
-        // Soft delete
-        $sign->delete();
-        $this->assertSoftDeleted($sign);
-        // Restore
-        $response = $this->postJson('/api/signs/' . $sign->id . '/restore');
-        $response->assertOk();
-        $this->assertDatabaseHas('signs', ['id' => $sign->id, 'deleted_at' => null]);
-    }
-
-    public function test_force_delete()
-    {
-        $sign = Sign::factory()->create(['user_id' => $this->user->id]);
-
-        // Force delete
-        $response = $this->deleteJson('/api/signs/' . $sign->id . '/force');
-        $response->assertOk();
         $this->assertDatabaseMissing('signs', ['id' => $sign->id]);
     }
+
+	public function test_destroy_archives_sign()
+	{
+		$sign = Sign::factory()->create(['user_id' => $this->user->id]);
+		$documentField = DocumentFieldValue::factory()
+			->as(DocumentFieldType::SIGNATURE, $sign->id)
+			->create();
+		$response = $this->deleteJson('/api/signs/' . $sign->id);
+		$response->assertOk();
+		$this->assertDatabaseHas('signs', ['id' => $sign->id, 'archived_at' => now()]);
+	}
 } 
