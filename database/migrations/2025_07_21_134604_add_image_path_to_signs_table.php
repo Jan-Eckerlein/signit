@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('signs', function (Blueprint $table) {
-            $table->string('image_path')->after('user_id');
+            $table->string('image_path')->nullable()->after('user_id');
         });
     }
 

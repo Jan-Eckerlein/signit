@@ -23,10 +23,8 @@ class ProcessSignatureImage implements ShouldQueue
      * Create a new job instance.
      */
     public function __construct(
+        protected UploadedFile $uploadedFile,
         protected int $signId,
-        protected string $filePath,
-        protected string $originalName,
-        protected SignService $signService
     )
     {
         $this->onQueue('image_processing');
@@ -35,17 +33,10 @@ class ProcessSignatureImage implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(SignService $signService): void
     {
         $sign = Sign::findOrFail($this->signId);
-        $uploadedFile = new UploadedFile(
-            $this->filePath,
-            $this->originalName,
-            'image/png',
-            null,
-            true
-        );
-        $imagePath = $this->signService->processAndStoreSignature($uploadedFile);
+        $imagePath = $signService->processAndStoreSignature($this->uploadedFile);
         $sign->image_path = $imagePath;
         $sign->save();
         SignatureImageProcessed::dispatch($sign->id, $imagePath);
