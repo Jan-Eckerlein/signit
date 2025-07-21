@@ -12,6 +12,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Gate;
 use App\Attributes\SharedPaginationParams;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
+use App\Services\SignService;
 
 /**
  * @group Signs
@@ -37,10 +38,16 @@ class SignController extends Controller
      * Store a newly created sign for a document in storage.
      */
     #[ResponseFromApiResource(SignResource::class, Sign::class)]
-    public function store(StoreSignRequest $request): SignResource
+    public function store(StoreSignRequest $request, SignService $signService): SignResource
     {
         Gate::authorize('create', Sign::class);
-        $sign = Sign::create($request->validated() + ['user_id' => $request->user()->id]);
+        $data = $request->validated() + ['user_id' => $request->user()->id];
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $signService->processAndStoreSignature($request->file('image'));
+        }
+
+        $sign = Sign::create($data);
         return new SignResource($sign->load(['user']));
     }
 
