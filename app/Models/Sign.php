@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @implements Ownable<self>
  * @property int $id
  * @property int $user_id
+ * @property string $name
+ * @property string|null $description
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
@@ -37,6 +39,8 @@ class Sign extends Model implements Lockable, Ownable
 
     protected $fillable = [
         'user_id',
+        'name',
+        'description',
     ];
 
     // ---------------------------- RELATIONS ----------------------------
