@@ -2,8 +2,11 @@
 
 namespace Tests\Unit;
 
+use App\Enums\DocumentFieldType;
 use App\Models\PdfProcessPage;
 use App\Models\DocumentField;
+use App\Models\DocumentFieldValue;
+use App\Models\Sign;
 use App\Services\PdfProcessRenderService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Storage;
@@ -23,6 +26,15 @@ class PdfProcessRenderServiceTest extends TestCase
         $originalPath = 'pdf_process/originals/' . uniqid() . '_sample.pdf';
         $fakePdfContent = file_get_contents($samplePdfPath);
 
+		$sampleSignPath = base_path('tests/files/sample-signature.png');
+		$newSignPath = 'signs/' . uniqid() . '_sample-signature.png';
+		Storage::disk('local')->put($newSignPath, file_get_contents($sampleSignPath));
+
+		$sign = Sign::factory()->create([
+			'image_path' => $newSignPath,
+		]);
+
+
         Storage::disk('local')->put($originalPath, $fakePdfContent);
 
         // Create a PdfProcessPage
@@ -35,15 +47,21 @@ class PdfProcessRenderServiceTest extends TestCase
             'document_page_id' => $processPage->document_page_id,
         ]);
 
+		foreach ($fields as $field) {
+			$value = DocumentFieldValue::factory()->as($field->type)->create([
+				'document_field_id' => $field->id,
+			]);
+
+			if ($field->type === DocumentFieldType::SIGNATURE) {
+				$value->signatureSign()->associate($sign)->save();
+			}
+		}
+
         $service = new PdfProcessRenderService();
 
         // Act & Assert: should not throw and should return a string path
         $processedPath = null;
-        try {
-            $processedPath = $service->renderFieldsOnPage($processPage->id, $fields->pluck('id')->toArray());
-        } catch (\Throwable $e) {
-            $this->fail('Exception was thrown: ' . $e->getMessage());
-        }
+		$processedPath = $service->renderFieldsOnPage($processPage->id, $fields->pluck('id')->toArray());
 
         $this->assertIsString($processedPath);
         $this->assertNotEmpty($processedPath);
