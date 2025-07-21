@@ -11,15 +11,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DocumentCompletedMagicLinkNotification extends Mailable
+class DocumentCompletedMailable extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public function __construct(
         public Document $document,
-        public User $recipient,
-        public string $magicLinkToken
-    ) {}
+        public User $recipient
+    ) {
+        $this->onQueue('emails');
+    }
 
     /**
      * Get the message envelope.
@@ -37,11 +38,10 @@ class DocumentCompletedMagicLinkNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.documents.completed-magic-link',
+            markdown: 'emails.documents.completed',
             with: [
                 'document' => $this->document,
                 'recipient' => $this->recipient,
-                'magicLinkToken' => $this->magicLinkToken,
             ],
         );
     }

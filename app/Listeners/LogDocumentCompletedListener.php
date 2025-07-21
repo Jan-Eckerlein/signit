@@ -7,6 +7,7 @@ use App\Events\DocumentCompletedEvent;
 use App\Models\DocumentLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class LogDocumentCompletedListener
 {
@@ -30,6 +31,12 @@ class LogDocumentCompletedListener
             'date' => now(),
             'icon' => Icon::CHECKMARK,
             'text' => "Document completed and signed by all signers",
+        ]);
+
+
+        Log::info('Document completed', [
+            'document_id' => $event->document->id,
+            // 'user_id' => $event->userAgent->user->id,
         ]);
     }
 }
