@@ -47,5 +47,11 @@ class PdfProcessRenderServiceTest extends TestCase
 
         $this->assertIsString($processedPath);
         $this->assertNotEmpty($processedPath);
+
+        $realPath = base_path('tests/output/latest_processed.pdf');
+        if (!is_dir(dirname($realPath))) {
+            mkdir(dirname($realPath), 0777, true);
+        }
+        copy(Storage::disk('local')->path($processedPath), $realPath);
     }
 } 
