@@ -26,13 +26,12 @@ use Illuminate\Database\Eloquent\HasBuilder;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon|null $updated_at
  */
-class DocumentLog extends Model implements Ownable, Lockable
+class DocumentLog extends Model implements Ownable
 {
     /** @use HasFactory<\Database\Factories\DocumentLogFactory> */
     use HasFactory;
     /** @use HasBuilder<\App\Builders\DocumentLogBuilder> */
     use HasBuilder;
-    use ProtectsLockedModels;
 
     protected static string $builder = DocumentLogBuilder::class;
 
@@ -50,11 +49,7 @@ class DocumentLog extends Model implements Ownable, Lockable
         'date' => 'datetime',
     ];
 
-    /** @return bool */
-    public function isLocked(BaseModelEvent | null $event = null): bool
-    {
-        return $this->exists;
-    }
+    // ---------------------------- RELATIONS ----------------------------
 
     /** @return BelongsTo<DocumentSigner, $this> */
     public function documentSigner(): BelongsTo
@@ -67,6 +62,8 @@ class DocumentLog extends Model implements Ownable, Lockable
     {
         return $this->belongsTo(Document::class);
     }
+
+    // ---------------------------- OWNERSHIP ----------------------------
 
     /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
