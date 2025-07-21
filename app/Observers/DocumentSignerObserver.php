@@ -71,15 +71,6 @@ class DocumentSignerObserver
         }
     }
 
-    /**
-     * Check if all signers have completed their signatures
-     */
-    private function areAllSignersCompleted(Document $document): bool
-    {
-        return $document->documentSigners()
-            ->whereNull('signature_completed_at')
-            ->doesntExist();
-    }
 
     /**
      * Handle document completion logic
