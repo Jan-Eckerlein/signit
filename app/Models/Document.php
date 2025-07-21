@@ -203,7 +203,12 @@ class Document extends Model implements Lockable, Ownable, Validatable
 
     public function isViewableBy(User | null $user = null): bool
     {
-        return $this->isOwnedBy($user) || $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists();
+        return 
+            $this->isOwnedBy($user) || 
+            (
+                $this->isStatus(DocumentStatus::OPEN, DocumentStatus::IN_PROGRESS, DocumentStatus::COMPLETED) &&
+                $this->documentSigners()->where('user_id', $user ? $user->id : Auth::id())->exists()
+            );
     }
 
     public static function canCreateThis(User $user, array $attributes): bool
@@ -224,6 +229,11 @@ class Document extends Model implements Lockable, Ownable, Validatable
         $statusValues = array_map(fn(DocumentStatus $status) => $status->value, $statuses);
 
         return in_array($this->status->value, $statusValues, strict: true);
+    }
+
+    public function statusIsOpenOrLater(): bool
+    {
+        return $this->isStatus(DocumentStatus::OPEN, DocumentStatus::IN_PROGRESS, DocumentStatus::COMPLETED);
     }
 
     public function areAllSignersCompleted(): bool

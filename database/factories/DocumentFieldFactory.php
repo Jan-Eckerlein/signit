@@ -63,6 +63,15 @@ class DocumentFieldFactory extends Factory
         });
     }
 
+    public function as(DocumentFieldType $type): self
+    {
+        return $this->state(function (array $attributes) use ($type) {
+            return [
+                'type' => $type,
+            ];
+        });
+    }
+
     /**
      * Factory state for Scribe to use, ensuring valid relationships.
      */

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use App\Builders\DocumentSignerBuilder;
 use Illuminate\Database\Eloquent\HasBuilder;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 // ---------------------------- PROPERTIES ----------------------------
 
@@ -47,6 +48,9 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
         'user_id',
         'name',
         'description',
+        'signature_completed_at',
+        'electronic_signature_disclosure_accepted',
+        'disclosure_accepted_at',
     ];
 
     // ---------------------------- RELATIONS ----------------------------
@@ -107,7 +111,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
             $totalFields = $this->getTotalFieldsCount();
             
             if ($completedFields < $totalFields) {
-                throw new \InvalidArgumentException(
+                throw new UnprocessableEntityHttpException(
                     "Cannot complete signature: {$completedFields} of {$totalFields} fields are filled. All fields must be completed before signature can be finalized."
                 );
             }
@@ -127,7 +131,9 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
-        return $this->document->isOwnedBy($user);
+        return 
+            $this->document->isOwnedBy($user) ||
+            $this->document->statusIsOpenOrLater() && $this->user_id === $user->id;
     }
 
     /** @return bool */
@@ -166,5 +172,14 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     public function getTotalFieldsCount(): int
     {
         return $this->documentFields()->count();
+    }
+
+    public function completeSignature(): void
+    {
+        $this->update([
+            'signature_completed_at' => now(),
+            'electronic_signature_disclosure_accepted' => true,
+            'disclosure_accepted_at' => now(),
+        ]);
     }
 } 

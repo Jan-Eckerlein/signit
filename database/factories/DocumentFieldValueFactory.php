@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\DocumentFieldType;
 use App\Models\DocumentFieldValue;
 use App\Models\DocumentField;
 use App\Models\Sign;
@@ -16,6 +17,39 @@ class DocumentFieldValueFactory extends Factory
 
     public function definition(): array
     {
+        $random_type = $this->faker->randomElement(DocumentFieldType::cases());
+        $values = $this->getValues($random_type);
+
+        return [
+            'document_field_id' => DocumentField::factory(),
+            ...$values,
+        ];
+    }
+
+    public function as(DocumentFieldType $type): self
+    {
+        return $this->state(function (array $attributes) use ($type) {
+            return [
+                'document_field_id' => DocumentField::factory(),
+                ...$this->getValues($type),
+            ];
+        });
+    }
+
+    protected function getValues(DocumentFieldType $type): array
+    {
+        // Add this for debugging
+        if (!($type instanceof DocumentFieldType)) {
+            throw new \Exception('Expected DocumentFieldType enum, got: ' . gettype($type) . ' - ' . print_r($type, true));
+        }
+        $type_key_map = [
+            DocumentFieldType::SIGNATURE->value => 'value_signature_sign_id',
+            DocumentFieldType::INITIALS->value => 'value_initials',
+            DocumentFieldType::TEXT->value => 'value_text',
+            DocumentFieldType::CHECKBOX->value => 'value_checkbox',
+            DocumentFieldType::DATE->value => 'value_date',
+        ];
+
         $value_map = [
             'value_signature_sign_id' => fn() => Sign::factory(),
             'value_initials' => fn() => $this->faker->lexify('??'),
@@ -25,16 +59,13 @@ class DocumentFieldValueFactory extends Factory
         ];
 
         $types = array_keys($value_map);
-        $selected = $this->faker->randomElement($types);
+        $selected = $type_key_map[$type->value];
 
         $processed = [];
         foreach ($value_map as $key => $fn) {
             $processed[$key] = ($key === $selected) ? $fn() : null;
         }
 
-        return [
-            'document_field_id' => DocumentField::factory(),
-            ...$processed,
-        ];
+        return $processed;
     }
 } 

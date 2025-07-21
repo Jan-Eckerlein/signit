@@ -26,10 +26,11 @@ class HandleFirstSignatureListener
      */
     public function handle(SignatureCompletedEvent $event): void
     {
+        // dd($event->documentSigner->document->documentSigners()->get());
         $isFirstSignature = $event->documentSigner->document->documentSigners()
             ->whereNotNull('signature_completed_at')
             ->count() === 1;
-
+        
         if (!$isFirstSignature) return;
 
         $event->documentSigner->document->update(['status' => DocumentStatus::IN_PROGRESS]);

@@ -29,9 +29,9 @@ class DocumentSignerObserver
     public function updated(DocumentSigner $documentSigner): void
     {
         // Check if signature completion fields were just set
-        if ($documentSigner->wasChanged('signature_completed_at') && $documentSigner->signature_completed_at !== null) {
-            $this->handleSignatureCompletion($documentSigner);
-        }
+        // if ($documentSigner->wasChanged('signature_completed_at') && $documentSigner->signature_completed_at !== null) {
+        //     $this->handleSignatureCompletion($documentSigner);
+        // }
     }
 
     /**
