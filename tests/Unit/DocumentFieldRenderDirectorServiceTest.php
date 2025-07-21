@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Document;
 use App\Models\DocumentField;
+use App\Models\DocumentFieldValue;
 use App\Models\DocumentPage;
 use App\Models\PdfProcess;
 use App\Models\PdfProcessPage;
@@ -38,6 +39,14 @@ class DocumentFieldRenderDirectorServiceTest extends TestCase
 						]
 					)
             );
+        }
+
+        foreach ($fields as $field) {
+            DocumentFieldValue::factory()
+            ->as($field->type)
+            ->create([
+                'document_field_id' => $field->id,
+            ]);
         }
 
 
