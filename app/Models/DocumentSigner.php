@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use App\Builders\DocumentSignerBuilder;
+use App\Exceptions\ValidateModelModificationFailedException;
 use Illuminate\Database\Eloquent\HasBuilder;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
@@ -80,7 +81,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     {
         return in_array(
             $this->document->getOriginal('status'), 
-            [DocumentStatus::IN_PROGRESS, DocumentStatus::OPEN, DocumentStatus::COMPLETED],
+            [DocumentStatus::COMPLETED],
             true
         );
     }
@@ -90,6 +91,35 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
+        $allowedFields = [
+            DocumentStatus::DRAFT->value => [
+                'name',
+                'description',
+                'document_id',
+                'user_id',
+            ],
+            DocumentStatus::OPEN->value => [
+                'signature_completed_at',
+                'electronic_signature_disclosure_accepted',
+                'disclosure_accepted_at',
+            ],
+            DocumentStatus::IN_PROGRESS->value => [
+                'signature_completed_at',
+                'electronic_signature_disclosure_accepted',
+                'disclosure_accepted_at',
+            ],
+        ];
+
+        $allowedFields = $allowedFields[$this->document->getOriginal('status')->value];
+
+        $dirty = $this->getDirty();
+
+        foreach ($dirty as $field => $value) {
+            if (!in_array($field, $allowedFields)) {
+                throw new ValidateModelModificationFailedException(static::class, "Field {$field} is not allowed to be modified");
+            }
+        }
+        
         // Check if signature completion fields are being modified
         $signatureCompletionFields = [
             'signature_completed_at',
