@@ -61,8 +61,9 @@ class DocumentSignerControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_signer_can_complete_signature(): void
+    public function test_signer_can_complete_signature_and_fire_event(): void
     {
+        Event::fake();
         $document = Document::factory()
             ->hasDocumentPages(1)
             ->create();
@@ -93,31 +94,15 @@ class DocumentSignerControllerTest extends TestCase
 
         $document->save();
 
-        // dd($documentFieldValue);
 
         $response = $this->postJson('/api/document-signers/' . $documentSigner->id . '/complete-signature', [
             'electronic_signature_disclosure_accepted' => true,
         ]);
 
-        // $response->assertStatus(200);
         $this->assertStatusOrDump($response, 200);
 
         $completedSigner = DocumentSigner::find($documentSigner->id);
         $this->assertTrue($completedSigner->isSignatureCompleted());
-    }
-
-    public function test_complete_signature_fires_event(): void
-    {
-        Event::fake();
-
-        $documentSigner = DocumentSigner::factory()
-            ->recycle($this->user)
-            ->create();
-
-        $this->postJson('/api/document-signers/' . $documentSigner->id . '/complete-signature', [
-            'electronic_signature_disclosure_accepted' => true,
-        ]);
-
 
         Event::assertDispatched(SignatureCompletedEvent::class);
     }

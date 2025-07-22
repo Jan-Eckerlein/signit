@@ -80,7 +80,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     {
         return in_array(
             $this->document->getOriginal('status'), 
-            [DocumentStatus::IN_PROGRESS, DocumentStatus::OPEN],
+            [DocumentStatus::IN_PROGRESS, DocumentStatus::OPEN, DocumentStatus::COMPLETED],
             true
         );
     }
@@ -131,9 +131,7 @@ class DocumentSigner extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public function isOwnedBy(User | null $user = null): bool
     {
-        return 
-            $this->document->isOwnedBy($user) ||
-            $this->document->statusIsOpenOrLater() && $this->user_id === $user->id;
+        return $this->document->isOwnedBy($user);
     }
 
     /** @return bool */

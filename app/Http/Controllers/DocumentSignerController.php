@@ -98,7 +98,7 @@ class DocumentSignerController extends Controller
      */
     public function completeSignature(Request $request, DocumentSigner $documentSigner): JsonResponse
     {
-        // Gate::authorize('update', $documentSigner);
+        Gate::authorize('completeSignature', $documentSigner);
         
         $request->validate([
             'electronic_signature_disclosure_accepted' => 'required|boolean|accepted',
