@@ -129,11 +129,16 @@ class SignControllerTest extends TestCase
 			'document_signer_id' => $documentSigner->id,
 		]);
 
+        $document->status = DocumentStatus::OPEN;
+        $document->save();
+
 		$documentFieldValue = DocumentFieldValue::factory()
-			->as(DocumentFieldType::SIGNATURE, $sign->id)
-			->create([
-				'document_field_id' => $documentField->id,
-			]);
+        ->as(DocumentFieldType::SIGNATURE, $sign->id)
+        ->create([
+            'document_field_id' => $documentField->id,
+        ]);
+
+        $sign->refresh();
             
 		$response = $this->deleteJson('/api/signs/' . $sign->id);
 		$response->assertOk();
