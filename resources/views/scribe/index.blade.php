@@ -177,6 +177,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="documents-POSTapi-documents--document_id--open-for-signing">
                                 <a href="#documents-POSTapi-documents--document_id--open-for-signing">POST api/documents/{document_id}/open-for-signing</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="documents-POSTapi-documents--document_id--revert-to-draft">
+                                <a href="#documents-POSTapi-documents--document_id--revert-to-draft">POST api/documents/{document_id}/revert-to-draft</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-pdf-process-uploads" class="tocify-header">
@@ -241,8 +244,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="signs-DELETEapi-signs--id-">
                                 <a href="#signs-DELETEapi-signs--id-">Delete Sign</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="signs-DELETEapi-signs--sign_id--force">
-                                <a href="#signs-DELETEapi-signs--sign_id--force">Force Delete Sign</a>
+                                                                                <li class="tocify-item level-2" data-unique="signs-POSTapi-signs--sign_id--unarchive">
+                                <a href="#signs-POSTapi-signs--sign_id--unarchive">Restore Sign</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -255,7 +258,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 19, 2025</li>
+        <li>Last updated: July 22, 2025</li>
     </ul>
 </div>
 
@@ -301,7 +304,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"password_confirmation\": \"aykcmyuwpwlvqwrsitcpscqldz\",
-    \"handler\": \"token\"
+    \"handler\": \"session\"
 }"
 </code></pre></div>
 
@@ -321,7 +324,7 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "password_confirmation": "aykcmyuwpwlvqwrsitcpscqldz",
-    "handler": "token"
+    "handler": "session"
 };
 
 fetch(url, {
@@ -454,10 +457,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="handler"                data-endpoint="POSTapi-auth-register"
-               value="token"
+               value="session"
                data-component="body">
     <br>
-<p>Example: <code>token</code></p>
+<p>Example: <code>session</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>token</code></li> <li><code>session</code></li></ul>
         </div>
@@ -782,7 +785,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-auth-me">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -794,14 +797,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;Scribe API&quot;,
-        &quot;email&quot;: &quot;scribe@example.com&quot;,
-        &quot;email_verified_at&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-17T19:20:11.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-17T19:20:11.000000Z&quot;
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -1211,19 +1207,19 @@ fetch(url, {
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
-            &quot;user_id&quot;: 2,
+            &quot;user_id&quot;: 1,
             &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
             &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         },
         {
             &quot;id&quot;: 2,
-            &quot;user_id&quot;: 3,
+            &quot;user_id&quot;: 2,
             &quot;email&quot;: &quot;nstokes@yahoo.com&quot;,
             &quot;name&quot;: &quot;Dr. Grayson Glover&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -1434,11 +1430,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
+        &quot;user_id&quot;: 1,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1595,11 +1591,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
+        &quot;user_id&quot;: 1,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1756,11 +1752,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
+        &quot;user_id&quot;: 1,
         &quot;email&quot;: &quot;okon.justina@gaylord.com&quot;,
         &quot;name&quot;: &quot;Mittie Considine&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -1933,11 +1929,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
+        &quot;user_id&quot;: 1,
         &quot;email&quot;: &quot;hirthe.theo@hauck.com&quot;,
         &quot;name&quot;: &quot;Alanis McLaughlin&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2094,26 +2090,26 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 2,
+            &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
-            &quot;document_id&quot;: 6,
+            &quot;document_id&quot;: 2,
             &quot;ip&quot;: &quot;125.161.29.220&quot;,
-            &quot;date&quot;: &quot;2007-06-22T12:38:46.000000Z&quot;,
+            &quot;date&quot;: &quot;2007-06-19T17:33:54.000000Z&quot;,
             &quot;icon&quot;: &quot;create&quot;,
             &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         },
         {
-            &quot;id&quot;: 3,
+            &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
-            &quot;document_id&quot;: 8,
-            &quot;ip&quot;: &quot;158.139.113.99&quot;,
-            &quot;date&quot;: &quot;1975-12-03T23:08:58.000000Z&quot;,
+            &quot;document_id&quot;: 4,
+            &quot;ip&quot;: &quot;201.82.173.1&quot;,
+            &quot;date&quot;: &quot;1977-05-02T01:48:41.000000Z&quot;,
             &quot;icon&quot;: &quot;watch&quot;,
-            &quot;text&quot;: &quot;Ut aut deserunt et error neque recusandae et.&quot;,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;text&quot;: &quot;Doloribus fugiat ut aut deserunt et.&quot;,
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2280,7 +2276,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/document-logs/1" \
+    --get "http://localhost:8001/api/document-logs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2288,7 +2284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/document-logs/1"
+    "http://localhost:8001/api/document-logs/16"
 );
 
 const headers = {
@@ -2312,15 +2308,15 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 2,
+        &quot;id&quot;: 1,
         &quot;document_signer_id&quot;: 1,
-        &quot;document_id&quot;: 6,
+        &quot;document_id&quot;: 2,
         &quot;ip&quot;: &quot;125.161.29.220&quot;,
-        &quot;date&quot;: &quot;2007-06-22T12:38:46.000000Z&quot;,
+        &quot;date&quot;: &quot;2007-06-19T17:33:54.000000Z&quot;,
         &quot;icon&quot;: &quot;create&quot;,
         &quot;text&quot;: &quot;Commodi incidunt iure odit.&quot;,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2412,10 +2408,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-document-logs--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document log. Example: <code>1</code></p>
+<p>The ID of the document log. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -2470,7 +2466,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-signers">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2482,39 +2478,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8001/api/document-signers?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8001/api/document-signers&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -2855,7 +2819,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-document-signers--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2867,7 +2831,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No query results for model [App\\Models\\DocumentSigner].&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -3518,24 +3482,24 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 5,
+            &quot;id&quot;: 1,
             &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
-            &quot;owner_user_id&quot;: 2,
+            &quot;owner_user_id&quot;: 1,
             &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         },
         {
-            &quot;id&quot;: 6,
+            &quot;id&quot;: 2,
             &quot;title&quot;: &quot;Deleniti nemo odit.&quot;,
-            &quot;owner_user_id&quot;: 3,
+            &quot;owner_user_id&quot;: 2,
             &quot;description&quot;: &quot;Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.&quot;,
             &quot;status&quot;: &quot;draft&quot;,
             &quot;template_document_id&quot;: null,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -3709,7 +3673,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"title\": \"b\",
     \"description\": \"Et animi quos velit et fugiat.\",
-    \"is_template\": true
+    \"is_template\": false
 }"
 </code></pre></div>
 
@@ -3728,7 +3692,7 @@ const headers = {
 let body = {
     "title": "b",
     "description": "Et animi quos velit et fugiat.",
-    "is_template": true
+    "is_template": false
 };
 
 fetch(url, {
@@ -3747,14 +3711,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 5,
+        &quot;id&quot;: 1,
         &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
-        &quot;owner_user_id&quot;: 2,
+        &quot;owner_user_id&quot;: 1,
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -3881,7 +3845,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -3899,7 +3863,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/documents/3" \
+    --get "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3907,7 +3871,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/3"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -3931,14 +3895,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 5,
+        &quot;id&quot;: 1,
         &quot;title&quot;: &quot;Adipisci quidem nostrum qui.&quot;,
-        &quot;owner_user_id&quot;: 2,
+        &quot;owner_user_id&quot;: 1,
         &quot;description&quot;: &quot;Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4030,10 +3994,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-documents--id-"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>3</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4051,7 +4015,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8001/api/documents/3" \
+    "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4064,7 +4028,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/3"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -4094,14 +4058,14 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 5,
+        &quot;id&quot;: 1,
         &quot;title&quot;: &quot;Nihil accusantium harum.&quot;,
-        &quot;owner_user_id&quot;: 2,
+        &quot;owner_user_id&quot;: 1,
         &quot;description&quot;: &quot;Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum.&quot;,
         &quot;status&quot;: &quot;draft&quot;,
         &quot;template_document_id&quot;: null,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;
+        &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;
     }
 }</code>
  </pre>
@@ -4197,10 +4161,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-documents--id-"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>3</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4241,7 +4205,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8001/api/documents/3" \
+    "http://localhost:8001/api/documents/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4249,7 +4213,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/3"
+    "http://localhost:8001/api/documents/16"
 );
 
 const headers = {
@@ -4354,10 +4318,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-documents--id-"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>3</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4375,7 +4339,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8001/api/documents/3/progress" \
+    --get "http://localhost:8001/api/documents/16/progress" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4383,7 +4347,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/3/progress"
+    "http://localhost:8001/api/documents/16/progress"
 );
 
 const headers = {
@@ -4501,10 +4465,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="document_id"                data-endpoint="GETapi-documents--document_id--progress"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>3</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4522,7 +4486,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8001/api/documents/3/open-for-signing" \
+    "http://localhost:8001/api/documents/16/open-for-signing" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4530,7 +4494,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/documents/3/open-for-signing"
+    "http://localhost:8001/api/documents/16/open-for-signing"
 );
 
 const headers = {
@@ -4635,10 +4599,144 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="document_id"                data-endpoint="POSTapi-documents--document_id--open-for-signing"
-               value="3"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the document. Example: <code>3</code></p>
+<p>The ID of the document. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="documents-POSTapi-documents--document_id--revert-to-draft">POST api/documents/{document_id}/revert-to-draft</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-documents--document_id--revert-to-draft">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8001/api/documents/16/revert-to-draft" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8001/api/documents/16/revert-to-draft"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-documents--document_id--revert-to-draft">
+</span>
+<span id="execution-results-POSTapi-documents--document_id--revert-to-draft" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-documents--document_id--revert-to-draft"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-documents--document_id--revert-to-draft"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-documents--document_id--revert-to-draft" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-documents--document_id--revert-to-draft">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-documents--document_id--revert-to-draft" data-method="POST"
+      data-path="api/documents/{document_id}/revert-to-draft"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-documents--document_id--revert-to-draft', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-documents--document_id--revert-to-draft"
+                    onclick="tryItOut('POSTapi-documents--document_id--revert-to-draft');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-documents--document_id--revert-to-draft"
+                    onclick="cancelTryOut('POSTapi-documents--document_id--revert-to-draft');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-documents--document_id--revert-to-draft"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/documents/{document_id}/revert-to-draft</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-documents--document_id--revert-to-draft"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-documents--document_id--revert-to-draft"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-documents--document_id--revert-to-draft"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>document_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="document_id"                data-endpoint="POSTapi-documents--document_id--revert-to-draft"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the document. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4666,7 +4764,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --form "pdf_process_id=architecto"\
     --form "orders[]=16"\
-    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/php67j92f6bouhe9FUzayU" </code></pre></div>
+    --form "pdfs[]=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/php8e4mpfn1fq5tb5ZcX5V" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -4842,7 +4940,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"value_initials\": \"n\",
     \"value_text\": \"architecto\",
     \"value_checkbox\": false,
-    \"value_date\": \"2025-07-19T14:23:42\"
+    \"value_date\": \"2025-07-22T09:28:34\"
 }"
 </code></pre></div>
 
@@ -4863,7 +4961,7 @@ let body = {
     "value_initials": "n",
     "value_text": "architecto",
     "value_checkbox": false,
-    "value_date": "2025-07-19T14:23:42"
+    "value_date": "2025-07-22T09:28:34"
 };
 
 fetch(url, {
@@ -4883,12 +4981,12 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: null,
-        &quot;document_field_id&quot;: 2,
+        &quot;document_field_id&quot;: null,
         &quot;value_signature_sign_id&quot;: null,
         &quot;value_initials&quot;: null,
         &quot;value_text&quot;: null,
         &quot;value_checkbox&quot;: null,
-        &quot;value_date&quot;: &quot;2023-08-17T00:00:00.000000Z&quot;,
+        &quot;value_date&quot;: null,
         &quot;created_at&quot;: null,
         &quot;updated_at&quot;: null
     }
@@ -5047,10 +5145,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="value_date"                data-endpoint="POSTapi-document-field-values"
-               value="2025-07-19T14:23:42"
+               value="2025-07-22T09:28:34"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-07-19T14:23:42</code></p>
+<p>Must be a valid date. Example: <code>2025-07-22T09:28:34</code></p>
         </div>
         </form>
 
@@ -5114,45 +5212,45 @@ fetch(url, {
         {
             &quot;id&quot;: 1,
             &quot;document_signer_id&quot;: 1,
-            &quot;document_page_id&quot;: 2,
-            &quot;x&quot;: 443,
-            &quot;y&quot;: 774,
-            &quot;width&quot;: 23,
-            &quot;height&quot;: 275,
-            &quot;type&quot;: &quot;date&quot;,
-            &quot;label&quot;: &quot;cum&quot;,
+            &quot;document_page_id&quot;: 1,
+            &quot;x&quot;: 84,
+            &quot;y&quot;: 160,
+            &quot;width&quot;: 29,
+            &quot;height&quot;: 16,
+            &quot;type&quot;: &quot;signature&quot;,
+            &quot;label&quot;: &quot;voluptas&quot;,
             &quot;description&quot;: null,
             &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
             &quot;document_page&quot;: {
-                &quot;id&quot;: 2,
-                &quot;document_id&quot;: 5,
-                &quot;page_number&quot;: 1,
-                &quot;created_at&quot;: &quot;1995-04-18T04:57:21.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2013-07-11T07:12:47.000000Z&quot;
+                &quot;id&quot;: 1,
+                &quot;document_id&quot;: 1,
+                &quot;page_number&quot;: 7,
+                &quot;created_at&quot;: &quot;2014-07-07T12:27:09.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2018-04-28T13:01:54.000000Z&quot;
             }
         },
         {
             &quot;id&quot;: 2,
             &quot;document_signer_id&quot;: 2,
-            &quot;document_page_id&quot;: 3,
-            &quot;x&quot;: 930,
-            &quot;y&quot;: 695,
-            &quot;width&quot;: 86,
-            &quot;height&quot;: 179,
-            &quot;type&quot;: &quot;signature&quot;,
-            &quot;label&quot;: &quot;dolor&quot;,
-            &quot;description&quot;: &quot;Aut magni porro vitae nihil praesentium.&quot;,
-            &quot;required&quot;: false,
-            &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
+            &quot;document_page_id&quot;: 2,
+            &quot;x&quot;: 52,
+            &quot;y&quot;: 77,
+            &quot;width&quot;: 44,
+            &quot;height&quot;: 8,
+            &quot;type&quot;: &quot;initials&quot;,
+            &quot;label&quot;: &quot;voluptatem&quot;,
+            &quot;description&quot;: &quot;Aut amet eveniet facere et porro quae error.&quot;,
+            &quot;required&quot;: true,
+            &quot;created_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-22T09:28:34.000000Z&quot;,
             &quot;document_page&quot;: {
-                &quot;id&quot;: 3,
-                &quot;document_id&quot;: 6,
-                &quot;page_number&quot;: 8,
-                &quot;created_at&quot;: &quot;2018-03-01T19:47:50.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2018-01-02T10:15:30.000000Z&quot;
+                &quot;id&quot;: 2,
+                &quot;document_id&quot;: 2,
+                &quot;page_number&quot;: 7,
+                &quot;created_at&quot;: &quot;1979-08-24T20:00:39.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;1992-09-03T16:50:13.000000Z&quot;
             }
         }
     ],
@@ -5330,7 +5428,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"initials\",
+    \"type\": \"checkbox\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
     \"required\": false
@@ -5355,7 +5453,7 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "initials",
+    "type": "checkbox",
     "label": "y",
     "description": "Eius et animi quos velit et.",
     "required": false
@@ -5377,26 +5475,19 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;document_signer_id&quot;: 1,
-        &quot;document_page_id&quot;: 2,
-        &quot;x&quot;: 970,
-        &quot;y&quot;: 952,
-        &quot;width&quot;: 130,
-        &quot;height&quot;: 244,
-        &quot;type&quot;: &quot;initials&quot;,
-        &quot;label&quot;: &quot;mollitia&quot;,
-        &quot;description&quot;: null,
+        &quot;id&quot;: null,
+        &quot;document_signer_id&quot;: null,
+        &quot;document_page_id&quot;: null,
+        &quot;x&quot;: 97,
+        &quot;y&quot;: 133,
+        &quot;width&quot;: 59,
+        &quot;height&quot;: 18,
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;label&quot;: &quot;omnis&quot;,
+        &quot;description&quot;: &quot;Adipisci quidem nostrum qui commodi incidunt iure.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;document_page&quot;: {
-            &quot;id&quot;: 2,
-            &quot;document_id&quot;: 5,
-            &quot;page_number&quot;: 1,
-            &quot;created_at&quot;: &quot;2022-01-21T10:30:58.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2013-02-14T00:13:02.000000Z&quot;
-        }
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
     }
 }</code>
  </pre>
@@ -5554,10 +5645,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-document-fields"
-               value="initials"
+               value="checkbox"
                data-component="body">
     <br>
-<p>Example: <code>initials</code></p>
+<p>Example: <code>checkbox</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -5652,26 +5743,19 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;document_signer_id&quot;: 1,
-        &quot;document_page_id&quot;: 2,
-        &quot;x&quot;: 72,
-        &quot;y&quot;: 880,
-        &quot;width&quot;: 150,
-        &quot;height&quot;: 133,
-        &quot;type&quot;: &quot;initials&quot;,
-        &quot;label&quot;: &quot;commodi&quot;,
-        &quot;description&quot;: &quot;Odit et et modi.&quot;,
-        &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;document_page&quot;: {
-            &quot;id&quot;: 2,
-            &quot;document_id&quot;: 5,
-            &quot;page_number&quot;: 9,
-            &quot;created_at&quot;: &quot;1978-02-21T03:10:37.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;1995-01-30T23:03:05.000000Z&quot;
-        }
+        &quot;id&quot;: null,
+        &quot;document_signer_id&quot;: null,
+        &quot;document_page_id&quot;: null,
+        &quot;x&quot;: 90,
+        &quot;y&quot;: 142,
+        &quot;width&quot;: 30,
+        &quot;height&quot;: 11,
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;label&quot;: &quot;aut&quot;,
+        &quot;description&quot;: &quot;Non facere tempora ex voluptatem laboriosam praesentium.&quot;,
+        &quot;required&quot;: true,
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
     }
 }</code>
  </pre>
@@ -5793,10 +5877,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"y\": 4326.41688,
     \"width\": 77,
     \"height\": 8,
-    \"type\": \"text\",
+    \"type\": \"signature\",
     \"label\": \"y\",
     \"description\": \"Eius et animi quos velit et.\",
-    \"required\": true
+    \"required\": false
 }"
 </code></pre></div>
 
@@ -5817,10 +5901,10 @@ let body = {
     "y": 4326.41688,
     "width": 77,
     "height": 8,
-    "type": "text",
+    "type": "signature",
     "label": "y",
     "description": "Eius et animi quos velit et.",
-    "required": true
+    "required": false
 };
 
 fetch(url, {
@@ -5839,26 +5923,19 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;document_signer_id&quot;: 1,
-        &quot;document_page_id&quot;: 2,
-        &quot;x&quot;: 970,
-        &quot;y&quot;: 952,
-        &quot;width&quot;: 130,
-        &quot;height&quot;: 244,
-        &quot;type&quot;: &quot;initials&quot;,
-        &quot;label&quot;: &quot;mollitia&quot;,
-        &quot;description&quot;: null,
+        &quot;id&quot;: null,
+        &quot;document_signer_id&quot;: null,
+        &quot;document_page_id&quot;: null,
+        &quot;x&quot;: 97,
+        &quot;y&quot;: 133,
+        &quot;width&quot;: 59,
+        &quot;height&quot;: 18,
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;label&quot;: &quot;omnis&quot;,
+        &quot;description&quot;: &quot;Adipisci quidem nostrum qui commodi incidunt iure.&quot;,
         &quot;required&quot;: false,
-        &quot;created_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2025-07-19T14:23:42.000000Z&quot;,
-        &quot;document_page&quot;: {
-            &quot;id&quot;: 2,
-            &quot;document_id&quot;: 5,
-            &quot;page_number&quot;: 9,
-            &quot;created_at&quot;: &quot;1991-12-17T08:06:20.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;1973-10-25T16:45:51.000000Z&quot;
-        }
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
     }
 }</code>
  </pre>
@@ -6032,10 +6109,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-document-fields--id-"
-               value="text"
+               value="signature"
                data-component="body">
     <br>
-<p>Example: <code>text</code></p>
+<p>Example: <code>signature</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>signature</code></li> <li><code>initials</code></li> <li><code>text</code></li> <li><code>checkbox</code></li> <li><code>date</code></li></ul>
         </div>
@@ -6080,7 +6157,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -6269,7 +6346,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-signs">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -6281,39 +6358,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost:8001/api/signs?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost:8001/api/signs&quot;,
-        &quot;per_page&quot;: 20,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
-    }
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
@@ -6448,8 +6493,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-bash">curl --request POST \
     "http://localhost:8001/api/signs" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "name=b"\
+    --form "description=Et animi quos velit et fugiat."\
+    --form "image=@/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/phpad58mk10t8t5culvbqD" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6459,13 +6507,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
+
+const body = new FormData();
+body.append('name', 'b');
+body.append('description', 'Et animi quos velit et fugiat.');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
     method: "POST",
     headers,
+    body,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -6479,9 +6533,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T04:50:34.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T05:18:00.000000Z&quot;
+        &quot;user_id&quot;: 1,
+        &quot;name&quot;: &quot;Justina Gaylord&quot;,
+        &quot;description&quot;: &quot;Mollitia modi deserunt aut ab provident perspiciatis quo.&quot;,
+        &quot;created_at&quot;: &quot;2025-04-15T14:06:04.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-04-25T00:45:45.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6504,7 +6560,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <form id="form-POSTapi-signs" data-method="POST"
       data-path="api/signs"
       data-authed="1"
-      data-hasfiles="0"
+      data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-signs', this);">
@@ -6550,10 +6606,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Content-Type"                data-endpoint="POSTapi-signs"
-               value="application/json"
+               value="multipart/form-data"
                data-component="header">
     <br>
-<p>Example: <code>application/json</code></p>
+<p>Example: <code>multipart/form-data</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
@@ -6566,7 +6622,41 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="POSTapi-signs"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 25 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="POSTapi-signs"
+               value="Et animi quos velit et fugiat."
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="file" style="display: none"
+                              name="image"                data-endpoint="POSTapi-signs"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>/private/var/folders/ny/gqj39qr55j14rtd4xb4qs4d40000gn/T/phpad58mk10t8t5culvbqD</code></p>
+        </div>
+        </form>
 
                     <h2 id="signs-GETapi-signs--id-">Show Sign</h2>
 
@@ -6615,9 +6705,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T04:50:34.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T05:18:00.000000Z&quot;
+        &quot;user_id&quot;: 1,
+        &quot;name&quot;: &quot;Morgan Hirthe&quot;,
+        &quot;description&quot;: &quot;Qui commodi incidunt iure odit.&quot;,
+        &quot;created_at&quot;: &quot;2025-03-07T20:15:41.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-01-26T19:03:10.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6733,7 +6825,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost:8001/api/signs/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"b\",
+    \"description\": \"Et animi quos velit et fugiat.\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -6747,9 +6844,15 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "name": "b",
+    "description": "Et animi quos velit et fugiat."
+};
+
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -6763,9 +6866,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
         &quot;id&quot;: 1,
-        &quot;user_id&quot;: 2,
-        &quot;created_at&quot;: &quot;2024-10-12T04:50:34.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-11-07T05:18:00.000000Z&quot;
+        &quot;user_id&quot;: 1,
+        &quot;name&quot;: &quot;Justina Gaylord&quot;,
+        &quot;description&quot;: &quot;Mollitia modi deserunt aut ab provident perspiciatis quo.&quot;,
+        &quot;created_at&quot;: &quot;2025-04-15T14:06:04.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-04-25T00:45:45.000000Z&quot;
     }
 }</code>
  </pre>
@@ -6866,7 +6971,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>The ID of the sign. Example: <code>16</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="name"                data-endpoint="PUTapi-signs--id-"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>description</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="description"                data-endpoint="PUTapi-signs--id-"
+               value="Et animi quos velit et fugiat."
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>Et animi quos velit et fugiat.</code></p>
+        </div>
+        </form>
 
                     <h2 id="signs-DELETEapi-signs--id-">Delete Sign</h2>
 
@@ -7002,21 +7130,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="signs-DELETEapi-signs--sign_id--force">Force Delete Sign</h2>
+                    <h2 id="signs-POSTapi-signs--sign_id--unarchive">Restore Sign</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Force delete a sign (only if not being used).</p>
+<p>Restore a soft deleted sign.</p>
 
-<span id="example-requests-DELETEapi-signs--sign_id--force">
+<span id="example-requests-POSTapi-signs--sign_id--unarchive">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8001/api/signs/16/force" \
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8001/api/signs/16/unarchive" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7024,7 +7152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8001/api/signs/16/force"
+    "http://localhost:8001/api/signs/16/unarchive"
 );
 
 const headers = {
@@ -7034,59 +7162,59 @@ const headers = {
 };
 
 fetch(url, {
-    method: "DELETE",
+    method: "POST",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-DELETEapi-signs--sign_id--force">
+<span id="example-responses-POSTapi-signs--sign_id--unarchive">
 </span>
-<span id="execution-results-DELETEapi-signs--sign_id--force" hidden>
+<span id="execution-results-POSTapi-signs--sign_id--unarchive" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-signs--sign_id--force"></span>:
+                id="execution-response-status-POSTapi-signs--sign_id--unarchive"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-signs--sign_id--force"
+    <pre class="json"><code id="execution-response-content-POSTapi-signs--sign_id--unarchive"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-DELETEapi-signs--sign_id--force" hidden>
+<span id="execution-error-POSTapi-signs--sign_id--unarchive" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-signs--sign_id--force">
+    <pre><code id="execution-error-message-POSTapi-signs--sign_id--unarchive">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-DELETEapi-signs--sign_id--force" data-method="DELETE"
-      data-path="api/signs/{sign_id}/force"
+<form id="form-POSTapi-signs--sign_id--unarchive" data-method="POST"
+      data-path="api/signs/{sign_id}/unarchive"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-signs--sign_id--force', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-signs--sign_id--unarchive', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-signs--sign_id--force"
-                    onclick="tryItOut('DELETEapi-signs--sign_id--force');">Try it out ⚡
+                    id="btn-tryout-POSTapi-signs--sign_id--unarchive"
+                    onclick="tryItOut('POSTapi-signs--sign_id--unarchive');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-signs--sign_id--force"
-                    onclick="cancelTryOut('DELETEapi-signs--sign_id--force');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-signs--sign_id--unarchive"
+                    onclick="cancelTryOut('POSTapi-signs--sign_id--unarchive');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-signs--sign_id--force"
+                    id="btn-executetryout-POSTapi-signs--sign_id--unarchive"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/signs/{sign_id}/force</code></b>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/signs/{sign_id}/unarchive</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7094,7 +7222,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-signs--sign_id--force"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-signs--sign_id--unarchive"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -7105,7 +7233,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-signs--sign_id--force"
+                              name="Content-Type"                data-endpoint="POSTapi-signs--sign_id--unarchive"
                value="application/json"
                data-component="header">
     <br>
@@ -7116,7 +7244,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-signs--sign_id--force"
+                              name="Accept"                data-endpoint="POSTapi-signs--sign_id--unarchive"
                value="application/json"
                data-component="header">
     <br>
@@ -7128,7 +7256,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="sign_id"                data-endpoint="DELETEapi-signs--sign_id--force"
+               step="any"               name="sign_id"                data-endpoint="POSTapi-signs--sign_id--unarchive"
                value="16"
                data-component="url">
     <br>

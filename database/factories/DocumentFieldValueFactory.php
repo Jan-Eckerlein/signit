@@ -25,7 +25,6 @@ class DocumentFieldValueFactory extends Factory
     public function as(DocumentFieldType $type, $value = null): self
     {
         return $this
-            ->for(DocumentField::factory()->as($type), 'documentField')
             ->state(function (array $attributes) use ($type, $value) {
                 return $this->getValues($type, $value);
             });

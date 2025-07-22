@@ -209,7 +209,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document log.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -343,7 +343,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 id: number;
             };
@@ -377,7 +377,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 document_id: number;
             };
@@ -403,7 +403,7 @@ export interface paths {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 document_id: number;
             };
@@ -412,6 +412,28 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["postApiDocumentsDocument_idOpenForSigning"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/documents/{document_id}/revert-to-draft": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
+                 */
+                document_id: number;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["postApiDocumentsDocument_idRevertToDraft"];
         delete?: never;
         options?: never;
         head?: never;
@@ -574,7 +596,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/signs/{sign_id}/force": {
+    "/api/signs/{sign_id}/unarchive": {
         parameters: {
             query?: never;
             header?: never;
@@ -589,12 +611,12 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post?: never;
         /**
-         * Force Delete Sign
-         * @description Force delete a sign (only if not being used).
+         * Restore Sign
+         * @description Restore a soft deleted sign.
          */
-        delete: operations["forceDeleteSign"];
+        post: operations["restoreSign"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -643,7 +665,7 @@ export interface operations {
                      */
                     password_confirmation: string;
                     /**
-                     * @example token
+                     * @example session
                      * @enum {string}
                      */
                     handler: "token" | "session";
@@ -698,26 +720,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        data?: {
-                            /** @example 1 */
-                            id?: number;
-                            /** @example Scribe API */
-                            name?: string;
-                            /** @example scribe@example.com */
-                            email?: string;
-                            /** @example null */
-                            email_verified_at?: string;
-                            /** @example 2025-07-17T19:20:11.000000Z */
-                            created_at?: string;
-                            /** @example 2025-07-17T19:20:11.000000Z */
-                            updated_at?: string;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
@@ -782,33 +792,33 @@ export interface operations {
                         /** @example [
                          *       {
                          *         "id": 1,
-                         *         "user_id": 2,
+                         *         "user_id": 1,
                          *         "email": "hirthe.theo@hauck.com",
                          *         "name": "Alanis McLaughlin",
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       },
                          *       {
                          *         "id": 2,
-                         *         "user_id": 3,
+                         *         "user_id": 2,
                          *         "email": "nstokes@yahoo.com",
                          *         "name": "Dr. Grayson Glover",
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       }
                          *     ] */
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
                             /** @example hirthe.theo@hauck.com */
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -900,15 +910,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
                             /** @example okon.justina@gaylord.com */
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -940,15 +950,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
                             /** @example hirthe.theo@hauck.com */
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -995,15 +1005,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
                             /** @example okon.justina@gaylord.com */
                             email?: string;
                             /** @example Mittie Considine */
                             name?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1035,15 +1045,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
                             /** @example hirthe.theo@hauck.com */
                             email?: string;
                             /** @example Alanis McLaughlin */
                             name?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1079,46 +1089,46 @@ export interface operations {
                     "application/json": {
                         /** @example [
                          *       {
-                         *         "id": 2,
+                         *         "id": 1,
                          *         "document_signer_id": 1,
-                         *         "document_id": 6,
+                         *         "document_id": 2,
                          *         "ip": "125.161.29.220",
-                         *         "date": "2007-06-22T12:38:46.000000Z",
+                         *         "date": "2007-06-19T17:33:54.000000Z",
                          *         "icon": "create",
                          *         "text": "Commodi incidunt iure odit.",
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       },
                          *       {
-                         *         "id": 3,
+                         *         "id": 2,
                          *         "document_signer_id": 2,
-                         *         "document_id": 8,
-                         *         "ip": "158.139.113.99",
-                         *         "date": "1975-12-03T23:08:58.000000Z",
+                         *         "document_id": 4,
+                         *         "ip": "201.82.173.1",
+                         *         "date": "1977-05-02T01:48:41.000000Z",
                          *         "icon": "watch",
-                         *         "text": "Ut aut deserunt et error neque recusandae et.",
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "text": "Doloribus fugiat ut aut deserunt et.",
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       }
                          *     ] */
                         data?: {
-                            /** @example 2 */
+                            /** @example 1 */
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 6 */
+                            /** @example 2 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-22T12:38:46.000000Z */
+                            /** @example 2007-06-19T17:33:54.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1184,7 +1194,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document log.
-                 * @example 1
+                 * @example 16
                  */
                 id: number;
             };
@@ -1199,23 +1209,23 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 2 */
+                            /** @example 1 */
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 6 */
+                            /** @example 2 */
                             document_id?: number;
                             /** @example 125.161.29.220 */
                             ip?: string;
-                            /** @example 2007-06-22T12:38:46.000000Z */
+                            /** @example 2007-06-19T17:33:54.000000Z */
                             date?: string;
                             /** @example create */
                             icon?: string;
                             /** @example Commodi incidunt iure odit. */
                             text?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1243,65 +1253,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8001/api/document-signers?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8001/api/document-signers?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8001/api/document-signers?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8001/api/document-signers */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
@@ -1357,13 +1316,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            404: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example No query results for model [App\Models\DocumentSigner]. */
+                        /** @example Unauthenticated. */
                         message?: string;
                     };
                 };
@@ -1481,32 +1440,32 @@ export interface operations {
                     "application/json": {
                         /** @example [
                          *       {
-                         *         "id": 5,
+                         *         "id": 1,
                          *         "title": "Adipisci quidem nostrum qui.",
-                         *         "owner_user_id": 2,
+                         *         "owner_user_id": 1,
                          *         "description": "Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       },
                          *       {
-                         *         "id": 6,
+                         *         "id": 2,
                          *         "title": "Deleniti nemo odit.",
-                         *         "owner_user_id": 3,
+                         *         "owner_user_id": 2,
                          *         "description": "Est dignissimos neque blanditiis odio veritatis excepturi doloribus. Fugit qui repudiandae laboriosam est alias. Ratione nemo voluptate accusamus ut et recusandae modi rerum. Repellendus assumenda et tenetur ab reiciendis.",
                          *         "status": "draft",
                          *         "template_document_id": null,
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z"
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z"
                          *       }
                          *     ] */
                         data?: {
-                            /** @example 5 */
+                            /** @example 1 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
-                            /** @example 2 */
+                            /** @example 1 */
                             owner_user_id?: number;
                             /** @example Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum. */
                             description?: string;
@@ -1514,9 +1473,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         }[];
                         links?: {
@@ -1595,7 +1554,7 @@ export interface operations {
                      * @example Et animi quos velit et fugiat.
                      */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     is_template: boolean;
                 };
             };
@@ -1608,11 +1567,11 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 5 */
+                            /** @example 1 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
-                            /** @example 2 */
+                            /** @example 1 */
                             owner_user_id?: number;
                             /** @example Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum. */
                             description?: string;
@@ -1620,9 +1579,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1637,7 +1596,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 id: number;
             };
@@ -1652,11 +1611,11 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 5 */
+                            /** @example 1 */
                             id?: number;
                             /** @example Adipisci quidem nostrum qui. */
                             title?: string;
-                            /** @example 2 */
+                            /** @example 1 */
                             owner_user_id?: number;
                             /** @example Iure odit et et modi ipsum nostrum omnis. Et consequatur aut dolores enim. Facere tempora ex voluptatem laboriosam. Quis adipisci molestias fugit deleniti distinctio eum. */
                             description?: string;
@@ -1664,9 +1623,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1681,7 +1640,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 id: number;
             };
@@ -1711,11 +1670,11 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 5 */
+                            /** @example 1 */
                             id?: number;
                             /** @example Nihil accusantium harum. */
                             title?: string;
-                            /** @example 2 */
+                            /** @example 1 */
                             owner_user_id?: number;
                             /** @example Deserunt aut ab provident perspiciatis quo omnis nostrum. Adipisci quidem nostrum qui commodi incidunt iure. Et et modi ipsum nostrum. */
                             description?: string;
@@ -1723,9 +1682,9 @@ export interface operations {
                             status?: string;
                             /** @example null */
                             template_document_id?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -1740,7 +1699,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 id: number;
             };
@@ -1756,7 +1715,7 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
                  */
                 document_id: number;
             };
@@ -1790,7 +1749,23 @@ export interface operations {
             path: {
                 /**
                  * @description The ID of the document.
-                 * @example 3
+                 * @example 16
+                 */
+                document_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: never;
+    };
+    postApiDocumentsDocument_idRevertToDraft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description The ID of the document.
+                 * @example 16
                  */
                 document_id: number;
             };
@@ -1856,7 +1831,7 @@ export interface operations {
                     value_checkbox?: boolean | null;
                     /**
                      * @description Must be a valid date.
-                     * @example 2025-07-19T14:23:42
+                     * @example 2025-07-22T09:28:34
                      */
                     value_date?: string | null;
                 };
@@ -1872,8 +1847,8 @@ export interface operations {
                         data?: {
                             /** @example null */
                             id?: string;
-                            /** @example 2 */
-                            document_field_id?: number;
+                            /** @example null */
+                            document_field_id?: string;
                             /** @example null */
                             value_signature_sign_id?: string;
                             /** @example null */
@@ -1882,7 +1857,7 @@ export interface operations {
                             value_text?: string;
                             /** @example null */
                             value_checkbox?: string;
-                            /** @example 2023-08-17T00:00:00.000000Z */
+                            /** @example null */
                             value_date?: string;
                             /** @example null */
                             created_at?: string;
@@ -1924,45 +1899,45 @@ export interface operations {
                          *       {
                          *         "id": 1,
                          *         "document_signer_id": 1,
-                         *         "document_page_id": 2,
-                         *         "x": 443,
-                         *         "y": 774,
-                         *         "width": 23,
-                         *         "height": 275,
-                         *         "type": "date",
-                         *         "label": "cum",
+                         *         "document_page_id": 1,
+                         *         "x": 84,
+                         *         "y": 160,
+                         *         "width": 29,
+                         *         "height": 16,
+                         *         "type": "signature",
+                         *         "label": "voluptas",
                          *         "description": null,
                          *         "required": false,
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z",
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z",
                          *         "document_page": {
-                         *           "id": 2,
-                         *           "document_id": 5,
-                         *           "page_number": 1,
-                         *           "created_at": "1995-04-18T04:57:21.000000Z",
-                         *           "updated_at": "2013-07-11T07:12:47.000000Z"
+                         *           "id": 1,
+                         *           "document_id": 1,
+                         *           "page_number": 7,
+                         *           "created_at": "2014-07-07T12:27:09.000000Z",
+                         *           "updated_at": "2018-04-28T13:01:54.000000Z"
                          *         }
                          *       },
                          *       {
                          *         "id": 2,
                          *         "document_signer_id": 2,
-                         *         "document_page_id": 3,
-                         *         "x": 930,
-                         *         "y": 695,
-                         *         "width": 86,
-                         *         "height": 179,
-                         *         "type": "signature",
-                         *         "label": "dolor",
-                         *         "description": "Aut magni porro vitae nihil praesentium.",
-                         *         "required": false,
-                         *         "created_at": "2025-07-19T14:23:42.000000Z",
-                         *         "updated_at": "2025-07-19T14:23:42.000000Z",
+                         *         "document_page_id": 2,
+                         *         "x": 52,
+                         *         "y": 77,
+                         *         "width": 44,
+                         *         "height": 8,
+                         *         "type": "initials",
+                         *         "label": "voluptatem",
+                         *         "description": "Aut amet eveniet facere et porro quae error.",
+                         *         "required": true,
+                         *         "created_at": "2025-07-22T09:28:34.000000Z",
+                         *         "updated_at": "2025-07-22T09:28:34.000000Z",
                          *         "document_page": {
-                         *           "id": 3,
-                         *           "document_id": 6,
-                         *           "page_number": 8,
-                         *           "created_at": "2018-03-01T19:47:50.000000Z",
-                         *           "updated_at": "2018-01-02T10:15:30.000000Z"
+                         *           "id": 2,
+                         *           "document_id": 2,
+                         *           "page_number": 7,
+                         *           "created_at": "1979-08-24T20:00:39.000000Z",
+                         *           "updated_at": "1992-09-03T16:50:13.000000Z"
                          *         }
                          *       }
                          *     ] */
@@ -1971,38 +1946,38 @@ export interface operations {
                             id?: number;
                             /** @example 1 */
                             document_signer_id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             document_page_id?: number;
-                            /** @example 443 */
+                            /** @example 84 */
                             x?: number;
-                            /** @example 774 */
+                            /** @example 160 */
                             y?: number;
-                            /** @example 23 */
+                            /** @example 29 */
                             width?: number;
-                            /** @example 275 */
+                            /** @example 16 */
                             height?: number;
-                            /** @example date */
+                            /** @example signature */
                             type?: string;
-                            /** @example cum */
+                            /** @example voluptas */
                             label?: string;
                             /** @example null */
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example 2025-07-22T09:28:34.000000Z */
                             updated_at?: string;
                             document_page?: {
-                                /** @example 2 */
-                                id?: number;
-                                /** @example 5 */
-                                document_id?: number;
                                 /** @example 1 */
+                                id?: number;
+                                /** @example 1 */
+                                document_id?: number;
+                                /** @example 7 */
                                 page_number?: number;
-                                /** @example 1995-04-18T04:57:21.000000Z */
+                                /** @example 2014-07-07T12:27:09.000000Z */
                                 created_at?: string;
-                                /** @example 2013-07-11T07:12:47.000000Z */
+                                /** @example 2018-04-28T13:01:54.000000Z */
                                 updated_at?: string;
                             };
                         }[];
@@ -2097,7 +2072,7 @@ export interface operations {
                      */
                     height: number;
                     /**
-                     * @example initials
+                     * @example checkbox
                      * @enum {string}
                      */
                     type: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2121,44 +2096,32 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
-                            id?: number;
-                            /** @example 1 */
-                            document_signer_id?: number;
-                            /** @example 2 */
-                            document_page_id?: number;
-                            /** @example 970 */
-                            x?: number;
-                            /** @example 952 */
-                            y?: number;
-                            /** @example 130 */
-                            width?: number;
-                            /** @example 244 */
-                            height?: number;
-                            /** @example initials */
-                            type?: string;
-                            /** @example mollitia */
-                            label?: string;
                             /** @example null */
+                            id?: string;
+                            /** @example null */
+                            document_signer_id?: string;
+                            /** @example null */
+                            document_page_id?: string;
+                            /** @example 97 */
+                            x?: number;
+                            /** @example 133 */
+                            y?: number;
+                            /** @example 59 */
+                            width?: number;
+                            /** @example 18 */
+                            height?: number;
+                            /** @example text */
+                            type?: string;
+                            /** @example omnis */
+                            label?: string;
+                            /** @example Adipisci quidem nostrum qui commodi incidunt iure. */
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             updated_at?: string;
-                            document_page?: {
-                                /** @example 2 */
-                                id?: number;
-                                /** @example 5 */
-                                document_id?: number;
-                                /** @example 1 */
-                                page_number?: number;
-                                /** @example 2022-01-21T10:30:58.000000Z */
-                                created_at?: string;
-                                /** @example 2013-02-14T00:13:02.000000Z */
-                                updated_at?: string;
-                            };
                         };
                     };
                 };
@@ -2187,44 +2150,32 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
-                            id?: number;
-                            /** @example 1 */
-                            document_signer_id?: number;
-                            /** @example 2 */
-                            document_page_id?: number;
-                            /** @example 72 */
+                            /** @example null */
+                            id?: string;
+                            /** @example null */
+                            document_signer_id?: string;
+                            /** @example null */
+                            document_page_id?: string;
+                            /** @example 90 */
                             x?: number;
-                            /** @example 880 */
+                            /** @example 142 */
                             y?: number;
-                            /** @example 150 */
+                            /** @example 30 */
                             width?: number;
-                            /** @example 133 */
+                            /** @example 11 */
                             height?: number;
-                            /** @example initials */
+                            /** @example text */
                             type?: string;
-                            /** @example commodi */
+                            /** @example aut */
                             label?: string;
-                            /** @example Odit et et modi. */
+                            /** @example Non facere tempora ex voluptatem laboriosam praesentium. */
                             description?: string;
-                            /** @example false */
+                            /** @example true */
                             required?: boolean;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             updated_at?: string;
-                            document_page?: {
-                                /** @example 2 */
-                                id?: number;
-                                /** @example 5 */
-                                document_id?: number;
-                                /** @example 9 */
-                                page_number?: number;
-                                /** @example 1978-02-21T03:10:37.000000Z */
-                                created_at?: string;
-                                /** @example 1995-01-30T23:03:05.000000Z */
-                                updated_at?: string;
-                            };
                         };
                     };
                 };
@@ -2272,7 +2223,7 @@ export interface operations {
                      */
                     height?: number;
                     /**
-                     * @example text
+                     * @example signature
                      * @enum {string}
                      */
                     type?: "signature" | "initials" | "text" | "checkbox" | "date";
@@ -2283,7 +2234,7 @@ export interface operations {
                     label?: string;
                     /** @example Eius et animi quos velit et. */
                     description?: string | null;
-                    /** @example true */
+                    /** @example false */
                     required?: boolean;
                 };
             };
@@ -2296,44 +2247,32 @@ export interface operations {
                 content: {
                     "application/json": {
                         data?: {
-                            /** @example 1 */
-                            id?: number;
-                            /** @example 1 */
-                            document_signer_id?: number;
-                            /** @example 2 */
-                            document_page_id?: number;
-                            /** @example 970 */
-                            x?: number;
-                            /** @example 952 */
-                            y?: number;
-                            /** @example 130 */
-                            width?: number;
-                            /** @example 244 */
-                            height?: number;
-                            /** @example initials */
-                            type?: string;
-                            /** @example mollitia */
-                            label?: string;
                             /** @example null */
+                            id?: string;
+                            /** @example null */
+                            document_signer_id?: string;
+                            /** @example null */
+                            document_page_id?: string;
+                            /** @example 97 */
+                            x?: number;
+                            /** @example 133 */
+                            y?: number;
+                            /** @example 59 */
+                            width?: number;
+                            /** @example 18 */
+                            height?: number;
+                            /** @example text */
+                            type?: string;
+                            /** @example omnis */
+                            label?: string;
+                            /** @example Adipisci quidem nostrum qui commodi incidunt iure. */
                             description?: string;
                             /** @example false */
                             required?: boolean;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             created_at?: string;
-                            /** @example 2025-07-19T14:23:42.000000Z */
+                            /** @example null */
                             updated_at?: string;
-                            document_page?: {
-                                /** @example 2 */
-                                id?: number;
-                                /** @example 5 */
-                                document_id?: number;
-                                /** @example 9 */
-                                page_number?: number;
-                                /** @example 1991-12-17T08:06:20.000000Z */
-                                created_at?: string;
-                                /** @example 1973-10-25T16:45:51.000000Z */
-                                updated_at?: string;
-                            };
                         };
                     };
                 };
@@ -2376,65 +2315,14 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
+            401: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": {
-                        /** @example [] */
-                        data?: unknown[];
-                        links?: {
-                            /** @example http://localhost:8001/api/signs?page=1 */
-                            first?: string;
-                            /** @example http://localhost:8001/api/signs?page=1 */
-                            last?: string;
-                            /** @example null */
-                            prev?: string;
-                            /** @example null */
-                            next?: string;
-                        };
-                        meta?: {
-                            /** @example 1 */
-                            current_page?: number;
-                            /** @example null */
-                            from?: string;
-                            /** @example 1 */
-                            last_page?: number;
-                            /** @example [
-                             *       {
-                             *         "url": null,
-                             *         "label": "&laquo; Previous",
-                             *         "active": false
-                             *       },
-                             *       {
-                             *         "url": "http://localhost:8001/api/signs?page=1",
-                             *         "label": "1",
-                             *         "active": true
-                             *       },
-                             *       {
-                             *         "url": null,
-                             *         "label": "Next &raquo;",
-                             *         "active": false
-                             *       }
-                             *     ] */
-                            links?: {
-                                /** @example null */
-                                url?: string;
-                                /** @example &laquo; Previous */
-                                label?: string;
-                                /** @example false */
-                                active?: boolean;
-                            }[];
-                            /** @example http://localhost:8001/api/signs */
-                            path?: string;
-                            /** @example 20 */
-                            per_page?: number;
-                            /** @example null */
-                            to?: string;
-                            /** @example 0 */
-                            total?: number;
-                        };
+                        /** @example Unauthenticated. */
+                        message?: string;
                     };
                 };
             };
@@ -2447,7 +2335,27 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "multipart/form-data": {
+                    /**
+                     * @description Must not be greater than 25 characters.
+                     * @example b
+                     */
+                    name?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example Et animi quos velit et fugiat.
+                     */
+                    description?: string | null;
+                    /**
+                     * Format: binary
+                     * @description Must be an image. Must not be greater than 2048 kilobytes.
+                     */
+                    image?: string | null;
+                };
+            };
+        };
         responses: {
             200: {
                 headers: {
@@ -2458,11 +2366,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
-                            /** @example 2024-10-12T04:50:34.000000Z */
+                            /** @example Justina Gaylord */
+                            name?: string;
+                            /** @example Mollitia modi deserunt aut ab provident perspiciatis quo. */
+                            description?: string;
+                            /** @example 2025-04-15T14:06:04.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T05:18:00.000000Z */
+                            /** @example 2025-04-25T00:45:45.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2494,11 +2406,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
-                            /** @example 2024-10-12T04:50:34.000000Z */
+                            /** @example Morgan Hirthe */
+                            name?: string;
+                            /** @example Qui commodi incidunt iure odit. */
+                            description?: string;
+                            /** @example 2025-03-07T20:15:41.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T05:18:00.000000Z */
+                            /** @example 2025-01-26T19:03:10.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2519,7 +2435,22 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example b
+                     */
+                    name?: string | null;
+                    /**
+                     * @description Must not be greater than 255 characters.
+                     * @example Et animi quos velit et fugiat.
+                     */
+                    description?: string | null;
+                };
+            };
+        };
         responses: {
             200: {
                 headers: {
@@ -2530,11 +2461,15 @@ export interface operations {
                         data?: {
                             /** @example 1 */
                             id?: number;
-                            /** @example 2 */
+                            /** @example 1 */
                             user_id?: number;
-                            /** @example 2024-10-12T04:50:34.000000Z */
+                            /** @example Justina Gaylord */
+                            name?: string;
+                            /** @example Mollitia modi deserunt aut ab provident perspiciatis quo. */
+                            description?: string;
+                            /** @example 2025-04-15T14:06:04.000000Z */
                             created_at?: string;
-                            /** @example 2024-11-07T05:18:00.000000Z */
+                            /** @example 2025-04-25T00:45:45.000000Z */
                             updated_at?: string;
                         };
                     };
@@ -2558,7 +2493,7 @@ export interface operations {
         requestBody?: never;
         responses: never;
     };
-    forceDeleteSign: {
+    restoreSign: {
         parameters: {
             query?: never;
             header?: never;

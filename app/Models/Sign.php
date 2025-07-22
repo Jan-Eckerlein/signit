@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use App\Contracts\Lockable;
 use App\Contracts\Ownable;
 use App\Enums\BaseModelEvent;
-use App\Traits\ProtectsLockedModels;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use App\Builders\SignBuilder;
+use App\Contracts\Validatable;
+use App\Traits\ValidatesModelModifications;
 use Illuminate\Database\Eloquent\HasBuilder;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,13 +26,13 @@ use Illuminate\Support\Facades\Storage;
  * @property \Carbon\Carbon|null $archived_at
  * @property \Carbon\Carbon|null $updated_at
  */
-class Sign extends Model implements Lockable, Ownable
+class Sign extends Model implements Validatable, Ownable
 {
     /** @use HasFactory<\Database\Factories\SignFactory> */
     use HasFactory;
     /** @use HasBuilder<\App\Builders\SignBuilder> */
     use HasBuilder;
-    use ProtectsLockedModels;
+    use ValidatesModelModifications;
 
     protected static string $builder = SignBuilder::class;
 
@@ -66,12 +66,20 @@ class Sign extends Model implements Lockable, Ownable
         return $this->hasMany(DocumentFieldValue::class, 'value_signature_sign_id');
     }
 
-    // ---------------------------- LOCKING ----------------------------
+    // ---------------------------- Validation ----------------------------
 
     /** @return bool */
-    public function isLocked(BaseModelEvent | null $event = null): bool
+    public function validateModification(BaseModelEvent | null $event = null, array $options = []): bool
     {
-        return $this->documentFieldValues()->exists();
+        if ($this->isBeingUsed()) {
+            $dirty = $this->getDirty();
+            if (count($dirty) === 1 && array_key_exists('archived_at', $dirty)) {
+                return true;
+            }
+            return false;
+        }
+
+        return true;
     }
 
     // ---------------------------- OWNERSHIP ----------------------------

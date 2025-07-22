@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Contracts\Validatable;
 use App\Enums\BaseModelEvent;
+use App\Exceptions\ValidateModelModificationFailedException;
 use Illuminate\Support\Facades\Log;
 
 trait ValidatesModelModifications
@@ -24,19 +25,25 @@ trait ValidatesModelModifications
     /**
      * @param BaseModelEvent $event
      * @param array<string, mixed> $options
-     * @return bool
+     * @return void
+     * @throws ValidateModelModificationFailedException
      */
-    protected function maybeValidateModification(BaseModelEvent $event, array $options): bool
+    protected function maybeValidateModification(BaseModelEvent $event, array $options): void
     {
-        if ($this->bypassValidateModification || !config('model-protection.validation.enabled', false)) {
+        if ($this->bypassValidateModification || !config('model-protection.validation.enabled')) {
             Log::warning('bypassing validation', ['event' => $event, 'bypass' => $this->bypassValidateModification, 'enabled' => config('model-protection.validation.enabled')]);
-            return true;
+            return;
         }
 
         if (!$this instanceof Validatable) {
             throw new \LogicException(static::class . ' must implement Validatable interface when using ValidatesModelModifications trait.');
         }
 
-        return $this->validateModification($event, $options);
+        $validationResult = $this->validateModification($event, $options);
+
+        if (!$validationResult) {
+            throw new ValidateModelModificationFailedException(static::class, 'Model modification validation failed');
+        }
+
     }
 } 

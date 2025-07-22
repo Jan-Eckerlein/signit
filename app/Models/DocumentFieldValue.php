@@ -58,7 +58,7 @@ class DocumentFieldValue extends Model implements Lockable, Ownable, Validatable
     /** @return bool */
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
-        $isEditable = $this->documentField?->documentSigner?->document?->getOriginal('status') === DocumentStatus::IN_PROGRESS;
+        $isEditable = $this->documentField?->documentSigner?->document->isStatus(DocumentStatus::IN_PROGRESS, DocumentStatus::OPEN);
         return !$isEditable || $this->exists;
     }
 

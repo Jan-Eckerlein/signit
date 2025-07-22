@@ -228,7 +228,7 @@ class Document extends Model implements Lockable, Ownable, Validatable
     {
         $statusValues = array_map(fn(DocumentStatus $status) => $status->value, $statuses);
 
-        return in_array($this->status->value, $statusValues, strict: true);
+        return in_array($this->getOriginal('status')->value, $statusValues, strict: true);
     }
 
     public function statusIsOpenOrLater(): bool

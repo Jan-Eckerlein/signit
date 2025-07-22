@@ -20,4 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 'message' => $e->getMessage(),
             ], 403);
         });
+        $exceptions->renderable(function (\App\Exceptions\ValidateModelModificationFailedException $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 403);
+        });
     })->create();

@@ -47,7 +47,7 @@ trait ProtectsLockedModels
     protected function maybePreventModification(BaseModelEvent | null $event = null): void
     {
         // Log::info('maybePreventModification', ['event' => $event, 'bypass' => $this->bypassLockedProtection, 'enabled' => config('model-protection.locking.enabled', false)]);
-        if ($this->bypassLockedProtection || config('model-protection.locking.enabled')) {
+        if ($this->bypassLockedProtection || !config('model-protection.locking.enabled')) {
             return;
         }
 
