@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use App\Enums\DocumentFieldType;
+use App\Enums\DocumentStatus;
+use App\Models\Document;
 use App\Models\PdfProcessPage;
 use App\Models\DocumentField;
 use App\Models\DocumentFieldValue;
@@ -34,27 +36,36 @@ class PdfProcessRenderServiceTest extends TestCase
 			'image_path' => $newSignPath,
 		]);
 
+		$document = Document::factory()->create();
+
 
         Storage::disk('local')->put($originalPath, $fakePdfContent);
 
         // Create a PdfProcessPage
-        $processPage = PdfProcessPage::factory()->create([
-            'pdf_original_path' => $originalPath,
-        ]);
-
-        // Create DocumentFields
-        $fields = DocumentField::factory()->count(6)->create([
-            'document_page_id' => $processPage->document_page_id,
-        ]);
-
-		foreach ($fields as $field) {
-			$value = DocumentFieldValue::factory()->as($field->type)->create([
-				'document_field_id' => $field->id,
+        $processPage = PdfProcessPage::factory()
+			->recycle($document)
+			->create([
+				'pdf_original_path' => $originalPath,
 			]);
 
-			if ($field->type === DocumentFieldType::SIGNATURE) {
-				$value->signatureSign()->associate($sign)->save();
-			}
+		$documentPage = $processPage->documentPage;
+
+        // Create DocumentFields
+        $fields = DocumentField::factory()->count(6)
+			->recycle($documentPage)
+			->create();
+
+		$document->status = DocumentStatus::OPEN;
+		$document->save();
+
+
+		foreach ($fields as $field) {
+			$value = DocumentFieldValue::factory()
+				->as($field->type)
+				->recycle($sign)
+				->create([
+					'document_field_id' => $field->id,
+				]);
 		}
 
         $service = new PdfProcessRenderService();
