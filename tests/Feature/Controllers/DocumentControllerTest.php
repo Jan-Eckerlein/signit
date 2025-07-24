@@ -128,8 +128,9 @@ class DocumentControllerTest extends TestCase
 
 		$documentField = DocumentField::factory()
 			->count(3)
+			->recycle($documentPage)
 			->create([
-				'document_page_id' => $documentPage->id,
+				'document_signer_id' => null,
 			]);
 
 		$response = $this->postJson('/api/documents/' . $doc->id . '/open-for-signing');

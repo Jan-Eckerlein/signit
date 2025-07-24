@@ -19,8 +19,19 @@ class DocumentFieldFactory extends Factory
     {
         // We'll leave document_page_id and document_signer_id as null by default
         return [
-            'document_page_id' => null,
-            'document_signer_id' => null,
+            'document_page_id' => DocumentPage::factory(),
+            'document_signer_id' => function (array $attributes) {
+                if (isset($this->recycle) && $this->recycle->has(\App\Models\DocumentSigner::class)) {
+                    $signer = $this->getRandomRecycledModel(\App\Models\DocumentSigner::class);
+                    if ($signer) {
+                        return $signer->id;
+                    }
+                }
+                $documentPage = DocumentPage::find($attributes['document_page_id']);
+                return DocumentSigner::factory()->create([
+                    'document_id' => $documentPage->document_id,
+                ])->id;
+            },
             'x' => $this->faker->numberBetween(10, 100),
             'y' => $this->faker->numberBetween(10, 180),
             'width' => $this->faker->numberBetween(20, 60),

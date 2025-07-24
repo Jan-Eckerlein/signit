@@ -25,13 +25,11 @@ class DocumentFieldRenderDirectorServiceTest extends TestCase
         $document = Document::factory()->create();
         $pages = DocumentPage::factory()->count(3)
             ->for($document)
-            ->recycle($document)
             ->create();
 
         $documentSigners = DocumentSigner::factory()->count(3)->create([
             'document_id' => $document->id,
         ]);
-
 
         $fields = collect();
         $signerIndex = 0;
