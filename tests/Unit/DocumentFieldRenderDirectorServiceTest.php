@@ -2,10 +2,12 @@
 
 namespace Tests\Unit;
 
+use App\Enums\DocumentStatus;
 use App\Models\Document;
 use App\Models\DocumentField;
 use App\Models\DocumentFieldValue;
 use App\Models\DocumentPage;
+use App\Models\DocumentSigner;
 use App\Models\PdfProcess;
 use App\Models\PdfProcessPage;
 use App\Services\DocumentFieldRenderDirectorService;
@@ -22,24 +24,31 @@ class DocumentFieldRenderDirectorServiceTest extends TestCase
         // Arrange: Create a document with 3 pages, each with 3 fields
         $document = Document::factory()->create();
         $pages = DocumentPage::factory()->count(3)
-		->for($document)
-		->recycle($document)
-		->create();
+            ->for($document)
+            ->recycle($document)
+            ->create();
+
+        $documentSigners = DocumentSigner::factory()->count(3)->create([
+            'document_id' => $document->id,
+        ]);
 
 
         $fields = collect();
+        $signerIndex = 0;
         foreach ($pages as $page) {
-            $fields = $fields->merge(
-                DocumentField::factory()
-					->recycle($document)
-					->count(3)
-					->create(
-						[
-							'document_page_id' => $page->id,
-						]
-					)
-            );
+            for ($i = 0; $i < 3; $i++) {
+                $fields->push(
+                    DocumentField::factory()->create([
+                        'document_page_id' => $page->id,
+                        'document_signer_id' => $documentSigners[$signerIndex % 3]->id,
+                    ])
+                );
+                $signerIndex++;
+            }
         }
+
+        $document->status = DocumentStatus::OPEN;
+        $document->save();
 
         foreach ($fields as $field) {
             DocumentFieldValue::factory()
