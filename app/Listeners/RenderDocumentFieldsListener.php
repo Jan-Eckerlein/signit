@@ -25,6 +25,6 @@ class RenderDocumentFieldsListener implements ShouldQueue
      */
     public function handle(SignatureCompletedEvent $event): void
     {
-        $this->documentFieldRenderDirectorService->directRender($event->documentSigner->document->id);
+        $this->documentFieldRenderDirectorService->directRenderForSigner($event->documentSigner->id);
     }
 }
