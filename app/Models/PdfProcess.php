@@ -64,7 +64,7 @@ class PdfProcess extends Model implements Ownable, Lockable
     /** @return bool */
     public function isLocked(BaseModelEvent | null $event = null): bool
     {
-        return $this->pdf_final_path !== null;
+        return $this->getOriginal('pdf_final_path') !== null;
     }
 
     // ---------------------------- OWNERSHIP ----------------------------
