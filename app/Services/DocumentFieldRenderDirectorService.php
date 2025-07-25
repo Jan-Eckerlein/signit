@@ -15,6 +15,12 @@ class DocumentFieldRenderDirectorService
         self::dispatchRenderJobs($fieldIds);
     }
 
+    public static function directRenderForSigner(int $signerId): void
+    {
+        $fieldIds = self::getCompletedFieldIdsGroupedByPdfProcessPageForSigner($signerId);
+        self::dispatchRenderJobs($fieldIds);
+    }
+
     /**
      * Get field IDs grouped by PDF process page for completed signers of a document
      *
@@ -36,6 +42,33 @@ class DocumentFieldRenderDirectorService
 
         // Use the builder to get grouped field IDs efficiently
         return DocumentField::query()->getCompletedFieldIdsGroupedByPdfProcessPage($documentId);
+    }
+
+    /**
+     * Get ALL completed signers' field IDs for PDF process pages affected by a specific signer
+     * This is used when a signer completes their signature - you want to re-render entire pages
+     * with all completed signers' fields, not just the completing signer's fields.
+     *
+     * @param int $signerId
+     * @return array<int, int[]> Array keyed by pdf_process_page_id containing arrays of document_field_ids
+     * @throws \InvalidArgumentException
+     */
+    public function getCompletedFieldIdsForPagesAffectedBySigner(int $signerId): array
+    {
+        // Use the builder to get all completed fields for pages affected by this signer
+        return DocumentField::query()->getCompletedFieldIdsForPagesAffectedBySigner($signerId);
+    }
+
+    /**
+     * Get field IDs grouped by PDF process page for completed signers of a document
+     *
+     * @param int $signerId
+     * @return array<int, int[]> Array keyed by pdf_process_page_id containing arrays of document_field_ids
+     * @throws \InvalidArgumentException
+     */
+    public static function getCompletedFieldIdsGroupedByPdfProcessPageForSigner(int $signerId): array
+    {
+        return DocumentField::query()->getCompletedFieldIdsForPagesAffectedBySigner($signerId);
     }
 
     /**

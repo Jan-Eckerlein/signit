@@ -9,6 +9,7 @@ use App\Builders\BaseBuilder;
 use App\Builders\DocumentSignerBuilder;
 use App\Contracts\OwnableBuilder;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -101,6 +102,16 @@ class DocumentFieldBuilder extends BaseBuilder implements OwnableBuilder
     }
 
     /**
+     * Filter fields for a specific signer
+     * @return $this
+     */
+    public function forSigner(int $signerId): self
+    {
+        $this->where('document_signer_id', $signerId);
+        return $this;
+    }
+
+    /**
      * Get field IDs grouped by PDF process page for completed signers of a document
      * @param int $documentId
      * @return array<int, int[]>
@@ -116,5 +127,31 @@ class DocumentFieldBuilder extends BaseBuilder implements OwnableBuilder
                        return $fields->pluck('id')->toArray();
                    })
                    ->toArray();
+    }
+
+    /**
+     * Get ALL completed signers' field IDs for PDF process pages that are affected by a specific signer
+     * @param int $signerId
+     * @return array<int, int[]>
+     */
+    public function getCompletedFieldIdsForPagesAffectedBySigner(int $signerId): array
+    {
+        // Single query: Get all completed signers' fields for pages where the specific signer has fields AND has completed
+        return $this->forCompletedSigners()
+            ->withPdfProcessPageId()
+            ->whereExists(function ($query) use ($signerId) {
+                $query->select(DB::raw(1))
+                    ->from('document_fields as df2')
+                    ->join('document_signers as ds', 'df2.document_signer_id', '=', 'ds.id')
+                    ->whereColumn('df2.document_page_id', 'document_fields.document_page_id')
+                    ->where('df2.document_signer_id', $signerId)
+                    ->whereNotNull('ds.signature_completed_at');
+            })
+            ->get(['document_fields.id', 'pdf_process_pages.id as pdf_process_page_id'])
+            ->groupBy('pdf_process_page_id')
+            ->map(function ($fields) {
+                return $fields->pluck('id')->toArray();
+            })
+            ->toArray();
     }
 } 
