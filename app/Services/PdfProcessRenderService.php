@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\RenderFieldsOnPageCompleted;
 use App\Models\PdfProcessPage;
 use App\Models\DocumentField;
 use App\Models\DocumentFieldValue;
@@ -109,6 +110,8 @@ class PdfProcessRenderService
         $processPage->pdf_processed_path = $processedPath;
         $processPage->is_up_to_date = true;
         $processPage->save();
+
+        RenderFieldsOnPageCompleted::dispatch($processPage);
 
         return $processedPath;
     }
