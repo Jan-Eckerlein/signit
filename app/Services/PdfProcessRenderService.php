@@ -25,7 +25,7 @@ class PdfProcessRenderService
         $originalFullPath = Storage::path($originalPath);
 
         // Load the fields and their values
-        $fields = DocumentField::with('value')->whereIn('id', $documentFieldIds)->get();
+        $fields = DocumentField::with('value.signatureSign')->whereIn('id', $documentFieldIds)->get();
 
         // Prepare FPDI
         $pdf = new Fpdi();

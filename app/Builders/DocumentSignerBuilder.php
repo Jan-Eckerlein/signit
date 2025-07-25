@@ -36,4 +36,14 @@ class DocumentSignerBuilder extends BaseBuilder implements OwnableBuilder
         });
         return $this;
     }
+
+    /**
+     * Filter signers who have completed their signature
+     * @return $this
+     */
+    public function completed(): self
+    {
+        $this->whereNotNull('signature_completed_at');
+        return $this;
+    }
 } 
