@@ -3,20 +3,23 @@
 namespace App\Listeners;
 
 use App\Events\RenderFieldsOnPageCompleted;
+use App\Enums\QueueEnum;
 use App\Models\DocumentSigner;
 use App\Models\PdfProcessPage;
+use App\Services\PdfProcessMergeService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
 class MergePdfProcessPagesListener implements ShouldQueue
 {
+    public string $queue = QueueEnum::PDF_PROCESSING->value;
+
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public PdfProcessMergeService $pdfProcessMergeService
+    ) {}
 
     /**
      * Handle the event.
@@ -29,6 +32,6 @@ class MergePdfProcessPagesListener implements ShouldQueue
         $allSignersHaveCompleted = DocumentSigner::where('document_id', $event->pdfProcessPage->pdfProcess->document_id)->where('signature_completed_at', null)->doesntExist();
         if (!$allSignersHaveCompleted) return;
 
-        //Todo: Use the RenderService to merge the pages
+        $this->pdfProcessMergeService->mergePdfPages($event->pdfProcessPage->pdfProcess);
     }
 }
