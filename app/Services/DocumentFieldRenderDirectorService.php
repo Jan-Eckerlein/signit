@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Jobs\RenderFieldsOnPageJob;
 use App\Models\DocumentField;
 use App\Models\Document;
+use App\Models\PdfProcessPage;
 
 class DocumentFieldRenderDirectorService
 {
@@ -12,12 +13,14 @@ class DocumentFieldRenderDirectorService
     public static function directRender(int $documentId): void
     {
         $fieldIdGroups = self::getCompletedFieldIdsGroupedByPdfProcessPage($documentId);
+        self::markPdfProcessPagesAsNonUpToDate(array_keys($fieldIdGroups));
         self::dispatchRenderJobs($fieldIdGroups);
     }
 
     public static function directRenderForSigner(int $signerId): void
     {
         $fieldIdGroups = self::getCompletedFieldIdsGroupedByPdfProcessPageForSigner($signerId);
+        self::markPdfProcessPagesAsNonUpToDate(array_keys($fieldIdGroups));
         self::dispatchRenderJobs($fieldIdGroups);
     }
 
@@ -82,5 +85,16 @@ class DocumentFieldRenderDirectorService
         foreach ($groupedFields as $pdfProcessPageId => $fieldIds) {
             RenderFieldsOnPageJob::dispatch($pdfProcessPageId, $fieldIds);
         }
+    }
+
+    /**
+     * Mark PDF process pages as non-up-to-date
+     *
+     * @param array<int> $pdfProcessPageIds
+     * @return void
+     */
+    public static function markPdfProcessPagesAsNonUpToDate(array $pdfProcessPageIds): void
+    {
+        PdfProcessPage::whereIn('id', $pdfProcessPageIds)->update(['is_up_to_date' => false]);
     }
 } 
