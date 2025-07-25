@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Enums\QueueEnum;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,7 +19,7 @@ class TestMailable extends Mailable
      */
     public function __construct()
     {
-        $this->onQueue('emails');
+        $this->onQueue(QueueEnum::EMAIL);
     }
 
     /**

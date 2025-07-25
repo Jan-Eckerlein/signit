@@ -30,6 +30,7 @@ class SignatureCompletedEventTest extends TestCase
         $this->document = Document::factory()
             ->hasDocumentSigners(3)
             ->hasDocumentPages(1)
+            ->hasPdfProcess()
             ->create([
                 'owner_user_id' => $this->owner->id,
             ]);

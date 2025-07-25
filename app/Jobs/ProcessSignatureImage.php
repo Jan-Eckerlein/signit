@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\QueueEnum;
 use App\Events\SignatureImageProcessed;
 use App\Events\SignatureImageProcessingFailed;
 use App\Models\Sign;
@@ -27,7 +28,7 @@ class ProcessSignatureImage implements ShouldQueue
         protected int $signId,
     )
     {
-        $this->onQueue('image_processing');
+        $this->onQueue(QueueEnum::IMAGE_PROCESSING);
     }
 
     /**

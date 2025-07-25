@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Enums\QueueEnum;
 use App\Models\Document;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -20,7 +21,7 @@ class DocumentSetInProgessMailable extends Mailable implements ShouldQueue
     public function __construct(
         public Document $document
     ) {
-        $this->onQueue('emails');
+        $this->onQueue(QueueEnum::EMAIL);
     }
 
     /**

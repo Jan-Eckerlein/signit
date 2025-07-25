@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Enums\QueueEnum;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -20,7 +21,7 @@ class DocumentCompletedMagicLinkMailable extends Mailable implements ShouldQueue
         public User $recipient,
         public string $magicLinkToken
     ) {
-        $this->onQueue('emails');
+        $this->onQueue(QueueEnum::EMAIL);
     }
 
     /**

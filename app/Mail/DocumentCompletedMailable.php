@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Enums\QueueEnum;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -19,7 +20,7 @@ class DocumentCompletedMailable extends Mailable implements ShouldQueue
         public Document $document,
         public User $recipient
     ) {
-        $this->onQueue('emails');
+        $this->onQueue(QueueEnum::EMAIL);
     }
 
     /**

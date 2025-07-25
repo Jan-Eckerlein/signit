@@ -2,13 +2,19 @@
 
 namespace App\Services;
 
+use App\Jobs\RenderFieldsOnPageJob;
 use App\Models\DocumentField;
-use App\Models\PdfProcessPage;
 use App\Models\Document;
-use Illuminate\Support\Collection;
 
 class DocumentFieldRenderDirectorService
 {
+
+    public static function directRender(int $documentId): void
+    {
+        $fieldIds = self::getCompletedFieldIdsGroupedByPdfProcessPage($documentId);
+        self::dispatchRenderJobs($fieldIds);
+    }
+
     /**
      * Get field IDs grouped by PDF process page for completed signers of a document
      *
@@ -16,7 +22,7 @@ class DocumentFieldRenderDirectorService
      * @return array<int, int[]> Array keyed by pdf_process_page_id containing arrays of document_field_ids
      * @throws \InvalidArgumentException
      */
-    public function getCompletedFieldIdsGroupedByPdfProcessPage(int $documentId): array
+    public static function getCompletedFieldIdsGroupedByPdfProcessPage(int $documentId): array
     {
         // Validate that the document exists and has a PDF process
         $document = Document::with('pdfProcess')->find($documentId);
@@ -38,11 +44,10 @@ class DocumentFieldRenderDirectorService
      * @param array<int, int[]> $groupedFields
      * @return void
      */
-    public function dispatchRenderJobs(array $groupedFields): void
+    public static function dispatchRenderJobs(array $groupedFields): void
     {
         foreach ($groupedFields as $pdfProcessPageId => $fieldIds) {
-            // Dispatch job to render this page with these field IDs
-            // RenderPdfProcessPageJob::dispatch($pdfProcessPageId, $fieldIds);
+            RenderFieldsOnPageJob::dispatch($pdfProcessPageId, $fieldIds);
         }
     }
 } 
