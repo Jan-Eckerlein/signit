@@ -11,14 +11,14 @@ class DocumentFieldRenderDirectorService
 
     public static function directRender(int $documentId): void
     {
-        $fieldIds = self::getCompletedFieldIdsGroupedByPdfProcessPage($documentId);
-        self::dispatchRenderJobs($fieldIds);
+        $fieldIdGroups = self::getCompletedFieldIdsGroupedByPdfProcessPage($documentId);
+        self::dispatchRenderJobs($fieldIdGroups);
     }
 
     public static function directRenderForSigner(int $signerId): void
     {
-        $fieldIds = self::getCompletedFieldIdsGroupedByPdfProcessPageForSigner($signerId);
-        self::dispatchRenderJobs($fieldIds);
+        $fieldIdGroups = self::getCompletedFieldIdsGroupedByPdfProcessPageForSigner($signerId);
+        self::dispatchRenderJobs($fieldIdGroups);
     }
 
     /**
