@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use App\Events\RenderFieldsOnPageCompleted;
 use App\Enums\QueueEnum;
+use App\Events\PdfProcessMergeCompleted;
+use App\Events\PdfProcessMergeCompletedEvent;
 use App\Models\DocumentSigner;
 use App\Models\PdfProcessPage;
 use App\Services\PdfProcessMergeService;
@@ -33,5 +35,6 @@ class MergePdfProcessPagesListener implements ShouldQueue
         if (!$allSignersHaveCompleted) return;
 
         $this->pdfProcessMergeService->mergePdfPages($event->pdfProcessPage->pdfProcess);
+        PdfProcessMergeCompletedEvent::dispatch($event->pdfProcessPage->pdfProcess);
     }
 }
